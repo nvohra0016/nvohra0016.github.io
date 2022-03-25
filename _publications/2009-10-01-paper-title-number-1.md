@@ -6,6 +6,5 @@ date: 3/3/2021
 venue: 'Journal 1'
 paperurl: 'http://academicpages.github.io/files/paper1.pdf'
 ---
-This paper is about the number 1. The number 2 is left for future work.
 
 [Download paper here](http://www.aimspress.com/article/doi/10.3934/mbe.2021108)
