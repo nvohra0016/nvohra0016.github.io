@@ -1,6 +1,6 @@
 ---
 title: "Thermo-hydro-mechanical Analysis of Permafrost."
-excerpt: "Mathematical analysis of the coupling governing subsidence of thawing permafrost by using Biot's poroelasticity equations and the Stefan problem.<br/><img src='/images/thaw_cartoon3.png'>"
+excerpt: "Mathematical analysis of the coupling governing subsidence of thawing permafrost by using Biot's poroelasticity equations and the Stefan problem.<br/><img src='/images/thaw_cartoon3.png'  width="500" height="500">"
 collection: portfolio
 ---
 
