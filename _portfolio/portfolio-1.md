@@ -8,7 +8,7 @@ To study the land subsidence caused by thawing permafrost, one needs to analyze 
 
 <img src='/images/thaw_cartoon5.png' width='500' height='500'>
 
-# Thermo-hydro-mechanical coupling
+## Thermo-hydro-mechanical coupling
 
 To couple flow [H], deformation[M], and energy [T], we need to consider thermo-hydro-mechanical models that take into account phase change [T] as well.
 
