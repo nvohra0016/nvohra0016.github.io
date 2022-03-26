@@ -7,7 +7,7 @@ collection: portfolio
 <div class='wrapper'>
 <section>
     <img id="pic-click" src='/images/SWExample.png' width='500' height='500' />
-    <img id="gif-click" src='/images/Movie.gif' />
+    <img id="gif-click" src="/images/Movie.gif" />
     <button id="click">Click</button>
   </section>
   </div>
