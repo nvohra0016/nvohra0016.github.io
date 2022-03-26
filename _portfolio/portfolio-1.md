@@ -20,20 +20,10 @@ Flow [H] and deformation [H] can be modeled using Biot's poroelasticity equation
 <img src='/images/Biot_system.png' width='500' height='300'>
 
 ### Example: 
-<div class=”row”>
-<div class=”column”>
-<p>
-Terzaghi's Problem; 1D soil compaction: Consider the compaction ​of a column of saturated soil with impermeable walls and bottom but with a free draining top (see figure on right for boundary conditions). When an external unit stress is applied on the top, the column of soil consolidates. The resulting pressure distribution can be solved for analytically using Biot's equations. The simulation below shows the compaction of a column of soil using a sinusoidal force applied at the top of the of the column. Starting from the top left, the 4 sub-simulations show, in a clockwise order,  the domain deformation, pore pressure, y-displacement and the x-displacement. 
-</p>
-</div>
-<div class=”column”>
-<p>
-<img src='/images/ResearchSketchDiagram1.png' width='500' height='500'>
-</p>
-</div>
-</div>
 
-<iframe width="420" height="315"
-src="https://www.youtube.com/watch?v=yGoINILFoo0&t=2s">
-</iframe>
+Terzaghi's Problem; 1D soil compaction: Consider the compaction ​of a column of saturated soil with impermeable walls and bottom but with a free draining top (see figure on right for boundary conditions). When an external unit stress is applied on the top, the column of soil consolidates. The resulting pressure distribution can be solved for analytically using Biot's equations. The simulation below shows the compaction of a column of soil using a sinusoidal force applied at the top of the of the column. Starting from the top left, the 4 sub-simulations show, in a clockwise order,  the domain deformation, pore pressure, y-displacement and the x-displacement. 
+
+<img src='/images/SoilConsolidation.png' width='200' height='200'>
+
+<iframe width="420" height="315" src="https://www.youtube.com/watch?v=yGoINILFoo0&t=2s"></iframe>
 
