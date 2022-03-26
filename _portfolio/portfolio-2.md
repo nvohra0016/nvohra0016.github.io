@@ -4,4 +4,4 @@ excerpt: "Well balanced discretization of shallo water equations and their coupl
 collection: portfolio
 ---
 
-<img src='/images/Movie.gif>
+<img src='/images/Movie.gif'>

@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I am a fourth year PhD candidate at the Oregon State University Mathematics department. 
+I am a fourth year PhD candidate at the Oregon State University Mathematics department. My research primarily involves analysis of multiphase fluid flow through porous media coupled with mechanical deformation. 
 
 A data-driven personal website
 ======
