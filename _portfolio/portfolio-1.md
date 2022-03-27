@@ -51,4 +51,7 @@ One of important features of permafrost is the presence of unfrozen water at low
 </div>
 
 ### Example:
-**Estimating the extent of permafrost thaw**:
+**Estimating the extent of permafrost thaw**: The simulation results the [Tp] model of permafrost thaw under warming climate conditions is shown below. The active layer depth can be estimated by tracking the 0 degree C isotherm. Assuming climate warming rate of 1 C/year, over 4 years, the model predicts that the depth of the active layer of a 5 meter column of permafrost increases by 4.5 times. 
+<div align="center">
+<img src='/images/permafrost_example3.png' width='600' height='600'>
+</div>
