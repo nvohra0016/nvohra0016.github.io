@@ -22,4 +22,20 @@ Here are some aspects of the numerical implementation of shallow water equations
 - Kurganov, [*Finite-volume schemes for shallow-water equations*](https://www.semanticscholar.org/paper/Finite-volume-schemes-for-shallow-water-equations-Kurganov/0919165796fb0929c8fd316d159d1ad2b39664a7), 2018
 - Beljadid, Mohammadian, Kurganov, [*Well- balanced positivity preserving cell-vertex central-upwind scheme for shallow water flows*](https://www.infona.pl/resource/bwmeta1.element.elsevier-32db18a1-2c8c-3ba6-8723-6cfa3e616926), 2016
 
+## Surface-subsurface coupling
 
+The coupling between the shallow water equations and the Richards equation can be achieved through subcycling.
+
+<div align='center'
+<img src='/images/SurfaceSubsurfaceCoupling1.png' width='500' height='500'>
+</div>
+
+Through subcycling the different time scales at which the two flows occur in most practical situations is exploited. Essentially, the more physically transient nature of surface flow compared to subsurface flow is taken into account.
+
+### Example:
+
+An example showing 1D dam break over a fully saturated subsurface is shown below. Notice how the pressure distribution changes as the water flows over the dry subsurface.
+
+<div align='center'>
+<img src='/images/SurfaceSubsurfaceDamBreak.png' width='500' height='500'>
+</div>
