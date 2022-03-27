@@ -6,8 +6,9 @@ collection: portfolio
 
 To study the land subsidence caused by thawing permafrost, one needs to analyze the coupling of the different mechanisms involved. Namely, these are deformation, flow, and energy. Analyzing these together, however, leads to numerically expensive complications and hence they must be studied individually and then coupled in a simpler fashion.
 
+<div align="center">
 <img src='/images/thaw_cartoon5.png' width='500' height='500'>
-
+</div>
 ## Thermo-hydro-mechanical coupling
 
 To couple flow [H], deformation[M], and energy [T], we need to consider thermo-hydro-mechanical models that take into account phase change [T] as well.
@@ -29,7 +30,7 @@ alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 ### [Tp]: Energy with phase change: Stefan problem
 The classical formulation of the Stefan problem allows one to solve for the domain and temperature of the different phases (eg. ice and water).
-<img src='/images/Stefan_problem.png' width='500' height='300'>
+<img src='/images/Stefan_problem.png' width='500' height='500'>
 
 By defining the enthalpy, the weak form can be derived.
-<img src='/images/Stefan_weak_form.png' width='500' height='300'>
+<img src='/images/Stefan_weak_form.png' width='500' height='500'>
