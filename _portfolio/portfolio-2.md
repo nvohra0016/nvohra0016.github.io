@@ -4,10 +4,22 @@ excerpt: "Well balanced discretization of shallo water equations and their coupl
 collection: portfolio
 ---
 
-## Surface flow: shallow water equations
+## Shallow water equations
+
+Surface flow can be modeled using the shallow water equations. 
 
 <div class='wrapper'>
 <section>
     <img id='gif-click' src='/images/Movie-2.gif' />
   </section>
   </div>
+  
+Here are some aspects of the numerical implementation of shallow water equations which I have worked on:
+- **Well-balancedness**: a well-balanced numerical scheme is that which preserves the stationary steady-state i.e. lake at rest solutions
+- **Extension to polygonal meshes**: achieved using piecewise linear interpolation of bathymetry after it is defined on cell nodes.
+- **Central upwind flux**: more accurate than the *Rusanov* flux.
+
+- Kurganov, [*Finite-volume schemes for shallow-water equations*](https://www.semanticscholar.org/paper/Finite-volume-schemes-for-shallow-water-equations-Kurganov/0919165796fb0929c8fd316d159d1ad2b39664a7), 2018
+- Beljadid, Mohammadian, Kurganov, [*Well- balanced positivity preserving cell-vertex central-upwind scheme for shallow water flows*](https://www.infona.pl/resource/bwmeta1.element.elsevier-32db18a1-2c8c-3ba6-8723-6cfa3e616926), 2016
+
+
