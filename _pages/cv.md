@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "CV"
+title: ""
 permalink: /cv/
 author_profile: true
 redirect_from:
@@ -11,8 +11,8 @@ redirect_from:
 
 Education:
 ======
-* BS, MS in Mathematics, [Indian Institute of Science](https://iisc.ac.in), Bangalore, 2012 - 2018
+* BS, MS in Mathematics, [Indian Institute of Science](http://www.math.iisc.ac.in), Bangalore, India, 2012 - 2018
 * M.S. in Mathematics, [Oregon State University](https://math.oregonstate.edu), Corvallis, 2018 - 2020
 * Ph.D in Mathematics, Oregon State University, 2018 - Present
 
-[Download CV here](http://academicpages.github.io/files/resume_2.pdf)
+[Download CV here](https://github.com/nvohra0016/nvohra0016.github.io/blob/master/files/resume_2.pdf)
