@@ -15,4 +15,4 @@ Education:
 * M.S. in Mathematics, [Oregon State University](https://math.oregonstate.edu), Corvallis, 2018 - 2020
 * Ph.D in Mathematics, Oregon State University, 2018 - Present
 
-[Download CV here](https://github.com/nvohra0016/nvohra0016.github.io/blob/master/files/resume_2.pdf)
+[Download CV here](http://nvohra0016.github.io/files/resume_2.pdf)
