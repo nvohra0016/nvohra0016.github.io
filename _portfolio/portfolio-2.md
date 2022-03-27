@@ -8,11 +8,17 @@ collection: portfolio
 
 Surface flow can be modeled using the shallow water equations. 
 
-<div class='wrapper'>
+<div class='wrapper' align='center'>
 <section>
     <img id='gif-click' src='/images/Movie-2.gif'  width='500' height='500'/>
-  </section>
-  </div>
+</section>
+</div>
+  
+The modeling is done using Amanzi. ​Amanzi is a framework which allows users to model phenomena involving coupling of flow and reactive transport. ​ 
+
+<div align='center'>
+<img src='/images/AmanziLogo.png' width='500' height='500'>
+</div>
   
 Here are some aspects of the numerical implementation of shallow water equations which I have worked on:
 - **Well-balancedness**: a well-balanced numerical scheme is that which preserves the stationary steady-state i.e. lake at rest solutions
