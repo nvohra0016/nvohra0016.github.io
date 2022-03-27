@@ -47,5 +47,5 @@ Permafrost is ground that remains frozen for two or more years. In the upper por
 
 One of important features of permafrost is the presence of unfrozen water at low temperatures. This phenomenon is not fully explained, and is accompanied by lowering the freezing temperatures in small pores. A variety of algebraic expressions exist in literature to model the unfrozen water content. These are derived empirically. Consequently, the corresponding enthalpy curves are marked by an increased regularity that is absent in the Stefan problem.
 <div align="center">
-<img src='/images/StefanPermafrostDifference.png' width='500' height='500'>
+<img src='/images/StefanPermafrostDifference.png' width='700' height='700'>
 </div>
