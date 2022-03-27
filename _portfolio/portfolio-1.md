@@ -20,7 +20,9 @@ To couple flow [H], deformation[M], and energy [T], we need to consider thermo-h
 ### [HM]: Biot's poroelasticity equations:
 Flow [H] and deformation [M] can be modeled using Biot's poroelasticity equations given below
 
+<div align="center">
 <img src='/images/Biot_system.png' width='500' height='300'>
+</div>
 
 #### Example: 
 
@@ -31,12 +33,12 @@ Flow [H] and deformation [M] can be modeled using Biot's poroelasticity equation
 ### [Tp]: Energy with phase change: Stefan problem
 The classical formulation of the Stefan problem allows one to solve for the domain and temperature of the different phases (eg. ice and water).
 <div align="center">
-<img src='/images/Stefan_problem.png' width='500' height='500'>
+<img src='/images/Stefan_problem.png' width='600' height='600'>
 </div>
 
 By defining the enthalpy, the weak form can be derived.
 <div align="center">
-<img src='/images/Stefan_weak_form.png' width='500' height='500'>
+<img src='/images/Stefan_weak_form.png' width='600' height='600'>
 </div>
 
 #### Application to Permafrost Modeling:
@@ -45,5 +47,5 @@ Permafrost is ground that remains frozen for two or more years. In the upper por
 
 One of important features of permafrost is the presence of unfrozen water at low temperatures. This phenomenon is not fully explained, and is accompanied by lowering the freezing temperatures in small pores. A variety of algebraic expressions exist in literature to model the unfrozen water content. These are derived empirically. Consequently, the corresponding enthalpy curves are marked by an increased regularity that is absent in the Stefan problem.
 <div align="center">
-<img src='/images/StefanPermafrostDifference' width='500' height='500'>
+<img src='/images/StefanPermafrostDifference.png' width='500' height='500'>
 </div>
