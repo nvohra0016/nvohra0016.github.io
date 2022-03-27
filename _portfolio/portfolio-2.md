@@ -14,10 +14,10 @@ Surface flow can be modeled using the shallow water equations.
 </section>
 </div>
   
-The modeling is done using Amanzi. ​Amanzi is a framework which allows users to model phenomena involving coupling of flow and reactive transport. ​ 
+I have worked on the shallow water equation solver in [Amanzi](https://github.com/amanzi/amanzi). ​Amanzi is a framework which allows users to model phenomena involving coupling of flow and reactive transport. ​ 
 
 <div align='center'>
-<img src='/images/AmanziLogo.png' width='500' height='500'>
+<img src='/images/AmanziLogo.png' width='400' height='400'>
 </div>
   
 Here are some aspects of the numerical implementation of shallow water equations which I have worked on:
