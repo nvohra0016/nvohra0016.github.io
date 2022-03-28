@@ -86,7 +86,7 @@ author:
   location         : "Corvallis, Oregon, US"
   employer         :
   pubmed           :
-  googlescholar    :
+  googlescholar    : "https://scholar.google.com/citations?user=6f8JksUAAAAJ&hl=en&oi=sra"
   email            : "vohran@oregonstate.edu"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
