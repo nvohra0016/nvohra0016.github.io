@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Naren Vohra"
+title: 
 excerpt: "About me"
 author_profile: true
 redirect_from: 
@@ -9,5 +9,5 @@ redirect_from:
 ---
 ## About me:
 
-I am a fourth year PhD candidate at the Oregon State University Mathematics department. My research primarily involves analysis of multiphase fluid flow through porous media coupled with mechanical deformation. 
+I am Naren Vohra and I am a fourth year PhD candidate at the Oregon State University Mathematics department. I am interested in applied and computational mathematics, particularly to model fluid flow and mechanical deformation. Currently, I am studying the thermo-hydro-mechanical coupling that governs the dynamics of permafrost thaw. 
 
