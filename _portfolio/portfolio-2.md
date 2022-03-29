@@ -1,12 +1,12 @@
 ---
 title: "Surface-Subsurface Flow Modeling"
-excerpt: "Well balanced discretization of shallo water equations and their coupling with subsurface flow.<br/><img src='/images/SWExample.png' width='500' height='500'>"
+excerpt: "Well balanced discretization of shallow water equations and their coupling with subsurface flow.<br/><img src='/images/SWExample.png' width='500' height='500'>"
 collection: portfolio
 ---
 
 ## Shallow water equations
 
-Surface flow can be modeled using the shallow water equations. 
+Surface flow can be modeled using the shallow water equations. They are used to model rivers, floods, flow in channels; in dam break problems; in oceanic modeling for tsunamis, tides etc.
 
 <div class='wrapper' align='center'>
 <section>
