@@ -9,11 +9,11 @@ redirect_from:
 ---
 ## About me:
 
-I am a fourth year PhD candidate at the Oregon State University Mathematics department. I am interested in applied and computational mathematics, particularly to model fluid flow and mechanical deformation. Currently, I am studying the thermo-hydro-mechanical coupling that governs the dynamics of permafrost thaw. 
+I am a fourth year PhD candidate at the Oregon State University Mathematics department. I am interested in applied and computational mathematics, particularly to model fluid flow and mechanical deformation. Currently, I am studying the thermo-hydro-mechanical coupling that governs the dynamics of thawing ice-rich porous media, like permafrost.
 
 ### Interests: 
 - Poroelasticity
-- Phase transition
+- Heat conduction with phase transition
 - Thermo-hydro-mechanical models
 - Computational fluid dynamics
 
