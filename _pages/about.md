@@ -17,4 +17,4 @@ I am a fourth year PhD candidate at the Oregon State University Mathematics depa
 - Thermo-hydro-mechanical models
 - Computational fluid dynamics
 
-I am also fond of reading classics. Among my favourite authors are Marcel Proust and Virginia Woolf.
+I am also fond of reading classics. Among my favourite authors are Marcel Proust, Virginia Woolf, Fyodor Dostoevsky and Ernest Hemingway.
