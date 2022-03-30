@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Home"
 title_separator          : "-"
 name                     : &name "Naren Vohra"
-description              : &description "Computational mathematics models for thermo-hydro-mechanics processes"
+description              : &description "Thermo-hydro-mechanical models"
 url                      : https://nvohra0016.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "nvohra0016/nvohra0016.github.io"
@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Naren Vohra"
   avatar           : "MFO_pic_2.jpg"
-  bio              : "Thermo-hydro-mechanical models"
+  bio              : "Computational mathematics models for thermo-hydro-mechanics processes"
   location         : "Corvallis, Oregon, US"
   employer         :
   pubmed           :
