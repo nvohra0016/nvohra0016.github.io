@@ -10,7 +10,7 @@ Surface flow can be modeled using the shallow water equations. They are used to 
 
 <div class='wrapper' align='center'>
 <section>
-    <img id='gif-click' src='/images/Movie-2.gif'  width='500' height='500'/>
+    <img id='gif-click' src='/images/SW2.gif'  width='600' height='600'/>
 </section>
 </div>
   
