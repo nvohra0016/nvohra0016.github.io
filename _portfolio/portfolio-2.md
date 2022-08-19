@@ -25,6 +25,7 @@ Here are some aspects of the numerical implementation of shallow water equations
 - **Extension to polygonal meshes**: achieved using piecewise linear interpolation of bathymetry after it is defined on cell nodes.
 - **Central upwind flux**: more accurate than the *Rusanov* flux.
 - **Higher order time stepping**.
+- **Depth positivity**: achieved using reconstruction of total water depth in partially wet/ dry cells.
 
 <div class='wrapper' align='center'>
 <section>
