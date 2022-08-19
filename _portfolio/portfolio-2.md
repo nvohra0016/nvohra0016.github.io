@@ -1,6 +1,6 @@
 ---
 title: "Surface-Subsurface Flow Modeling"
-excerpt: "Well balanced discretization of shallow water equations and their coupling with subsurface flow.<br/><img src='/images/SWExample.png' width='500' height='500'>"
+excerpt: "Well balanced discretization of shallow water equations and their coupling with subsurface flow.<br/><img src='/images/SW_img.png' width='500' height='500'>"
 collection: portfolio
 ---
 
