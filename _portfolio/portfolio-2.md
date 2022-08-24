@@ -13,7 +13,6 @@ Surface flow can be modeled using the shallow water equations. They are used to 
     <img id='gif-click' src='/images/SW2.gif'  width='600' height='600'/>
 </section>
 </div>
-
 *Simulation created using Amanzi*
 ---
 
@@ -35,7 +34,6 @@ Here are some aspects of the numerical implementation of shallow water equations
     <img id='gif-click' src='/images/SW.gif'  width='600' height='600'/>
 </section>
 </div>
-
 *Simulation created using Amanzi*
 ---
 
