@@ -13,7 +13,9 @@ Surface flow can be modeled using the shallow water equations. They are used to 
     <img id='gif-click' src='/images/SW2.gif'  width='600' height='600'/>
 </section>
 </div>
-  
+
+>[Simulation created using Amanzi]
+
 I have worked on the shallow water equation solver in [Amanzi](https://github.com/amanzi/amanzi). ​Amanzi is a framework which allows users to model phenomena involving coupling of flow and reactive transport. ​ 
 
 <div align='center'>
@@ -32,6 +34,8 @@ Here are some aspects of the numerical implementation of shallow water equations
     <img id='gif-click' src='/images/SW.gif'  width='600' height='600'/>
 </section>
 </div>
+
+>[Simulation created using Amanzi]
 
 - Kurganov, [*Finite-volume schemes for shallow-water equations*](https://www.semanticscholar.org/paper/Finite-volume-schemes-for-shallow-water-equations-Kurganov/0919165796fb0929c8fd316d159d1ad2b39664a7), 2018
 - Beljadid, Mohammadian, Kurganov, [*Well- balanced positivity preserving cell-vertex central-upwind scheme for shallow water flows*](https://www.infona.pl/resource/bwmeta1.element.elsevier-32db18a1-2c8c-3ba6-8723-6cfa3e616926), 2016
