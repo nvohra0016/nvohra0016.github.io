@@ -54,8 +54,8 @@ Through subcycling the different time scales at which the two flows occur in mos
 
 ### Example:
 
-An example showing 1D dam break over a fully saturated subsurface is shown below. Notice how the pressure distribution changes as the water flows over the dry subsurface.
+An example showing 1D dam break over a fully saturated subsurface is shown below. Also shown is the pressure and flux distribution in the subsurface.
 
 <div align='center'>
-<img src='/images/SurfaceSubsurfaceDamBreak.png' width='600' height='600'>
+<img src='/images/ss.png' width='600' height='600'>
 </div>
