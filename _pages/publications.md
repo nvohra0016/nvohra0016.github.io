@@ -17,6 +17,6 @@ Education:
 * MS in Mathematics, [Oregon State University](https://math.oregonstate.edu), Corvallis, 2018 - 2020
 * PhD in Mathematics, Oregon State University, 2018 - Present
 
-{% for post in site.publications reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+<!--{% for post in site.publications reversed %}-->
+<!--  {% include archive-single.html %}-->
+<!--{% endfor %}-->
