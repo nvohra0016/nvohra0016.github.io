@@ -11,11 +11,10 @@ author_profile: true
 
 {% include base_path %}
 
-Education:
 ======
-* BS, MS in Mathematics, [Indian Institute of Science](http://www.math.iisc.ac.in), Bangalore, India, 2012 - 2018
-* MS in Mathematics, [Oregon State University](https://math.oregonstate.edu), Corvallis, 2018 - 2020
-* PhD in Mathematics, Oregon State University, 2018 - Present
+* C. Shin, A. Alhammali, L. Bigler, N. Vohra, M. Peszynska, *"Coupled flow and biomass-nutrient growth at pore-scale with permeable biofilm, adaptive singularity and multiple species"*, Mathematical Biosciences and Engineering, 3/3/2021, [Link](http://www.aimspress.com/article/doi/10.3934/mbe.2021108)
+* L. Bigler, M. Peszynska, N. Vohra, *"Heterogeneous Stefan problem and permafrost models with P0-P0 finite elements and fully implicit monolithic solver"*, Electronic Research Archive, 3/23/2022, [Link](http://www.aimspress.com/article/doi/10.3934/era.2022078)
+* N. Vohra, M. Peszynska, *"Modeling Permafrost: Soil, Ice, and Some Really Hard Mathematics"*, SIAM News Blog, 3/23/2022, [Link](https://sinews.siam.org/Details-Page/modeling-permafrost-soil-ice-and-some-really-hard-mathematics)
 
 <!--{% for post in site.publications reversed %}-->
 <!--  {% include archive-single.html %}-->
