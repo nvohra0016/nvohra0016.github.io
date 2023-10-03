@@ -4,7 +4,7 @@ excerpt: "Mathematical analysis of the coupling governing subsidence of thawing 
 collection: portfolio
 ---
 
-To study the land subsidence caused by thawing permafrost, one needs to analyze the coupling of the different mechanisms involved. Namely, these are deformation, flow, and energy. Analyzing these together, however, leads to numerically expensive complications and hence they must be studied individually and then coupled in a simpler fashion.
+To study the land subsidence caused by thawing permafrost, one needs to analyze the coupling of the different mechanisms involved. Namely, these are deformation, flow, and energy. Analyzing these together, however, leads to numerically expensive complications and hence they must be studied individually and then coupled in a simpler fashion; see our brief overview article published in SIAM News Online here: [Modeling Permafrost: Soil, Ice, and Some Really Hard Mathematics](https://sinews.siam.org/Details-Page/modeling-permafrost-soil-ice-and-some-really-hard-mathematics)
 
 <div align="center">
 <img src='/images/thaw_cartoon5.png' width='500' height='500'>
