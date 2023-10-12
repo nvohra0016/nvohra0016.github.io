@@ -11,9 +11,15 @@ author_profile: true
 
 {% include base_path %}
 
-* C. Shin, A. Alhammali, L. Bigler, N. Vohra, M. Peszynska, *"Coupled flow and biomass-nutrient growth at pore-scale with permeable biofilm, adaptive singularity and multiple species"*, Mathematical Biosciences and Engineering, 3/3/2021, [Link](http://www.aimspress.com/article/doi/10.3934/mbe.2021108)
-* L. Bigler, M. Peszynska, N. Vohra, *"Heterogeneous Stefan problem and permafrost models with P0-P0 finite elements and fully implicit monolithic solver"*, Electronic Research Archive, 3/23/2022, [Link](http://www.aimspress.com/article/doi/10.3934/era.2022078)
 * N. Vohra, M. Peszynska, *"Modeling Permafrost: Soil, Ice, and Some Really Hard Mathematics"*, SIAM News Blog, 7/31/2023, [Link](https://sinews.siam.org/Details-Page/modeling-permafrost-soil-ice-and-some-really-hard-mathematics)
+
+* N. Vohra, K. Lipnikov, S. Tokareva *"Second-Order Accurate Structure-Preserving Scheme for Solute Transport on Polygonal Meshes"*, Communications on Applied Mathematics and Computation, 2023, [Link](https://link.springer.com/article/10.1007/s42967-023-00289-3), [View here](https://rdcu.be/djdsO)
+
+* L. Bigler, M. Peszynska, N. Vohra, *"Heterogeneous Stefan problem and permafrost models with P0-P0 finite elements and fully implicit monolithic solver"*, Electronic Research Archive, 3/23/2022, [Link](http://www.aimspress.com/article/doi/10.3934/era.2022078)
+
+* C. Shin, A. Alhammali, L. Bigler, N. Vohra, M. Peszynska, *"Coupled flow and biomass-nutrient growth at pore-scale with permeable biofilm, adaptive singularity and multiple species"*, Mathematical Biosciences and Engineering, 3/3/2021, [Link](http://www.aimspress.com/article/doi/10.3934/mbe.2021108)
+
+
 
 <!--{% for post in site.publications reversed %}-->
 <!--  {% include archive-single.html %}-->
