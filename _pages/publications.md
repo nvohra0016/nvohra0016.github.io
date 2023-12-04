@@ -11,9 +11,13 @@ author_profile: true
 
 {% include base_path %}
 
+* N. Vohra, M. Peszynska, *"Robust conservative scheme and nonlinear solver for phase transitions in heterogeneous permafrost"*, Journal of Computational and Applied Mathematics, accepted 2023.
+
+* M. Peszynska, N. Vohra, L. Bigler, *"Upscaling an extended heterogeneous Stefan problem from the pore-scale to the Darcy scale in permafrost"*, SIAM Multiscale Modeling and Simulation, accepted 2023.
+
 * N. Vohra, M. Peszynska, *"Modeling Permafrost: Soil, Ice, and Some Really Hard Mathematics"*, SIAM News Blog, 7/31/2023, [Link](https://sinews.siam.org/Details-Page/modeling-permafrost-soil-ice-and-some-really-hard-mathematics)
 
-* N. Vohra, K. Lipnikov, S. Tokareva *"Second-Order Accurate Structure-Preserving Scheme for Solute Transport on Polygonal Meshes"*, Communications on Applied Mathematics and Computation, 2023, [Link](https://link.springer.com/article/10.1007/s42967-023-00289-3), [View here](https://rdcu.be/djdsO)
+* N. Vohra, K. Lipnikov, S. Tokareva, *"Second-Order Accurate Structure-Preserving Scheme for Solute Transport on Polygonal Meshes"*, Communications on Applied Mathematics and Computation, 2023, [Link](https://link.springer.com/article/10.1007/s42967-023-00289-3), [View here](https://rdcu.be/djdsO)
 
 * L. Bigler, M. Peszynska, N. Vohra, *"Heterogeneous Stefan problem and permafrost models with P0-P0 finite elements and fully implicit monolithic solver"*, Electronic Research Archive, 3/23/2022, [Link](http://www.aimspress.com/article/doi/10.3934/era.2022078)
 

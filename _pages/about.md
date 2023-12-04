@@ -16,5 +16,3 @@ I am a postdoc at Los Alamos National Laboratory in the Applied Mathematics and 
 - Surface and subsurface flow modeling
 - Multiphase flow modeling
 - Computational fluid dynamics
-
-I am also fond of reading classics. Among my favourite authors are Marcel Proust, Virginia Woolf, Fyodor Dostoevsky and Ernest Hemingway.
