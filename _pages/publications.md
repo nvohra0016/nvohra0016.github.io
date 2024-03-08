@@ -11,11 +11,11 @@ author_profile: true
 
 {% include base_path %}
 
-* N. Vohra, M. Peszynska, *"Iteratively Coupled Finite Element Solver for Thermo-hydro-mechanical Modeling of Permafrost Thaw"*, Results in Applied Mathematics, accepted, 2024.
+* N. Vohra, M. Peszynska, *"Iteratively Coupled Finite Element Solver for Thermo-hydro-mechanical Modeling of Permafrost Thaw"*, Results in Applied Mathematics, 05/2024 [Link](https://www.sciencedirect.com/science/article/pii/S2590037424000098)
 
 * N. Vohra, M. Peszynska, *"Robust conservative scheme and nonlinear solver for phase transitions in heterogeneous permafrost"*, Journal of Computational and Applied Mathematics, 12/5/2023, [Link](https://www.sciencedirect.com/science/article/pii/S0377042723006623)
 
-* M. Peszynska, N. Vohra, L. Bigler, *"Upscaling an extended heterogeneous Stefan problem from the pore-scale to the Darcy scale in permafrost"*, SIAM Multiscale Modeling and Simulation, accepted 2023.
+* M. Peszynska, N. Vohra, L. Bigler, *"Upscaling an extended heterogeneous Stefan problem from the pore-scale to the Darcy scale in permafrost"*, SIAM Multiscale Modeling and Simulation, 2024, [Link](https://epubs.siam.org/eprint/VYHE2UAEYZUHDY8TY5BV/full)
 
 * N. Vohra, M. Peszynska, *"Modeling Permafrost: Soil, Ice, and Some Really Hard Mathematics"*, SIAM News Blog, 7/31/2023, [Link](https://sinews.siam.org/Details-Page/modeling-permafrost-soil-ice-and-some-really-hard-mathematics)
 
