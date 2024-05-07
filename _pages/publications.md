@@ -11,6 +11,8 @@ author_profile: true
 
 {% include base_path %}
 
+* M. Peszynska, Z. Hilliard, N. Vohra,  *"Coupled flow and energy models with phase change in permafrost from pore- to Darcy scale: modeling and approximation"*, Journal of Computational and Applied Mathematics, *accepted*, 2024
+
 * N. Vohra, M. Peszynska, *"Iteratively Coupled Finite Element Solver for Thermo-hydro-mechanical Modeling of Permafrost Thaw"*, Results in Applied Mathematics, 05/2024, [Link](https://www.sciencedirect.com/science/article/pii/S2590037424000098)
 
 * N. Vohra, M. Peszynska, *"Robust conservative scheme and nonlinear solver for phase transitions in heterogeneous permafrost"*, Journal of Computational and Applied Mathematics, 12/5/2023, [Link](https://www.sciencedirect.com/science/article/pii/S0377042723006623)
