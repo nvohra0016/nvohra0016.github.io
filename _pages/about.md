@@ -17,5 +17,4 @@ I am a postdoc at Los Alamos National Laboratory in the Applied Mathematics and 
 - Multiphase flow modeling
 - Computational fluid dynamics
 
-##### Last updated 
-10th May 2024
+###### Last updated: 10th May 2024
