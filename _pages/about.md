@@ -13,6 +13,7 @@ I am a postdoc at Los Alamos National Laboratory in the Applied Mathematics and 
 
 ### Interests: 
 - Multiscale multiphysics processes
+- Thermo-hydro-mechanical models
 - Surface and subsurface flow modeling
 - Multiphase flow modeling
 - Computational fluid dynamics
