@@ -9,7 +9,7 @@ redirect_from:
 ---
 ## About me:
 
-I am a postdoc at Los Alamos National Laboratory in the Applied Mathematics and Plasma Physics (T5) division. I completed my Ph.D. in Mathematics from Oregon State University. I am interested in applied and computational mathematics, particularly with applications in geosciences.
+I am a data scientist at the Computational and Data Sciences (CDS) Department in the Indian Institute of Science (IISc). I completed my Ph.D. in Mathematics from Oregon State University. I am interested in applied and computational mathematics, particularly with applications in geosciences.
 
 ### Interests: 
 - Multiscale multiphysics processes
@@ -18,4 +18,4 @@ I am a postdoc at Los Alamos National Laboratory in the Applied Mathematics and 
 - Multiphase flow modeling
 - Computational fluid dynamics
 
-###### Last updated: August 2024
+###### Last updated: October 2024

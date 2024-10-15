@@ -11,7 +11,8 @@ redirect_from:
 
 Employment: 
 ======
-* Postdoc at Los Alamos National Laboratory (LANL), Los Alamos, New Mexico, 2023 - present
+* Data Scientist at Indian Institute of Science (IISc), Bangalore, India, 2024 - present
+* Postdoc at Los Alamos National Laboratory (LANL), Los Alamos, New Mexico, 2023 - 2024
 
 Education:
 ======
