@@ -9,13 +9,16 @@ redirect_from:
 ---
 ## About me:
 
-I was` a data scientist at the Computational and Data Sciences (CDS) Department in the Indian Institute of Science (IISc). I completed my Ph.D. in Mathematics from Oregon State University. I am interested in applied and computational mathematics, particularly with applications in geosciences.
+I am a computational mathematician who is currently working at Aurora Energy Research as an energy modelling analyst. I completed my Ph.D. in Mathematics from Oregon State University and my postdoctoral studies from Los 
+Alamos National Lab. I am interested in applied and computational mathematics, particularly with applications in geosciences.
 
 ### Interests: 
+- Computational modelling of physical processes
+- Power market modelling
 - Multiscale multiphysics processes
 - Thermo-hydro-mechanical models
 - Surface and subsurface flow modeling
 - Multiphase flow modeling
 - Computational fluid dynamics
 
-###### Last updated: March 2025
+###### Last updated: July 2025

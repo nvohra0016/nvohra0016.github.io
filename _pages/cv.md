@@ -11,8 +11,9 @@ redirect_from:
 
 Employment: 
 ======
-* Data Scientist at Indian Institute of Science (IISc), Bangalore, India, 2024 - present
+* Energy Modelling Analyst at [Aurora Energy Research](https://auroraer.com), Gurugram, India, July, 2025 - present
 * Postdoc at Los Alamos National Laboratory (LANL), Los Alamos, New Mexico, 2023 - 2024
+* Graduate Research/Teaching Assistant at Oregon State University, Oregon, 2018 - 2023
 
 Education:
 ======
