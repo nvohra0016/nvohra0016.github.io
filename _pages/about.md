@@ -21,4 +21,4 @@ Alamos National Lab. I am interested in applied and computational mathematics, p
 - Multiphase flow modeling
 - Computational fluid dynamics
 
-###### Last updated: July 2025
+###### Last updated: August 2025
