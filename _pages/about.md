@@ -15,6 +15,7 @@ Alamos National Lab. I am interested in applied and computational mathematics, p
 ### Interests: 
 - Computational modelling of physical processes
 - Power market modelling
+- Battery energy storage systems
 - Multiscale multiphysics processes
 - Thermo-hydro-mechanical models
 - Surface and subsurface flow modeling
