@@ -10,4 +10,4 @@ Consider the basic equation
 
 $$SOC_n = SOC_{n-1} + \tau(\eta P^c_n - \frac{1}{\eta}P^d_n)$$
 
-Implicit...
+Implicit time stepping
