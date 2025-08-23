@@ -9,6 +9,7 @@ To study the land subsidence caused by thawing permafrost, one needs to analyze 
 <div align="center">
 <img src='/images/thaw_cartoon5.png' width='500' height='500'>
 </div>
+*Simulation created by the author of this article with deal.ii and Blender*
 ## Thermo-hydro-mechanical coupling
 
 To couple flow [H], deformation[M], and energy [T], we need to consider thermo-hydro-mechanical models that take into account phase change [T] as well.
@@ -32,6 +33,7 @@ Flow [H] and deformation [M] can be modeled using Biot's poroelasticity equation
 **Terzaghi's Problem; 1D soil compaction**: Consider the compaction ​of a column of saturated soil with impermeable walls and bottom but with a free draining top (see figure on right for boundary conditions). When an external unit stress is applied on the top, the column of soil consolidates. The resulting pressure distribution can be solved for analytically using Biot's equations. The simulation below shows the compaction of a column of soil using a sinusoidal force applied at the top of the of the column. Starting from the top left, the 4 sub-simulations show, in a clockwise order,  the domain deformation, pore pressure, y-displacement and the x-displacement. 
 
 [![Soil consolidation](/images/soil_consolidation_video_shot.png)](https://youtu.be/yGoINILFoo0 "Click to view simulation")
+*Simulation created by the author of this article using deal.ii*
 
 ## [Tp]: Energy with phase change: Stefan problem
 The classical formulation of the Stefan problem allows one to solve for the domain and temperature of the different phases (eg. ice and water).
@@ -63,3 +65,4 @@ One of important features of permafrost is the presence of unfrozen water at low
 <div align="center">
 <img src='/images/permafrost_example3.png' width='600' height='600'>
 </div>
+*Simulation created by the author of this article using MATLAB and Blender*
