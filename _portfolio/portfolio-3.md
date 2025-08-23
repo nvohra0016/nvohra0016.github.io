@@ -13,7 +13,7 @@ Surface flow can be modeled using the shallow water equations. They are used to 
     <img id='gif-click' src='/images/SW2.gif'  width='600' height='600'/>
 </section>
 </div>
-*Simulation created using Amanzi*
+*Simulation created by the author of this article using Amanzi and Blender*
 
 ---
 
@@ -35,8 +35,7 @@ Here are some aspects of the numerical implementation of shallow water equations
     <img id='gif-click' src='/images/SW.gif'  width='600' height='600'/>
 </section>
 </div>
-*Simulation created using Amanzi*
-
+*Simulation created by the author of this article using Amanzi and Blender*
 ---
 
 - Kurganov, [*Finite-volume schemes for shallow-water equations*](https://www.semanticscholar.org/paper/Finite-volume-schemes-for-shallow-water-equations-Kurganov/0919165796fb0929c8fd316d159d1ad2b39664a7), 2018
@@ -59,3 +58,6 @@ An example showing 1D dam break over a fully saturated subsurface is shown below
 <div align='center'>
 <img src='/images/ss.png' width='600' height='600'>
 </div>
+*Simulation created by the author of this article using Amanzi*
+
+
