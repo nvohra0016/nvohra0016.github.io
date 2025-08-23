@@ -36,6 +36,7 @@ Here are some aspects of the numerical implementation of shallow water equations
 </section>
 </div>
 *Simulation created by the author of this article using Amanzi and Blender*
+
 ---
 
 - Kurganov, [*Finite-volume schemes for shallow-water equations*](https://www.semanticscholar.org/paper/Finite-volume-schemes-for-shallow-water-equations-Kurganov/0919165796fb0929c8fd316d159d1ad2b39664a7), 2018
