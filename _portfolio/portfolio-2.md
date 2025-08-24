@@ -21,30 +21,24 @@ To couple flow [H], deformation[M], and energy [T], we need to consider thermo-h
 </div>
 
 ## [HM]: Biot's poroelasticity equations:
-Flow [H] and deformation [M] can be modeled using Biot's poroelasticity equations given below
-
-\begin{equation}
--\nabla \cdot \left[ \mu \left(\nabla u + \nabla u^T \right) + \lambda \nabla \cdot u \right] + \alpha nabla \cdot p &=& 0,
-\\
-\partial_t \left(c_0 p + \alpha \nabla \cdot u \right) - \nabla \cdot \kappa \mu_f^{-1} \left(\nabla p - \rho g \right) &=& 0.
-\end{equation}
+Flow [H] and deformation [M] can be modeled using Biot's poroelasticity equations given below [1], [2]
 
 <div align="center">
 <img src='/images/Biot_system.png' width='500' height='300'>
 </div>
-
-- M. A. Biot, [*General theory of three-dimensional consolidation*](aip.scitation.org/doi/10.1063/1.1712886), 1941
-- Phillips, Wheeler, [*A coupling of mixed and continuous Galerkin finite element methods for poroelasticity I: the continuous in time case*](https://link.springer.com/article/10.1007/s10596-007-9045-y), 2007
 
 ### Example: 
 
 **Terzaghi's Problem; 1D soil compaction**: Consider the compaction ​of a column of saturated soil with impermeable walls and bottom but with a free draining top (see figure on right for boundary conditions). When an external unit stress is applied on the top, the column of soil consolidates. The resulting pressure distribution can be solved for analytically using Biot's equations. The simulation below shows the compaction of a column of soil using a sinusoidal force applied at the top of the of the column. Starting from the top left, the 4 sub-simulations show, in a clockwise order,  the domain deformation, pore pressure, y-displacement and the x-displacement. 
 
 [![Soil consolidation](/images/soil_consolidation_video_shot.png)](https://youtu.be/yGoINILFoo0 "Click to view simulation")
-*Simulation created by the author of this article using deal.ii*
+
+<div align = "center">
+Simulation created by the author of this article using deal.ii
+</div>
 
 ## [Tp]: Energy with phase change: Stefan problem
-The classical formulation of the Stefan problem allows one to solve for the domain and temperature of the different phases (eg. ice and water).
+The classical formulation of the Stefan problem allows one to solve for the domain and temperature of the different phases (eg. ice and water) [3]
 <div align="center">
 <img src='/images/Stefan_problem.png' width='600' height='600'>
 </div>
@@ -60,17 +54,37 @@ By defining the enthalpy, the weak form can be derived.
 
 Permafrost is ground that remains frozen for two or more years. In the upper portion of permafrost, called the active layer, the temperature increases in the summer and decreases throughout the rest of the year. Hence the depth of this layer changes due to an increase of ambient temperature, and this causes the thawing of some portions of permafrost, which has further environmental consequences. 
 
-One of important features of permafrost is the presence of unfrozen water at low temperatures. This phenomenon is not fully explained, and is accompanied by lowering the freezing temperatures in small pores. A variety of algebraic expressions exist in literature to model the unfrozen water content. These are derived empirically. Consequently, the corresponding enthalpy curves are marked by an increased regularity that is absent in the Stefan problem.
+One of important features of permafrost is the presence of unfrozen water at low temperatures. This phenomenon is not fully explained, and is accompanied by lowering the freezing temperatures in small pores. A variety of algebraic expressions exist in literature to model the unfrozen water content. These are derived empirically. Consequently, the corresponding enthalpy curves are marked by an increased regularity that is absent in the Stefan problem [4] [5].
 <div align="center">
 <img src='/images/StefanPermafrostDifference.png' width='700' height='700'>
 </div>
-
-- Osterkamp, Burn, [*Permafrost*](https://www.sciencedirect.com/science/article/pii/B0122270908003110), 2003
-- Nicolsky, Romanovsky, Tipenko, [*Using in-situ temperature measurements to estimate saturated soil thermal properties by solving a sequence of optimization problems*](https://tc.copernicus.org/articles/1/41/2007/), 2007
 
 ### Example:
 **Estimating the extent of permafrost thaw**: The simulation results the [Tp] model of permafrost thaw under warming climate conditions is shown below. The active layer depth can be estimated by tracking the 0 degree C isotherm. Assuming climate warming rate of 1 C/year, over 4 years, the model predicts that the depth of the active layer of a 5 meter column of permafrost increases by 4.5 times. 
 <div align="center">
 <img src='/images/permafrost_example3.png' width='600' height='600'>
 </div>
-*Simulation created by the author of this article using MATLAB and Blender*
+
+<div align = "center">
+Simulation created by the author of this article using MATLAB and Blender
+</div>
+
+## References
+<a id="1">[1]</a> 
+Biot, M. A. (1941),
+[*General theory of three-dimensional consolidation*](aip.scitation.org/doi/10.1063/1.1712886).
+
+<a id="2">[2]</a> 
+Phillips, Wheeler (2007),
+[*A coupling of mixed and continuous Galerkin finite element methods for poroelasticity I: the continuous in time case*](https://link.springer.com/article/10.1007/s10596-007-9045-y).
+
+<a id="3">[3]</a> 
+Visintin (1996),
+[*Models of Phase Transition*](https://link.springer.com/book/10.1007/978-1-4612-4078-5).
+
+<a id="3">[4]</a> 
+Osterkamp, Burn (2003), [*Permafrost*](https://www.sciencedirect.com/science/article/pii/B0122270908003110).
+
+<a id="3">[5]</a> 
+Nicolsky, Romanovsky, Tipenko (2007), [*Using in-situ temperature measurements to estimate saturated soil thermal properties by solving a sequence of optimization problems*](https://tc.copernicus.org/articles/1/41/2007/).
+
