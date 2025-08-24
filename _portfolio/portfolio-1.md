@@ -35,7 +35,7 @@ We assume perfect foresight of the market prices, i.e., we assume prior knowledg
 We consider a $1$[MWh] battery with maximum charging/discharging rates $1$ [MW], and a round trip efficiency of $\eta = 0.9$. We take 15 [min] real time market prices (RTM) from IEX [2] for the randomly chosen day of 15th February, 2025; see Fig. 1 below.
 
 <div align="center">
-<img src='/images/BESS_project_images/wholesaleprices_RTM_15022025.png' width='450' height='450'>
+<img src='/images/BESS_project_images/wholesaleprices_RTM_15022025.png' width='420' height='420'>
 </div>
 <div align="center">
 Figure 1. Real time market prices used in the simulation.
@@ -45,8 +45,8 @@ Figure 1. Real time market prices used in the simulation.
 The results are shown in Fig. 2 below.
 
 <div align="center">
-<img src='/images/BESS_project_images/example1_SOC.png' width='370' height='370'>
-<img src='/images/BESS_project_images/example1_Pd_Pc.png' width='370' height='370'>
+<img src='/images/BESS_project_images/example1_SOC.png' width='380' height='380'>
+<img src='/images/BESS_project_images/example1_Pd_Pc.png' width='380' height='380'>
 </div>
 <div align="center">
 Figure 2. State of charge and charge/discharge rates for the numerical example. 
