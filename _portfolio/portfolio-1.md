@@ -41,15 +41,18 @@ We consider a $1$[MWh] battery with maximum charging/discharging rates $1$ [MW],
 Figure 1. Real time market prices used in the simulation.
 </div>
 
-The results are shown below. Fig. 2 and Fig 3 show the state of charge and the charge/discharge rates. 
+The results are shown in Fig. 2 below.
 
 <div align="center">
-<img src='/images/BESS_project_images/example1_SOC.png' width='350' height='350'>
-<img src='/images/BESS_project_images/example1_Pd_Pc.png' width='350' height='350'>
+<img src='/images/BESS_project_images/example1_SOC.png' width='370' height='370'>
+<img src='/images/BESS_project_images/example1_Pd_Pc.png' width='370' height='370'>
 </div>
 <div align="center">
 Figure 2. State of charge and charge/discharge rates for the numerical example. 
 </div>
+
+The battery follows two complete cycles following the peak electricity prices during the peak demand periods $t \approx 6$[h] and $t \approx 18$[h]. The battery first charges around $t \approx 4$[h] when the prices are at the lowest and discharges when the prices are high around $t\ approx 8$[h]. Later in the day, the battery charges around $t \approx 13$[h] and discharges when the prices are highest around $t\ approx 20$[h]. In this example, there are also two small charging/discharging periods following the local maximums of the prices around $t \approx 9$[h] and $t \approx 17$[h]. 
+
 
 
 
