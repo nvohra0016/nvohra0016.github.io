@@ -30,7 +30,7 @@ We consider a basic scenario where a given battery performs arbitrage in the who
 \text{minimize} \sum_{n} \left(P^c_n \theta_n - P^d_n \theta_n \right) \tau
 \end{equation}
 
-given~\eqref{eq:BESS_model}.
+given~\ref{eq:BESS_model}.
 
 
 ## References
