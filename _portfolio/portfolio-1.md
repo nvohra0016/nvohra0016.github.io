@@ -44,8 +44,8 @@ Figure 1. Real time market prices used in the simulation.
 The results are shown below. Fig. 2 and Fig 3 show the state of charge and the charge/discharge rates. 
 
 <div align="center">
-<img src='/images/BESS_project_images/example1_SOC.png' width='200' height='200'>
-<img src='/images/BESS_project_images/example1_Pd_Pc.png' width='200' height='200'>
+<img src='/images/BESS_project_images/example1_SOC.png' width='350' height='350'>
+<img src='/images/BESS_project_images/example1_Pd_Pc.png' width='350' height='350'>
 </div>
 <div align="center">
 Figure 2. State of charge and charge/discharge rates for the numerical example. 
