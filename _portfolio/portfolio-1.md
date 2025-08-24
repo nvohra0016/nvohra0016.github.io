@@ -50,13 +50,12 @@ Figure 1. Real time market prices used in the simulation.
 <img src='/images/BESS_project_images/example1_Pd_Pc.png' width='380' height='380'>
 </div>
 <div align="center">
-Figure 2. State of charge and charge/discharge rates for the numerical example. 
+Figure 2. State of charge (left) and charge/discharge rates (right) for the numerical example. 
 </div>
 
 <br>
 
 The battery follows two complete cycles following the peak electricity prices during the peak demand periods $t \approx 6$[h] and $t \approx 18$[h]. The battery first charges around $t \approx 4$[h] when the prices are at the lowest and discharges when the prices are high around $t \approx 8$[h]. Later in the day, the battery charges around $t \approx 13$[h] and discharges when the prices are highest around $t \approx 20$[h]. In this example, there are also two small charging/discharging periods following the local maximums of the prices around $t \approx 9$[h] and $t \approx 17$[h]. 
-
 
 
 
