@@ -48,13 +48,12 @@ By defining the enthalpy, the weak form can be derived.
 <img src='/images/Stefan_weak_form.png' width='600' height='600'>
 </div>
 
-- Visintin, [*Models of Phase Transition*](https://link.springer.com/book/10.1007/978-1-4612-4078-5), 1996
-
 ### Application to Permafrost Modeling:
 
 Permafrost is ground that remains frozen for two or more years. In the upper portion of permafrost, called the active layer, the temperature increases in the summer and decreases throughout the rest of the year. Hence the depth of this layer changes due to an increase of ambient temperature, and this causes the thawing of some portions of permafrost, which has further environmental consequences. 
 
-One of important features of permafrost is the presence of unfrozen water at low temperatures. This phenomenon is not fully explained, and is accompanied by lowering the freezing temperatures in small pores. A variety of algebraic expressions exist in literature to model the unfrozen water content. These are derived empirically. Consequently, the corresponding enthalpy curves are marked by an increased regularity that is absent in the Stefan problem [4] [5].
+One of important features of permafrost is the presence of unfrozen water at low temperatures. This phenomenon is not fully explained, and is accompanied by lowering the freezing temperatures in small pores. A variety of algebraic expressions exist in literature to model the unfrozen water content. These are derived empirically. Consequently, the corresponding enthalpy curves are marked by an increased regularity that is absent in the Stefan problem [4], [5].
+
 <div align="center">
 <img src='/images/StefanPermafrostDifference.png' width='700' height='700'>
 </div>
