@@ -9,7 +9,9 @@ To study the land subsidence caused by thawing permafrost, one needs to analyze 
 <div align="center">
 <img src='/images/thaw_cartoon5.png' width='500' height='500'>
 </div>
-*Simulation created by the author of this article with deal.ii and Blender*
+<div align="center">
+Simulation created by the author of this article with deal.ii and Blender.
+</div>
 ## Thermo-hydro-mechanical coupling
 
 To couple flow [H], deformation[M], and energy [T], we need to consider thermo-hydro-mechanical models that take into account phase change [T] as well.
@@ -20,6 +22,12 @@ To couple flow [H], deformation[M], and energy [T], we need to consider thermo-h
 
 ## [HM]: Biot's poroelasticity equations:
 Flow [H] and deformation [M] can be modeled using Biot's poroelasticity equations given below
+
+\begin{equation}
+-\nabla \cdot \left[ \mu \left(\nabla u + \nabla u^T \right) + \lambda \nabla \cdot u \right] + \alpha nabla \cdot p &=& 0,
+\\
+\partial_t \left(c_0 p + \alpha \nabla \cdot u \right) - \nabla \cdot \kappa \mu_f^{-1} \left(\nabla p - \rho g \right) &=& 0.
+\end{equation}
 
 <div align="center">
 <img src='/images/Biot_system.png' width='500' height='300'>
