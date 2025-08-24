@@ -28,11 +28,11 @@ We consider a basic scenario where a given battery performs arbitrage in the who
 \text{minimize} \sum_{n} \left(P^c_n \theta_n - P^d_n \theta_n \right) \tau
 \end{equation}
 
-given by \ref{eq:SOC}-\ref{eq:BESS_constraints}.
+given by eq. \ref{eq:SOC}-eq. \ref{eq:BESS_constraints}.
 
 We assume perfect foresight of the market prices, i.e., we assume prior knowledge of the wholesale market prices over the entire day at any given time. 
 
-We consider a $1$[MWh] battery with maximum charging/discharging rates $1$ [MW], and a round trip efficiency of $\eta = 0.9$. We take 15 [min] real time market prices (RTM) from IEX [2] for the randomly chosen day of 15th February, 2025; see Figure 1 below.
+We consider a $1$[MWh] battery with maximum charging/discharging rates $1$ [MW], and a round trip efficiency of $\eta = 0.9$. We take 15 [min] real time market prices (RTM) from IEX [2] for the randomly chosen day of 15th February, 2025; see Fig. 1 below.
 
 <div align="center">
 <img src='/images/BESS_project_images/wholesaleprices_RTM_15022025.png' width='500' height='500'>
@@ -41,21 +41,16 @@ We consider a $1$[MWh] battery with maximum charging/discharging rates $1$ [MW],
 Figure 1. Real time market prices used in the simulation.
 </div>
 
-The results are shown below. Figure 2. and Figure 3. show the state of charge and the charge/discharge rates. 
+The results are shown below. Fig. 2 and Fig 3 show the state of charge and the charge/discharge rates. 
 
 <div align="center">
-<img src='/images/BESS_project_images/example1_SOC.png' width='500' height='500'>
+<img src='/images/BESS_project_images/example1_SOC.png' width='400' height='400'>
+<img src='/images/BESS_project_images/example1_Pd_Pc.png' width='400' height='400'>
 </div>
 <div align="center">
-Figure 2. State of charge over for the numerical example. 
+Figure 2. State of charge and charge/discharge rates for the numerical example. 
 </div>
 
-<div align="center">
-<img src='/images/BESS_project_images/example1_Pd_Pc.png' width='500' height='500'>
-</div>
-<div align="center">
-Figure 3. Charge and discharge rates for the numerical example.
-</div>
 
 
 ## References
