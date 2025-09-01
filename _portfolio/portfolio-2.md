@@ -4,6 +4,7 @@ excerpt: "Mathematical analysis of the coupling governing subsidence of thawing 
 collection: portfolio
 ---
 
+
 To study the land subsidence caused by thawing permafrost, one needs to analyze the coupling of the different mechanisms involved. Namely, these are deformation, flow, and energy. Analyzing these together, however, leads to numerically expensive complications and hence they must be studied individually and then coupled in a simpler fashion; see our brief overview article published in SIAM News Online here: [Modeling Permafrost: Soil, Ice, and Some Really Hard Mathematics](https://sinews.siam.org/Details-Page/modeling-permafrost-soil-ice-and-some-really-hard-mathematics)
 
 <div align="center">
@@ -37,6 +38,8 @@ Flow [H] and deformation [M] can be modeled using Biot's poroelasticity equation
 Simulation created by the author of this article using deal.ii
 </div>
 
+A 1D code in MATLAB to solve the Biot's equations is written by the author here [https://github.com/nvohra0016/Biot1D-MATLAB](https://github.com/nvohra0016/Biot1D-MATLAB). The documentation has also been provided. 
+
 ## [Tp]: Energy with phase change: Stefan problem
 The classical formulation of the Stefan problem allows one to solve for the domain and temperature of the different phases (eg. ice and water) [3]
 <div align="center">
@@ -68,6 +71,8 @@ One of important features of permafrost is the presence of unfrozen water at low
 Simulation created by the author of this article using MATLAB and Blender
 </div>
 
+For a complete treatment of the equations and the numerical algorithm developed to solve the fully coupled [TpHM] system, the reader is refer to our work [6, 7].
+
 ## References
 <a id="1">[1]</a> 
 Biot, M. A. (1941),
@@ -87,3 +92,8 @@ Osterkamp, Burn (2003), [*Permafrost*](https://www.sciencedirect.com/science/art
 <a id="3">[5]</a> 
 Nicolsky, Romanovsky, Tipenko (2007), [*Using in-situ temperature measurements to estimate saturated soil thermal properties by solving a sequence of optimization problems*](https://tc.copernicus.org/articles/1/41/2007/).
 
+<a id="3">[6]</a> 
+Vohra, Peszynska (2024), [*Robust conservative scheme and nonlinear solver for phase transitions in heterogeneous permafrost*](https://www.sciencedirect.com/science/article/abs/pii/S0377042723006623).
+
+<a id="3">[7]</a> 
+Vohra Peszynska (2024), [*Iteratively coupled mixed finite element solver for thermo-hydro-mechanical modeling of permafrost thaw*](https://www.sciencedirect.com/science/article/pii/S2590037424000098).
