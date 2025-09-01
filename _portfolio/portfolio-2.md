@@ -11,7 +11,7 @@ To study the land subsidence caused by thawing permafrost, one needs to analyze 
 <img src='/images/thaw_cartoon5.png' width='500' height='500'>
 </div>
 <div align="center">
-Simulation created by the author of this article with deal.ii and Blender.
+Simulation created by the author with deal.ii and Blender.
 </div>
 ## Thermo-hydro-mechanical coupling
 
@@ -35,7 +35,7 @@ Flow [H] and deformation [M] can be modeled using Biot's poroelasticity equation
 [![Soil consolidation](/images/soil_consolidation_video_shot.png)](https://youtu.be/yGoINILFoo0 "Click to view simulation")
 
 <div align = "center">
-Simulation created by the author of this article using deal.ii
+Simulation created by the author using deal.ii
 </div>
 
 A 1D code in MATLAB to solve the Biot's equations is written by the author here [https://github.com/nvohra0016/Biot1D-MATLAB](https://github.com/nvohra0016/Biot1D-MATLAB). The documentation has also been provided. 
@@ -68,7 +68,7 @@ One of important features of permafrost is the presence of unfrozen water at low
 </div>
 
 <div align = "center">
-Simulation created by the author of this article using MATLAB and Blender
+Simulation created by the author using MATLAB and Blender
 </div>
 
 <br> 
