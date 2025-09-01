@@ -71,6 +71,8 @@ One of important features of permafrost is the presence of unfrozen water at low
 Simulation created by the author of this article using MATLAB and Blender
 </div>
 
+<br> 
+
 For a complete treatment of the equations and the numerical algorithm developed to solve the fully coupled [TpHM] system, the reader is refer to our work [6, 7].
 
 ## References
@@ -96,4 +98,4 @@ Nicolsky, Romanovsky, Tipenko (2007), [*Using in-situ temperature measurements t
 Vohra, Peszynska (2024), [*Robust conservative scheme and nonlinear solver for phase transitions in heterogeneous permafrost*](https://www.sciencedirect.com/science/article/abs/pii/S0377042723006623).
 
 <a id="3">[7]</a> 
-Vohra Peszynska (2024), [*Iteratively coupled mixed finite element solver for thermo-hydro-mechanical modeling of permafrost thaw*](https://www.sciencedirect.com/science/article/pii/S2590037424000098).
+Vohra, Peszynska (2024), [*Iteratively coupled mixed finite element solver for thermo-hydro-mechanical modeling of permafrost thaw*](https://www.sciencedirect.com/science/article/pii/S2590037424000098).
