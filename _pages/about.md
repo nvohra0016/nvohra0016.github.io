@@ -21,4 +21,4 @@ Alamos National Lab. I am interested in applied and computational mathematics, p
 - Surface and subsurface flow modeling
 - Multiphase flow modeling
 
-###### Last updated: August 2025
+###### Last updated: September 2025
