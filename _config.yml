@@ -226,7 +226,7 @@ defaults:
       layout: single
       author_profile: true
       share: false
-      comments: true
+      comments: false
   # _portfolio
   - scope:
       path: ""
@@ -235,15 +235,16 @@ defaults:
       layout: single
       author_profile: true
       share: false
-      comment: true
+      comments: false
   # _talks
   - scope:
       path: ""
       type: talks
     values:
-      layout: talk
+      layout: single
       author_profile: true
-      share: true
+      share: false
+      comments: false
 
 # Sass/SCSS
 sass:
