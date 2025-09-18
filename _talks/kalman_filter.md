@@ -87,14 +87,15 @@ The Kalman filter is a recursive algorithm that first predicts $\hat{x_k}^{-}$ u
 **3. Correction.** In this step, we first compute the Kalman gain, $L$, as follows
 
 \begin{equation}
-L_k = \Sigma^{-}_k C \left(C^2 \Sigma_{k}^- + \Sigma_v \right)^{-1}.
+L_k = \Sigma_k^- C \left(C^2 \Sigma_{k}^- + \Sigma_v \right)^{-1}.
 \end{equation}
 
 Then, we compute $\hat{x_k}^{+}$ and $\Sigma_k^{+}$ using 
 
 \begin{equation}
 \hat{x_k}^+ = \hat{x_k}^- + L_k \left(y_k - C \hat{x_k}^{-} - D u_k \right),
-\\
+\end{equation}
+\begin{equation}
 \Sigma_k^+ = \left(I - L_k C\right) \Sigma_k^-.
 \end{equation}
 
