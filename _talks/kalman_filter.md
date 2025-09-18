@@ -66,11 +66,11 @@ and
 y_k = x_k + v_k.
 \end{equation}
 
-We assume $v_k$ and $w_k$ to be uncorrelated Gaussian random processes with zero mean and given covariance matrices[^2]. The **problem** now becomes as follows: given $\left\{u_k \right\}_k$ and $\left\{y_k \right\}_k$, how can we accurately estimate $\left\{x_k \right\}_k$? 
+We assume $v_k$ and $w_k$ to be uncorrelated Gaussian random processes with zero mean and given covariance matrices[^2]. The **problem** now becomes as follows: given $\\{u_k \\}_k$ and $\\{y_k \\}_k$, how can we accurately estimate $\\{x_k \\}_k$? 
 
 <br>
 
-We now consider the Kalman filter to estimate the state $\left\{x_k \right\}_k$.
+We now consider the Kalman filter to estimate the state $\\{x_k \\}_k$.
 
 ## Kalman filter
 
