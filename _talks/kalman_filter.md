@@ -26,8 +26,10 @@ x_{k+1} = e^{A \tau} x_k + \left(\int_{0}^{k\tau} e^{A y} dy \right) B u_k,
 \end{eqnarray}
 
 \begin{eqnarray}
-y_k = C x_k.
+y_k = C x_k,
 \end{eqnarray}
 
+where $\tau$ is the time step, and $x_k = x(\tau k)$ is the value at the $k^{th}$ time step (in this case the exact value of the continuous solution!)
+
 ## References
-[^1]. Chi-Tsong Chen, Linear System Theory and Design, 1999, 3rd Edition.
+[^1]: Chi-Tsong Chen, Linear System Theory and Design, 1999, 3rd Edition.
