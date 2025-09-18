@@ -450,6 +450,13 @@ body:hover .visually-hidden button {
   }
 }
 
+a.footnote:before {
+  content: "[";
+}
+a.footnote:after {
+  content: "]";
+}
+
 a.reversefootnote {
   color: #000;
   text-decoration: none;
