@@ -68,12 +68,35 @@ y_k = x_k + v_k.
 
 We assume $v_k$ and $w_k$ to be uncorrelated Gaussian random processes with zero mean and given covariance matrices[^2]. The **problem** now becomes as follows: given $\\{u_k \\}_k$ and $\\{y_k \\}_k$, how can we accurately estimate $\\{x_k \\}_k$? 
 
-<br>
-
-We now consider the Kalman filter to estimate the state $\\{x_k \\}_k$.
-
 ## Kalman filter
 
+The Kalman filter is a recursive algorithm that first predicts $\hat{x_k}^{-}$ using the state equation and then uses the measurement $y_k$ to further correct $\hat{x_k}^{-}$ and produce a more accurate $\hat{x_k}^{+} \approx x_k$. The algorithm is defined as follows. 
+
+**1. Initialization.** Let $\hat{x_0}^{+} = x_0$ and $\Sigma_0^+ = 0$.
+
+**2. Prediction.** Given $\hat{x_{k-1}}^{+}$, we compute $\hat{x_k}^{-}$ and $\Sigma_k^{-}$ using 
+
+\begin{equation}
+\hat{x_k}^{-} A \hat{x_{k-1}}^{+} + B u_{k-1}
+\end{equation}
+
+\begin{equation}
+\Sigma_{k}^{-} = A^2 \Sigma^{+}_{k-1} + \Sigma_w
+\end{equation}
+
+**3. Correction.** In this step, we first compute the Kalman gain, $L$, as follows
+
+\begin{equation}
+L_k = \Sigma^{-}_k C \left(C^2 \Sigma_{k}^- + \Sigma_v \right)^{-1}.
+\end{equation}
+
+Then, we compute $\hat{x_k}^{+}$ and $\Sigma_k^{+}$ using 
+
+\begin{equation}
+\hat{x_k}^+ = \hat{x_k}^- + L_k \left(y_k - C \hat{x_k}^{-} - D u_k \right),
+\\
+\Sigma_k^+ = \left(I - L_k C\right) \Sigma_k^-.
+\end{equation}
 
 ## References
 [^1]: Chi-Tsong Chen, Linear System Theory and Design, 1999, Oxford University Press, 3rd Edition.
