@@ -13,6 +13,7 @@ Consider a simple 1D linear state-space system of the form
 \label{eq_state}
 \dot{x(t)} = A x(t) + B u(t),
 \end{equation}
+
 \begin{equation}
 \label{eq_output}
 y(t) = C x(t) + D u (t), \; \forall t \in (0, T),
@@ -38,7 +39,7 @@ y_k = C x_k + D u_k,
 
 where $\tau$ is the time step, and $x_k = x(\tau k)$ is the value at the $k^{th}$ time step (in this case the exact value of the continuous solution!), with similar definition for $y_k$.
 
-To understand the discretized system, consider a simple example where $A = D = 0$ and $B = C = 1$. Let $x [m]$ represent the location of an object, and $u [m/s]$ be the velocity which is provided as an input. Then the system [(1)](#eq_state)-[(2)](#eq_output) determines the position of the object at any time $t$. In particular, the exact solution is given by $x(t) = \int_{0}^t u(z)dz$, and the output measured is simply the position of the object at $t$, i.e., $y(t) = x(t)$. Using the discretization \ref{eq_disc_state}, we have 
+To understand the discretized system, consider a simple example where $A = D = 0$ and $B = C = 1$. Let $x [m]$ represent the location of an object, and $u [m/s]$ be the velocity which is provided as an input. Then the system \ref{eq_state}-\ref{eq_output} determines the position of the object at any time $t$. In particular, the exact solution is given by $x(t) = \int_{0}^t u(z)dz$, and the output measured is simply the position of the object at $t$, i.e., $y(t) = x(t)$. Using the discretization \ref{eq_disc_state}, we have 
 
 \begin{equation}
 \label{eq_disc_motion1}
@@ -75,6 +76,5 @@ We now consider the Kalman filter to estimate the state $\{ x_k\}_k$.
 
 
 ## References
-[^1]: Chi-Tsong Chen, Linear System Theory and Design, 1999, Oxford University Press, 3rd Edition,
-[^2]: Gregory L. Plett, Extended Kalman filtering for battery management systems of LiPB-based HEV battery packs
-Part 1. Background, 2004, Journal of Power Sources.
+[^1]: Chi-Tsong Chen, Linear System Theory and Design, 1999, Oxford University Press, 3rd Edition.
+[^2]: Gregory L. Plett, Extended Kalman filtering for battery management systems of LiPB-based HEV battery packs, Part 1, Background, 2004, Journal of Power Sources.
