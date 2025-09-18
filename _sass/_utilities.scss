@@ -446,7 +446,7 @@ body:hover .visually-hidden button {
 
   ol, li, p {
     margin-bottom: 0;
-    font-size: $type-size-10;
+    font-size:  0.8em;
   }
 }
 
@@ -460,10 +460,6 @@ a.footnote:after {
 a.reversefootnote {
   color: #000;
   text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
 }
 
 
