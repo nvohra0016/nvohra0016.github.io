@@ -18,7 +18,8 @@ Consider a simple 1D linear state-space system of the form
 y(t) = C x(t),
 \end{eqnarray}
 
-where $x \in \mathbb{R}$ is the state variable, $y \in \mathbb{R}$ is the output, $A, C \in \mathbb{R}$ are constants. Discretizing [](#eq_state)-[](#eq_output) explicitly in time gives
+where $x \in \mathbb{R}$ is the state variable, $y \in \mathbb{R}$ is the output, $A, C \in \mathbb{R}$ are constants. 
+The system [1](#eq_state)-[2](#eq_output) may be discretized implicitly or explicitly in time, but that that leads to a time discretization error. Instead, an integration by 
 
 \begin{eqnarray}
 x_{k+1} = A x_k, 
