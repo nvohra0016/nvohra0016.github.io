@@ -9,9 +9,14 @@ date: 09-2025
 
 Consider a simple 1D linear state-space system of the form 
 
-\begin{eqnarray}
+$$
+\begin{aligned}
+\label{eq_state}
 \dot{x(t)} = A x(t),
-\\
+\end{eqnarray}
+
+\begin{eqnarray}
+\label{eq_output}
 y(t) = C x(t),
 \end{eqnarray}
 
