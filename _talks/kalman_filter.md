@@ -13,12 +13,10 @@ $$
 \begin{aligned}
 \label{eq_state}
 \dot{x(t)} = A x(t),
-\end{eqnarray}
-
-\begin{eqnarray}
+\\
 \label{eq_output}
 y(t) = C x(t),
-\end{eqnarray}
+\end{aligned}
 
 where $x \in \mathbb{R}$ is the state variable, $y \in \mathbb{R}$ is the output, $A, C \in \mathbb{R}$ are constants. Discretizing [%s](#eq_state)-[%s](#eq_output) explicitly in time gives
 
