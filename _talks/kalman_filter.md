@@ -7,7 +7,7 @@ date: 09-2025
 
 ## Introduction
 
-We start by considering a simple example of heat conduction and temperature change in an object over a time period $(0, T)$. Consider an object with volumetric heat capacity $c$[J/m$^3$ $^\circ C$]. We add heat to this object at the rate of $f(t)$[J/m$^3$ s]. Ignoring any spatial variation, the temperature $\theta(t)$ [$^\circ$ C] of the object can be determined using[^1]
+We start by considering a simple example of heat conduction and temperature change in an object over a time period $(0, T)$. Consider an object with volumetric heat capacity $c$ [J/m$^3$ $^\circ C$]. We add heat to this object at the rate of $f(t)$ [J/m$^3$ s]. Ignoring any spatial variation, the temperature $\theta(t)$ [$^\circ$ C] of the object can be determined using[^1]
 
 \begin{equation}
  \partial_t (c \theta) = f, \; \forall t \in (0, T).
@@ -15,7 +15,7 @@ We start by considering a simple example of heat conduction and temperature chan
 
 Let us measure the temperature using an external sensor, and we denote the measurement using $y(t)$ [$^\circ$ C]; see figure below for a schematic. 
 
-![image](../images/heat_kalman_filter_example.png){: style="float: left"}
+![image]({{ site.baseurl }}/images/heat_kalman_filter_example.png){: style="float: left"}
 
 Then, the measurement can be represented by
 
