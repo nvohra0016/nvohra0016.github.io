@@ -10,25 +10,51 @@ date: 09-2025
 We start by considering a simple example of heat conduction and temperature change in an object over a time period $(0, T)$. Consider an object with volumetric heat capacity $c$ [J/m$^3$ $^\circ C$]. We add heat to this object at the rate of $f(t)$ [J/m$^3$ s]. Ignoring any spatial variation, the temperature $\theta(t)$ [$^\circ$ C] of the object can be determined using[^1]
 
 \begin{equation}
- \partial_t (c \theta) = f, \; \forall t \in (0, T).
+\label{eq:heat_eq}
+ \dot{(c \theta)} = f, \; \forall t \in (0, T).
 \end{equation}
 
-Let us measure the temperature using an external sensor, and we denote the measurement using $y(t)$ [$^\circ$ C]; see figure below for a schematic. 
+Now, let us measure the temperature using an external sensor, and we denote the measurement using $y(t)$ [$^\circ$ C]; see figure below for a schematic. 
 
-<div align="left">
+<div align="center">
 <img src='/images/heat_kalman_filter_example.png' width='350' height='350'>
 </div>
-<div align="right">
+
 Then, the measurement can be represented by
 
 \begin{equation}
 y(t) = \theta(t), \; \forall t \in (0, T).
 \end{equation}
-</div>
 
 <br>
 
-As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = (10 - t) 10^5$ [J / m$^3$].
+As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = (10 - t) 10^5$ [J / m$^3$]. We wish to estimate the temperature $\theta$ at equally spaced intervals of $1$ [hr]. 
+
+Let us proceed with a discretization of \ref{eq:heat_eq}. Let $\tau$ denote the given time step (in this example $1$ [hr]), and let $\tilde{f} \approx f$ be piecewise-constant, i.e., $\tilde{f} \in C^0(0, T)$ is given by
+
+\begin{equation}
+\label{eq:f_assum}
+\tilde{f}(t) = f_k = f(k \tau), \; \forall t \in \left(k\tau, (k+1)\tau \right), \; \forall k \in \mathbb{Z}^{+}, \nonumber
+\end{equation}
+
+Under the assumption \ref{eq:f_assum}, the solution to 
+
+\begin{equation}
+\label{eq:heat_eq1}
+\hat{c \theta} = \tilde{f} \text{ in } (0, T),
+\end{equation}
+
+is given by $\theta(t) = \int_0^t \tilde{f}(z)dz \in H^1(0, T)$, which is a piecewise-linear function. We further get from \ref{eq:heat_eq1}
+
+\begin{equation}
+\theta_k = \theta_{k-1} + \tau c^{-1} f_{k-1} = \theta_{k-1} + \tau(1 - \frac{k \tau}{10})
+\end{equation}
+
+where $\theta_k = \theta(k \tau)$. 
+
+**Problem statement.** Suppose we are given $\\{y_k \\}_{k}$. Can we estimagte $\\{\theta_k \\}_k$? 
+
+
 
 
 
