@@ -15,13 +15,16 @@ We start by considering a simple example of heat conduction and temperature chan
 
 Let us measure the temperature using an external sensor, and we denote the measurement using $y(t)$ [$^\circ$ C]; see figure below for a schematic. 
 
-![image]({{ site.baseurl }}/images/heat_kalman_filter_example.png){: style="float: left"}
-
+<div align="left">
+<img src='/images/heat_kalman_filter_example.png' width='350' height='350'>
+</div>
+<div align="right">
 Then, the measurement can be represented by
 
 \begin{equation}
 y(t) = \theta(t), \; \forall t \in (0, T).
 \end{equation}
+</div>
 
 <br>
 
