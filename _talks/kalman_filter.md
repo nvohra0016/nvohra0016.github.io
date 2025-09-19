@@ -11,7 +11,7 @@ We start by considering a simple example of heat conduction and temperature chan
 
 \begin{equation}
 \label{eq:heat_eq}
- \dot{(c \theta)} = f, \; \forall t \in (0, T).
+ \dot{(c \theta)} = f \text{ in } (0, T).
 \end{equation}
 
 Now, let us measure the temperature using an external sensor, and we denote the measurement using $y(t)$ [$^\circ$ C]; see figure below for a schematic. 
@@ -53,7 +53,7 @@ is given by $\theta(t) = \int_0^t c^{-1} \tilde{f}(z)dz \in H^1(0, T)$, which is
 where $\theta_k = \theta(k \tau)$. Now, if we are given $\theta_0 = \theta(0)$, we can compute $\theta_k \; \forall k$. But what about the measurement equation given by \ref{eq:measurement_heat}? We can discretize that trivially as
 
 \begin{equation}
-label{eq:measurement_heat_disc}
+\label{eq:measurement_heat_disc}
 y_k = \theta_k, 
 \end{equation}
 
