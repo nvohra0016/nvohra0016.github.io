@@ -13,11 +13,17 @@ We start by considering a simple example of heat conduction and temperature chan
  \partial_t (c \theta) = f, \; \forall t \in (0, T).
 \end{equation}
 
-Let us measure the temperature using an external sensor, and we denote the measurement using $y(t)$ [$^\circ$ C]. Then, we have
+Let us measure the temperature using an external sensor, and we denote the measurement using $y(t)$ [$^\circ$ C]; see figure below for a schematic. 
+
+![image](images/heat_kalman_filter_example.png){: style="float: left"}
+
+Then, the measurement can be represented by
 
 \begin{equation}
 y(t) = \theta(t), \; \forall t \in (0, T).
 \end{equation}
+
+<br>
 
 As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = (10 - t) 10^5$ [J / m$^3$].
 
