@@ -7,6 +7,23 @@ date: 09-2025
 
 ## Introduction
 
+We start by considering a simple example of heat conduction and temperature change in an object over a time period $(0, T)$. Consider an object with volumetric heat capacity $c$[J/m$^3$ $^\circ C$]. We add heat to this object at the rate of $f(t)$[J/m$^3$ s]. Ignoring any spatial variation, the temperature $\theta(t)$ [$^circ$ C] of the object can be determined using[^1]
+
+\begin{equation}
+ \partial_t (c \theta) = f, \; \forall t \in (0, T).
+\end{equation}
+
+Let us measure the temperature using an external sensor, and we denote the measurement using $y(t)$ [$^\circ$ C]. Then, we have
+
+\begin{equation}
+y(t) = \theta(t), \; \forall t \in (0, T).
+\end{equation}
+
+As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = (10 - t) 10^5$ [J / m$^3$].
+
+
+
+
 Consider a simple 1D linear state-space system of the form 
 
 \begin{equation}
@@ -66,11 +83,13 @@ and
 y_k = x_k + v_k.
 \end{equation}
 
-We assume $v_k$ and $w_k$ to be uncorrelated Gaussian random processes with zero mean and given covariance matrices[^2]. The **problem** now becomes as follows: given $\\{u_k \\}_k$ and $\\{y_k \\}_k$, how can we accurately estimate $\\{x_k \\}_k$? 
+We assume $v_k$ and $w_k$ to be uncorrelated Gaussian random processes with zero mean and given covariance matrices[^2]. 
+
+**Problem statement.** We seek a solution to the following: given $\\{u_k \\}_k$ and $\\{y_k \\}_k$, how can we accurately estimate $\\{x_k \\}_k$? 
 
 ## Kalman filter
 
-The Kalman filter is a recursive algorithm that first predicts $\hat{x_k}^{-}$ using the state equation and then uses the measurement $y_k$ to further correct $\hat{x_k}^{-}$ and produce a more accurate $\hat{x_k}^{+} \approx x_k$. The algorithm is defined as follows. 
+The Kalman filter is a recursive algorithm that first predicts $\hat{x_k}^{-}$ using the state equation and then uses the measurement $y_k$ to further correct $\hat{x_k}^{-}$ and produce a more accurate $\hat{x_k}^{+} = \hat{x_k} \approx x_k$. The algorithm is defined as follows. 
 
 **1. Initialization.** Let $\hat{x_0}^{+} = x_0$ and $\Sigma_0^+ = 0$.
 
@@ -100,5 +119,6 @@ Then, we compute $\hat{x_k}^{+}$ and $\Sigma_k^{+}$ using
 \end{equation}
 
 ## References
-[^1]: Chi-Tsong Chen, Linear System Theory and Design, 1999, Oxford University Press, 3rd Edition.
-[^2]: Gregory L. Plett, Extended Kalman filtering for battery management systems of LiPB-based HEV battery packs, Part 1, Background, 2004, Journal of Power Sources.
+[^1]: H.S. Carslaw, J. C. Jaeger, *Condution of Heat in Solids*, 1959, Oxford University Press.
+[^2]: Chi-Tsong Chen, *Linear System Theory and Design*, 1999, Oxford University Press, 3rd Edition.
+[^3]: Gregory L. Plett, *Extended Kalman filtering for battery management systems of LiPB-based HEV battery packs, Part 1, Background*, 2004, Journal of Power Sources.
