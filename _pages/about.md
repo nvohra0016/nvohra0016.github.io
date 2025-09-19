@@ -21,4 +21,6 @@ Alamos National Lab. I am interested in applied and computational mathematics, p
 - Surface and subsurface flow modeling
 - Multiphase flow modeling
 
+I relocated to Gurugram, Haryana in 2024 where I currently stay with my wife. Outside of work, I enjoy reading classics. Among my favourite authors are Marcel Proust, Thomas Mann, Fyodor Dostoevsky, Virginia Woolf, and Ernest Hemingway.
+
 ###### Last updated: September 2025
