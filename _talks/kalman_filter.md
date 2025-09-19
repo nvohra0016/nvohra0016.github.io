@@ -17,43 +17,69 @@ We start by considering a simple example of heat conduction and temperature chan
 Now, let us measure the temperature using an external sensor, and we denote the measurement using $y(t)$ [$^\circ$ C]; see figure below for a schematic. 
 
 <div align="center">
-<img src='/images/heat_kalman_filter_example.png' width='350' height='350'>
+<img src='/images/heat_kalman_filter_example.png' width='250' height='250'>
 </div>
 
 Then, the measurement can be represented by
 
 \begin{equation}
+\label{eq:measurement_heat}
 y(t) = \theta(t), \; \forall t \in (0, T).
 \end{equation}
 
 <br>
 
-As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = (10 - t) 10^5$ [J / m$^3$]. We wish to estimate the temperature $\theta$ at equally spaced intervals of $1$ [hr]. 
-
-Let us proceed with a discretization of \ref{eq:heat_eq}. Let $\tau$ denote the given time step (in this example $1$ [hr]), and let $\tilde{f} \approx f$ be piecewise-constant, i.e., $\tilde{f} \in C^0(0, T)$ is given by
+Let us proceed with a discretization of \ref{eq:heat_eq}. Let $\tau$ denote the given time step and let $\tilde{f} \approx f, \; \tilde{f} \in C^0(0, T)$ be a piecewise-constant approximation given by
 
 \begin{equation}
 \label{eq:f_assum}
-\tilde{f}(t) = f_k = f(k \tau), \; \forall t \in \left(k\tau, (k+1)\tau \right), \; \forall k \in \mathbb{Z}^{+}, \nonumber
+\tilde{f}(t) = f_k = f(k \tau), \; \forall t \in \left(k\tau, (k+1)\tau \right), \; \forall k \in \mathbb{Z}^{+}.
 \end{equation}
 
 Under the assumption \ref{eq:f_assum}, the solution to 
 
 \begin{equation}
 \label{eq:heat_eq1}
-\hat{c \theta} = \tilde{f} \text{ in } (0, T),
+\dot{c \theta} = \tilde{f} \text{ in } (0, T),
 \end{equation}
 
-is given by $\theta(t) = \int_0^t \tilde{f}(z)dz \in H^1(0, T)$, which is a piecewise-linear function. We further get from \ref{eq:heat_eq1}
+is given by $\theta(t) = \int_0^t c^{-1} \tilde{f}(z)dz \in H^1(0, T)$, which is piecewise-linear. To estimate $\theta$, we can rewrite \ref{eq:heat_eq1} as
 
 \begin{equation}
-\theta_k = \theta_{k-1} + \tau c^{-1} f_{k-1} = \theta_{k-1} + \tau(1 - \frac{k \tau}{10})
+\label{eq:heat_disc}
+\theta_k = \theta_{k-1} + \tau c^{-1} f_{k-1},
 \end{equation}
 
-where $\theta_k = \theta(k \tau)$. 
+where $\theta_k = \theta(k \tau)$. Now, if we are given $\theta_0 = \theta(0)$, we can compute $\theta_k \; \forall k$. But what about the measurement equation given by \ref{eq:measurement_heat}? We can discretize that trivially as
 
-**Problem statement.** Suppose we are given $\\{y_k \\}_{k}$. Can we estimagte $\\{\theta_k \\}_k$? 
+\begin{equation}
+label{eq:measurement_heat_disc}
+y_k = \theta_k, 
+\end{equation}
 
+where $y_k = y(k \tau)$. 
+
+Now, consider the following problem. 
+
+**Problem statement.** Suppose we are given the sequence $\\{y_k \\}_{k}$. Can we estimagte $\\{\theta_k \\}_k$ using the system \ref{eq:heat_disc}-\ref{eq:measurement_heat_disc}?
+
+In a perfect world, yes of course, without any error, since then $y_k = \theta_k$. But in a world of noisy sensors and less perfect measuring equipments, we can safely assume that some error is introduced in the measurement $y_k$, i.e., instead of \ref{eq:measurement_heat_disc}, we have an equation similar to 
+
+\begin{equation}
+\label{eq:measurement_disc1}
+y_k = \theta_k + v_k,
+\end{equation}
+
+where $v_k$ represents some noise. Similarly, adding energy to the object would not change its temperature "perfectly" according to \ref{eq:heat_disc}, but rather in noisy terms 
+
+\begin{equation}
+\label{eq:heat_disc1}
+\theta_k = \theta_{k-1} + \tau c^{-1} f_{k-1} + w_k,
+\end{equation}
+
+where $w_k$ also represents some noise. The *problem statement* mentioned above now becomes nontrivial: given $\\{y_k\\}_k$, how can we accurately estimate $\\{\theta_k \\}_k$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}? 
+
+**Example.** As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = (10 - t) 10^5$ [J / m$^3$]. We wish to estimate the temperature $\theta$ at equally spaced intervals of $1$ [hr]. 
 
 
 
