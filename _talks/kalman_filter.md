@@ -47,7 +47,7 @@ is given by $\theta(t) = \int_0^t c^{-1} \tilde{f}(z)dz \in H^1(0, T)$, which is
 
 \begin{equation}
 \label{eq:heat_disc}
-\theta_k = \theta_{k-1} + \tau c^{-1} f_{k-1},
+\theta_{k+1} = \theta_k + \tau c^{-1} f_k,
 \end{equation}
 
 where $\theta_k = \theta(k \tau)$. Now, if we are given $\theta_0 = \theta(0)$, we can compute $\theta_k \; \forall k$. But what about the measurement equation given by \ref{eq:measurement_heat}? We can discretize that trivially as
@@ -63,7 +63,7 @@ Now, consider the following problem.
 
 **Problem statement.** Suppose we are given the sequence $\\{y_k \\}_{k}$. Can we estimagte $\\{\theta_k \\}_k$ using the system \ref{eq:heat_disc}-\ref{eq:measurement_heat_disc}?
 
-In a perfect world, yes of course, without any error, since then $y_k = \theta_k$. But in a world of noisy sensors and less perfect measuring equipments, we can safely assume that some error is introduced in the measurement $y_k$, i.e., instead of \ref{eq:measurement_heat_disc}, we have an equation similar to 
+In a perfect world, yes of course, without any error, since then $\theta_k = y_k$ from \ref{eq:measurement_heat_disc}. But in a world of noisy sensors and less perfect measuring equipments, we can safely assume that some error is introduced in the measurements $y_k$, i.e., instead of \ref{eq:measurement_heat_disc}, we have an equation similar to 
 
 \begin{equation}
 \label{eq:measurement_disc1}
@@ -74,7 +74,7 @@ where $v_k$ represents some noise. Similarly, adding energy to the object would 
 
 \begin{equation}
 \label{eq:heat_disc1}
-\theta_k = \theta_{k-1} + \tau c^{-1} f_{k-1} + w_k,
+\theta_{k+1} = \theta_k + \tau c^{-1} f_k + w_k,
 \end{equation}
 
 where $w_k$ also represents some noise. The *problem statement* mentioned above now becomes nontrivial: given $\\{y_k\\}_k$, how can we accurately estimate $\\{\theta_k \\}_k$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}? 
