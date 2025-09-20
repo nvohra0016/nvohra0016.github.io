@@ -40,7 +40,7 @@ Figure 1. Illustration of the object heating and measurement process.
 
 <br>
 
-Let us proceed with a discretization of \ref{eq:heat_eq}. Let $\tau$ denote the given time step and let $\tilde{f} \approx f, \; \tilde{f} \in C^0(0, T)$ be a piecewise-constant approximation given by
+Let us proceed with a discretization of \ref{eq:heat_eq}. Let $\tau$ denote the given time step, and let $N = T/\tau$ be the total time steps. Let $\tilde{f} \approx f, \; \tilde{f} \in C^0(0, T)$ be a piecewise-constant approximation given by
 
 \begin{equation}
 \label{eq:f_assum}
@@ -72,7 +72,7 @@ where $y_k = y(k \tau)$.
 
 Now, consider the following problem. 
 
-**Problem statement.** Suppose we are given the sequence $\\{ y_k \\}_{k}$. Can we estimate  using the system \ref{eq:heat_disc}-\ref{eq:measurement_heat_disc}?  In other words, at each time step $k$, we seek the "best" estimate <span> $\hat{\theta_k}$ </span> of $\theta_k$ with our knowledge of $\\{ y_j \\}_{j = 1}^{k}, \\{ f_j \\}_{j = 1}^k$.
+**Problem statement.** Suppose we are given the sequence $y_k, \; 1 \leq k \leq N$ Can we estimate $ \theta_k, \; 1 \leq k \leq N$  using the system \ref{eq:heat_disc}-\ref{eq:measurement_heat_disc}?  In other words, at each time step $k$, we seek the "best" estimate $\hat{\theta_k}$ of $\theta_k$ with our knowledge of $ y_j, f_j, \; 1 \leq j \leq k$.
  
 
 In a perfect world, yes of course, without any error, since in a "perfect" world the temperature of the object changes "perfectly" according to \ref{eq:heat_disc} without any erro which gives us $\theta_k = y_k$ exactly. However, in reality, we expect some noise to be introduced when the temperature changes which can be represented as
@@ -91,7 +91,7 @@ y_k = \theta_k + v_k,
 
 where $v_k$ is the measurement noise. Before we exemplify the problem, we first establish some notation. We call $\theta_k$ in \ref{eq:heat_eq} the *true state* of the temperature. 
 
-**Example.** As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = 0.01 t$  [J / m$^3$ s]. Fig. 2 below shows the true temperature, the temperature evolution according to \ref{eq:heat_disc1}, and the measured temperature values. 
+**Example.** As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = 0.01 t$  [J / m$^3$ s]. Fig. 2 below shows the true temperature, the temperature evolution according to \ref{eq:heat_disc1}, and the measured temperature values. Here we assume that $v_k$ and $w_k$ are uncorrelated Gaussian random processes with zero mean and standard deviation $\sigma_w = 0.75$ and $\sigma_v = 1.25$, respectively.  
 
 
 <div align="center">
@@ -165,7 +165,7 @@ Then, we compute $\hat{x_k}$ and $\hat{\Sigma_k}$ using
 
 ## Example: Heat equation
 
-We now return to our example. Given the same measurements, and assuming that  
+We now return to our example. We consider an intial condition $\hat{\theta_0} = y_0$ and $\hat{\Sigma_0} = 1.25^2$. 
 
 <div align="center">
 <img src='/images/Kalman_filter/heat_ex_temperature_results.png' width='450' height='450'>
