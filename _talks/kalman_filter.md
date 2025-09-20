@@ -80,7 +80,7 @@ y_k = \theta_k + v_k,
 
 where $v_k$ represents some noise.
 
-The *problem statement* mentioned above now becomes nontrivial: given $\\{y_k\\}_k$, how can we accurately estimate $\\{\theta_k \\}_k$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}? 
+The *problem statement* mentioned above now becomes nontrivial: given $\\{y_k\\}_k$, how can we accurately estimate $\\{\theta_k \\}_k$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}? Before we exemplify the problem, we first establish some notation. We call $\theta_k$ in \ref{eq:heat_eq} the *true state* of the temperature. 
 
 **Example.** As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = 0.01 t$  [J / m$^3$ s]. The figure below shows the true temperature, estimated temperature, and the measured temperature values. 
 
