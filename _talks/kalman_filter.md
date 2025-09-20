@@ -79,11 +79,11 @@ where $v_k$ represents some noise. Similarly, adding energy to the object would 
 
 where $w_k$ also represents some noise. The *problem statement* mentioned above now becomes nontrivial: given $\\{y_k\\}_k$, how can we accurately estimate $\\{\theta_k \\}_k$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}? 
 
-**Example.** As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = t 10^{-2}$ [J / m$^3$ s]. The figure below shows the true temperature, estimated temperature, and the measured temperature values. 
+**Example.** As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = 0.01 t$  [J / m$^3$ s]. The figure below shows the true temperature, estimated temperature, and the measured temperature values. 
 
 
 <div align="center">
-<img src='/images/Kalman_filter/heat_ex_temperature.png' width='420' height='420'>
+<img src='/images/Kalman_filter/heat_ex_temperature.png' width='450' height='450'>
 </div>
 
 
