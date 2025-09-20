@@ -40,7 +40,7 @@ Under the assumption \ref{eq:f_assum}, the solution to
 
 \begin{equation}
 \label{eq:heat_eq1}
-\dot{c \theta} = \tilde{f} \text{ in } (0, T),
+\dot{(c \theta)} = \tilde{f} \text{ in } (0, T),
 \end{equation}
 
 is given by $\theta(t) = \int_0^t c^{-1} \tilde{f}(z)dz \in H^1(0, T)$, which is piecewise-linear. To estimate $\theta$, we can rewrite \ref{eq:heat_eq1} as
