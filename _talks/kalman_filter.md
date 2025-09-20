@@ -73,7 +73,6 @@ In a perfect world, yes of course, without any error, since in a "perfect" world
 \theta_{k+1} = \theta_k + \tau c^{-1} f_k + w_k,
 \end{equation}
 
-
 where $w_k$ is the process noise. Morever, in a world of noisy sensors and less perfect measuring equipments, we can also assume that some error is introduced in the measurements $y_k$, i.e., instead of \ref{eq:measurement_heat_disc}, we have an equation similar to 
 
 \begin{equation}
@@ -90,7 +89,7 @@ where $v_k$ is the measurement noise. Before we exemplify the problem, we first 
 <img src='/images/Kalman_filter/heat_ex_temperature.png' width='450' height='450'>
 </div>
 
-<div align = "center>
+<div align = "center">
  Figure 2. Plot showing the true temperature calculated by \ref{eq:heat_disc}, the noisy temperature evolution according to \ref{eq:heat_disc1}, and the measured values according to \ref{eq:measurement_disc1}.  
 </div>
 
