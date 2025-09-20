@@ -11,6 +11,10 @@ date: 09-2025
 
 ## Introduction
 
+$\hat{\theta}$
+
+<span> $\hat{\theta}$ </span>
+
 We start by considering a simple example of heat conduction and temperature change in an object over a time period $(0, T)$. Consider an object with volumetric heat capacity $c$ [J/m$^3$ $^\circ C$]. We add heat to this object at the rate of $f(t)$ [J/m$^3$ s]. Ignoring any spatial variation, the temperature $\theta(t)$ [$^\circ$ C] of the object can be determined using the ODE[^1]
 
 \begin{equation}
