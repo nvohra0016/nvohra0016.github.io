@@ -7,7 +7,7 @@ date: 09-2025
 
 ## Introduction
 
-We start by considering a simple example of heat conduction and temperature change in an object over a time period $(0, T)$. Consider an object with volumetric heat capacity $c$ [J/m$^3$ $^\circ C$]. We add heat to this object at the rate of $f(t)$ [J/m$^3$ s]. Ignoring any spatial variation, the temperature $\theta(t)$ [$^\circ$ C] of the object can be determined using[^1]
+We start by considering a simple example of heat conduction and temperature change in an object over a time period $(0, T)$. Consider an object with volumetric heat capacity $c$ [J/m$^3$ $^\circ C$]. We add heat to this object at the rate of $f(t)$ [J/m$^3$ s]. Ignoring any spatial variation, the temperature $\theta(t)$ [$^\circ$ C] of the object can be determined using the ODE[^1]
 
 \begin{equation}
 \label{eq:heat_eq}
@@ -17,7 +17,7 @@ We start by considering a simple example of heat conduction and temperature chan
 Now, let us measure the temperature using an external sensor, and we denote the measurement using $y(t)$ [$^\circ$ C]; see figure below for a schematic. 
 
 <div align="center">
-<img src='/images/heat_kalman_filter_example.png' width='250' height='250'>
+<img src='/images/Kalman_filter/heat_kalman_filter_example.png' width='250' height='250'>
 </div>
 
 Then, the measurement can be represented by
@@ -79,9 +79,12 @@ where $v_k$ represents some noise. Similarly, adding energy to the object would 
 
 where $w_k$ also represents some noise. The *problem statement* mentioned above now becomes nontrivial: given $\\{y_k\\}_k$, how can we accurately estimate $\\{\theta_k \\}_k$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}? 
 
-**Example.** As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = (10 - t) 10^5$ [J / m$^3$]. We wish to estimate the temperature $\theta$ at equally spaced intervals of $1$ [hr]. 
+**Example.** As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = t 10^{-2}$ [J / m$^3$ s]. The figure below shows the true temperature, estimated temperature, and the measured temperature values. 
 
 
+<div align="center">
+<img src='/images/Kalman_filter/heat_ex_temperature.png' width='420' height='420'>
+</div>
 
 
 
