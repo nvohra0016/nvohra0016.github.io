@@ -68,7 +68,7 @@ where $y_k = y(k \tau)$.
 
 Now, consider the following problem. 
 
-**Problem statement.** Suppose we are given the sequence $\\{y_k \\}_{k}$. Can we estimagte $\\{\theta_k \\}_k$ using the system \ref{eq:heat_disc}-\ref{eq:measurement_heat_disc}?
+**Problem statement.** Suppose we are given the sequence $\\{ y_k \\}_{k}$. Can we estimagte $\\{$ $\theta_k$ $\\}_k$ using the system \ref{eq:heat_disc}-\ref{eq:measurement_heat_disc}?
 
 In a perfect world, yes of course, without any error, since in a "perfect" world the temperature of the object changes "perfectly" according to \ref{eq:heat_disc} without any erro which gives us $\theta_k = y_k$ exactly. However, in reality, we expect some noise to be introduced when the temperature changes which can be represented as
 
@@ -129,7 +129,7 @@ y_k = C x_k + D u_k,
 
 where $\tau$ is the time step, and $x_k = x(\tau k)$ is the value at the $k^{th}$ time step (in this case the exact value of the continuous solution!), with similar definition for $y_k$. *Note* that \ref{eq_disc_state} does not introduce any truncation error due to time discretization.
 
-**Algorithm.** The Kalman filter is a recursive algorithm that first predicts $\hat{x_k}^{-}$ using the state equation and then uses the measurement $y_k$ to further correct $\hat{x_k}^{-}$ and produce a more accurate $\hat{x_k} \approx x_k$. The algorithm stepas are as follows.
+**Algorithm.** The Kalman filter is a recursive algorithm that first predicts $\hat{x_k}^{-}$ using the state equation and then uses the measurement $y_k$ to further correct $\hat{x_k}^{-}$ and produce a more accurate $\hat{x_k} \approx x_k$. The algorithm steps are as follows.
 
 **1. Initialization.** Let $\hat{x_0} = x_0$ and $\hat{\Sigma_0} = 0$.
 
@@ -157,6 +157,10 @@ Then, we compute $\hat{x_k}$ and $\hat{\Sigma_k}$ using
 \begin{equation}
 \hat{\Sigma_k} = \left(I - L_k C\right) \hat{\Sigma_k}^-.
 \end{equation}
+
+## Example: Heat equation
+
+We now return to our example in 
 
 ## References
 [^1]: H.S. Carslaw, J. C. Jaeger, *Condution of Heat in Solids*, 1959, Oxford University Press.
