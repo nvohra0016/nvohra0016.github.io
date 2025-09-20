@@ -5,6 +5,10 @@ excerpt: "We present an investigation into Kalman filters and their applications
 date: 09-2025
 ---
 
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
 ## Introduction
 
 We start by considering a simple example of heat conduction and temperature change in an object over a time period $(0, T)$. Consider an object with volumetric heat capacity $c$ [J/m$^3$ $^\circ C$]. We add heat to this object at the rate of $f(t)$ [J/m$^3$ s]. Ignoring any spatial variation, the temperature $\theta(t)$ [$^\circ$ C] of the object can be determined using the ODE[^1]
@@ -66,7 +70,7 @@ Now, consider the following problem.
 
 **Problem statement.** Suppose we are given the sequence $\\{y_k \\}_{k}$. Can we estimagte $\\{\theta_k \\}_k$ using the system \ref{eq:heat_disc}-\ref{eq:measurement_heat_disc}?
 
-In a perfect world, yes of course, without any error, since in a "perfect" world the temperature of the object changes "perfectly" according to \ref{eq:heat_disc} without any error. However, in reality, we expect some noise to be introduced when the temperature changes which can be represented as
+In a perfect world, yes of course, without any error, since in a "perfect" world the temperature of the object changes "perfectly" according to \ref{eq:heat_disc} without any erro which gives us $\theta_k = y_k$ exactly. However, in reality, we expect some noise to be introduced when the temperature changes which can be represented as
 
 \begin{equation}
 \label{eq:heat_disc1}
