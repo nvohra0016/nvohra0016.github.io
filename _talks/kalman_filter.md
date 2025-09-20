@@ -94,10 +94,11 @@ where $v_k$ is the measurement noise. Before we exemplify the problem, we first 
 </div>
 
 
-The *problem statement* mentioned above now becomes nontrivial: given $\\{y_k\\}_k$, how can we accurately estimate $\\{\theta_k \\}_k$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}?  
+The *problem statement* now becomes nontrivial: given $\\{y_k\\}_k$, how can we accurately estimate $\\{\theta_k \\}_k$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}? In other words, at each time step $k$, we seek the "best" estimate $\hat{\theta_k}$ of $\theta_k$ with our knowledge of $\\{y_j\\}_{j = 1}^{k}, \\{f_j \\}_{j = 1}^k$. 
 
+## Kalman filter
 
-Consider a simple 1D linear state-space system of the form 
+We now present the Kalman filtering technique. Consider a simple 1D linear state-space system of the form 
 
 \begin{equation}
 \label{eq_state}
@@ -109,13 +110,7 @@ Consider a simple 1D linear state-space system of the form
 y(t) = C x(t) + D u (t), \; \forall t \in (0, T),
 \end{equation}
 
-where $x \in \mathbb{R}$ is the state variable, $u \in \mathbb{R}$ is the input, $y \in \mathbb{R}$ is the output, $A, B, C, D \in \mathbb{R}$ are constants. The system \ref{eq_state}-\ref{eq_output} may be discretized implicitly or explicitly in time, but that that leads to a time discretization error. Instead, assuming $u$ to be a piecewise constant, i.e., 
-
-\begin{equation}
-u(t) = u_k, \; \forall t \in \left(k\tau, (k+1)\tau \right), \; u_k \in \mathbb{R}, \; \forall k \in \mathbb{Z}^{+}, \nonumber
-\end{equation}
-
- a simple integration by parts yields[^1]
+where $x \in \mathbb{R}$ is the state variable, $u \in \mathbb{R}$ is the input, $y \in \mathbb{R}$ is the output, $A, B, C, D \in \mathbb{R}$ are constants. We assume $u$ to be a piecewise-constant as in \ref{eq:f_assum}. Then, a simple integration by parts yields[^2]
 
 \begin{equation}
 \label{eq_disc_state}
@@ -127,68 +122,35 @@ x_{k+1} = e^{A \tau} x_k + \left(\int_{0}^{k\tau} e^{A z} dz \right) B u_k,
 y_k = C x_k + D u_k,
 \end{equation}
 
-where $\tau$ is the time step, and $x_k = x(\tau k)$ is the value at the $k^{th}$ time step (in this case the exact value of the continuous solution!), with similar definition for $y_k$.
+where $\tau$ is the time step, and $x_k = x(\tau k)$ is the value at the $k^{th}$ time step (in this case the exact value of the continuous solution!), with similar definition for $y_k$. *Note* that \ref{eq_disc_state} does not introduce any truncation error due to time discretization.
 
-To understand the discretized system, consider a simple example where $A = D = 0$ and $B = C = 1$. Let $x [m]$ represent the location of an object, and $u [m/s]$ be the velocity which is provided as an input. Then the system \ref{eq_state}-\ref{eq_output} determines the position of the object at any time $t$. In particular, the exact solution is given by $x(t) = \int_{0}^t u(z)dz$, and the output measured is simply the position of the object at $t$, i.e., $y(t) = x(t)$. Using the discretization \ref{eq_disc_state}, we have 
+**Algorithm.** The Kalman filter is a recursive algorithm that first predicts $\hat{x_k}^{-}$ using the state equation and then uses the measurement $y_k$ to further correct $\hat{x_k}^{-}$ and produce a more accurate $\hat{x_k} \approx x_k$. The algorithm stepas are as follows.
 
-\begin{equation}
-\label{eq_disc_motion1}
-x_{k+1} = x_k + \tau u_k.
-\end{equation}
+**1. Initialization.** Let $\hat{x_0} = x_0$ and $\hat{\Sigma_0} = 0$.
 
-Equation \ref{eq_disc_motion1} is straightforward and intuitive: it tells us the change in the position of the object in one time step with velocity $u_k$. The corresponding measurement is given using \ref{eq_disc_output}
+**2. Prediction.** Given $\hat{x_{k-1}}$, we compute $\hat{x_k}^{-}$ and $\hat{\Sigma_k}^{-}$ using 
 
 \begin{equation}
-y_k = x_k.
-\end{equation}
-
-However, in reality, one might expect some errors to be introduced when measuring the location of the object, or when providing a velocity at a time step. In other words, we expect some noise in the form 
-
-\begin{equation}
-\label{eq_disc_motion2}
-x_{k+1} = x_k + \tau u_k + w_k
-\end{equation}
-
-and 
-
-\begin{equation}
-\label{eq_disc_output2}
-y_k = x_k + v_k.
-\end{equation}
-
-We assume $v_k$ and $w_k$ to be uncorrelated Gaussian random processes with zero mean and given covariance matrices[^2]. 
-
-**Problem statement.** We seek a solution to the following: given $\\{u_k \\}_k$ and $\\{y_k \\}_k$, how can we accurately estimate $\\{x_k \\}_k$? 
-
-## Kalman filter
-
-The Kalman filter is a recursive algorithm that first predicts $\hat{x_k}^{-}$ using the state equation and then uses the measurement $y_k$ to further correct $\hat{x_k}^{-}$ and produce a more accurate $\hat{x_k}^{+} = \hat{x_k} \approx x_k$. The algorithm is defined as follows. 
-
-**1. Initialization.** Let $\hat{x_0}^{+} = x_0$ and $\Sigma_0^+ = 0$.
-
-**2. Prediction.** Given $\hat{x_{k-1}}^{+}$, we compute $\hat{x_k}^{-}$ and $\Sigma_k^{-}$ using 
-
-\begin{equation}
-\hat{x_k}^{-} A \hat{x_{k-1}}^{+} + B u_{k-1}
+\hat{x_k}^{-} = A \hat{x_{k-1}} + B u_{k-1}
 \end{equation}
 
 \begin{equation}
-\Sigma_{k}^{-} = A^2 \Sigma^{+}_{k-1} + \Sigma_w
+\hat{\Sigma_k}^{-} = A^2 \hat{\Sigma_{k-1}} + \Sigma_w
 \end{equation}
 
-**3. Correction.** In this step, we first compute the Kalman gain, $L$, as follows
+**3. Correction.** In this step, we first compute the Kalman gain, $L_k$, as follows
 
 \begin{equation}
-L_k = \Sigma_k^- C \left(C^2 \Sigma_{k}^- + \Sigma_v \right)^{-1}.
+L_k = \hat{\Sigma_k}^- C \left(C^2 \hat{\Sigma_k}^- + \Sigma_v \right)^{-1}.
 \end{equation}
 
-Then, we compute $\hat{x_k}^{+}$ and $\Sigma_k^{+}$ using 
+Then, we compute $\hat{x_k}$ and $\hat{\Sigma_k}$ using 
 
 \begin{equation}
-\hat{x_k}^+ = \hat{x_k}^- + L_k \left(y_k - C \hat{x_k}^{-} - D u_k \right),
+\hat{x_k} = \hat{x_k}^- + L_k \left(y_k - C \hat{x_k}^{-} - D u_k \right),
 \end{equation}
 \begin{equation}
-\Sigma_k^+ = \left(I - L_k C\right) \Sigma_k^-.
+\hat{\Sigma_k} = \left(I - L_k C\right) \hat{\Sigma_k}^-.
 \end{equation}
 
 ## References
