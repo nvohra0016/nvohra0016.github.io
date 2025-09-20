@@ -104,7 +104,7 @@ where $v_k$ is the measurement noise. Before we exemplify the problem, we first 
 
 <br>
 
-The *problem statement* now becomes nontrivial: given $\\{ y_k \\}_{k}$ how can we accurately estimate $\\{$ $\theta_k$ $\\}_{k}$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}?
+The *problem statement* now becomes nontrivial: given $y_k, \; 1 \leq k \leq N$ how can we accurately estimate $\theta_k, \; 1\leq k \leq N$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}? In other words, how do we compute the best estimate $\hat{\theta_k}$ that approximates $\theta_k \; \forall 1 \leq k \leq N$?
 
 ## Kalman filter
 
@@ -165,7 +165,7 @@ Then, we compute $\hat{x_k}$ and $\hat{\Sigma_k}$ using
 
 ## Example: Heat equation
 
-We now return to our example ... 
+We now return to our example. Given the same measurements, and assuming that  
 
 <div align="center">
 <img src='/images/Kalman_filter/heat_ex_temperature_results.png' width='450' height='450'>
