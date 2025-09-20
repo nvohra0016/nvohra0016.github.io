@@ -11,10 +11,6 @@ date: 09-2025
 
 ## Introduction
 
-$\hat{\theta}$
-
-<span> $\hat{\theta}$ </span>
-
 We start by considering a simple example of heat conduction and temperature change in an object over a time period $(0, T)$. Consider an object with volumetric heat capacity $c$ [J/m$^3$ $^\circ C$]. We add heat to this object at the rate of $f(t)$ [J/m$^3$ s]. Ignoring any spatial variation, the temperature $\theta(t)$ [$^\circ$ C] of the object can be determined using the ODE[^1]
 
 \begin{equation}
@@ -91,8 +87,8 @@ y_k = \theta_k + v_k,
 
 where $v_k$ is the measurement noise. Before we exemplify the problem, we first establish some notation. We call $\theta_k$ in \ref{eq:heat_eq} the *true state* of the temperature. 
 
-(example)=
-**Example.** As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = 0.01 t$  [J / m$^3$ s]. Fig. 2 below shows the true temperature, the temperature evolution according to \ref{eq:heat_disc1}, and the measured temperature values. Here we assume that $v_k$ and $w_k$ are uncorrelated Gaussian random processes with zero mean and standard deviation $\sigma_w = 0.75$ and $\sigma_v = 1.25$, respectively.  
+### Example
+As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = 0.01 t$  [J / m$^3$ s]. Fig. 2 below shows the true temperature, the temperature evolution according to \ref{eq:heat_disc1}, and the measured temperature values. Here we assume that $v_k$ and $w_k$ are uncorrelated Gaussian random processes with zero mean and standard deviation $\sigma_w = 0.75$ and $\sigma_v = 1.25$, respectively.  
 
 
 <div align="center">
@@ -164,7 +160,7 @@ Then, we compute $\hat{x_k}$ and $\hat{\Sigma_k}$ using
 \hat{\Sigma_k} = \left(I - L_k C\right) \hat{\Sigma_k}^-.
 \end{equation}
 
-## Example: Heat equation
+## Example: Heat Equation
 
 We now return to our (example)[#example]. We consider an intial condition $\hat{\theta_0} = y_0$ and $\hat{\Sigma_0} = 1.25^2$. 
 
