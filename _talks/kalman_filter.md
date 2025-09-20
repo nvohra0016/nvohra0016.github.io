@@ -95,7 +95,7 @@ where $v_k$ is the measurement noise. Before we exemplify the problem, we first 
 
 <br>
 
-The *problem statement* now becomes nontrivial: given $\\{ y_k \\}_{k}$ how can we accurately estimate $\\{ \theta_k \\}_{k}$ 
+The *problem statement* now becomes nontrivial: given $\\{ y_k \\}_{k}$ how can we accurately estimate 
 
 ## Kalman filter
 
