@@ -68,7 +68,8 @@ where $y_k = y(k \tau)$.
 
 Now, consider the following problem. 
 
-**Problem statement.** Suppose we are given the sequence $\\{ y_k \\}_{k}$. Can we estimagte $\\{$ $\theta_k$ $\\}_k$ using the system \ref{eq:heat_disc}-\ref{eq:measurement_heat_disc}?
+**Problem statement.** Suppose we are given the sequence $\\{ y_k \\}_{k}$. Can we estimate  using the system \ref{eq:heat_disc}-\ref{eq:measurement_heat_disc}?  In other words, at each time step $k$, we seek the "best" estimate <span> $\hat{\theta_k}$ </span> of $\theta_k$ with our knowledge of $\\{ y_j \\}_{j = 1}^{k}, \\{ f_j \\}_{j = 1}^k$.
+ 
 
 In a perfect world, yes of course, without any error, since in a "perfect" world the temperature of the object changes "perfectly" according to \ref{eq:heat_disc} without any erro which gives us $\theta_k = y_k$ exactly. However, in reality, we expect some noise to be introduced when the temperature changes which can be represented as
 
@@ -160,7 +161,16 @@ Then, we compute $\hat{x_k}$ and $\hat{\Sigma_k}$ using
 
 ## Example: Heat equation
 
-We now return to our example in 
+We now return to our example ... 
+
+<div align="center">
+<img src='/images/Kalman_filter/heat_ex_temperature_results.png' width='450' height='450'>
+</div>
+
+<div align = "center">
+ Figure 3. Plot showing the estimated temperature calculated using the Kalman filter.  
+</div>
+
 
 ## References
 [^1]: H.S. Carslaw, J. C. Jaeger, *Condution of Heat in Solids*, 1959, Oxford University Press.
