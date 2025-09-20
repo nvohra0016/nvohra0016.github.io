@@ -99,7 +99,7 @@ where $v_k$ is the measurement noise. Before we exemplify the problem, we first 
 
 <br>
 
-The *problem statement* now becomes nontrivial: given $\\{ y_k \\}_{k}$ how can we accurately estimate $\\{$ $\theta_k$ $\\}_{k}$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}? In other words, at each time step $k$, we seek the "best" estimate $\hat$ $\theta$ $_k$ of $\theta_k$ with our knowledge of $\\{ y_j \\}_{j = 1}^{k}, \\{ f_j \\}_{j = 1}^k$.
+The *problem statement* now becomes nontrivial: given $\\{ y_k \\}_{k}$ how can we accurately estimate $\\{$ $\theta_k$ $\\}_{k}$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}? In other words, at each time step $k$, we seek the "best" estimate of $\theta_k$ with our knowledge of $\\{ y_j \\}_{j = 1}^{k}, \\{ f_j \\}_{j = 1}^k$.
 
 ## Kalman filter
 
