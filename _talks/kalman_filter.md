@@ -14,7 +14,14 @@ We start by considering a simple example of heat conduction and temperature chan
  \dot{(c \theta)} = f \text{ in } (0, T).
 \end{equation}
 
-Now, let us measure the temperature using an external sensor, and we denote the measurement using $y(t)$ [$^\circ$ C]; see figure below for a schematic. 
+Now, let us measure the temperature using an external sensor, and we denote the measurement using $y(t)$ [$^\circ$ C]; see Figure 1. below for a schematic. The measurement is represented by
+
+\begin{equation}
+\label{eq:measurement_heat}
+y(t) = \theta(t), \; \forall t \in (0, T).
+\end{equation}
+
+<br>
 
 <div align="center">
 <img src='/images/Kalman_filter/heat_kalman_filter_example.png' width='250' height='250'>
@@ -22,13 +29,6 @@ Now, let us measure the temperature using an external sensor, and we denote the 
 <div align = "center">
 Figure 1. Illustration of the object heating and measurement process.
 </div>
-
-Then, the measurement can be represented by
-
-\begin{equation}
-\label{eq:measurement_heat}
-y(t) = \theta(t), \; \forall t \in (0, T).
-\end{equation}
 
 <br>
 
@@ -89,12 +89,13 @@ where $v_k$ is the measurement noise. Before we exemplify the problem, we first 
 <div align="center">
 <img src='/images/Kalman_filter/heat_ex_temperature.png' width='450' height='450'>
 </div>
+
 <div align = "center>
  Figure 2. Plot showing the true temperature calculated by \ref{eq:heat_disc}, the noisy temperature evolution according to \ref{eq:heat_disc1}, and the measured values according to \ref{eq:measurement_disc1}.  
 </div>
 
 
-The *problem statement* now becomes nontrivial: given $\\{y_k\\}_k$, how can we accurately estimate $\\{\theta_k \\}_k$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}? In other words, at each time step $k$, we seek the "best" estimate $\hat{\theta_k}$ of $\theta_k$ with our knowledge of $\\{y_j\\}_{j = 1}^{k}, \\{f_j \\}_{j = 1}^k$. 
+The *problem statement* now becomes nontrivial: given $\\{y_k \\}_k$, how can we accurately estimate $\\{\theta_k \\}_k$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}? In other words, at each time step $k$, we seek the "best" estimate $\hat{\theta_k}$ of $\theta_k$ with our knowledge of $\\{y_j\\}_{j = 1}^{k}, \\{f_j \\}_{j = 1}^k$. 
 
 ## Kalman filter
 
