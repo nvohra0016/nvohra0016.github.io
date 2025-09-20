@@ -91,7 +91,7 @@ y_k = \theta_k + v_k,
 
 where $v_k$ is the measurement noise. Before we exemplify the problem, we first establish some notation. We call $\theta_k$ in \ref{eq:heat_eq} the *true state* of the temperature. 
 
-example=
+(example)=
 **Example.** As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = 0.01 t$  [J / m$^3$ s]. Fig. 2 below shows the true temperature, the temperature evolution according to \ref{eq:heat_disc1}, and the measured temperature values. Here we assume that $v_k$ and $w_k$ are uncorrelated Gaussian random processes with zero mean and standard deviation $\sigma_w = 0.75$ and $\sigma_v = 1.25$, respectively.  
 
 
