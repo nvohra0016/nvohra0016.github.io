@@ -63,21 +63,24 @@ Now, consider the following problem.
 
 **Problem statement.** Suppose we are given the sequence $\\{y_k \\}_{k}$. Can we estimagte $\\{\theta_k \\}_k$ using the system \ref{eq:heat_disc}-\ref{eq:measurement_heat_disc}?
 
-In a perfect world, yes of course, without any error, since then $\theta_k = y_k$ from \ref{eq:measurement_heat_disc}. But in a world of noisy sensors and less perfect measuring equipments, we can safely assume that some error is introduced in the measurements $y_k$, i.e., instead of \ref{eq:measurement_heat_disc}, we have an equation similar to 
-
-\begin{equation}
-\label{eq:measurement_disc1}
-y_k = \theta_k + v_k,
-\end{equation}
-
-where $v_k$ represents some noise. Similarly, adding energy to the object would not change its temperature "perfectly" according to \ref{eq:heat_disc}, but rather in noisy terms 
+In a perfect world, yes of course, without any error, since in a "perfect" world the temperature of the object changes "perfectly" according to \ref{eq:heat_disc} without any error. However, in reality, we expect some noise to be introduced when the temperature changes which can be represented as
 
 \begin{equation}
 \label{eq:heat_disc1}
 \theta_{k+1} = \theta_k + \tau c^{-1} f_k + w_k,
 \end{equation}
 
-where $w_k$ also represents some noise. The *problem statement* mentioned above now becomes nontrivial: given $\\{y_k\\}_k$, how can we accurately estimate $\\{\theta_k \\}_k$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}? 
+
+where $w_k$ also represents some noise. Morever, in a world of noisy sensors and less perfect measuring equipments, we can also assume that some error is introduced in the measurements $y_k$, i.e., instead of \ref{eq:measurement_heat_disc}, we have an equation similar to 
+
+\begin{equation}
+\label{eq:measurement_disc1}
+y_k = \theta_k + v_k,
+\end{equation}
+
+where $v_k$ represents some noise.
+
+The *problem statement* mentioned above now becomes nontrivial: given $\\{y_k\\}_k$, how can we accurately estimate $\\{\theta_k \\}_k$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}? 
 
 **Example.** As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = 0.01 t$  [J / m$^3$ s]. The figure below shows the true temperature, estimated temperature, and the measured temperature values. 
 
