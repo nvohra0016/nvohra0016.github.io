@@ -19,6 +19,9 @@ Now, let us measure the temperature using an external sensor, and we denote the 
 <div align="center">
 <img src='/images/Kalman_filter/heat_kalman_filter_example.png' width='250' height='250'>
 </div>
+<div align = "center">
+Figure 1. Illustration of the object heating and measurement process.
+</div>
 
 Then, the measurement can be represented by
 
@@ -71,24 +74,27 @@ In a perfect world, yes of course, without any error, since in a "perfect" world
 \end{equation}
 
 
-where $w_k$ also represents some noise. Morever, in a world of noisy sensors and less perfect measuring equipments, we can also assume that some error is introduced in the measurements $y_k$, i.e., instead of \ref{eq:measurement_heat_disc}, we have an equation similar to 
+where $w_k$ is the process noise. Morever, in a world of noisy sensors and less perfect measuring equipments, we can also assume that some error is introduced in the measurements $y_k$, i.e., instead of \ref{eq:measurement_heat_disc}, we have an equation similar to 
 
 \begin{equation}
 \label{eq:measurement_disc1}
 y_k = \theta_k + v_k,
 \end{equation}
 
-where $v_k$ represents some noise.
+where $v_k$ is the measurement noise. Before we exemplify the problem, we first establish some notation. We call $\theta_k$ in \ref{eq:heat_eq} the *true state* of the temperature. 
 
-The *problem statement* mentioned above now becomes nontrivial: given $\\{y_k\\}_k$, how can we accurately estimate $\\{\theta_k \\}_k$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}? Before we exemplify the problem, we first establish some notation. We call $\theta_k$ in \ref{eq:heat_eq} the *true state* of the temperature. 
-
-**Example.** As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = 0.01 t$  [J / m$^3$ s]. The figure below shows the true temperature, estimated temperature, and the measured temperature values. 
+**Example.** As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = 0.01 t$  [J / m$^3$ s]. The figure below shows the true temperature, the temperature evolution according to \ref{eq:heat_disc1}, and the measured temperature values. 
 
 
 <div align="center">
 <img src='/images/Kalman_filter/heat_ex_temperature.png' width='450' height='450'>
 </div>
+<div align = "center>
+ Figure 2. Plot showing the true temperature calculated by \ref{eq:heat_disc}, the noisy temperature evolution according to \ref{eq:heat_disc1}, and the measured values according to \ref{eq:measurement_disc1}.  
+</div>
 
+
+The *problem statement* mentioned above now becomes nontrivial: given $\\{y_k\\}_k$, how can we accurately estimate $\\{\theta_k \\}_k$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}?  
 
 
 Consider a simple 1D linear state-space system of the form 
