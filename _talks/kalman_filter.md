@@ -88,7 +88,7 @@ y_k = \theta_k + v_k,
 where $v_k$ is the measurement noise. Before we exemplify the problem, we first establish some notation. We call $\theta_k$ in \ref{eq:heat_eq} the *true state* of the temperature. 
 
 ### Example
-As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = 0.01 t$  [J / m$^3$ s]. Fig. 2 below shows the true temperature, the temperature evolution according to \ref{eq:heat_disc1}, and the measured temperature values. Here we assume that $v_k$ and $w_k$ are uncorrelated Gaussian random processes with zero mean and standard deviation $\sigma_w = 0.75$ and $\sigma_v = 1.25$, respectively.  
+As an example, we consider the heating of the object over the time period $(0, 24)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = 0.0025 t$  [J / m$^3$ s]. Fig. 2 below shows the true temperature, the temperature evolution according to \ref{eq:heat_disc1}, and the measured temperature values. Here we assume that $v_k$ and $w_k$ are uncorrelated Gaussian random processes with zero mean and standard deviation $\sigma_w = 0.75$ and $\sigma_v = 1.25$, respectively.  
 
 
 <div align="center">
@@ -162,7 +162,7 @@ Then, we compute $\hat{x_k}$ and $\hat{\Sigma_k}$ using
 
 ## Example: Heat Equation
 
-We now return to our [example](#example). We consider an intial condition $\hat{\theta_0} = y_0$ and $\hat{\Sigma_0} = 0$, and run the Kalman filter. The results are shown in Fig. 3 below. 
+We now return to our [example](#example). We consider an intial condition $\hat{\theta_0} = y_0$ and $\hat{\Sigma_0} = 0$, and run the Kalman filter. The results are shown in Fig. 3 and Fig. 4 below. 
 
 <div align="center">
 <img src='/images/Kalman_filter/heat_ex_temperature_results.png' width='450' height='450'>
@@ -176,9 +176,11 @@ We now return to our [example](#example). We consider an intial condition $\hat{
 <img src='/images/Kalman_filter/heat_ex_variance_results.png' width='450' height='450'>
 </div>
 
-<div align = "center">.
+<div align = "center">
  Figure 4. Plot showing the predicted and corrected variance.
 </div>
+
+<br>
 
 **Discussion of results.** It can be observed from Fig. 3 that the estimated temperature is much more aligned to the true state than the measured values. Fig. 4 also shows the predicted and estimated covariance and it can be observed that the corrected covariance is always lower than the predicted covariance, although both values quickly reach a steady state. 
 
