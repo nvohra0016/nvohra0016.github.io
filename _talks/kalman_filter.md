@@ -87,7 +87,7 @@ y_k = \theta_k + v_k,
 
 where $v_k$ is the measurement noise. Before we exemplify the problem, we first establish some notation. We call $\theta_k$ in \ref{eq:heat_eq} the *true state* of the temperature. 
 
-### Example
+#### Example
 As an example, we consider the heating of the object over the time period $(0, 10)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = 0.01 t$  [J / m$^3$ s]. Fig. 2 below shows the true temperature, the temperature evolution according to \ref{eq:heat_disc1}, and the measured temperature values. Here we assume that $v_k$ and $w_k$ are uncorrelated Gaussian random processes with zero mean and standard deviation $\sigma_w = 0.75$ and $\sigma_v = 1.25$, respectively.  
 
 
@@ -131,7 +131,7 @@ y_k = C x_k + D u_k,
 
 where $\tau$ is the time step, and $x_k = x(\tau k)$ is the value at the $k^{th}$ time step (in this case the exact value of the continuous solution!), with similar definition for $y_k$. *Note* that \ref{eq_disc_state} does not introduce any truncation error due to time discretization.
 
-**Algorithm.** The Kalman filter is a recursive algorithm that first predicts $\hat{x_k}^{-}$ using the state equation and then uses the measurement $y_k$ to further correct $\hat{x_k}^{-}$ and produce a more accurate $\hat{x_k} \approx x_k$. The algorithm steps are as follows.
+**Algorithm.** The Kalman filter is a recursive algorithm that first predicts $\hat{x_k}^{-}$ using the state equation and then uses the measurement $y_k$ to further correct $\hat{x_k}^{-}$ and produce a more accurate $\hat{x_k} \approx x_k$. Let $\hat{e_k}^- = \hat{x_k}^- - x_k$ and $\hat{e_k} = \hat{x_k} - x_k$ denote the corresponding errors, and $\hat{\Sigma_k} = \mathbb{E}[\hat{e_k}^2], \; \hat{\Sigma_k}^- = \mathbb{E}[{\hat{e_k}^-}^2]$ be the covariances. The algorithm is follows[^3].
 
 **1. Initialization.** Let $\hat{x_0} = x_0$ and $\hat{\Sigma_0} = 0$.
 
@@ -162,15 +162,17 @@ Then, we compute $\hat{x_k}$ and $\hat{\Sigma_k}$ using
 
 ## Example: Heat Equation
 
-We now return to our (example)[#example]. We consider an intial condition $\hat{\theta_0} = y_0$ and $\hat{\Sigma_0} = 1.25^2$. 
+We now return to our [example](#example). We consider an intial condition $\hat{\theta_0} = y_0$ and $\hat{\Sigma_0} = 1.25^2$, and run the Kalman filter. The results are shown in Fig. 3 below. 
 
 <div align="center">
 <img src='/images/Kalman_filter/heat_ex_temperature_results.png' width='450' height='450'>
 </div>
 
 <div align = "center">
- Figure 3. Plot showing the estimated temperature calculated using the Kalman filter.  
+ Figure 3. Plot showing the estimated temperature.
 </div>
+
+**Discussion of results.** It can be observed that the 
 
 
 ## References
