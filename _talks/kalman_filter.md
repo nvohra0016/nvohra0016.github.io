@@ -176,7 +176,7 @@ We now return to our [example](#example). We consider an intial condition $\hat{
 <img src='/images/Kalman_filter/heat_ex_variance_results.png' width='450' height='450'>
 </div>
 
-<div align = "center">
+<div align = "center">.
  Figure 4. Plot showing the predicted and corrected variance.
 </div>
 
