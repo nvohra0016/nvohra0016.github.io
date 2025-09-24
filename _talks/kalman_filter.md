@@ -184,6 +184,22 @@ We now return to our [example](#example). We consider an intial condition $\hat{
 
 **Discussion of results.** It can be observed from Fig. 3 that the estimated temperature is much more aligned to the true state than the measured values. Fig. 4 also shows the predicted and estimated covariance and it can be observed that the corrected covariance is always lower than the predicted covariance, although both values quickly reach a steady state. 
 
+### Variance Estimation: Monte Carlo Simulations
+
+We also compute the variance of the estimated values ($\hat{\\theta}$) and the measured values ($y$) denoted by $\sigma_{\hat{\\theta}}^2$ and $\sigma_y^2$, respectively. 
+
+<div align="center">
+<img src='/images/Kalman_filter/heat_ex_mc_temperature_results.png' width='380' height='380'>
+<img src='/images/Kalman_filter/heat_ex_mc_temperature_results_zoomed.png' width='380' height='380'>
+</div>
+
+<div align = "center">
+ Figure 5. Left: Plot showing the Monte Carlo simulations of the measured values (orange diamonds) and estimated temperature (green lines). Right: zoomed in plot of the same. 
+</div>
+
+
+
+
 ## Further Reading 
 
 The discussion above presents a basic introduction to the use of Kalman filters for optimal filtering. We demonstrate the use of the Kalman filter in 1D, although the implementation can easily be extended to higher dimensions[^3]. A brief introduction to the algorithm can also be found in an article by Welch, Bishop, 2006[^4].
