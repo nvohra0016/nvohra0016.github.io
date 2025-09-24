@@ -175,11 +175,11 @@ We now return to our [example](#example). We consider an intial condition $\hat{
 
 <br>
 
-**Discussion of results.** It can be observed from Fig. 3 that the estimated temperature is much more aligned to the true state than the measured values. Fig. 3 also shows the predicted and estimated covariance and it can be observed that the corrected covariance is always lower than the predicted covariance, although both values quickly reach a steady state. 
+It can be observed from Fig. 3 that the estimated temperature is much more aligned to the true state than the measured values. Fig. 3 also shows the predicted and estimated covariance and it can be observed that the corrected covariance is always lower than the predicted covariance, although both values quickly reach a steady state. 
 
 ### Variance Estimation: Monte Carlo Simulations
 
-We also compute the variance of the estimated values ($\hat{\\theta}$) and the measured values ($y$) denoted by $\sigma_{\hat{\\theta}}^2$ and $\sigma_y^2$, respectively. 
+We also compute the variance of the estimated values ($\hat{\\theta}$) and the measured values ($y$) denoted by $\sigma_{\hat{\\theta}}^2$ and $\sigma_y^2$, respectively; see Fig. 5 and Fig. 6 below.
 
 <div align="center">
 <img src='/images/Kalman_filter/heat_ex_mc_temperature_results.png' width='380' height='380'>
@@ -190,7 +190,17 @@ We also compute the variance of the estimated values ($\hat{\\theta}$) and the m
  Figure 5. Left: Plot showing the Monte Carlo simulations of the measured values (orange diamonds) and estimated temperature (green lines). Right: zoomed in plot of the same. 
 </div>
 
+<div align="center">
+<img src='/images/Kalman_filter/heat_ex_mc_variance_results.png' width='450' height='450'>
+</div>
 
+<div align = "center">
+ Figure 6. Plot showing the variance of the measured values and the estimated values.
+</div>
+
+<br>
+
+It can be observed from Fig. 6 that the variance of the estimated values is much smaller than the variance of the measured values, and even smaller than the variance of the process noise $\approx 0.562$. This exercise demonstrates the effectiveness of the Kalman filter in reducing the error between the measured values and the true state. 
 
 
 ## Further Reading 
