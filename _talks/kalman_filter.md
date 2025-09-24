@@ -197,7 +197,7 @@ We also compute the variance of the estimated values ($\hat{\\theta}$) and the m
 <br>
 
 <div align = "center">
- Figure 6. Plot showing the variance of the measured values and the estimated values.
+ Figure 6. Plot showing the variance of the measured values and the estimated values. Dashed black line represents $y = (1.25)^2$, the variance of the measurement noise. 
 </div>
 
 <br>
