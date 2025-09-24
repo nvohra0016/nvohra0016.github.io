@@ -194,6 +194,8 @@ We also compute the variance of the estimated values ($\hat{\\theta}$) and the m
 <img src='/images/Kalman_filter/heat_ex_mc_variance_results.png' width='450' height='450'>
 </div>
 
+<br>
+
 <div align = "center">
  Figure 6. Plot showing the variance of the measured values and the estimated values.
 </div>
