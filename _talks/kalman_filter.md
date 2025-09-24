@@ -190,11 +190,11 @@ We also compute the variance of the estimated values ($\hat{\\theta}$) and the m
  Figure 5. Left: Plot showing the Monte Carlo simulations of the measured values (orange diamonds) and estimated temperature (green lines). Right: zoomed in plot of the same. 
 </div>
 
+<br>
+
 <div align="center">
 <img src='/images/Kalman_filter/heat_ex_mc_variance_results.png' width='450' height='450'>
 </div>
-
-<br>
 
 <div align = "center">
  Figure 6. Plot showing the variance of the measured values and the estimated values. Dashed black line represents $y = (1.25)^2$, the variance of the measurement noise. 
