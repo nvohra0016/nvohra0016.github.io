@@ -162,27 +162,20 @@ Then, we compute $\hat{x_k}$ and $\hat{\Sigma_k}$ using
 
 ## Example: Heat Equation
 
-We now return to our [example](#example). We consider an intial condition $\hat{\theta_0} = y_0$ and $\hat{\Sigma_0} = 0$, and run the Kalman filter. The results are shown in Fig. 3 and Fig. 4 below. 
+We now return to our [example](#example). We consider an intial condition $\hat{\theta_0} = y_0$ and $\hat{\Sigma_0} = 0$, and run the Kalman filter. The results are shown in Fig. 3.
 
 <div align="center">
-<img src='/images/Kalman_filter/heat_ex_temperature_results.png' width='450' height='450'>
+<img src='/images/Kalman_filter/heat_ex_temperature_results.png' width='380' height='380'>
+<img src='/images/Kalman_filter/heat_ex_variance_results.png' width='380' height='380'>
 </div>
 
 <div align = "center">
- Figure 3. Plot showing the estimated temperature.
-</div>
-
-<div align="center">
-<img src='/images/Kalman_filter/heat_ex_variance_results.png' width='450' height='450'>
-</div>
-
-<div align = "center">
- Figure 4. Plot showing the predicted and corrected variance.
+ Figure 3. Plot showing the estimated temperature (left) and predicted and corrected variance (right).
 </div>
 
 <br>
 
-**Discussion of results.** It can be observed from Fig. 3 that the estimated temperature is much more aligned to the true state than the measured values. Fig. 4 also shows the predicted and estimated covariance and it can be observed that the corrected covariance is always lower than the predicted covariance, although both values quickly reach a steady state. 
+**Discussion of results.** It can be observed from Fig. 3 that the estimated temperature is much more aligned to the true state than the measured values. Fig. 3 also shows the predicted and estimated covariance and it can be observed that the corrected covariance is always lower than the predicted covariance, although both values quickly reach a steady state. 
 
 ### Variance Estimation: Monte Carlo Simulations
 
