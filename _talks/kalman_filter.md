@@ -179,7 +179,17 @@ It can be observed from Fig. 3 that the estimated temperature is much more align
 
 ### Variance Estimation: Monte Carlo Simulations
 
-We also compute the variance of the estimated values ($\hat{\\theta}$) and the measured values ($y$) denoted by $\sigma_{\hat{\\theta}}^2$ and $\sigma_y^2$, respectively. We run $1000$ simulations using the same random parameters as earlier. see Fig. 5 and Fig. 6 below.
+We also compute the variance of the estimated values ($\hat{\\theta}$) and the measured values ($y$) denoted by $\sigma_{\hat{\\theta}}^2$ and $\sigma_y^2$, respectively. We run $1000$ simulations using the same random parameters as earlier; see Fig. 5 and Fig. 6 below.
+
+<div class='wrapper' align='center'>
+<section>
+    <img id='gif-click' src='/images/Kalman_filter/KF.gif'  width='600' height='600'/>
+</section>
+</div>
+
+<div align = "center">
+ Figure 5. Plot showing five Monte Carlo simulations.
+</div>
 
 <div align="center">
 <img src='/images/Kalman_filter/heat_ex_mc_temperature_results.png' width='380' height='380'>
@@ -187,8 +197,9 @@ We also compute the variance of the estimated values ($\hat{\\theta}$) and the m
 </div>
 
 <div align = "center">
- Figure 5. Left: Plot showing the Monte Carlo simulations of the measured values (orange diamonds) and estimated temperature (green lines). Right: zoomed in plot of the same. 
+ Figure 6. Plot showing all the Monte Carlo simulations of the measured values (orange diamonds) and estimated temperature (green lines).
 </div>
+
 
 <br>
 
@@ -197,12 +208,12 @@ We also compute the variance of the estimated values ($\hat{\\theta}$) and the m
 </div>
 
 <div align = "center">
- Figure 6. Plot showing the variance of the measured values and the estimated values. Dashed black line represents $y = (1.25)^2$, the variance of the measurement noise. 
+ Figure 7. Plot showing the variance of the measured values and the estimated values. Dashed black line represents $y = (1.25)^2$, the variance of the measurement noise. 
 </div>
 
 <br>
 
-It can be observed from Fig. 6 that the variance of the estimated values is much smaller than the variance of the measured values, and even smaller than the variance of the process noise $\approx 0.562$. This exercise demonstrates the effectiveness of the Kalman filter in reducing the error between the measured values and the true state. 
+It can be observed from Fig. 7 that the variance of the estimated values is much smaller than the variance of the measured values, and even smaller than the variance of the process noise $\approx 0.562$. This exercise demonstrates the effectiveness of the Kalman filter in reducing the error between the measured values and the true state. 
 
 
 ## Further Reading 
