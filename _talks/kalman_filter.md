@@ -1,7 +1,7 @@
 ---
 title: "An introduction to Kalman filters using the heat equation"
 collection: talks
-excerpt: "We present an investigation into Kalman filters and their applications in BMS"
+excerpt: "We present a basic application of Kalman filters in measuring the temperature of a heating object"
 date: 09-2025
 ---
 
