@@ -182,12 +182,11 @@ It can be observed from Fig. 3 that the estimated temperature is much more align
 We also compute the variance of the estimated values ($\hat{\\theta}$) and the measured values ($y$) denoted by $\sigma_{\hat{\\theta}}^2$ and $\sigma_y^2$, respectively. We run $1000$ simulations using the same random parameters as earlier; see Fig. 5 and Fig. 6 below.
 
 <div class='wrapper' align='center'>
-<img id='gif-click' src='/images/Kalman_filter/KF.gif'  width='380' height='380'/>
-<img src='/images/Kalman_filter/heat_ex_mc_temperature_results.png' width='380' height='380'>
+<img id='gif-click' src='/images/Kalman_filter/KF.gif'  width='450' height='450'/>
 </div>
 
 <div align = "center">
- Figure 5. Plot showing 5 Monte Carlo simulations.
+ Figure 5. Plot showing 5 Monte Carlo simulations of the measured values (orange diamonds) and estimated temperature (green lines).
 </div>
 
 <div align="center">
