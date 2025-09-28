@@ -183,7 +183,10 @@ We also compute the variance of the estimated values ($\hat{\\theta}$) and the m
 
 <div class='wrapper' align='center'>
 <section>
-    <img id='gif-click' src='/images/Kalman_filter/KF.gif'  width='600' height='600'/>
+    <img id='gif-click' src='/images/Kalman_filter/KF.gif'  width='380' height='380'/>
+</section>
+<section>
+  <img src='/images/Kalman_filter/heat_ex_mc_temperature_results.png' width='380' height='380'>
 </section>
 </div>
 
@@ -192,8 +195,7 @@ We also compute the variance of the estimated values ($\hat{\\theta}$) and the m
 </div>
 
 <div align="center">
-<img src='/images/Kalman_filter/heat_ex_mc_temperature_results.png' width='380' height='380'>
-<img src='/images/Kalman_filter/heat_ex_mc_temperature_results_zoomed.png' width='380' height='380'>
+<img src='/images/Kalman_filter/heat_ex_mc_temperature_results.png' width='450' height='450'>
 </div>
 
 <div align = "center">
