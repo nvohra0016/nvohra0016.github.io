@@ -1,5 +1,5 @@
 ---
-title: "An Introduction to Kalman Filters"
+title: "An introduction to Kalman filters using the heat equation"
 collection: talks
 excerpt: "We present an investigation into Kalman filters and their applications in BMS"
 date: 09-2025
