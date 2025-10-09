@@ -27,6 +27,7 @@ where $E_B$ [MWh] is the capacity of the battery.
 We consider a basic scenario where a given battery performs arbitrage in the wholesale electricity markets: that is, it charges up when the electricity prices are low and discharges when the prices are high, thereby marking a profit. If $\theta_n$ [Rs/MWh] is the wholesale market price at time step $n$, then we wish to find the optimial solution to 
 
 \begin{equation}
+\label{eq:objective}
 \text{minimize} \sum_{n} \left(P^c_n \theta_n - P^d_n \theta_n \right) \tau
 \end{equation}
 
@@ -63,13 +64,13 @@ In this case the objective value comes out to be -28654.91 [Rs], indicating a ne
 
 ### Effect of battery cycles
 
-We now consider the degradation associated with battery cycling. Typically, the life of a battery (i.e., the number of cycles it is able to perform) depends on the depth of discharge (DOD) at which it is cycled, where the DOD is defined as the absolute difference between the state of charge in consecutive time steps divided by the capacity. We denote the cycles by $\alpha(DOD)$; see Fig. 3 for an illustration.
+We now consider the degradation associated with battery cycling. Typically, the life of a battery (i.e., the number of cycles it is able to perform) depends on the depth of discharge (DOD) at which it is cycled, where the DOD is defined as the absolute difference between the state of charge in consecutive time steps divided by the capacity. We denote the cycles by $\alpha(DOD)$; see Fig. 3 for an illustration (adapted from[^3]).
 
 <div align = "center">
 <img src='/images/BESS_project_images/cycle_life.png' width='380' height='380'>
 </div>
 <div align = "center">
-Figure 3. Plot showing the number of cycles $\alpha$ as a function of DOD (adapted from[^3]).
+Figure 3. Plot showing the number of cycles $\alpha$ as a function of DOD.
 </div>
 
 <br>
@@ -84,14 +85,34 @@ C^{cyc} = \frac{R}{\alpha\left(\delta \right)}.
 Or, noting that the discharge rate associated with a DOD $\delta$ can be obtained from \ref{eq:SOC} as
 
 \begin{equation}
- P^{d, \delta} = \frac{\eta E_B \delta}{\tau},
+ P^{d} = \frac{\eta E_B \delta}{\tau},
 \end{equation}
 
 we can rewrite \ref{eq:cycle_cost} as
 
 \begin{equation}
-C^{cyc} = \frac{R}{\alpha\left(\eta^{-1} {E_B}^{-1} \tau P^{d, \delta} \right)}.
+\label{eq:cycle_cost_pd}
+C^{cyc}\left(P^{d} \right) = \frac{R}{\alpha\left(\eta^{-1} {E_B}^{-1} \tau P^{d} \right)}.
 \end{equation}
+
+Taking the cost of cycling into account, our objective function \ref{eq:objective} now becomes
+
+\begin{equation}
+\label{eq:objective_cycles}
+\text{minimize} \sum_{n} \left(P^c_n \theta_n - P^d_n \theta_n \right) \tau + C^{cyc}\left(P^d_n \right).
+\end{equation}
+
+The issue (slight!) with \label{eq:objective_cycles} is that it introduces a nonlinearity in the objective function. To this end, we linearize the function $1/\alpha$ to provide an estimate of the solution to \ref{eq:objective_cycles}. Let $\beta_1, \beta_2 \approx 1/\alpha$ be two linear approximations such that $\beta_1 \leq 1/\alpha \leq \beta_2; see Fig. 4 for an illustration.
+
+<div align = "center">
+<img src='/images/BESS_project_images/inverse_cycle_life.png' width='380' height='380'>
+</div>
+
+<div align = "center">
+Figure 4. Plot showing the inverse of the cycles, $1/\alpha$, and its two linear approximations $\beta_1, \beta_2$.
+</div>
+
+<br>
 
 ### Example: Arbitrage with battery degradation
 
