@@ -6,7 +6,7 @@ collection: portfolio
 
 ## Battery energy storage systems (BESS) model
 
-BESS holds an important role in various avenues of power systems, from complementing renewable energy sources (such as Solar) to participating in electricity markets for arbitrage and ancillary services. The basic set of linearized equations for BESS are as follows [1]
+BESS holds an important role in various avenues of power systems, from complementing renewable energy sources (such as Solar) to participating in electricity markets for arbitrage and ancillary services. The basic set of linearized equations for BESS are as follows[^1]
 
 \begin{equation}
 \label{eq:SOC}
@@ -17,10 +17,12 @@ where $SOC_n$ [MWh] is the state of charge at time step $n$, $P^c_n, P^d_n$ [MW]
 
 \begin{equation}
 \label{eq:BESS_constraints}
-P_{min} \leq P^c_n, \; P^d_n \leq P_{max}, \; SOC_{min} \leq SOC_n \leq SOC_{max}.
+P_{min} \leq P^c_n, \; P^d_n \leq P_{max}, \; 0 < SOC_{min} \leq SOC_n \leq SOC_{max} < E_B,
 \end{equation}
 
-### Arbitrage in wholesale electricity market
+where $E_B$ [MWh] is the capacity of the battery.
+
+### Example: Arbitrage in wholesale electricity market
 
 We consider a basic scenario where a given battery performs arbitrage in the wholesale electricity markets: that is, it charges up when the electricity prices are low and discharges when the prices are high, thereby marking a profit. If $\theta_n$ [Rs/MWh] is the wholesale market price at time step $n$, then we wish to find the optimial solution to 
 
@@ -32,7 +34,7 @@ given by eq. \ref{eq:SOC}-\ref{eq:BESS_constraints}.
 
 We assume perfect foresight of the market prices, i.e., we assume prior knowledge of the wholesale market prices over the entire day at any given time. 
 
-We consider a $1$[MWh] battery with maximum charging/discharging rates $1$ [MW], and a round trip efficiency of $\eta = 0.9$. We take 15 [min] real time market prices (RTM) from IEX [2] for the randomly chosen day of 15th February, 2025; see Fig. 1 below.
+We consider a $1$[MWh] battery with maximum charging/discharging rates $1$ [MW], and a round trip efficiency of $\eta = 0.9$. We take 15 [min] real time market prices (RTM) from IEX[^2] for the randomly chosen day of 15th February, 2025; see Fig. 1 below.
 
 <div align="center">
 <img src='/images/BESS_project_images/wholesaleprices_RTM_15022025.png' width='420' height='420'>
@@ -59,17 +61,50 @@ The battery follows two complete cycles following the peak electricity prices du
 
 In this case the objective value comes out to be -28654.91 [Rs], indicating a net profit. 
 
+### Effect of battery cycles
+
+We now consider the degradation associated with battery cycling. Typically, the life of a battery (i.e., the number of cycles it is able to perform) depends on the depth of discharge (DOD) at which it is cycled, where the DOD is defined as the absolute difference between the state of charge in consecutive time steps divided by the capacity. We denote the cycles by $\alpha(DOD)$; see Fig. 3 for an illustration.
+
+<div align = "center">
+<img src='/images/BESS_project_images/cycle_life.png' width='380' height='380'>
+</div>
+<div align = "center">
+Figure 3. Plot showing the number of cycles $\alpha$ as a function of DOD (adapted from[^3]).
+</div>
+
+<br>
+
+If the cost of replacing the battery is $R$ [Rs], then the cost of one cycle is given by[^4]
+
+\begin{equation}
+\label{eq:cycle_cost}
+C^{cyc} = \frac{R}{\alpha\left(\delta \right)}.
+\end{equation}
+
+Or, noting that the discharge rate associated with a DOD $\delta$ can be obtained from \ref{eq:SOC} as
+
+\begin{equation}
+ P^{d, \delta} = \frac{\eta E_B \delta}{\tau},
+\end{equation}
+
+we can rewrite \ref{eq:cycle_cost} as
+
+\begin{equation}
+C^{cyc} = \frac{R}{\alpha\left(\eta^{-1} {E_B}^{-1} \tau P^{d, \delta} \right)}.
+\end{equation}
+
+### Example: Arbitrage with battery degradation
+
+We now return to our example.
+
+
 ## Code
 
 The code for the dispatch model has been written by the author using GAMS and Python.
 
 
 ## References
-<a id="1">[1]</a> 
-Pozo, David (2022),
-Linear battery models for power system analysis,
-Electric Power Systems Research, 212.
-
-<a id="2">[2]</a> 
-Indian Energy Exchange (retrieved in 2025),
-[https://www.iexindia.com/market-data/real-time-market/market-snapshot](https://www.iexindia.com/market-data/real-time-market/market-snapshot).
+[^1]: D. Pozo (2022), Linear battery models for power system analysis, Electric Power Systems Research, 212.
+[^2]: Indian Energy Exchange (retrieved in 2025), [https://www.iexindia.com/market-data/real-time-market/market-snapshot](https://www.iexindia.com/market-data/real-time-market/market-snapshot).
+[^3]: N. Padmanabhan, M. Ahmed, K. Bhattacharya (2020), Battery Energy Storage Systems in Energy and Reserve Markets, IEEE Transactions on Power Systems, Vol. 35, No. 1. 
+[^4]: Y. Shi et al. (2019), Optimal Battery Control Under Cycle Aging Mechanisms in Pay for Performance Settings, IEEE Transactions on Automatic Control, Vol. 64, No. 6.
