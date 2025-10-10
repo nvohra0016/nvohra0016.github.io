@@ -4,7 +4,7 @@ excerpt: "Analysis of the equations for battery energy storage systems (BESS) an
 collection: portfolio
 ---
 
-## Battery energy storage systems (BESS) model
+# Battery energy storage systems (BESS) model
 
 BESS holds an important role in various avenues of power systems, from complementing renewable energy sources (such as Solar) to participating in electricity markets for arbitrage and ancillary services. The basic set of linearized equations for BESS are as follows[^1]
 
@@ -62,7 +62,7 @@ The battery follows two complete cycles following the peak electricity prices du
 
 In this case the objective value comes out to be -28654.91 [Rs], indicating a net profit. 
 
-### Effect of battery cycles
+## Effect of battery cycles
 
 We now consider the degradation associated with battery cycling. Typically, the life of a battery (i.e., the number of cycles it is able to perform) depends on the depth of discharge (DOD) at which it is cycled, where the DOD is defined as the absolute difference between the state of charge in consecutive time steps divided by the capacity. We denote the cycles by $\alpha(DOD)$; see Fig. 3 for an illustration (adapted from[^3]).
 
@@ -109,15 +109,17 @@ The issue (slight!) with \ref{eq:objective_cycles} is that it introduces a nonli
 </div>
 
 <div align = "center">
-Figure 4. Plot showing the inverse of the cycles, $1/\alpha$, and its two linear approximations $\beta_1, \beta_2$.
+Figure 4. Plot showing the inverse of the cycles, $1/\alpha$, and its two linear approximations $\beta_1$ and $\beta_2$.
 </div>
 
 <br>
 
+Note that the choice of $\beta_1$ and $\beta_2$ provide a bound for our objective function, and help us to under- and overestimate the net profits. We make this clear with the next example.
+
 ### Example: Arbitrage with battery degradation
 
-We now return to our example.
-
+We now return to our [example](example). 
+ 
 
 ## Code
 
