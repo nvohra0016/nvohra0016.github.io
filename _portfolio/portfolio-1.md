@@ -102,7 +102,7 @@ Taking the cost of cycling into account, our objective function \ref{eq:objectiv
 \text{minimize} \sum_{n} \left(P^c_n \theta_n - P^d_n \theta_n \right) \tau + C^{cyc}\left(P^d_n \right).
 \end{equation}
 
-The issue (slight!) with \ref{eq:objective_cycles} is that it introduces a nonlinearity in the objective function. To this end, we linearize the function $1/\alpha$ to provide an estimate of the solution to \ref{eq:objective_cycles}. Let $\beta_1, \beta_2 \approx 1/\alpha$ be two linear approximations such that $\beta_1 \leq 1/\alpha \leq \beta_2; see Fig. 4 for an illustration.
+The issue (slight!) with \ref{eq:objective_cycles} is that it introduces a nonlinearity in the objective function. To this end, we linearize the function $1/\alpha$ to provide an estimate of the solution to \ref{eq:objective_cycles}. Let $\beta_1, \beta_2 \approx 1/\alpha$ be two linear approximations such that $\beta_1 <= 1/\alpha  <= \beta_2; see Fig. 4 for an illustration.
 
 <div align = "center">
 <img src='/images/BESS_project_images/inverse_cycle_life.png' width='380' height='380'>
