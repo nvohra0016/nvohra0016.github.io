@@ -22,7 +22,7 @@ P_{min} \leq P^c_n, \; P^d_n \leq P_{max}, \; 0 < SOC_{min} \leq SOC_n \leq SOC_
 
 where $E_B$ [MWh] is the capacity of the battery.
 
-### Example: Arbitrage in wholesale electricity market
+### Example of arbitrage in wholesale electricity market
 
 We consider a basic scenario where a given battery performs arbitrage in the wholesale electricity markets: that is, it charges up when the electricity prices are low and discharges when the prices are high, thereby marking a profit. If $\theta_n$ [Rs/MWh] is the wholesale market price at time step $n$, then we wish to find the optimial solution to 
 
@@ -116,9 +116,9 @@ Figure 4. Plot showing the inverse of the cycles, $1/\alpha$, and its two linear
 
 Note that the choice of $\beta_1$ and $\beta_2$ provide a bound for our objective function, and help us to under- and overestimate the net profits. We make this clear with the next example.
 
-### Example: Arbitrage with battery degradation
+### Example of arbitrage with battery degradation
 
-We now return to our [example](example). We consider a replacement cost of $R = 2 \times 10^5$ [Rs] (see note below) and $E_B = 1$ [MWh]. We now consider the quarterly RTM prices taken from 1/8/2025 - 3/8/2025 from IEX[^2] (total of 72 hours). 
+We now return to our [example](example-of-arbitrage-in-wholesale-electricity-market). We consider a replacement cost of $R = 2 \times 10^5$ [Rs] (see note below) and $E_B = 1$ [MWh]. We now consider the quarterly RTM prices taken from 1/8/2025 - 3/8/2025 from IEX[^2] (total of 72 hours). 
 
 
 <div align = "center">
