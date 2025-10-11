@@ -137,7 +137,11 @@ Figure 5. Plot showing the wholesale price (blue) and SOC (black) profile when u
 Figure 5. Plot showing the wholesale price (blue) and SOC (black) profile when using the linear function $\beta_2$. Also shown is the SOC profile when no cycling costs are taken (faded black).
 </div>
 
-**Results and discussion.** The results are shown in Fig. 5 and Fig. 6. It can be observed that when cycle degradation cost is included, the battery cycles less. For example, around $t \approx 
+<br>
+
+**Results and discussion.** The results are shown in Fig. 5 and Fig. 6. It can be observed that when cycle degradation cost is included, the battery cycles through smaller DOD values. For example, around $t \approx 30$[h], the battery only charges till an SOC $\approx 0.5$ when $\beta_1$ is used compared to $1$ earlier, and when $\beta_2$ is used it only charges till $\approx 0.25$ to minimize degradation costs. Moreover, around $t \approx 48$ [h], the battery does not charge at all when $\beta_2$ is used compared to earlier. 
+
+In case of $\beta_1$ and $\beta_2$, a net profit of $16398$ [Rs] and $11988$ [Rs] is made, respectively, and when no cyclic degradation is considered, the profit is $23162$ [Rs].
 
 
 ## Code
