@@ -64,7 +64,7 @@ In this case the objective value comes out to be -28654.91 [Rs], indicating a ne
 
 ## Effect of battery cycles
 
-We now consider the degradation associated with battery cycling. Typically, the life of a battery (i.e., the number of cycles it is able to perform) depends on the depth of discharge (DOD) at which it is cycled, where the DOD is defined as the absolute difference between the state of charge in consecutive time steps divided by the capacity. We denote the cycles by $\alpha(DOD)$; see Fig. 3 for an illustration (adapted from[^3]).
+We now consider the degradation associated with battery cycling. Typically, the life of a battery (i.e., the number of cycles it is able to perform) depends on the depth of discharge (DOD) at which it is cycled, where the DOD is defined as the absolute difference between the state of charge in consecutive time steps divided by the capacity. We denote the cycles by $\alpha(DOD)$; see Fig. 3 for an illustration (adapted from[^3] using an exponential function).
 
 <div align = "center">
 <img src='/images/BESS_project_images/cycle_life.png' width='380' height='380'>
@@ -118,8 +118,9 @@ Note that the choice of $\beta_1$ and $\beta_2$ provide a bound for our objectiv
 
 ### Example of arbitrage with battery degradation
 
-We now return to our [example](example-of-arbitrage-in-wholesale-electricity-market). We consider a replacement cost of $R = 2 \times 10^5$ [Rs] (see note below) and $E_B = 1$ [MWh]. We now consider the quarterly RTM prices taken from 1/8/2025 - 3/8/2025 from IEX[^2] (total of 72 hours). 
+We now return to our [example](example-of-arbitrage-in-wholesale-electricity-market). We consider a replacement cost of $R = 2 \times 10^5$ [Rs] (see note below) and $E_B = 1$ [MWh]. We now consider the quarterly RTM prices taken from 1/8/2025 - 3/8/2025 from IEX[^2] (total of 72 hours). The cycle degradation curves are taken as in Fig. 3 and Fig. 4.
 
+**Results and discussion.** The results are shown in Fig. 5 and Fig. 6. 
 
 <div align = "center">
 <img src='/images/BESS_project_images/soc_cycle_degradation1.png' width='700' height='700'>
@@ -143,7 +144,7 @@ Figure 6. Plot showing the wholesale price (blue) and SOC (black) profile when u
 
 <br>
 
-**Results and discussion.** The results are shown in Fig. 5 and Fig. 6. It can be observed that when cycle degradation cost is included, the battery cycles through smaller DOD values. For example, around $t \approx 30$[h], the battery only charges till an SOC $\approx 0.5$ when $\beta_1$ is used compared to $1$ earlier, and when $\beta_2$ is used it only charges till $\approx 0.25$ to minimize degradation costs. Moreover, around $t \approx 48$ [h], the battery does not charge at all when $\beta_2$ is used compared to earlier. 
+It can be observed that when cycle degradation cost is included, the battery cycles through smaller DOD values. For example, around $t \approx 30$[h], the battery only charges till an SOC $\approx 0.5$ when $\beta_1$ is used compared to $1$ earlier, and when $\beta_2$ is used it only charges till $\approx 0.25$ to minimize degradation costs. Moreover, around $t \approx 48$ [h], the battery does not charge at all when $\beta_2$ is used compared to earlier. 
 
 In case of $\beta_1$ and $\beta_2$, a net profit of $16398$ [Rs] and $11988$ [Rs] is made, respectively, and when no cyclic degradation is considered, the profit is $23162$ [Rs]. Our choice of linear approximations provides a profit interval of $[11988, 16398]$ in case a nonlinear solver were to be used to solve the system. 
 
