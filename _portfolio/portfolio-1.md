@@ -120,13 +120,17 @@ Note that the choice of $\beta_1$ and $\beta_2$ provide a bound for our objectiv
 
 We now return to our [example](example). We consider a replacement cost of $R = 2 \times 10^5$ [Rs] (see note below) and $E_B = 1$ [MWh]. We now consider the quarterly RTM prices taken from 1/8/2025 - 3/8/2025 from IEX[^2] (total of 72 hours). 
 
+
 <div align = "center">
 <img src='/images/BESS_project_images/soc_cycle_degradation1.png' width='700' height='700'>
 </div>
 
+
 <div align = "center">
 Figure 5. Plot showing the wholesale price (blue) and SOC (black) profile when using the linear function $\beta_1$. Also shown is the SOC profile when no cycling costs are taken (faded black).
 </div>
+
+<br>
 
 <div align = "center">
 <img src='/images/BESS_project_images/soc_cycle_degradation2.png' width='700' height='700'>
@@ -134,7 +138,7 @@ Figure 5. Plot showing the wholesale price (blue) and SOC (black) profile when u
  
 
 <div align = "center">
-Figure 5. Plot showing the wholesale price (blue) and SOC (black) profile when using the linear function $\beta_2$. Also shown is the SOC profile when no cycling costs are taken (faded black).
+Figure 6. Plot showing the wholesale price (blue) and SOC (black) profile when using the linear function $\beta_2$. Also shown is the SOC profile when no cycling costs are taken (faded black).
 </div>
 
 <br>
@@ -142,8 +146,6 @@ Figure 5. Plot showing the wholesale price (blue) and SOC (black) profile when u
 **Results and discussion.** The results are shown in Fig. 5 and Fig. 6. It can be observed that when cycle degradation cost is included, the battery cycles through smaller DOD values. For example, around $t \approx 30$[h], the battery only charges till an SOC $\approx 0.5$ when $\beta_1$ is used compared to $1$ earlier, and when $\beta_2$ is used it only charges till $\approx 0.25$ to minimize degradation costs. Moreover, around $t \approx 48$ [h], the battery does not charge at all when $\beta_2$ is used compared to earlier. 
 
 In case of $\beta_1$ and $\beta_2$, a net profit of $16398$ [Rs] and $11988$ [Rs] is made, respectively, and when no cyclic degradation is considered, the profit is $23162$ [Rs]. Our choice of linear approximations provides a profit interval of $[11988, 16398]$ in case a nonlinear solver were to be used to solve the system. 
-
-<br>
 
 **Note on choice of replacement cost R.** We now justify the value of $R = 2 \times 10^5$ [Rs] used in the above example. The choice was made to clearly demonstrate the effect of cyclic degradation on arbitrage and cycling behaviour of the battery, and may vary from the actual cost of a $1$ [MWh] battery. If a higher cost of $R \approx O(10^7)$ is used, then the battery does not make a profit from the given wholesale prices and parameters. For known battery parameters, this examples also serves to provide a ballpark for $R$ for which the battery make make a profit.
 
