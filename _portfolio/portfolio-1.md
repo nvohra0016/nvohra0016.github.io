@@ -121,7 +121,7 @@ Note that the choice of $\beta_1$ and $\beta_2$ provide a bound for our objectiv
 We now return to our [example](example). We consider a replacement cost of $R = 2 \times 10^5$ [Rs] (see note below) and $E_B = 1$ [MWh]. We now consider the quarterly RTM prices taken from 1/8/2025 - 3/8/2025 from IEX[^2]. 
 
 <div align = "center">
-<img src='/images/BESS_project_images/soc_cycle_degradation1.png' width='500' height='500'>
+<img src='/images/BESS_project_images/soc_cycle_degradation1.png' width='700' height='700'>
 </div>
 
 <div align = "center">
@@ -129,7 +129,7 @@ Figure 5. Plot showing the wholesale price (blue) and SOC (black) profile when u
 </div>
 
 <div align = "center">
-<img src='/images/BESS_project_images/soc_cycle_degradation2.png' width='500' height='500'>
+<img src='/images/BESS_project_images/soc_cycle_degradation2.png' width='700' height='700'>
 </div>
  
 
@@ -137,7 +137,7 @@ Figure 5. Plot showing the wholesale price (blue) and SOC (black) profile when u
 Figure 5. Plot showing the wholesale price (blue) and SOC (black) profile when using the linear function $\beta_2$. Also shown is the SOC profile when no cycling costs are taken (faded black).
 </div>
 
-**Results and discussion.** The results are shown in Fig. 5 and Fig. 6. 
+**Results and discussion.** The results are shown in Fig. 5 and Fig. 6. It can be observed that when cycle degradation cost is included, the battery cycles less. For example, 
 
 
 ## Code
