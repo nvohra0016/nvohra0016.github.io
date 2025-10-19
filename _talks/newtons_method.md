@@ -9,7 +9,7 @@ date: 2025-10-19
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-## Introduction
+## Introduction to Newton's method
 Newton's method is a perpetual workhorse that has proven to be one of the most successful and versatile nonlinear solvers. The framework has been applied to cover a large range of nonlinearity, from s to piecewise-smooth (semismooth) functions [^1,2]. 
 
 ### Algorithm 
@@ -30,7 +30,7 @@ Let $F \in C^\infty(\mathbb{R}), \; F : \mathbb{R} \rightarrow \mathbb{R}$ be a 
     x^{(m)} = x^{(m-1)} + \delta^{(m-1)},
 \end{equation}
 
-where $J^{(m-1)} = (F)'\left(x^{(m-1)} \right)$ is the Fre´chet derivative (the Jacobian of $F$).
+where $J^{(m-1)} = (F)'\left(x^{(m-1)} \right)$ is the Fre´chet derivative (the Jacobian of $F$), and $x^{(0)} = x_0$ is the inital guess which we are given. 
 
 <br>
 
@@ -38,7 +38,14 @@ where $J^{(m-1)} = (F)'\left(x^{(m-1)} \right)$ is the Fre´chet derivative (the
  
 
 ### Convergence 
-The convergence of Newton 
+Under the assumptions that $F$ is Lipschitz with bounded derivative, the convergence is well-established for an appropriate initial guess.
+
+
+## Application to Butler-Volmer equation
+
+
+### Improving convergence of Newton's method
+
 
 ## References
 [^1]: C.T. Kelley , *Iterative Methods for Linear and Nonlinear Equations*, 1995, Society for Industrial and Applied Mathematics.
