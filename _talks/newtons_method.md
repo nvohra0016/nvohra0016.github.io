@@ -2,7 +2,7 @@
 title: "Improving convergence of Newton's method for degenerate functions"
 collection: talks
 excerpt: "We explore the application of Newton's method when solving the Butler-Volmer equation, and ways to reduce the number of iterations taken by the solver."
-date: 2025-09-20
+date: 2025-10-19
 ---
 
 <script type="text/javascript" async
@@ -17,14 +17,17 @@ Let $F \in C^\infty(\mathbb{R}), \; F : \mathbb{R} \rightarrow \mathbb{R}$ be a 
 
 \begin{equation}
 \label{eq:Newton_method}
-    R^{(m-1)} &=& Fleft(x^{(m-1)} \right),
+    R^{(m-1)} = Fleft(x^{(m-1)} \right),
     \\
-    \delta^{(m-1)} &=& - {J^{(m-1)}}^{-1} R^{(m-1)},
+    \delta^{(m-1)} = - {J^{(m-1)}}^{-1} R^{(m-1)},
     \\
-    x^{(m)} &=& x^{(m-1)} + \delta^{(m-1)},
+    x^{(m)} = x^{(m-1)} + \delta^{(m-1)},
 \end{equation}
 
-where $J^{(m-1)} = (F)'(x^{(m-1)}) is the Frechet derivative. 
+where $J^{(m-1)} = (F)'\left(x^{(m-1)} \right)$ is the Frechet derivative (the Jacobian of $F$).
+
+**Note** In the semismooth framework, the Jacobian $J$ is the Clarke's generalized Jacobian which is computed using the B-subdifferential. 
+ 
 
 ### Convergence 
 The convergence of Newton 
