@@ -49,10 +49,27 @@ Under the assumptions that $F$ is Lipschitz with bounded derivative, the converg
 
 ## Application to Butler-Volmer equation
 
+The Butler-Volmer equation is well-known in the areas of electrochemical batteries. In particular, the equation computes describes the relationship between the current density $j$ [A/m$^2$] and the voltage $v$ [V] as[^3] 
 
-### Improving convergence of Newton's method
+\begin{equation}
+    j(v) = j_0 \left(e^{\frac{\alpha_a z F}{RT} v} -  e^{-\frac{\alpha_c z F}{RT} v}\right),
+\end{equation}
+
+where $j_0$ [A/m$^2$] is the  $alpha_a$ and $\alpha_c$ [-] are the cathodic and anodic charge transfer coefficients such that $\alpha_a + \alpha_c = 1$, $F \approx 9.648 \times 10^4$ [C/mol] is Faraday's constant, $R \approx 8.314$ [J/K mol] is the gas constant, $z$ is the number of electrons involved in the electrode reaction (for ex. $z = 1$), and $T$ [K] is the temperature. Fig. 1 shows a plot of the current density as a function of the voltage for commonly chosen physical parameters.
+
+<div align="center">
+<img src='/images/Kalman_filter/heat_ex_temperature_results.png' width='450' height='450'>
+</div>
+
+<div align = "center">
+ Figure 3. Plot showing the estimated temperature (left) and predicted and corrected variance (right).
+</div>
+
+
+## Improving convergence of Newton's method
 
 
 ## References
-[^1]: C.T. Kelley , *Iterative Methods for Linear and Nonlinear Equations*, 1995, Society for Industrial and Applied Mathematics.
+[^1]: C.T. Kelley, *Iterative Methods for Linear and Nonlinear Equations*, 1995, Society for Industrial and Applied Mathematics.
 [^2]: Michael Ulbrich, *Semismooth Newton Methods for Variational Inequalities and Constrained Optimization Problems in Function Spaces*, 2011, Mathematical Optimization Society and the Society for Industrial and Applied Mathematics.
+[^3]: Gregory L. Plett, *Battery Management Systems, Volume 1: Battery Modeling Battery Modeling*, 2015, Artech House Publishers.
