@@ -13,7 +13,7 @@ date: 2025-10-19
 Newton's method is a perpetual workhorse that has proven to be one of the most successful and versatile nonlinear solvers. The framework has been applied to cover a large range of nonlinearity, from s to piecewise-smooth (semismooth) functions [^1,2]. 
 
 ### Algorithm 
-Let $F \in C^\infty(\mathbb{R}), \; F : \mathbb{R} \rightarrow \mathbb{R}$ be a given smooth function, and we wish to solve $F(x) = 0$. The Newton's method generates a sequence $\{x^{(m)\}$ iteratively: given $x^{(m-1)}$, we obtain $x^(m)$ as
+Let $F \in C^\infty(\mathbb{R}), \; F : \mathbb{R} \rightarrow \mathbb{R}$ be a given smooth function, and we wish to solve $F(x) = 0$. The Newton's method generates a sequence $\{ x^{(m)} \}$ iteratively: given $x^{(m-1)}$, we obtain $x^(m)$ as
 
 \begin{equation}
 \label{eq:Newton_method1}
@@ -37,7 +37,7 @@ where $J^{(m-1)} = (F)'\left(x^{(m-1)} \right)$ is the Fre´chet derivative (the
 **Note** In the semismooth framework, the Jacobian $J \in \partial_B F(x)$ is the Clarke's generalized Jacobian which is computed using the B-subdifferential 
 
 \begin{equation}
-\partial_B F(x) = \{ J_F \in \mathbb{R} | \exists \{x_k\} \in D_F, \; x_k \rightarrow x, \; \left(F \right)'(x_k) \rightarrow J_F\},
+\partial_B F(x) = \\{ J_F \in \mathbb{R} | \exists \{x_k\} \in D_F, \; x_k \rightarrow x, \; \left(F \right)'(x_k) \rightarrow J_F \\},
 \end{equation}
 
  where for each $x \in D_F \subset \mathbb{R}$, the Fre´chet derivative $F'(x)$ exists [^2].
@@ -49,20 +49,21 @@ Under the assumptions that $F$ is Lipschitz with bounded derivative, the converg
 
 ## Application to Butler-Volmer equation
 
-The Butler-Volmer equation is well-known in the areas of electrochemical batteries. In particular, the equation computes describes the relationship between the current density $j$ [A/m$^2$] and the voltage $v$ [V] as[^3] 
+The Butler-Volmer equation is used to model the electrochemical reaction kinetics taking place in electrochemical batteries. In particular, the equation computes describes the relationship between the current density $j$ [A/m$^2$] and the voltage $v$ [V] as[^3] 
 
 \begin{equation}
+\label{eq:BV}
     j(v) = j_0 \left(e^{\frac{\alpha_a z F}{RT} v} -  e^{-\frac{\alpha_c z F}{RT} v}\right),
 \end{equation}
 
 where $j_0$ [A/m$^2$] is the  $alpha_a$ and $\alpha_c$ [-] are the cathodic and anodic charge transfer coefficients such that $\alpha_a + \alpha_c = 1$, $F \approx 9.648 \times 10^4$ [C/mol] is Faraday's constant, $R \approx 8.314$ [J/K mol] is the gas constant, $z$ is the number of electrons involved in the electrode reaction (for ex. $z = 1$), and $T$ [K] is the temperature. Fig. 1 shows a plot of the current density as a function of the voltage for commonly chosen physical parameters.
 
 <div align="center">
-<img src='/images/Kalman_filter/heat_ex_temperature_results.png' width='450' height='450'>
+<img src='/images/Newtons_method_images/BV.png' width='450' height='450'>
 </div>
 
 <div align = "center">
- Figure 3. Plot showing the estimated temperature (left) and predicted and corrected variance (right).
+ Figure 1. Plot showing the current density as a function of the voltage using the Butler-Volmer equation. Here $\alpha_c = \alpha_a = 0.5$.
 </div>
 
 
