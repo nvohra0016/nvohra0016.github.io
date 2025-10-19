@@ -17,7 +17,7 @@ Let $F \in C^\infty(\mathbb{R}), \; F : \mathbb{R} \rightarrow \mathbb{R}$ be a 
 
 \begin{equation}
 \label{eq:Newton_method1}
-    R^{(m-1)} = Fleft(x^{(m-1)} \right),
+    R^{(m-1)} = F \left(x^{(m-1)} \right),
 \end{equation}
 
 \begin{equation}
@@ -32,7 +32,9 @@ Let $F \in C^\infty(\mathbb{R}), \; F : \mathbb{R} \rightarrow \mathbb{R}$ be a 
 
 where $J^{(m-1)} = (F)'\left(x^{(m-1)} \right)$ is the Fre´chet derivative (the Jacobian of $F$).
 
-**Note** In the semismooth framework, the Jacobian $J \in \partial_B F(x)$ is the Clarke's generalized Jacobian which is computed using the B-subdifferential $\partial_B F(x) = \{J_F \in \mathbb{R} \; | \; \exists \{x_k\} \in D_F, \; x_k \rightarrow x. \; \left(F \right)'(x_k) \rightarrow J_F\}, where for each $x \in D_F \subset \mathbb{R}$, the Fre´chet derivative $F'(x)$ exists [^2].
+<br>
+
+**Note** In the semismooth framework, the Jacobian $J \in \partial_B F(x)$ is the Clarke's generalized Jacobian which is computed using the B-subdifferential $\partial_B F(x) = \{J_F \in \mathbb{R} | \exists \{x_k\} \in D_F, \; x_k \rightarrow x, \; \left(F \right)'(x_k) \rightarrow J_F\}$, where for each $x \in D_F \subset \mathbb{R}$, the Fre´chet derivative $F'(x)$ exists [^2].
  
 
 ### Convergence 
