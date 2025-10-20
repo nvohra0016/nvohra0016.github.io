@@ -1,5 +1,5 @@
 ---
-title: "Improving convergence of Newton's method for degenerate functions"
+title: "Accelerating Convergence of Newton's Method for Degenerate Functions"
 collection: talks
 excerpt: "We explore the application of Newton's method when solving the Butler-Volmer equation, and ways to reduce the number of iterations taken by the solver."
 date: 2025-10-19

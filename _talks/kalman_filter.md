@@ -1,5 +1,5 @@
 ---
-title: "An introduction to Kalman filters using the heat equation"
+title: "An Introduction to Kalman Filters Using the Heat Equation"
 collection: talks
 excerpt: "We present a basic application of Kalman filters in measuring the temperature of a heating object."
 date: 2025-09-20
