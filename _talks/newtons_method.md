@@ -30,7 +30,7 @@ Let $F \in C^\infty(\mathbb{R}), \; F : \mathbb{R} \rightarrow \mathbb{R}$ be a 
     x^{(m)} = x^{(m-1)} + \delta^{(m-1)},
 \end{equation}
 
-where $J^{(m-1)} = (F)'\left(x^{(m-1)} \right)$ is the Fre´chet derivative (the Jacobian of $F$), and $x^{(0)} = x_0$ is the inital guess which we are given. We iterate till a prescribed tolerance $\epsilon_{tol} > 0$ is reached, i.e., we stop the alogirhm when till $|R^{(m)}| < \epsilon_{tol}$.
+where $J^{(m-1)} = (F)'\left( x^{(m-1)} \right)$ is the Frechet derivative (the Jacobian of $F$), and $x^{(0)} = x_0$ is the inital guess which we are given. 
 
 **Note on the choice of Jacobian.** In the semismooth framework, the Jacobian $J \in \partial_B F(x)$ is the Clarke's generalized Jacobian which is computed using the B-subdifferential 
 
@@ -67,7 +67,7 @@ where $j_0$ [A/m$^2$] is the  $\alpha_a$ and $\alpha_c$ [-] are the cathodic and
 
 <br>
 
-### Example: solving for current
+### Example: high number of iterations
 We now consider solving the 1D equation
 
 \begin{equation}
@@ -92,6 +92,10 @@ We test with multiple values $c \in \\{10^4, 10^5, 10^6 \\}$. The absolute value
 It can be observed that increasing the value of $c$ increases the number of iterations. This happens because increasing $c$ increases the potential $\phi$, which further increases the gradient $J$, leading to nondegenerate behaviour.  
 
 **Note.** Equations like \ref{eq:example_bm} are encountered as boundary conditions after spatially discretizing the governing equations using, for example, the finite element or finite volume method. Presently, we do not discuss any numerical discretizations, but will revisit that in a future blog post!
+
+<br>
+
+We now consider $\alpha_a = 0.85$ in \ref{eq:BV}, and then solve \ref{eq:example_BV}.
 
 
 
