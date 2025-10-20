@@ -30,7 +30,7 @@ Let $F \in C^\infty(\mathbb{R}), \; F : \mathbb{R} \rightarrow \mathbb{R}$ be a 
     x^{(m)} = x^{(m-1)} + \delta^{(m-1)},
 \end{equation}
 
-where $J^{(m-1)} = (F)'\left(x^{(m-1)} \right)$ is the Fre´chet derivative (the Jacobian of $F$), and $x^{(0)} = x_0$ is the inital guess which we are given. 
+where $J^{(m-1)} = (F)'\left(x^{(m-1)} \right)$ is the Fre´chet derivative (the Jacobian of $F$), and $x^{(0)} = x_0$ is the inital guess which we are given. We iterate till a prescribed tolerance $\epsilon_{tol} > 0$ is reached, i.e., we stop the alogirhm when till $|R^{(m)}| < \epsilon_{tol}$.
 
 **Note on the choice of Jacobian.** In the semismooth framework, the Jacobian $J \in \partial_B F(x)$ is the Clarke's generalized Jacobian which is computed using the B-subdifferential 
 
@@ -71,17 +71,24 @@ We now consider solving the 1D equation
 
 \begin{equation}
 \label{eq:example_bm}
-    j(\phi) + \sigma \phi = 10^6,
+    j(\phi) + \sigma \phi = c,
 \end{equation}
 
-where $\sigma$ [S/m] is the conductivity, and the current density $j$ is described by \ref{eq:BV}. Equations like \ref{eq:example_bm} are encountered as boundary conditions after spatially discretizing the governing equations using, for example, the finite element or finite volume method. Presently, we do not discuss any numerical discretizations, but will revisit that in a future blog post! For the purposes of this example, we consider $\sigma = 10^6$ to represent the physical values of most materials[^5]. The value of $10^6$ in the RHS of \ref{eq:example_bm} is chosen so as to make the solution $\phi_0$ of \ref{eq:example_bm} closer towards $1$ (which increases the value of the gradient of $j(\phi)$!).
+where $\sigma$ [S/m] is the conductivity, and the current density $j$ is described by \ref{eq:BV}. Equations like \ref{eq:example_bm} are encountered as boundary conditions after spatially discretizing the governing equations using, for example, the finite element or finite volume method. Presently, we do not discuss any numerical discretizations, but will revisit that in a future blog post! For the purposes of this example, we consider $\sigma = 10^6$ to represent the physical values of most materials[^5]. The value of $c$ in the RHS of \ref{eq:example_bm} will be chosen so as to make the solution $\phi_0$ of \ref{eq:example_bm} closer towards $1$ (which increases the value of the gradient of $j(\phi)$!). The tolerance is set to $\epsilon_{tol} = 10^{-6}$. 
 
-The absolute value of the residuals $R = j(\phi) +\sigma \phi - 10^6$ is plotted in the Tab. 1 below.
+We test with multiple values $c \in \\{10^4, 10^5, 10^6 \\}$. The absolute value of the residuals $R = j(\phi) +\sigma \phi - c$ is plotted in Fig. 1 below. 
 
-| Iteration | |$R$| |
-| :------- | :------: |
-| 1 | Data 2A  |
-| 2 | Data 2B  |
+<div align="center">
+<img src='/images/Newtons_method_images/alpha_res_smooth.png' width='450' height='450'>
+</div>
+
+<div align = "center">
+ Figure 1. Plot showing the residuals for different values of $c$. 
+</div>
+
+<br>
+
+
 
 
 ## Improving convergence of Newton's method
