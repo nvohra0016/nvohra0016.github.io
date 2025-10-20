@@ -32,8 +32,6 @@ Let $F \in C^\infty(\mathbb{R}), \; F : \mathbb{R} \rightarrow \mathbb{R}$ be a 
 
 where $J^{(m-1)} = (F)'\left(x^{(m-1)} \right)$ is the Fre´chet derivative (the Jacobian of $F$), and $x^{(0)} = x_0$ is the inital guess which we are given. 
 
-<br>
-
 **Note on the choice of Jacobian.** In the semismooth framework, the Jacobian $J \in \partial_B F(x)$ is the Clarke's generalized Jacobian which is computed using the B-subdifferential 
 
 \begin{equation}
@@ -69,14 +67,22 @@ where $j_0$ [A/m$^2$] is the  $\alpha_a$ and $\alpha_c$ [-] are the cathodic and
 <br>
 
 ### Example: solving steady state dynamics
-We now consider solving the equation
+We now consider solving the 1D equation
 
 \begin{equation}
 \label{eq:example_bm}
-    j(\phi) + \sigma \phi = 5,
+    j(\phi) + \sigma \phi = 10^6,
 \end{equation}
 
-where $\sigma$ [S/m] is the conductivity, and the current density $j$ is described by \ref{eq:BV}. Equations like \ref{eq:example_bm} are encountered after the model equations for electrochemical batteries are spatially discretized using, for example, the finite element or finite volume method. Presently, we do not discuss any numerical discretizations, but will revisit that in a future blog post! 
+where $\sigma$ [S/m] is the conductivity, and the current density $j$ is described by \ref{eq:BV}. Equations like \ref{eq:example_bm} are encountered as boundary conditions after spatially discretizing the governing equations using, for example, the finite element or finite volume method. Presently, we do not discuss any numerical discretizations, but will revisit that in a future blog post! For the purposes of this example, we consider $\sigma = 10^6$ to represent the physical values of most materials[^5]. The value of $10^6$ in the RHS of \ref{eq:example_bm} is chosen so as to make the solution $\phi_0$ of \ref{eq:example_bm} closer towards $1$ (which increases the value of the gradient of $j(\phi)$!).
+
+The absolute value of the residuals $R = j(\phi) +\sigma \phi - 10^6$ is plotted in the Tab. 1 below.
+
+| Iteration | |$R$| |
+| :------- | :------: |
+| 1 | Data 2A  |
+| 2 | Data 2B  |
+
 
 ## Improving convergence of Newton's method
 
@@ -86,3 +92,4 @@ where $\sigma$ [S/m] is the conductivity, and the current density $j$ is describ
 [^2]: Michael Ulbrich, *Semismooth Newton Methods for Variational Inequalities and Constrained Optimization Problems in Function Spaces*, 2011, Mathematical Optimization Society and the Society for Industrial and Applied Mathematics.
 [^3]: F. Brosa et al., *A continuum of physics-based lithium-ion battery models reviewed*, 2022, Progress in Energy, 4.
 [^4]: Gregory L. Plett, *Battery Management Systems, Volume 1: Battery Modeling Battery Modeling*, 2015, Artech House Publishers.
+[^5]: *Electrical Conductivity of some Common Materials*, Engineering Toolbox, retreived in 2025.
