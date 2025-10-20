@@ -49,11 +49,11 @@ Under the assumptions that $F$ is Lipschitz with bounded derivative, the converg
 
 ## Application to Butler-Volmer equation
 
-The Butler-Volmer equation is used to model the electrochemical reaction kinetics taking place in electrochemical batteries. In particular, they are used to model the lithium ion exchange between the electrode and electrolyte at the microscopic and macroscopic scale[^3]. The equation describes the relationship between the current density $j$ [A/m$^2$] and the voltage $v$ [V] as[^4] 
+The Butler-Volmer equation is used to model the electrochemical reaction kinetics taking place in electrochemical batteries. In particular, they are used to model the lithium ion exchange between the electrode and electrolyte at the microscopic and macroscopic scale[^3]. The equation describes the relationship between the current density $j$ [A/m$^2$] and the electric potential $\phi$ [V] as[^4] 
 
 \begin{equation}
 \label{eq:BV}
-    j(v) = j_0 \left(e^{\frac{\alpha_a z F}{RT} v} -  e^{-\frac{\alpha_c z F}{RT} v}\right),
+    j(\phi) = j_0 \left(e^{\frac{\alpha_a z F}{RT} \phi} -  e^{-\frac{\alpha_c z F}{RT} \phi}\right),
 \end{equation}
 
 where $j_0$ [A/m$^2$] is the  $\alpha_a$ and $\alpha_c$ [-] are the cathodic and anodic charge transfer coefficients such that $\alpha_a + \alpha_c = 1$, $F \approx 9.648 \times 10^4$ [C/mol] is Faraday's constant, $R \approx 8.314$ [J/K mol] is the gas constant, $z$ is the number of electrons involved in the electrode reaction (for ex. $z = 1$), and $T$ [K] is the temperature. Fig. 1 shows a plot of the current density as a function of the voltage for commonly chosen physical parameters.
@@ -73,7 +73,7 @@ We now consider solving the equation
 
 \begin{equation}
 \label{eq:example_bm}
-    j(v) + \sigma v = 5,
+    j(\phi) + \sigma \phi = 5,
 \end{equation}
 
 where $\sigma$ [S/m] is the conductivity, and the current density $j$ is described by \ref{eq:BV}. Equations like \ref{eq:example_bm} are encountered after the model equations for electrochemical batteries are spatially discretized using, for example, the finite element or finite volume method. Presently, we do not discuss any numerical discretizations, but will revisit that in a future blog post! 
