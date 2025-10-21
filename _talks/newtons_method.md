@@ -75,7 +75,7 @@ We now consider solving the 1D equation
     j(\phi) + \sigma \phi = c,
 \end{equation}
 
-where $\sigma$ [S/m] is the conductivity, and the current density $j$ is described by \ref{eq:BV}. For the purposes of this example, we consider $\sigma = 10^6$ to represent the physical values of most materials[^5]. The value of $c$ in the RHS of \ref{eq:example_BV} will be chosen so as to make the solution $\phi$ of \ref{eq:example_BV} closer towards $1$ (which increases the gradient of $j$!). The tolerance is set to $\epsilon_{tol} = 10^{-6}$. 
+where $\sigma$ [S/m] is the conductivity, and the current density $j$ is described by \ref{eq:BV}. For the purposes of this example, we consider $\sigma = 10^6$ to represent the physical values of most materials[^5]. The value of $c$ in the RHS of \ref{eq:example_BV} will be chosen so as to make the solution $\phi_*$ of \ref{eq:example_BV} closer towards $1$ (which increases the gradient of $j$!). The tolerance is set to $\epsilon_{tol} = 10^{-6}$. 
 
 We test with multiple values $c \in \\{10^4, 10^5, 10^6 \\}$. We consider an initial guess of $\phi^{(0)} = 0$. The absolute value of the residuals $R = j(\phi) +\sigma \phi - c$ is plotted in Fig. 2 (left) below. The solution for $c = 10^6$ is $\phi_* = 0.6549109189$ and $j_* = 3.45089081 \times 10^5$.
 
@@ -91,9 +91,7 @@ We test with multiple values $c \in \\{10^4, 10^5, 10^6 \\}$. We consider an ini
 
 It can be observed that increasing the value of $c$ increases the number of iterations. This happens because increasing $c$ increases the potential $\phi$, which further increases the gradient $J$, leading to nondegenerate behaviour.  
 
-**Note.** Equations like \ref{eq:example_BV} are encountered as boundary conditions after spatially discretizing the governing equations using, for example, the finite element or finite volume method. Presently, we do not discuss any numerical discretizations, but will revisit that in a future blog post!
-
-<br>
+**Note.** *Equations like \ref{eq:example_BV} are encountered as boundary conditions after spatially discretizing the governing equations using, for example, the finite element or finite volume method. Presently, we do not discuss any numerical discretizations, but will revisit that in a future blog post!*
 
 We now consider $\alpha_a = 0.85$ in \ref{eq:BV}; see Fig. 3 below for a plot of the current density.
  and then solve \ref{eq:example_BV}. The residuals are shown in Fig. 3 below.
@@ -121,6 +119,26 @@ We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the
 </div>
 
 <br>
+
+We now seek to improve the convergence of the Newtons method without having to fine tune our initial guess too much. To this end, we introduce a new formulation of \ref{eq:example_BV} as follows: we find a solution $j_*$ to
+
+\begin{equation}
+    j + \sigma \phi(j) = c,    
+\end{equation}
+
+where now $\phi(j)$ represents the inverse of $j(\phi)$, i.e., we switch the primary variable from $\phi$ to $j$. Fig. 5 shows a plot of the potential $\phi$ as a function of the current density $j$ using \ref{eq:BV} for $\alpha_a = 0.5$.
+
+<div align="center">
+<img src='/images/Newtons_method_images/BV_beta.png' width='380' height='380'>
+<img src='/images/Newtons_method_images/BV_beta1.png' width='380' height='380'>
+</div>
+
+<div align = "center">
+ Figure 5. Plot showing the potential as a function of the current density using the Butler-Volmer equation. Here $\alpha_c = \alpha_a = 0.5$. Left: for $j \in [-6, 6]$. Right: for $j \in [-15000, 15000]$.
+</div>
+
+<br>
+
 
 
 
