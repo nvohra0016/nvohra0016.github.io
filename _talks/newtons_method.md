@@ -30,15 +30,15 @@ Let $F \in C^\infty(\mathbb{R}), \; F : \mathbb{R} \rightarrow \mathbb{R}$ be a 
     x^{(m)} = x^{(m-1)} + \delta^{(m-1)},
 \end{equation}
 
-where $J^{(m-1)} = F'\left( x^{(m-1)} \right)$ is the Frechet derivative (the Jacobian of $F$), and $x^{(0)} = x_0$ is the inital guess which we are given. We iterate till a prescribed tolerance $\epsilon_{tol} > 0$ is reached, i.e., when $ |R^{(m)}| < \epsilon_{tol}$.
+where $J^{(m-1)} = F'\left( x^{(m-1)} \right)$ is the Frechet derivative (the Jacobian of $F$), and $x^{(0)} = x_0$ is the inital guess which we are given. We iterate till a prescribed tolerance $\epsilon_{tol} > 0$ is reached by the absolute of the residual $R^{(m)}$.
 
-**Note on the choice of Jacobian.** In the semismooth framework, the Jacobian $J \in \partial_B F(x)$ is the Clarke's generalized Jacobian which is computed using the B-subdifferential 
+**Note on the choice of Jacobian.** *In the semismooth framework, the Jacobian $J \in \partial_B F(x)$ is the Clarke's generalized Jacobian which is computed using the B-subdifferential*
 
 \begin{equation}
 \partial_B F(x) = \\{ J_F \in \mathbb{R} \; | \; \exists \{x_k\} \in D_F, \; x_k \rightarrow x, \; \left(F \right)'(x_k) \rightarrow J_F \\},
 \end{equation}
 
- where for each $x \in D_F \subset \mathbb{R}$, the Fre´chet derivative $F'(x)$ exists [^2].
+ *where for each $x \in D_F \subset \mathbb{R}$, the Fre´chet derivative $F'(x)$ exists [^2]*.
  
 
 ### Convergence of Newton's method
@@ -126,7 +126,7 @@ We now seek to improve the convergence of the Newtons method without having to f
     j + \sigma \phi(j) = c,    
 \end{equation}
 
-where now $\phi(j)$ represents the inverse of $j(\phi)$, i.e., we switch the primary variable from $\phi$ to $j$. Fig. 5 shows a plot of the potential $\phi$ as a function of the current density $j$ using \ref{eq:BV} for $\alpha_a = 0.5$.
+where now $\phi(j)$ represents the inverse of $j(\phi)$, i.e., we switch the primary variable from $\phi$ to $j$. Fig. 5 shows a plot of the potential $\phi$ as a function of the current density $j$ using \ref{eq:BV} for $\alpha_a = \alpha_c = 0.5$.
 
 <div align="center">
 <img src='/images/Newtons_method_images/BV_beta.png' width='380' height='380'>
