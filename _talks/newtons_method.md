@@ -108,14 +108,14 @@ We now consider $\alpha_a = 0.85$ in \ref{eq:BV}; see Fig. 3 below for a plot of
 <br>
 
 
-We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the number of iterations taken by the solver increases to $25$. The reported solution is $\phi_* = 0.4018586997$ and $j_* = 5.981413003436504 \times 10^5$. The convergence can be improved by choosing a different initial guess. For example, for $\phi^{(0)} = 0.5$, the number of iterations taken drops to $8$ and the reported solution is $\phi_* = 0.4018586997$ and $j_* = 5.981413003430553 \times 10^5$; see Fig. 4 for a comparison of the residuals.
+We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the number of iterations taken by the solver increases to $25$. The reported solution is $\phi_* = 0.6549109190$ and $j_* = 3.450890810218518 \times 10^5$. The convergence can be improved by choosing a different initial guess. For example, for $\phi^{(0)} = 0.5$, the number of iterations taken drops to $6$ and the reported solution remains unchanged; see Fig. 4 for a comparison of the residuals.
 
 <div align="center">
 <img src='/images/Newtons_method_images/alpha_res_degenerate.png' width='450' height='450'>
 </div>
 
 <div align = "center">
- Figure 4. Plot showing the residuals for different values of the initial guess $\phi^{(0)}$ when $\alpha_a = 0.85$. Note that the convergence improves when the initial guess is chosen such that it is close to the solution.
+ Figure 4. Plot showing the residuals for different values of the initial guess $\phi^{(0)}$ when $\alpha_a = 0.85$. Note that the convergence improves slightly when the initial guess is chosen such that it is close to the solution.
 </div>
 
 
