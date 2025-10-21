@@ -89,7 +89,7 @@ We test with multiple values $c \in \\{10^4, 10^5, 10^6 \\}$. We consider an ini
 
 <br>
 
-It can be observed that increasing the value of $c$ increases the number of iterations. This happens because increasing $c$ increases the potential $\phi$, which further increases the gradient $J$, leading to nondegenerate behaviour.  
+It can be observed that increasing the value of $c$ increases the number of iterations from $3$ to $5$ to $13$. This happens because increasing $c$ increases the potential $\phi$, which further increases the gradient $J$, leading to nondegenerate behaviour.  
 
 **Note.** *Equations like \ref{eq:example_BV} are encountered as boundary conditions after spatially discretizing the governing equations using, for example, the finite element or finite volume method. Presently, we do not discuss any numerical discretizations, but will revisit that in a future blog post!*
 
