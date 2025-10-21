@@ -147,7 +147,7 @@ In particular, for the case of $\alpha_a = 0.85$, the function $\phi(j)$ exhibit
 </div>
 
 <div align = "center">
- Figure 6. Plot showing the potential $\phi(j)$ as a function of the current density near $j = \phi(1)$. Here $\alpha_c = \alpha_a = 0.5$. Left: for $j \in [-1, 30]$. Right: for $j \in [-1, 1.6 \times 10^7]$.
+ Figure 6. Plot showing the potential $\phi(j)$ as a function of the current density near $j = \phi(1)$. Here $\alpha_c = \alpha_a = 0.5$. Left: for $j \in [-1, 30]$. Right: for $j \in [-1, 2 \times 10^8]$.
 </div>
 
 
