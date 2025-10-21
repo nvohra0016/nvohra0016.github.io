@@ -54,7 +54,7 @@ The Butler-Volmer equation is used to model the electrochemical reaction kinetic
     j(\phi) = j_0 \left(e^{\frac{\alpha_a z F}{RT} \phi} -  e^{-\frac{\alpha_c z F}{RT} \phi}\right),
 \end{equation}
 
-where $j_0$ [A/m$^2$] is the  $\alpha_a$ and $\alpha_c$ [-] are the cathodic and anodic charge transfer coefficients such that $\alpha_a + \alpha_c = 1$, $F \approx 9.648 \times 10^4$ [C/mol] is Faraday's constant, $R \approx 8.314$ [J/K mol] is the gas constant, $z$ is the number of electrons involved in the electrode reaction (for ex. $z = 1$), and $T$ [K] is the temperature. Fig. 1 shows a plot of the current density as a function of the voltage for commonly chosen physical parameters.
+where $j_0$ [A/m] is the exchange current density, $\alpha_a$ and $\alpha_c$ [-] are the cathodic and anodic charge transfer coefficients such that $\alpha_a + \alpha_c = 1$, $F \approx 9.648 \times 10^4$ [C/mol] is Faraday's constant, $R \approx 8.314$ [J/K mol] is the gas constant, $z$ is the number of electrons involved in the electrode reaction (for ex. $z = 1$), and $T$ [K] is the temperature. Fig. 1 shows a plot of the current density as a function of the voltage for commonly chosen physical parameters and $j_0 = 1$ [A/m].
 
 <div align="center">
 <img src='/images/Newtons_method_images/BV.png' width='380' height='380'>
@@ -62,7 +62,7 @@ where $j_0$ [A/m$^2$] is the  $\alpha_a$ and $\alpha_c$ [-] are the cathodic and
 </div>
 
 <div align = "center">
- Figure 1. Plot showing the current density as a function of the potential using the Butler-Volmer equation. Here $\alpha_c = \alpha_a = 0.5$. Left: for $\phi \in [-0.1, 0.1]$. Right: for $\phi \in [-0.5, 0.5].
+ Figure 1. Plot showing the current density as a function of the potential using the Butler-Volmer equation. Here $\alpha_c = \alpha_a = 0.5$. Left: for $\phi \in [-0.1, 0.1]$. Right: for $\phi \in [-0.5, 0.5]$.
 </div>
 
 <br>
@@ -71,31 +71,46 @@ where $j_0$ [A/m$^2$] is the  $\alpha_a$ and $\alpha_c$ [-] are the cathodic and
 We now consider solving the 1D equation
 
 \begin{equation}
-\label{eq:example_bm}
+\label{eq:example_BV}
     j(\phi) + \sigma \phi = c,
 \end{equation}
 
-where $\sigma$ [S/m] is the conductivity, and the current density $j$ is described by \ref{eq:BV}. For the purposes of this example, we consider $\sigma = 10^6$ to represent the physical values of most materials[^5]. The value of $c$ in the RHS of \ref{eq:example_bm} will be chosen so as to make the solution $\phi$ of \ref{eq:example_bm} closer towards $1$ (which increases the gradient of $j$!). The tolerance is set to $\epsilon_{tol} = 10^{-6}$. 
+where $\sigma$ [S/m] is the conductivity, and the current density $j$ is described by \ref{eq:BV}. For the purposes of this example, we consider $\sigma = 10^6$ to represent the physical values of most materials[^5]. The value of $c$ in the RHS of \ref{eq:example_BV} will be chosen so as to make the solution $\phi$ of \ref{eq:example_BV} closer towards $1$ (which increases the gradient of $j$!). The tolerance is set to $\epsilon_{tol} = 10^{-6}$. 
 
-We test with multiple values $c \in \\{10^4, 10^5, 10^6 \\}$. The absolute value of the residuals $R = j(\phi) +\sigma \phi - c$ is plotted in Fig. 2 below. 
+We test with multiple values $c \in \\{10^4, 10^5, 10^6 \\}$. The absolute value of the residuals $R = j(\phi) +\sigma \phi - c$ is plotted in Fig. 2 (left) below. 
 
 <div align="center">
 <img src='/images/Newtons_method_images/alpha_res_smooth.png' width='450' height='450'>
 </div>
 
 <div align = "center">
- Figure 2. Plot showing the residuals for different values of $c$. 
+ Figure 2. Left: Plot showing the residuals for different values of $c$ when $\alpha_a = 0.5$. Right: Plot showing the residual when $c = 10^6$ and $\alpha_a = 0.85$.
 </div>
 
 <br>
 
 It can be observed that increasing the value of $c$ increases the number of iterations. This happens because increasing $c$ increases the potential $\phi$, which further increases the gradient $J$, leading to nondegenerate behaviour.  
 
-**Note.** Equations like \ref{eq:example_bm} are encountered as boundary conditions after spatially discretizing the governing equations using, for example, the finite element or finite volume method. Presently, we do not discuss any numerical discretizations, but will revisit that in a future blog post!
+**Note.** Equations like \ref{eq:example_BV} are encountered as boundary conditions after spatially discretizing the governing equations using, for example, the finite element or finite volume method. Presently, we do not discuss any numerical discretizations, but will revisit that in a future blog post!
 
 <br>
 
-We now consider $\alpha_a = 0.85$ in \ref{eq:BV}, and then solve \ref{eq:example_BV}.
+We now consider $\alpha_a = 0.85$ in \ref{eq:BV}; see Fig. 3 below for a plot of the current density.
+ and then solve \ref{eq:example_BV}. The residuals are shown in Fig. 3 below.
+
+ <div align="center">
+<img src='/images/Newtons_method_images/BV_alpha85.png' width='380' height='380'>
+<img src='/images/Newtons_method_images/BV1_alpha85.png' width='380' height='380'>
+</div>
+
+<div align = "center">
+ Figure 3. Plot showing the current density as a function of the potential using the Butler-Volmer equation. Here $\alpha_a = 0.85, \; \alpha_c = 0.15$. Left: for $\phi \in [-0.1, 0.1]$. Right: for $\phi \in [-0.5, 0.5]$.
+</div>
+
+<br>
+
+
+We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the number of iterations taken by the solver increases to $25$; see Fig. 4 below for a plot of the residuals.
 
 
 
