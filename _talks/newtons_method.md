@@ -118,11 +118,13 @@ We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the
  Figure 4. Plot showing the residuals for different values of the initial guess $\phi^{(0)}$ when $\alpha_a = 0.85$. Note that the convergence improves when the initial guess is chosen such that it is close to the solution.
 </div>
 
-<br>
+
+## Improving convergence of Newton's method: primary variable switch
 
 We now seek to improve the convergence of the Newtons method without having to fine tune our initial guess too much. To this end, we introduce a new formulation of \ref{eq:example_BV} as follows: we find a solution $j_*$ to
 
 \begin{equation}
+    \label{eq:example_BV_j}
     j + \sigma \phi(j) = c,    
 \end{equation}
 
@@ -147,13 +149,12 @@ In particular, for the case of $\alpha_a = 0.85$, the function $\phi(j)$ exhibit
 </div>
 
 <div align = "center">
- Figure 6. Plot showing the potential $\phi(j)$ as a function of the current density near $j = \phi(1)$. Here $\alpha_c = \alpha_a = 0.5$. Left: for $j \in [-1, 30]$. Right: for $j \in [-1, 2 \times 10^8]$.
+ Figure 6. Plot showing the potential $\phi(j)$ as a function of the current density near $j = \phi(1)$. Here $\alpha_c = \alpha_a = 0.5$. Left: for $j \in [-1, 30]$. Right: for $j \in [-1, 2 \times 10^8]$. Note that the derivative $\phi'$ remains bounded and small as $j$ becomes large (as $\phi$ approaches 1).
 </div>
 
+We now solve \ref{eq:example_BV_j} with initial guess $j^{(0)} = \phi(0)$ and $j^{(0)} = \phi(0.5)$. 
 
 
-
-## Improving convergence of Newton's method
 
 
 ## References
