@@ -94,7 +94,6 @@ It can be observed that increasing the value of $c$ increases the number of iter
 **Note.** *Equations like \ref{eq:example_BV} are encountered as boundary conditions after spatially discretizing the governing equations using, for example, the finite element or finite volume method. Presently, we do not discuss any numerical discretizations, but will revisit that in a future blog post!*
 
 We now consider $\alpha_a = 0.85$ in \ref{eq:BV}; see Fig. 3 below for a plot of the current density.
- and then solve \ref{eq:example_BV}. The residuals are shown in Fig. 3 below.
 
 <div align="center">
 <img src='/images/Newtons_method_images/BV_alpha85.png' width='380' height='380'>
@@ -108,7 +107,7 @@ We now consider $\alpha_a = 0.85$ in \ref{eq:BV}; see Fig. 3 below for a plot of
 <br>
 
 
-We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the number of iterations taken by the solver increases to $25$. The reported solution is $\phi_* = 0.6549109190$ and $j_* = 3.450890810218518 \times 10^5$. The convergence can be improved by choosing a different initial guess. For example, for $\phi^{(0)} = 0.5$, the number of iterations taken drops to $6$ and the reported solution remains unchanged; see Fig. 4 for a comparison of the residuals.
+We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the number of iterations taken by the solver increases to $26$. The reported solution is $\phi_* = 0.4018586997$ and $j_* = 5.981413003436504 \times 10^5$. The convergence can be improved by choosing a different initial guess. For example, for $\phi^{(0)} = 0.5$, the number of iterations taken drops to $9$ and the reported solution is $\phi_* = 0.4018586997$ and $j_* = 5.981413003430553 \times 10^5$; see Fig. 4 for a comparison of the residuals.
 
 <div align="center">
 <img src='/images/Newtons_method_images/alpha_res_degenerate.png' width='450' height='450'>
