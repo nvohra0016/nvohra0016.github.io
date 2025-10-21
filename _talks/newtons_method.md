@@ -9,10 +9,10 @@ date: 2025-10-19
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-## Introduction to Newton's method
+# 1. Introduction to Newton's method
 Newton's method is a perpetual workhorse that has proven to be one of the most successful and versatile nonlinear solvers. The framework has been applied to cover a large range of nonlinearity, from s to piecewise-smooth (semismooth) functions [^1] [^2]. 
 
-### Algorithm 
+## 1.1 Algorithm 
 Let $F \in C^\infty(\mathbb{R}), \; F : \mathbb{R} \rightarrow \mathbb{R}$ be a given smooth function, and we wish to solve $F(x) = 0$. The Newton's method generates a sequence $\\{ x^{(m)} \\}$ iteratively: given $x^{(m-1)}$, we obtain $x^{(m)}$ as
 
 \begin{equation}
@@ -41,11 +41,11 @@ where $J^{(m-1)} = F'\left( x^{(m-1)} \right)$ is the Frechet derivative (the Ja
  *where for each $x \in D_F \subset \mathbb{R}$, the Fre´chet derivative $F'(x)$ exists [^2]*.
  
 
-### Convergence of Newton's method
-Under the assumptions that $F$ is Lipschitz with bounded derivative, the convergence is well-established for an appropriate initial guess.
+## 1.2 Convergence of Newton's method
+Under the assumptions that $F$ is Lipschitz with bounded derivative, convergence of the algorithm \ref{eq:Newton_method1}-\ref{eq:Newton_method3} is well-established for an appropriate initial guess $x^{(0)}$.
 
 
-## Application to Butler-Volmer equation
+# 2. Application to Butler-Volmer equation
 
 The Butler-Volmer equation is used to model the electrochemical reaction kinetics taking place in electrochemical batteries. In particular, they are used to model the lithium ion exchange between the electrode and electrolyte at the microscopic and macroscopic scale[^3]. The equation describes the relationship between the current density $j$ [A/m$^2$] and the electric potential $\phi$ [V] as[^4] 
 
@@ -67,7 +67,7 @@ where $j_0$ [A/m] is the exchange current density, $\alpha_a$ and $\alpha_c$ [-]
 
 <br>
 
-### Example: non-convergence for high potential values
+## 2.1 Example: non-convergence for high potential values
 We now consider solving the 1D equation
 
 \begin{equation}
@@ -77,7 +77,7 @@ We now consider solving the 1D equation
 
 where $\sigma$ [S/m] is the conductivity, and the current density $j$ is described by \ref{eq:BV}. For the purposes of this example, we consider $\sigma = 10^6$ to represent the physical values of most materials[^5]. The value of $c$ in the RHS of \ref{eq:example_BV} will be chosen so as to make the solution $\phi_*$ of \ref{eq:example_BV} closer towards $1$ (which increases the gradient of $j$!). The tolerance is set to $\epsilon_{tol} = 10^{-6}$. 
 
-We test with multiple values $c \in \\{10^4, 10^5, 10^6 \\}$. We consider an initial guess of $\phi^{(0)} = 0$. The absolute value of the residuals $R = j(\phi) +\sigma \phi - c$ is plotted in Fig. 2 (left) below. The solution for $c = 10^6$ is $\phi_* = 0.6549109190$ and $j_* = 3.450890810218518 \times 10^5$.
+We test with multiple values $c \in \\{10^5, 5 \times 10^5, 10^6 \\}$. We consider an initial guess of $\phi^{(0)} = 0$. The absolute value of the residuals $R = j(\phi) +\sigma \phi - c$ is plotted in Fig. 2 (left) below. The solution for $c = 10^6$ is $\phi_* = 0.6549109190$ and $j_* = 3.450890810218518 \times 10^5$.
 
 <div align="center">
 <img src='/images/Newtons_method_images/alpha_res_smooth.png' width='450' height='450'>
@@ -118,7 +118,7 @@ We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the
 </div>
 
 
-## Improving convergence of Newton's method: primary variable switch
+## 2.2 Improving convergence of Newton's method: primary variable switch
 
 We now seek to improve the convergence of the Newtons method without having to fine tune our initial guess too much. To this end, we introduce a new formulation of \ref{eq:example_BV} with $j$ as the primary variable as follows: find a solution $j_*$ to
 
