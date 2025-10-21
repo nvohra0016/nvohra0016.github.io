@@ -148,7 +148,7 @@ It can be observed that when cycle degradation cost is included, the battery cyc
 
 In case of $\beta_1$ and $\beta_2$, a net profit of $16398$ [Rs] and $11988$ [Rs] is made, respectively, and when no cyclic degradation is considered, the profit is $23162$ [Rs]. Our choice of linear approximations provides a profit interval of $[11988, 16398]$ in case a nonlinear solver were to be used to solve the system. 
 
-**Note on choice of replacement cost R.** We now justify the value of $R = 2 \times 10^5$ [Rs] used in the above example. The choice was made to clearly demonstrate the effect of cyclic degradation on arbitrage and cycling behaviour of the battery, and may vary from the actual cost of a $1$ [MWh] battery. If a higher cost of $R \approx O(10^7)$ is used, then the battery does not make a profit from the given wholesale prices and parameters. For known battery parameters, this examples also serves to provide a ballpark for $R$ for which the battery make make a profit.
+**Note on choice of replacement cost R.** *We now justify the value of $R = 2 \times 10^5$ [Rs] used in the above example. The choice was made to clearly demonstrate the effect of cyclic degradation on arbitrage and cycling behaviour of the battery, and may vary from the actual cost of a $1$ [MWh] battery. If a higher cost of $R \approx O(10^7)$ is used, then the battery does not make a profit from the given wholesale prices and parameters. For known battery parameters, this examples also serves to provide a ballpark for $R$ for which the battery make make a profit.*
 
 
 ## Code
