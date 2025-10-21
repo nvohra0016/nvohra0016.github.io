@@ -10,7 +10,7 @@ date: 2025-10-19
 </script>
 
 ## Introduction to Newton's method
-Newton's method is a perpetual workhorse that has proven to be one of the most successful and versatile nonlinear solvers. The framework has been applied to cover a large range of nonlinearity, from s to piecewise-smooth (semismooth) functions[^1,2]. 
+Newton's method is a perpetual workhorse that has proven to be one of the most successful and versatile nonlinear solvers. The framework has been applied to cover a large range of nonlinearity, from s to piecewise-smooth (semismooth) functions [^1] [^2]. 
 
 ### Algorithm 
 Let $F \in C^\infty(\mathbb{R}), \; F : \mathbb{R} \rightarrow \mathbb{R}$ be a given smooth function, and we wish to solve $F(x) = 0$. The Newton's method generates a sequence $\\{ x^{(m)} \\}$ iteratively: given $x^{(m-1)}$, we obtain $x^{(m)}$ as
@@ -30,7 +30,7 @@ Let $F \in C^\infty(\mathbb{R}), \; F : \mathbb{R} \rightarrow \mathbb{R}$ be a 
     x^{(m)} = x^{(m-1)} + \delta^{(m-1)},
 \end{equation}
 
-where $J^{(m-1)} = F'\left( x^{(m-1)} \right)$ is the Frechet derivative (the Jacobian of $F$), and $x^{(0)} = x_0$ is the inital guess which we are given. We iterate till a prescribed tolerance $\epsilon_{tol} > 0$ is reached.
+where $J^{(m-1)} = F'\left( x^{(m-1)} \right)$ is the Frechet derivative (the Jacobian of $F$), and $x^{(0)} = x_0$ is the inital guess which we are given. We iterate till a prescribed tolerance $\epsilon_{tol} > 0$ is reached, i.e., when $ |R^{(m)}| < \epsilon_{tol}$.
 
 **Note on the choice of Jacobian.** In the semismooth framework, the Jacobian $J \in \partial_B F(x)$ is the Clarke's generalized Jacobian which is computed using the B-subdifferential 
 
@@ -67,7 +67,7 @@ where $j_0$ [A/m] is the exchange current density, $\alpha_a$ and $\alpha_c$ [-]
 
 <br>
 
-### Example: high number of iterations
+### Example: non-convergence for high potential values
 We now consider solving the 1D equation
 
 \begin{equation}
@@ -77,14 +77,14 @@ We now consider solving the 1D equation
 
 where $\sigma$ [S/m] is the conductivity, and the current density $j$ is described by \ref{eq:BV}. For the purposes of this example, we consider $\sigma = 10^6$ to represent the physical values of most materials[^5]. The value of $c$ in the RHS of \ref{eq:example_BV} will be chosen so as to make the solution $\phi$ of \ref{eq:example_BV} closer towards $1$ (which increases the gradient of $j$!). The tolerance is set to $\epsilon_{tol} = 10^{-6}$. 
 
-We test with multiple values $c \in \\{10^4, 10^5, 10^6 \\}$. The absolute value of the residuals $R = j(\phi) +\sigma \phi - c$ is plotted in Fig. 2 (left) below. 
+We test with multiple values $c \in \\{10^4, 10^5, 10^6 \\}$. We consider an initial guess of $\phi^{(0)} = 0$. The absolute value of the residuals $R = j(\phi) +\sigma \phi - c$ is plotted in Fig. 2 (left) below. The solution for $c = 10^6$ is $\phi_* = 0.6549109189$ and $j_* = 3.45089081 \times 10^5$.
 
 <div align="center">
 <img src='/images/Newtons_method_images/alpha_res_smooth.png' width='450' height='450'>
 </div>
 
 <div align = "center">
- Figure 2. Left: Plot showing the residuals for different values of $c$ when $\alpha_a = 0.5$. Right: Plot showing the residual when $c = 10^6$ and $\alpha_a = 0.85$.
+ Figure 2. Plot showing the residuals for different values of $c$ when $\alpha_a = 0.5$.
 </div>
 
 <br>
@@ -98,7 +98,7 @@ It can be observed that increasing the value of $c$ increases the number of iter
 We now consider $\alpha_a = 0.85$ in \ref{eq:BV}; see Fig. 3 below for a plot of the current density.
  and then solve \ref{eq:example_BV}. The residuals are shown in Fig. 3 below.
 
- <div align="center">
+<div align="center">
 <img src='/images/Newtons_method_images/BV_alpha85.png' width='380' height='380'>
 <img src='/images/Newtons_method_images/BV1_alpha85.png' width='380' height='380'>
 </div>
@@ -110,7 +110,18 @@ We now consider $\alpha_a = 0.85$ in \ref{eq:BV}; see Fig. 3 below for a plot of
 <br>
 
 
-We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the number of iterations taken by the solver increases to $25$; see Fig. 4 below for a plot of the residuals.
+We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the number of iterations taken by the solver increases to $25$. The reported solution is $\phi_* = 0.401858699$ and $j_* = 5.9814130 \times 10^5$. The convergence can be improved by choosing a different initial guess. For example, for $\phi^{(0)} = 0.5$, the number of iterations taken drops to $8$; see Fig. 4 for a comparison of the residuals.
+
+<div align="center">
+<img src='/images/Newtons_method_images/alpha_res_degenerate.png' width='450' height='450'>
+</div>
+
+<div align = "center">
+ Figure 4. Plot showing the residuals for different values of the initial guess $\phi^{(0)}$ when $\alpha_a = 0.85$. Note that the convergence improves when the initial guess is chosen such that it is close to the solution.
+</div>
+
+<br>
+
 
 
 
