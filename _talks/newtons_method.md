@@ -108,7 +108,7 @@ We now consider $\alpha_a = 0.85$ in \ref{eq:BV}; see Fig. 3 below for a plot of
 <br>
 
 
-We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the number of iterations taken by the solver increases to $25$. The reported solution is $\phi_* = 0.401858699$ and $j_* = 5.9814130 \times 10^5$. The convergence can be improved by choosing a different initial guess. For example, for $\phi^{(0)} = 0.5$, the number of iterations taken drops to $8$; see Fig. 4 for a comparison of the residuals.
+We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the number of iterations taken by the solver increases to $25$. The reported solution is $\phi_* = 0.4018586997$ and $j_* = 5.981413003436504 \times 10^5$. The convergence can be improved by choosing a different initial guess. For example, for $\phi^{(0)} = 0.5$, the number of iterations taken drops to $8$ and the reported solution is $\phi_* = 0.4018586997$ and $j_* = 5.981413003430553 \times 10^5$; see Fig. 4 for a comparison of the residuals.
 
 <div align="center">
 <img src='/images/Newtons_method_images/alpha_res_degenerate.png' width='450' height='450'>
@@ -121,14 +121,14 @@ We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the
 
 ## Improving convergence of Newton's method: primary variable switch
 
-We now seek to improve the convergence of the Newtons method without having to fine tune our initial guess too much. To this end, we introduce a new formulation of \ref{eq:example_BV} as follows: we find a solution $j_*$ to
+We now seek to improve the convergence of the Newtons method without having to fine tune our initial guess too much. To this end, we introduce a new formulation of \ref{eq:example_BV} with $j$ as the primary variable as follows: find a solution $j_*$ to
 
 \begin{equation}
     \label{eq:example_BV_j}
     j + \sigma \phi(j) = c,    
 \end{equation}
 
-where now $\phi(j)$ represents the inverse of $j(\phi)$, i.e., we switch the primary variable from $\phi$ to $j$. Fig. 5 shows a plot of the potential $\phi$ as a function of the current density $j$ using \ref{eq:BV} for $\alpha_a = \alpha_c = 0.5$.
+where $\phi(j)$ represents the inverse of $j(\phi)$, i.e., we switch the primary variable from $\phi$ to $j$. Fig. 5 shows a plot of the potential $\phi$ as a function of the current density $j$ using \ref{eq:BV} for $\alpha_a = \alpha_c = 0.5$.
 
 <div align="center">
 <img src='/images/Newtons_method_images/BV_beta.png' width='380' height='380'>
@@ -141,7 +141,8 @@ where now $\phi(j)$ represents the inverse of $j(\phi)$, i.e., we switch the pri
 
 <br>
 
-In particular, for the case of $\alpha_a = 0.85$, the function $\phi(j)$ exhibits concave behaviour with bounded derivative near $j = \phi(1)$, as opposed to $j(\phi)$ near $\phi = 1$ as seen in Fig. 3. This is made clear in Fig. 6 below. 
+We now discuss the motivation for changing our primary variable from $\phi$ to $j$. As observed earlier, when $\alpha_a = 0.85$, the Butler-Volmer equation leads to a high gradient as $\phi$ increases.
+In particular, for the case of $\alpha_a = 0.85$, the function $\phi(j)$ exhibits concave behaviour with bounded derivative near $j = \phi(1)$, as opposed to $j(\phi)$ near $\phi = 1$ as seen in Fig. 3. This is made clear in Fig. 6 below.
 
 <div align="center">
 <img src='/images/Newtons_method_images/BV_degenerate_beta.png' width='380' height='380'>
@@ -152,9 +153,17 @@ In particular, for the case of $\alpha_a = 0.85$, the function $\phi(j)$ exhibit
  Figure 6. Plot showing the potential $\phi(j)$ as a function of the current density near $j = \phi(1)$. Here $\alpha_c = \alpha_a = 0.5$. Left: for $j \in [-1, 30]$. Right: for $j \in [-1, 2 \times 10^8]$. Note that the derivative $\phi'$ remains bounded and small as $j$ becomes large (as $\phi$ approaches 1).
 </div>
 
-We now solve \ref{eq:example_BV_j} with initial guess $j^{(0)} = \phi(0)$ and $j^{(0)} = \phi(0.5)$. 
+We now solve \ref{eq:example_BV_j} with initial guess $j^{(0)} = \phi(0)$ and $j^{(0)} = \phi(0.5)$ to check if the change in the primary variable improves the convergence of the Newton's method. The reported solution in both cases are $\phi_* = 0.4018586997$,$j_* = 5.981413003440497 \times 10^5$ and $\phi_* = 0.4018586997$,$j_* = 5.981413003440507 \times 10^5$, respectively. The residuals are shown in Fig. 7 below. Indeed, it can be observed that for the case when $j^{(0)} = 0$, the number of iterations have been reduced to $7$ from $25$. When $j^{(0)} = \phi(0.5)$, the number of iterations taken are also $7$. Fig. 7 shows a plot comparing the residuals for different initial guesses comparing the two primary variable approaches.
 
+<div align="center">
+<img src='/images/Newtons_method_images/beta_alpha_res_degenerate.png' width='450' height='450'>
+</div>
 
+<div align = "center">
+ Figure 7. Plot showing the residuals computed using primary variable (abbreviated to Pri. var. in legend) $\phi$ and $j$ when $\alpha_a = 0.85$. Note the improvement in the convergence when $j$ is used as a primary variable.
+</div>
+
+<br>
 
 
 ## References
