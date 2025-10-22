@@ -73,7 +73,7 @@ since $F(x_{sol}) = 0$. Rewriting \ref{eq:proof2} we get
     -J^{(m-1)} v^{(m)} = F\left(x_{sol} + v^{(m-1)} \right) - F(x_{sol}) - J^{(m-1)} v^{(m-1)}.
 \end{equation}
 
-Finally, using the estimate from \ref{eq:proof1}, we have
+Finally, assuming that $v^{(0)}$ is small enough (estimated later in the proof) such that the estimate from \ref{eq:proof1} holds, we have
 
 \begin{equation}
 \label{eq:proof4}
@@ -93,13 +93,13 @@ Thus if the initial guess $x^{(0)}$ is chosen as
     \left| v^{(0)} \right| = \text{min} \{2^{-1}, (2MC)^{-1} \} 
 \end{equation}
 
-\begin{equation}
+$$
     \left| v^{(0)} \right| = \begin{cases}
-    \delta \text{min} \{2^{-1}, (2MC)^{-1} \} & \text{ if } \delta < 1,
+    \delta \text{min} \{ 2^{-1}, (2MC)^{-1} \} & \text{ if } \delta < 1,
     \\
-    \text{min} \{2^{-1}, (2MC)^{-1} \} & \text{ if } \delta \geq 1,
+    \text{min} \{ 2^{-1}, (2MC)^{-1} \} & \text{ if } \delta \geq 1,
     \end{cases}
-\end{equation}
+$$
 
 then it can be verified that 
 
