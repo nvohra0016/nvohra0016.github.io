@@ -105,7 +105,7 @@ which proves the convergence of the sequence $\\{ x^{(m)} \\}$ to $x_{sol}$. Thi
 <p style="text-align: right;">&#x25A1;</p>
 
 
-**Note.** *From \ref{eq:proof4} it becomes clear that if the product $MC$ is small, then even if $v^{(0)}$ is large (i.e., if the initial guess $x^{(0)}$ is far from $x_{sol}$gi) convergence may be obtained in a few iterations. However, if the product $MC$ is large, then we cannot say anything concretely, and may need to adjust the initial guess in order to obtain convergence.*
+**Note.** *From \ref{eq:proof4} it becomes clear that if the product $MC$ is small, then even if $v^{(0)}$ is large (i.e., if the initial guess $x^{(0)}$ is far from $x_{sol}$) convergence may be obtained in a few iterations. However, if the product $MC$ is large, then we cannot say anything concretely, and may need to adjust the initial guess in order to obtain convergence.*
 
 # 2. Butler-Volmer Equation
 
