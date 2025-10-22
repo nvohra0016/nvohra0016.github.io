@@ -44,13 +44,17 @@ where $J^{(m-1)} = F'\left( x^{(m-1)} \right)$ is the Frechet derivative (the Ja
 ## 1.2 Convergence of Newton's method
 Under the assumptions that $F$ is Lipschitz with a bounded derivative, convergence of the algorithm \ref{eq:Newton_method1}-\ref{eq:Newton_method3} is well-established for an appropriate initial guess $x^{(0)}$. Here we present a short proof adapted from[^2].
 
-**Theorem** Let $x_*$ be the unique solution $F(x_*) = 0$. 
+**Theorem** Let $x_{sol}$ be the unique solution $F(x_{sol}) = 0$. 
 
-*Proof*  Let $\delta > 0$. Since $F$ is smooth, by Taylor's theorem[^7] $\exists \xeta \in (x-\delta, x + \delta)$ such that 
+*Proof.*  Let $\delta > 0$. Since $F$ is smooth, by Taylor's theorem[^7] $\exists \beta \in (x-\delta, x + \delta)$ such that 
 
 \begin{equation}
-    \left|F(x_*) - F(x_* - \delta) - J_{(x* - \delta)} \delta \right| \leq \frac{|F''(\xeta) \delta^2|}{2}
+    \left|F(x) - F(x - \delta) - J_{(x - \delta)} \delta \right| \leq \frac{|F''(\beta) \delta^2|}{2} \leq \frac{C \delta^2}{2},
 \end{equation}
+
+where $|F''(x)| \leq C, \; \forall x \in (x - \delta, x + \delta)$. Let $v^{(m-1)} = x^{(m-1)} - x_*$. Thus $v^{(m)} - v^{(m-1)} = \delta^{(m-1)}$. Then, from \ref{eq:Newton_method2} we have
+
+$$ -J^{(m-1)}\left(v^{(m)} - v^{(m-1)} \right) = F \left(x + v^{(m-1)} \right)$$
 
 # 2. Butler-Volmer equation
 
