@@ -49,7 +49,7 @@ Under the assumptions that $F$ is Lipschitz with a bounded derivative, convergen
 *Proof.*  Let $\delta > 0$ and let
 
 \begin{equation}
-    \left|J_x^{-1} \right| \leq M, \; \left|F''(x) \right| \leq C, \; \forall x \in (x_{sol} - \delta, x_{sol} + \delta).
+    \left|J_x^{-1} \right| \leq M, \; \left|F' '(x) \right| \leq C, \; \forall x \in (x_{sol} - \delta, x_{sol} + \delta).
 \end{equation}
 
 Since $F$ is smooth, by Taylor's theorem $\exists \beta \in (x_{sol}-\delta, x_{sol} + \delta)$ such that[^7]
