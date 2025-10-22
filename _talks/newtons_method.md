@@ -75,7 +75,7 @@ since $F(x_{sol}) = 0$. Rewriting \ref{eq:proof2} we get
 Finally, using the estimate from \ref{eq:proof1}, we have
 
 \begin{equation}
-    \left|v^{(m)} \right| = \left| \left({J^{(m)}}\right)^{-1} J^{(m)} v^{(m)} \right| \leq M \left|J^{(m)} v^{(m)} \right| \leq M C \left| v^{(m-1)}^2 \right|.
+    \left|v^{(m)} \right| = \left| \left( {J^{(m)}} \right)^{-1} J^{(m)} v^{(m)} \right|
 \end{equation}
 
 # 2. Butler-Volmer equation
