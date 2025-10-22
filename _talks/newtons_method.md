@@ -42,8 +42,7 @@ where $J^{(m-1)} = F'\left( x^{(m-1)} \right)$ is the Frechet derivative (the Ja
  
 
 ## 1.2 Convergence of Newton's method
-Under the assumptions that $F$ is Lipschitz with bounded derivative, convergence of the algorithm \ref{eq:Newton_method1}-\ref{eq:Newton_method3} is well-established for an appropriate initial guess $x^{(0)}$.
-
+Under the assumptions that $F$ is Lipschitz with bounded derivative, convergence of the algorithm \ref{eq:Newton_method1}-\ref{eq:Newton_method3} is well-established for an appropriate initial guess $x^{(0)}$. Here we present a short proof adapted from[^2].
 
 # 2. Application to Butler-Volmer equation
 
@@ -154,7 +153,7 @@ In particular, for the case of $\alpha_a = 0.85$, the function $\phi(j)$ exhibit
 
 <br>
 
-We now solve \ref{eq:example_BV_j} with initial guess $j^{(0)} = \phi(0)$ and $j^{(0)} = \phi(0.5)$ to check if the change in the primary variable improves the convergence of the Newton's method. The reported solution in both cases are $\phi_* = 0.4018586997$,$j_* = 5.981413003440497 \times 10^5$ and $\phi_* = 0.4018586997$,$j_* = 5.981413003440507 \times 10^5$, respectively. The residuals are shown in Fig. 7 below. Indeed, it can be observed that for the case when $j^{(0)} = 0$, the number of iterations have been reduced to $7$ from $25$. When $j^{(0)} = \phi(0.5)$, the number of iterations taken are also $7$. Fig. 7 shows a plot comparing the residuals for different initial guesses comparing the two primary variable approaches.
+We now solve \ref{eq:example_BV_j} with initial guess $j^{(0)} = \phi(0)$ and $j^{(0)} = \phi(0.5)$ to check if the change in the primary variable improves the convergence of the Newton's method. The reported solution in both cases are $\phi_* = 0.4018586997$,$j_* = 5.981413003440497 \times 10^5$ and $\phi_* = 0.4018586997$,$j_* = 5.981413003440507 \times 10^5$, respectively. Fig. 7 shows a plot comparing the residuals for different initial guesses comparing the two primary variable approaches.
 
 <div align="center">
 <img src='/images/Newtons_method_images/beta_alpha_res_degenerate.png' width='450' height='450'>
@@ -166,6 +165,10 @@ We now solve \ref{eq:example_BV_j} with initial guess $j^{(0)} = \phi(0)$ and $j
 
 <br>
 
+Indeed, it can be observed that for the case when $j^{(0)} = 0$, the number of iterations have been reduced to from $26$ to $8$. When $j^{(0)} = \phi(0.5)$, the number of iterations taken are also $8$. This example demonstrates the 
+
+**Note on computing the inverse function $\phi(j)$.** *The reader may have guessed that the inverse of \ref{eq:BV} does not have a simple analytical expression. Indeed, for our implementation, we have made use of the Ridder method as part of the SciPy library[^6] to aid in computing the inverse $\phi(j)$, i.e., given $j_0 \in \mathbb{R}$, we solve for $\phi_0$ in $j_0 - \phi(\phi_0)$ where $\phi$ is given by \ref{eq:BV}. It may be noted that Newton's method may be used instead of Ridder method as well without affecting the results presented here.*
+
 
 ## References
 [^1]: C.T. Kelley, *Iterative Methods for Linear and Nonlinear Equations*, 1995, Society for Industrial and Applied Mathematics.
@@ -173,3 +176,4 @@ We now solve \ref{eq:example_BV_j} with initial guess $j^{(0)} = \phi(0)$ and $j
 [^3]: F. Brosa et al., *A continuum of physics-based lithium-ion battery models reviewed*, 2022, Progress in Energy, 4.
 [^4]: Gregory L. Plett, *Battery Management Systems, Volume 1: Battery Modeling Battery Modeling*, 2015, Artech House Publishers.
 [^5]: *Electrical Conductivity of some Common Materials*, Engineering Toolbox, retreived in 2025.
+[^6]: P. Virtanen et al., *SciPy 1.0: Fundamental Algorithms for Scientific Computing in Python*, 2020, Nature Methods, 17.
