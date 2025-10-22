@@ -42,9 +42,17 @@ where $J^{(m-1)} = F'\left( x^{(m-1)} \right)$ is the Frechet derivative (the Ja
  
 
 ## 1.2 Convergence of Newton's method
-Under the assumptions that $F$ is Lipschitz with bounded derivative, convergence of the algorithm \ref{eq:Newton_method1}-\ref{eq:Newton_method3} is well-established for an appropriate initial guess $x^{(0)}$. Here we present a short proof adapted from[^2].
+Under the assumptions that $F$ is Lipschitz with a bounded derivative, convergence of the algorithm \ref{eq:Newton_method1}-\ref{eq:Newton_method3} is well-established for an appropriate initial guess $x^{(0)}$. Here we present a short proof adapted from[^2].
 
-# 2. Application to Butler-Volmer equation
+**Theorem** Let $x_*$ be the unique solution $F(x_*) = 0$. 
+
+*Proof*  Let $\delta > 0$. Since $F$ is smooth, by Taylor's theorem[^7] $\exists \xeta \in (x-\delta, x + \delta)$ such that 
+
+\begin{equation}
+    \left|F(x_*) - F(x_* - \delta) - J_{(x* - \delta)} \delta \right| \leq \frac{|F''(\xeta) \delta^2|}{2}
+\end{equation}
+
+# 2. Butler-Volmer equation
 
 The Butler-Volmer equation is used to model the electrochemical reaction kinetics taking place in electrochemical batteries. In particular, they are used to model the lithium ion exchange between the electrode and electrolyte at the microscopic and macroscopic scale[^3]. The equation describes the relationship between the current density $j$ [A/m$^2$] and the electric potential $\phi$ [V] as[^4] 
 
@@ -66,7 +74,7 @@ where $j_0$ [A/m] is the exchange current density, $\alpha_a$ and $\alpha_c$ [-]
 
 <br>
 
-## 2.1 Example: non-convergence for high potential values
+## 2.1 Example: solving the Butler-Volmer equation
 We now consider solving the 1D equation
 
 \begin{equation}
@@ -92,7 +100,9 @@ It can be observed that increasing the value of $c$ increases the number of iter
 
 **Note.** *Equations like \ref{eq:example_BV} are encountered as boundary conditions after spatially discretizing the governing equations using, for example, the finite element or finite volume method. Presently, we do not discuss any numerical discretizations, but will revisit that in a future blog post!*
 
-We now consider $\alpha_a = 0.85$ in \ref{eq:BV}; see Fig. 3 below for a plot of the current density.
+## 2.2 Example: non-convergence for large charge transfer coefficients
+
+We now consider $\alpha_a = 0.85$ in \ref{eq:BV} in order to test the robustness of Newton's method; see Fig. 3 below for a plot of the current density. It can be observed that increasing $\alpha_a$ increases the gradients near $\phi = 1$.
 
 <div align="center">
 <img src='/images/Newtons_method_images/BV_alpha85.png' width='380' height='380'>
@@ -104,7 +114,6 @@ We now consider $\alpha_a = 0.85$ in \ref{eq:BV}; see Fig. 3 below for a plot of
 </div>
 
 <br>
-
 
 We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the number of iterations taken by the solver increases to $26$. The reported solution is $\phi_* = 0.4018586997$ and $j_* = 5.981413003436504 \times 10^5$. The convergence can be improved by choosing a different initial guess. For example, for $\phi^{(0)} = 0.5$, the number of iterations taken drops to $9$ and the reported solution is $\phi_* = 0.4018586997$ and $j_* = 5.981413003430553 \times 10^5$; see Fig. 4 for a comparison of the residuals.
 
@@ -140,7 +149,7 @@ where $\phi(j)$ represents the inverse of $j(\phi)$, i.e., we switch the primary
 <br>
 
 We now discuss the motivation for changing our primary variable from $\phi$ to $j$. As observed earlier, when $\alpha_a = 0.85$, the Butler-Volmer equation leads to a high gradient as $\phi$ increases.
-In particular, for the case of $\alpha_a = 0.85$, the function $\phi(j)$ exhibits concave behaviour with bounded derivative near $j = \phi(1)$, as opposed to $j(\phi)$ near $\phi = 1$ as seen in Fig. 3. This is made clear in Fig. 6 below.
+In particular, for the case of $\alpha_a = 0.85$, the function $\phi(j)$ exhibits concave behaviour with bounded derivatives near $j = \phi(1)$, as opposed to $j(\phi)$ near $\phi = 1$ as seen in Fig. 3. This is made clear in Fig. 6 below.
 
 <div align="center">
 <img src='/images/Newtons_method_images/BV_degenerate_beta.png' width='380' height='380'>
@@ -165,9 +174,9 @@ We now solve \ref{eq:example_BV_j} with initial guess $j^{(0)} = \phi(0)$ and $j
 
 <br>
 
-Indeed, it can be observed that for the case when $j^{(0)} = 0$, the number of iterations have been reduced to from $26$ to $8$. When $j^{(0)} = \phi(0.5)$, the number of iterations taken are also $8$. This example demonstrates the 
+Indeed, it can be observed that for the case when $j^{(0)} = 0$, the number of iterations have been reduced to from $26$ to $8$. When $j^{(0)} = \phi(0.5)$, the number of iterations taken are also $8$. This example demonstrates the robustness of using $j$ as the primary variable when solving the Butler-Volmer equation.
 
-**Note on computing the inverse function $\phi(j)$.** *The reader may have guessed that the inverse of \ref{eq:BV} does not have a simple analytical expression. Indeed, for our implementation, we have made use of the Ridder method as part of the SciPy library[^6] to aid in computing the inverse $\phi(j)$, i.e., given $j_0 \in \mathbb{R}$, we solve for $\phi_0$ in $j_0 - \phi(\phi_0)$ where $\phi$ is given by \ref{eq:BV}. It may be noted that Newton's method may be used instead of Ridder method as well without affecting the results presented here.*
+**Note on computing the inverse function $\phi(j)$.** *The reader may have guessed that the inverse of \ref{eq:BV} does not have a simple analytical expression. Indeed, for our implementation, we have made use of the Ridder method as part of the SciPy library[^6] to aid in computing the inverse $\phi(j)$, i.e., given $j_0 \in \mathbb{R}$, we solve for $\phi_0$ in $j_0 - \phi(\phi_0) = 0$ where $\phi$ is given by \ref{eq:BV}. It may be noted that Newton's method may be used instead of Ridder method as well without affecting the results presented here.*
 
 
 ## References
@@ -177,3 +186,4 @@ Indeed, it can be observed that for the case when $j^{(0)} = 0$, the number of i
 [^4]: Gregory L. Plett, *Battery Management Systems, Volume 1: Battery Modeling Battery Modeling*, 2015, Artech House Publishers.
 [^5]: *Electrical Conductivity of some Common Materials*, Engineering Toolbox, retreived in 2025.
 [^6]: P. Virtanen et al., *SciPy 1.0: Fundamental Algorithms for Scientific Computing in Python*, 2020, Nature Methods, 17.
+[^7]: W. Rudin, *Principles of Mathematical Analysis*, 1976, McGraw-Hill, Inc., 3rd edition.
