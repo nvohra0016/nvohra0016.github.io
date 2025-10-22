@@ -46,13 +46,13 @@ Under the assumptions that $F$ is Lipschitz with a bounded derivative, convergen
 
 **Theorem** Let $x_{sol}$ be the unique solution $F(x_{sol}) = 0$. 
 
-*Proof.*  Let $\delta > 0$. Since $F$ is smooth, by Taylor's theorem[^7] $\exists \beta \in (x-\delta, x + \delta)$ such that 
+*Proof.*  Let $\delta > 0$. Since $F$ is smooth, by Taylor's theorem[^7] $\exists \beta \in (x_{sol}-\delta, x_{sol} + \delta)$ such that 
 
 \begin{equation}
     \left|F(x) - F(x - \delta) - J_{(x - \delta)} \delta \right| \leq \frac{|F''(\beta) \delta^2|}{2} \leq \frac{C \delta^2}{2},
 \end{equation}
 
-where $|F''(x)| \leq C, \; \forall x \in (x - \delta, x + \delta)$. Let $v^{(m-1)} = x^{(m-1)} - x_*$. Thus $v^{(m)} - v^{(m-1)} = \delta^{(m-1)}$. Then, from \ref{eq:Newton_method2} we have
+where $\left|F''(x) \right| \leq C, \; \forall x \in (x - \delta, x + \delta)$. Let $v^{(m-1)} = x^{(m-1)} - x_*$. Thus $v^{(m)} - v^{(m-1)} = \delta^{(m-1)}$. Then, from \ref{eq:Newton_method2} we have
 
 $$ -J^{(m-1)}\left(v^{(m)} - v^{(m-1)} \right) = F \left(x + v^{(m-1)} \right)$$
 
