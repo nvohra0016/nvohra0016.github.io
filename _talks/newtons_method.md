@@ -59,7 +59,7 @@ Since $F$ is smooth, by Taylor's theorem $\exists \beta \in (x_{sol}-\delta, x_{
     \left|F(x_{sol}) - F(x_{sol} - \delta) - J(x_{sol} - \delta) \delta \right| \leq \frac{|F''(\beta) \delta^2|}{2} \leq C \left| \delta \right|^2.
 \end{equation}
 
-Let $v^{(m-1)} = x^{(m-1)} - x_{sol}$. Thus $v^{(m)} - v^{(m-1)} = \delta^{(m-1)}$. Then, from \ref{eq:Newton_method2} we have
+Let $v^{(m-1)} = x^{(m-1)} - x_{sol}$. Then, $v^{(m)} - v^{(m-1)} = \delta^{(m-1)}$ and from \ref{eq:Newton_method2} we have
 
 \begin{equation}
 \label{eq:proof2}
@@ -105,7 +105,7 @@ which proves the convergence of the sequence $\\{ x^{(m)} \\}$ to $x_{sol}$. Thi
 <p style="text-align: right;">&#x25A1;</p>
 
 
-**Note.** *From \ref{eq:proof4} it becomes clear that if the product $MC$ is small, then even if $v^{(0)}$ is large convergence may be obtained in a few iterations. However, if the product $MC$ is large, then we cannot say anything concretely, and may need to adjust the initial guess in order to obtain convergence.*
+**Note.** *From \ref{eq:proof4} it becomes clear that if the product $MC$ is small, then even if $v^{(0)}$ is large (i.e., if the initial guess $x^{(0)}$ is far from $x_{sol}$) convergence may be obtained in a few iterations. However, if the product $MC$ is large, then we cannot say anything concretely, and may need to adjust the initial guess in order to obtain convergence.*
 
 # 2. Butler-Volmer Equation
 
