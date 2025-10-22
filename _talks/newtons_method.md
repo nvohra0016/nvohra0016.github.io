@@ -42,11 +42,11 @@ where $J^{(m-1)} = F'\left( x^{(m-1)} \right)$ is the Frechet derivative (the Ja
  
 
 ## 1.2 Convergence of Newton's method
-Under the assumptions that $F$ is Lipschitz with a bounded derivative, convergence of the algorithm \ref{eq:Newton_method1}-\ref{eq:Newton_method3} is well-established for an appropriate initial guess $x^{(0)}$. Here we present a short proof adapted from[^2].
+Under the assumptions that $F$ is Lipschitz with a bounded derivative, convergence of the algorithm \ref{eq:Newton_method1}-\ref{eq:Newton_method3} has been established for an appropriate initial guess $x^{(0)}$[^1]. Here we present a short proof adapted from[^2] for smooth functions.
 
-**Theorem** Let $x_{sol}$ be the unique solution $F(x_{sol}) = 0$. 
+**Theorem** Let $F \in C^\infty (\mathbb{R})$ and let $x_{sol}$ be the unique solution $F(x_{sol}) = 0$. Suppose $F' \neq 0$ on $\mathbb{R}$. 
 
-*Proof.*  Let $\delta > 0$. Since $F$ is smooth, by Taylor's theorem[^7] $\exists \beta \in (x_{sol}-\delta, x_{sol} + \delta)$ such that 
+*Proof.*  Let $\delta > 0$. Since $F$ is smooth, by Taylor's theorem $\exists \beta \in (x_{sol}-\delta, x_{sol} + \delta)$ such that[^7]
 
 \begin{equation}
 \label{eq:proof1}
@@ -71,7 +71,11 @@ since $F(x_{sol}) = 0$. Rewriting \ref{eq:proof2} we get
     -J^{(m-1)} v^{(m)} = F\left(x_{sol} + v^{(m-1)} \right) - F(x_{sol}) - J^{(m-1)} v^{(m-1)}.
 \end{equation}
 
-Finally, using \ref{eq:}
+Finally, using the estimate from \ref{eq:proof1}, we have
+
+\begin{equation}
+    \left|v^{(m)} \right| = \left| \left(J^{(m)}\right)^{-1} J^{(m)}v^{(m)} \right| \leq \left| \right|
+\end{equation}
 
 # 2. Butler-Volmer equation
 
