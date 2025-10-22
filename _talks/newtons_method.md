@@ -90,16 +90,8 @@ By induction, we have from \ref{eq:proof4}
 Thus if the initial guess $x^{(0)}$ is chosen as
 
 \begin{equation}
-    \left| v^{(0)} \right| = \text{min} \{2^{-1}, (2MC)^{-1} \} 
+    \left| v^{(0)} \right| = \text{min} \{\delta, 1 \} \text{min} \{2^{-1}, (2MC)^{-1} \}, 
 \end{equation}
-
-$$
-    \left| v^{(0)} \right| = \begin{cases}
-    \delta \text{min} \{ 2^{-1}, (2MC)^{-1} \} & \text{ if } \delta < 1,
-    \\
-    \text{min} \{ 2^{-1}, (2MC)^{-1} \} & \text{ if } \delta \geq 1,
-    \end{cases}
-$$
 
 then it can be verified that 
 
