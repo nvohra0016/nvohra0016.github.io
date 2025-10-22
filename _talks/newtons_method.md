@@ -44,18 +44,19 @@ where $J^{(m-1)} = F'\left( x^{(m-1)} \right)$ is the Frechet derivative (the Ja
 ## 1.2 Convergence of Newton's method
 Under the assumptions that $F$ is Lipschitz with a bounded derivative, convergence of the algorithm \ref{eq:Newton_method1}-\ref{eq:Newton_method3} has been established for an appropriate initial guess $x^{(0)}$[^1]. Here we present a short proof adapted from[^2] for smooth functions.
 
-**Theorem** Let $F \in C^\infty (\mathbb{R})$ and let $x_{sol}$ be the unique solution $F(x_{sol}) = 0$. Suppose $F' \neq 0$ on $\mathbb{R}$. 
+**Theorem** Let $F \in C^\infty (\mathbb{R})$ and let $x_{sol}$ be the unique solution $F(x_{sol}) = 0$. Suppose $J_x = F'(x) \neq 0, \; \forall x \in \mathbb{R}$. Then...
 
-*Proof.*  Let $\delta > 0$. Since $F$ is smooth, by Taylor's theorem $\exists \beta \in (x_{sol}-\delta, x_{sol} + \delta)$ such that[^7]
+*Proof.*  Let $\delta > 0$ and let
+
+\begin{equation}
+    \left|J_x^{-1} \right| \leq M, \; \left|F''(x) \right| \leq C, \; \forall x \in (x_{sol} - \delta, x_{sol} + \delta).
+\end{equation}
+
+Since $F$ is smooth, by Taylor's theorem $\exists \beta \in (x_{sol}-\delta, x_{sol} + \delta)$ such that[^7]
 
 \begin{equation}
 \label{eq:proof1}
-    \left|F(x) - F(x - \delta) - J_{(x - \delta)} \delta \right| \leq \frac{|F''(\beta) \delta^2|}{2} \leq \frac{C \delta^2}{2},
-\end{equation}
-
-where 
-\begin{equation}
-\left|F''(x) \right| \leq C, \; \forall x \in (x - \delta, x + \delta) \nonumber.
+    \left|F(x) - F(x - \delta) - J_{(x - \delta)} \delta \right| \leq \frac{|F''(\beta) \delta^2|}{2} \leq C |\delta^2|.
 \end{equation}
 
 Let $v^{(m-1)} = x^{(m-1)} - x_*$. Thus $v^{(m)} - v^{(m-1)} = \delta^{(m-1)}$. Then, from \ref{eq:Newton_method2} we have
@@ -74,7 +75,7 @@ since $F(x_{sol}) = 0$. Rewriting \ref{eq:proof2} we get
 Finally, using the estimate from \ref{eq:proof1}, we have
 
 \begin{equation}
-    \left|v^{(m)} \right| = \left| \left(J^{(m)}\right)^{-1} J^{(m)}v^{(m)} \right| \leq \left| \right|
+    \left|v^{(m)} \right| = \left| {J^{(m)}}^{-1} J^{(m)} v^{(m)} \right| \leq \left| {J^{(m)}}^{-1} \right| \left|J^{(m)} v^{(m)} \right| \leq M C \left| v^{(m-1)}^2 \right|
 \end{equation}
 
 # 2. Butler-Volmer equation
