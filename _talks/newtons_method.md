@@ -56,7 +56,7 @@ Since $F$ is smooth, by Taylor's theorem $\exists \beta \in (x_{sol}-\delta, x_{
 
 \begin{equation}
 \label{eq:proof1}
-    \left|F(x) - F(x - \delta) - J_{(x - \delta)} \delta \right| \leq \frac{|F''(\beta) \delta^2|}{2} \leq C \left| \delta \right|^2.
+    \left|F(x_{sol}) - F(x_{sol} - \delta) - J_{(x_{sol} - \delta)} \delta \right| \leq \frac{|F''(\beta) \delta^2|}{2} \leq C \left| \delta \right|^2.
 \end{equation}
 
 Let $v^{(m-1)} = x^{(m-1)} - x_{sol}$. Thus $v^{(m)} - v^{(m-1)} = \delta^{(m-1)}$. Then, from \ref{eq:Newton_method2} we have
@@ -80,22 +80,10 @@ Finally, using the estimate from \ref{eq:proof1}, we have
     \left| v^{(m)} \right| = \left| \left( {J^{(m)}} \right)^{-1} J^{(m)} v^{(m)} \right| \leq M C \left|v^{(m-1)} \right|^2.
 \end{equation}
 
-Now, if $v^{(0)} = x^{(0)} - x_{sol}$ is chosen such that
-
-\begin{equatinon}
-    \left| v^{(0)} \right| \ leq \frac{1}{2 M C},
-\end{equation}
-
-then from \ref{eq:proof4} we have
+Or, by induction, we have from \ref{eq:proof4}
 
 \begin{equation}
-    \left| v^{(1)} \right| \leq \frac{1}{2} \left|v^{(0)} \right|.
-\end{equation}
-
-Or, by induction, we have
-
-\begin{equation}
-    \left| v^{(m)} \right| \leq \frac{1}{2^m} \left|v^{(0)} \right|.
+    \left| v^{(m)} \right| \leq \left(MC \right)^{2^m - 1} \left|v^{(0)} \right|^{2^m}.
 \end{equation}
 
 # 2. Butler-Volmer equation
