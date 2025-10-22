@@ -217,7 +217,7 @@ In particular, for the case of $\alpha_a = 0.85$, the function $\phi(j)$ exhibit
 
 <br>
 
-Moreover, computing the product $(MC)$ for $\phi(j)$ and $j(\phi)$, we observe that the $MC << 1$ for $\phi(j)$ near $j = \phi(1)$ as opposed to $j(\phi)$ near $\phi = 1$; this is shown in Fig. 7 below for convenience (although this may be computed by hand as well!). Thus, from our discussion earlier, we may expect an improvement in the convergence of Newtons method when using $j$ as the primary variable without having to adjust the initial guess too much.
+Moreover, computing the product $(MC)$ (as used in \ref{eq:proof4}) for $\phi(j)$ and $j(\phi)$, we observe that the $MC$ is much smaller for $\phi(j)$ near $j = \phi(0.5)$ as opposed to $j(\phi)$ near $\phi = 0.5$; this is shown in Fig. 7 below for convenience (although this may be computed by hand as well!). Thus, from our discussion earlier, we may expect an improvement in the convergence of Newtons method when using $j$ as the primary variable without having to adjust the initial guess too much.
 
 <div align="center">
 <img src='/images/Newtons_method_images/BV_product_phi.png' width='380' height='380'>
