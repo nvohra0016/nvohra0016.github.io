@@ -90,7 +90,7 @@ By induction, we have from \ref{eq:proof4}
 Thus if the initial guess $x^{(0)}$ is chosen as
 
 \begin{equation}
-    \left| v^{(0)} \right| = \min \left\{\frac{1}{2MC}, \frac{1}{2} \right\},
+    \left| v^{(0)} \right| = \text{min}
 \end{equation}
 
 then it can be verified that 
