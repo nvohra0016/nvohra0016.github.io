@@ -9,7 +9,7 @@ date: 2025-09-20
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-## Introduction
+# 1. Introduction
 
 We start by considering a simple example of heat conduction and temperature change in an object over a time period $(0, T)$. Consider an object with volumetric heat capacity $c$ [J/m$^3$ $^\circ C$]. We add heat to this object at the rate of $f(t)$ [J/m$^3$ s]. Ignoring any spatial variation, the temperature $\theta(t)$ [$^\circ$ C] of the object can be determined using the ODE[^1]
 
@@ -87,7 +87,7 @@ y_k = \theta_k + v_k,
 
 where $v_k$ is the measurement noise. Before we exemplify the problem, we first establish some notation. We call $\theta_k$ in \ref{eq:heat_eq} the *true state* of the temperature. 
 
-### Example
+## 1.1 Example
 As an example, we consider the heating of the object over the time period $(0, 24)$ [hr]. We consider $c = 10^6$[J/m$^3$ $^\circ$ C] and $f(t) = 0.0025 t$  [J / m$^3$ s]. Fig. 2 below shows the true temperature, the temperature evolution according to \ref{eq:heat_disc1}, and the measured temperature values. Here we assume that $v_k$ and $w_k$ are uncorrelated Gaussian random processes with zero mean and standard deviation $\sigma_w = 0.75$ and $\sigma_v = 1.25$, respectively.  
 
 
@@ -103,7 +103,7 @@ As an example, we consider the heating of the object over the time period $(0, 2
 
 The *problem statement* now becomes nontrivial: given $y_k, \; 1 \leq k \leq N$ how can we accurately estimate $\theta_k, \; 1\leq k \leq N$ using \ref{eq:measurement_disc1}-\ref{eq:heat_disc1}? In other words, how do we compute the best estimate $\hat{\theta_k}$ that approximates $\theta_k \; \forall 1 \leq k \leq N$?
 
-## Kalman filter
+# 2. Kalman filter
 
 We now present the Kalman filtering technique. Consider a simple 1D linear state-space system of the form 
 
@@ -160,7 +160,7 @@ Then, we compute $\hat{x_k}$ and $\hat{\Sigma_k}$ using
 \hat{\Sigma_k} = \left(I - L_k C\right) \hat{\Sigma_k}^-.
 \end{equation}
 
-## Example: Heat Equation
+## 2.1 Example: Heat Equation
 
 We now return to our [example](#example). We consider an intial condition $\hat{\theta_0} = y_0$ and $\hat{\Sigma_0} = 0$, and run the Kalman filter. The results are shown in Fig. 3.
 
@@ -177,7 +177,7 @@ We now return to our [example](#example). We consider an intial condition $\hat{
 
 It can be observed from Fig. 3 that the estimated temperature is much more aligned to the true state than the measured values. Fig. 3 also shows the predicted and estimated covariance and it can be observed that the corrected covariance is always lower than the predicted covariance, although both values quickly reach a steady state. 
 
-### Variance Estimation: Monte Carlo Simulations
+## 2.2 Variance Estimation: Monte Carlo Simulations
 
 We also compute the variance of the estimated values ($\hat{\\theta}$) and the measured values ($y$) denoted by $\sigma_{\hat{\\theta}}^2$ and $\sigma_y^2$, respectively. We run $1000$ simulations using the same random parameters as earlier; see Fig. 5 below.
 
@@ -211,7 +211,7 @@ We also compute the variance of the estimated values ($\hat{\\theta}$) and the m
 It can be observed from Fig. 6 that the variance of the estimated values is much smaller than the variance of the measured values, and even smaller than the variance of the process noise $\approx 0.562$. This exercise demonstrates the effectiveness of the Kalman filter in reducing the error between the measured values and the true state. 
 
 
-## Further Reading 
+# Further Reading 
 
 The discussion above presents a basic introduction to the use of Kalman filters for optimal filtering. We demonstrate the use of the Kalman filter in 1D, although the implementation can easily be extended to higher dimensions[^3]. A brief introduction to the algorithm can also be found in an article by Welch, Bishop, 2006[^4].
 

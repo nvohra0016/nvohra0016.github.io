@@ -49,17 +49,17 @@ Under the assumptions that $F$ is Lipschitz with a bounded derivative, convergen
 *Proof.*  Let $\delta > 0$ and let
 
 \begin{equation}
-    \left|J_x^{-1} \right| \leq M, \; \left|F' '(x) \right| \leq C, \; \forall x \in (x_{sol} - \delta, x_{sol} + \delta).
+    \left|J_x^{-1} \right| \leq M, \; \left|F''(x) \right| \leq C, \; \forall x \in (x_{sol} - \delta, x_{sol} + \delta).
 \end{equation}
 
 Since $F$ is smooth, by Taylor's theorem $\exists \beta \in (x_{sol}-\delta, x_{sol} + \delta)$ such that[^7]
 
 \begin{equation}
 \label{eq:proof1}
-    \left|F(x) - F(x - \delta) - J_{(x - \delta)} \delta \right| \leq \frac{|F''(\beta) \delta^2|}{2} \leq C |\delta^2|.
+    \left|F(x) - F(x - \delta) - J_{(x - \delta)} \delta \right| \leq \frac{|F''(\beta) \delta^2|}{2} \leq C \left| \delta \right|^2.
 \end{equation}
 
-Let $v^{(m-1)} = x^{(m-1)} - x_*$. Thus $v^{(m)} - v^{(m-1)} = \delta^{(m-1)}$. Then, from \ref{eq:Newton_method2} we have
+Let $v^{(m-1)} = x^{(m-1)} - x_{sol}$. Thus $v^{(m)} - v^{(m-1)} = \delta^{(m-1)}$. Then, from \ref{eq:Newton_method2} we have
 
 \begin{equation}
 \label{eq:proof2}
@@ -69,13 +69,33 @@ Let $v^{(m-1)} = x^{(m-1)} - x_*$. Thus $v^{(m)} - v^{(m-1)} = \delta^{(m-1)}$. 
 since $F(x_{sol}) = 0$. Rewriting \ref{eq:proof2} we get
 
 \begin{equation}
+\label{eq:proof3}
     -J^{(m-1)} v^{(m)} = F\left(x_{sol} + v^{(m-1)} \right) - F(x_{sol}) - J^{(m-1)} v^{(m-1)}.
 \end{equation}
 
 Finally, using the estimate from \ref{eq:proof1}, we have
 
 \begin{equation}
+\label{eq:proof4}
     \left| v^{(m)} \right| = \left| \left( {J^{(m)}} \right)^{-1} J^{(m)} v^{(m)} \right| \leq M C \left|v^{(m-1)} \right|^2.
+\end{equation}
+
+Now, if $v^{(0)} = x^{(0)} - x_{sol}$ is chosen such that
+
+\begin{equatinon}
+    \left| v^{(0)} \right| \ leq \frac{1}{2 M C},
+\end{equation}
+
+then from \ref{eq:proof4} we have
+
+\begin{equation}
+    \left| v^{(1)} \right| \leq \frac{1}{2} \left|v^{(0)} \right|.
+\end{equation}
+
+Or, by induction, we have
+
+\begin{equation}
+    \left| v^{(m)} \right| \leq \frac{1}{2^m} \left|v^{(0)} \right|.
 \end{equation}
 
 # 2. Butler-Volmer equation
@@ -108,9 +128,9 @@ We now consider solving the 1D equation
     j(\phi) + \sigma \phi = c,
 \end{equation}
 
-where $\sigma$ [S/m] is the conductivity, and the current density $j$ is described by \ref{eq:BV}. For the purposes of this example, we consider $\sigma = 10^6$ to represent the physical values of most materials[^5]. The value of $c$ in the RHS of \ref{eq:example_BV} will be chosen so as to make the solution $\phi_*$ of \ref{eq:example_BV} closer towards $1$ (which increases the gradient of $j$!). The tolerance is set to $\epsilon_{tol} = 10^{-6}$. 
+where $\sigma$ [S/m] is the conductivity, and the current density $j$ is described by \ref{eq:BV}. For the purposes of this example, we consider $\sigma = 10^6$ to represent the physical values of most materials[^5]. The value of $c$ in the RHS of \ref{eq:example_BV} will be chosen so as to make the solution $\phi_{sol}$ of \ref{eq:example_BV} closer towards $1$ (which increases the gradient of $j$!). The tolerance is set to $\epsilon_{tol} = 10^{-6}$. 
 
-We test with multiple values $c \in \\{10^5, 5 \times 10^5, 10^6 \\}$. We consider an initial guess of $\phi^{(0)} = 0$. The absolute value of the residuals $R = j(\phi) +\sigma \phi - c$ is plotted in Fig. 2 (left) below. The solution for $c = 10^6$ is $\phi_* = 0.6549109190$ and $j_* = 3.450890810218518 \times 10^5$.
+We test with multiple values $c \in \\{10^5, 5 \times 10^5, 10^6 \\}$. We consider an initial guess of $\phi^{(0)} = 0$. The absolute value of the residuals $R = j(\phi) +\sigma \phi - c$ is plotted in Fig. 2 (left) below. The solution for $c = 10^6$ is $\phi_{sol} = 0.6549109190$ and $j_{sol} = 3.450890810218518 \times 10^5$.
 
 <div align="center">
 <img src='/images/Newtons_method_images/alpha_res_smooth.png' width='450' height='450'>
@@ -141,7 +161,7 @@ We now consider $\alpha_a = 0.85$ in \ref{eq:BV} in order to test the robustness
 
 <br>
 
-We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the number of iterations taken by the solver increases to $26$. The reported solution is $\phi_* = 0.4018586997$ and $j_* = 5.981413003436504 \times 10^5$. The convergence can be improved by choosing a different initial guess. For example, for $\phi^{(0)} = 0.5$, the number of iterations taken drops to $9$ and the reported solution is $\phi_* = 0.4018586997$ and $j_* = 5.981413003430553 \times 10^5$; see Fig. 4 for a comparison of the residuals.
+We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the number of iterations taken by the solver increases to $26$. The reported solution is $\phi_{sol} = 0.4018586997$ and $j_{sol} = 5.981413003436504 \times 10^5$. The convergence can be improved by choosing a different initial guess. For example, for $\phi^{(0)} = 0.5$, the number of iterations taken drops to $9$ and the reported solution is $\phi_{sol} = 0.4018586997$ and $j_{sol} = 5.981413003430553 \times 10^5$; see Fig. 4 for a comparison of the residuals.
 
 <div align="center">
 <img src='/images/Newtons_method_images/alpha_res_degenerate.png' width='450' height='450'>
@@ -154,7 +174,7 @@ We now return to solving \ref{eq:example_BV} using $c = 10^6$. In this case, the
 
 ## 2.2 Improving convergence of Newton's method: primary variable switch
 
-We now seek to improve the convergence of the Newtons method without having to fine tune our initial guess too much. To this end, we introduce a new formulation of \ref{eq:example_BV} with $j$ as the primary variable as follows: find a solution $j_*$ to
+We now seek to improve the convergence of the Newtons method without having to fine tune our initial guess too much. To this end, we introduce a new formulation of \ref{eq:example_BV} with $j$ as the primary variable as follows: find a solution $j_{sol}$ to
 
 \begin{equation}
     \label{eq:example_BV_j}
@@ -188,7 +208,7 @@ In particular, for the case of $\alpha_a = 0.85$, the function $\phi(j)$ exhibit
 
 <br>
 
-We now solve \ref{eq:example_BV_j} with initial guess $j^{(0)} = \phi(0)$ and $j^{(0)} = \phi(0.5)$ to check if the change in the primary variable improves the convergence of the Newton's method. The reported solution in both cases are $\phi_* = 0.4018586997$,$j_* = 5.981413003440497 \times 10^5$ and $\phi_* = 0.4018586997$,$j_* = 5.981413003440507 \times 10^5$, respectively. Fig. 7 shows a plot comparing the residuals for different initial guesses comparing the two primary variable approaches.
+We now solve \ref{eq:example_BV_j} with initial guess $j^{(0)} = \phi(0)$ and $j^{(0)} = \phi(0.5)$ to check if the change in the primary variable improves the convergence of the Newton's method. The reported solution in both cases are $\phi_{sol} = 0.4018586997$,$j_{sol} = 5.981413003440497 \times 10^5$ and $\phi_{sol} = 0.4018586997$,$j_{sol} = 5.981413003440507 \times 10^5$, respectively. Fig. 7 shows a plot comparing the residuals for different initial guesses comparing the two primary variable approaches.
 
 <div align="center">
 <img src='/images/Newtons_method_images/beta_alpha_res_degenerate.png' width='450' height='450'>
