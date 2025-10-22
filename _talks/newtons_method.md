@@ -2,7 +2,7 @@
 title: "Accelerating Convergence of Newton's Method for Degenerate Functions"
 collection: talks
 excerpt: "We explore the application of Newton's method when solving the Butler-Volmer equation, and ways to reduce the number of iterations taken by the solver."
-date: 2025-10-19
+date: 2025-11-19
 ---
 
 <script type="text/javascript" async
@@ -10,7 +10,7 @@ date: 2025-10-19
 </script>
 
 # 1. Introduction to Newton's Method
-Newton's method is a perpetual workhorse that has proven to be one of the most successful and versatile nonlinear solvers. The framework has been applied to cover a large range of nonlinearity, from s to piecewise-smooth (semismooth) functions [^1] [^2]. 
+Newton's method is a perpetual workhorse that has proven to be one of the most successful and versatile nonlinear solvers. The framework has been applied to cover a large range of nonlinearities, from smooth to semismooth functions. In this post, we present the application of the Newton's method in solving the Butler-Volmer equation, commonly used in modelling interface conditions in electrochemical domains. We prove the convergence and demonstrate the robustness of the method using physical parameters, and exemplify how convergence may be further accelerated in extreme cases using the primary variable switching technique.
 
 ## 1.1 Algorithm 
 Let $F \in C^\infty(\mathbb{R}), \; F : \mathbb{R} \rightarrow \mathbb{R}$ be a given smooth function, and we wish to solve $F(x) = 0$. The Newton's method generates a sequence $\\{ x^{(m)} \\}$ iteratively: given $x^{(m-1)}$, we obtain $x^{(m)}$ as
