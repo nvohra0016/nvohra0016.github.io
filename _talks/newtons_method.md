@@ -49,12 +49,29 @@ Under the assumptions that $F$ is Lipschitz with a bounded derivative, convergen
 *Proof.*  Let $\delta > 0$. Since $F$ is smooth, by Taylor's theorem[^7] $\exists \beta \in (x_{sol}-\delta, x_{sol} + \delta)$ such that 
 
 \begin{equation}
+\label{eq:proof1}
     \left|F(x) - F(x - \delta) - J_{(x - \delta)} \delta \right| \leq \frac{|F''(\beta) \delta^2|}{2} \leq \frac{C \delta^2}{2},
 \end{equation}
 
-where $\left|F''(x) \right| \leq C, \; \forall x \in (x - \delta, x + \delta)$. Let $v^{(m-1)} = x^{(m-1)} - x_*$. Thus $v^{(m)} - v^{(m-1)} = \delta^{(m-1)}$. Then, from \ref{eq:Newton_method2} we have
+where 
+\begin{equation}
+\left|F''(x) \right| \leq C, \; \forall x \in (x - \delta, x + \delta) \nonumber.
+\end{equation}
 
-$$ -J^{(m-1)}\left(v^{(m)} - v^{(m-1)} \right) = F \left(x + v^{(m-1)} \right)$$
+Let $v^{(m-1)} = x^{(m-1)} - x_*$. Thus $v^{(m)} - v^{(m-1)} = \delta^{(m-1)}$. Then, from \ref{eq:Newton_method2} we have
+
+\begin{equation}
+\label{eq:proof2}
+ -J^{(m-1)}\left(v^{(m)} - v^{(m-1)} \right) = F \left(x_{sol} + v^{(m-1)} \right) - F(x_{sol}),
+ \end{equation}
+
+since $F(x_{sol}) = 0$. Rewriting \ref{eq:proof2} we get
+
+\begin{equation}
+    -J^{(m-1)} v^{(m)} = F\left(x_{sol} + v^{(m-1)} \right) - F(x_{sol}) - J^{(m-1)} v^{(m-1)}.
+\end{equation}
+
+Finally, using \ref{eq:}
 
 # 2. Butler-Volmer equation
 
