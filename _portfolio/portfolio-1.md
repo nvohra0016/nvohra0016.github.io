@@ -153,7 +153,7 @@ In case of $\beta_1$ and $\beta_2$, a net profit of $16398$ [Rs] and $11988$ [Rs
 
 ## Code
 
-The code for the dispatch model has been written by the author using GAMS and Python. An equivalent code has also been developed in Pyomo^[5]. 
+The code for the dispatch model has been written by the author using GAMS and Python. An equivalent code has also been developed in Pyomo[^5]. 
 
 
 ## References
