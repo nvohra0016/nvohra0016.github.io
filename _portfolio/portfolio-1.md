@@ -4,9 +4,9 @@ excerpt: "Linear approximation of cyclic degradation of batteries and their use 
 collection: portfolio
 ---
 
-# Battery energy storage systems (BESS) model
+# 1. Battery Energy Storage Systems Model
 
-BESS holds an important role in various avenues of power systems, from complementing renewable energy sources (such as Solar) to participating in electricity markets for arbitrage and ancillary services. The basic set of linearized equations for BESS are as follows[^1]
+Battery Energy Storage Systems (BESS) hold an important role in various avenues of power systems, from complementing renewable energy sources (such as Solar) to participating in electricity markets for arbitrage and ancillary services. The basic set of linearized equations for BESS are as follows[^1]
 
 \begin{equation}
 \label{eq:SOC}
@@ -22,7 +22,7 @@ P_{min} \leq P^c_n, \; P^d_n \leq P_{max}, \; 0 < SOC_{min} \leq SOC_n \leq SOC_
 
 where $E_B$ [MWh] is the capacity of the battery.
 
-### Example of arbitrage in wholesale electricity market
+## 1.1 Example: Arbitrage in wholesale electricity market
 
 We consider a basic scenario where a given battery performs arbitrage in the wholesale electricity markets: that is, it charges up when the electricity prices are low and discharges when the prices are high, thereby marking a profit. If $\theta_n$ [Rs/MWh] is the wholesale market price at time step $n$, then we wish to find the optimial solution to 
 
@@ -62,7 +62,7 @@ The battery follows two complete cycles following the peak electricity prices du
 
 In this case the objective value comes out to be -28654.91 [Rs], indicating a net profit. 
 
-## Effect of battery cycles
+# 2. Accounting for Cyclic Degradation
 
 We now consider the degradation associated with battery cycling. Typically, the life of a battery (i.e., the number of cycles it is able to perform) depends on the depth of discharge (DOD) at which it is cycled, where the DOD is defined as the absolute difference between the state of charge in consecutive time steps divided by the capacity. We denote the cycles by $\alpha(DOD)$; see Fig. 3 for an illustration (adapted from[^3] using an exponential function).
 
@@ -116,7 +116,7 @@ Figure 4. Plot showing the inverse of the cycles, $1/\alpha$, and its two linear
 
 Note that the choice of $\beta_1$ and $\beta_2$ provide a bound for our objective function, and help us to under- and overestimate the net profits. We make this clear with the next example.
 
-### Example of arbitrage with battery degradation
+## 2.1 Example: Arbitrage with Cyclic Degradation
 
 We now return to our [example](example-of-arbitrage-in-wholesale-electricity-market). We consider a replacement cost of $R = 2 \times 10^5$ [Rs] (see note below) and $E_B = 1$ [MWh]. We now consider the quarterly RTM prices taken from 1/8/2025 - 3/8/2025 from IEX[^2] (total of 72 hours). The cycle degradation curves are taken as in Fig. 3 and Fig. 4.
 
@@ -153,7 +153,7 @@ In case of $\beta_1$ and $\beta_2$, a net profit of $16398$ [Rs] and $11988$ [Rs
 
 ## Code
 
-The code for the dispatch model has been written by the author using GAMS and Python.
+The code for the dispatch model has been written by the author using GAMS and Python. An equivalent code has also been developed in Pyomo^[5]. 
 
 
 ## References
@@ -161,3 +161,5 @@ The code for the dispatch model has been written by the author using GAMS and Py
 [^2]: Indian Energy Exchange (retrieved in 2025), [https://www.iexindia.com/market-data/real-time-market/market-snapshot](https://www.iexindia.com/market-data/real-time-market/market-snapshot).
 [^3]: N. Padmanabhan, M. Ahmed, K. Bhattacharya (2020), Battery Energy Storage Systems in Energy and Reserve Markets, IEEE Transactions on Power Systems, Vol. 35, No. 1. 
 [^4]: Y. Shi et al. (2019), Optimal Battery Control Under Cycle Aging Mechanisms in Pay for Performance Settings, IEEE Transactions on Automatic Control, Vol. 64, No. 6.
+[^5]: M. L. Bynum et al.,*Pyomo - Optimization Modeling in Python*, 2021, Springer, Third Edition Vol. 67.
+
