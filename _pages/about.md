@@ -26,7 +26,7 @@ I relocated to Gurugram, Haryana in 2024 where I currently stay with my wife. Ou
 
 ## Technical blog:
 
-I also maintain a blog on my website where I write expository short articles to motivate existing or novel ideas. My recent posts are:
+I also maintain a [blog](https://nvohra0016.github.io/talks/) on my website where I write expository short articles to motivate existing or novel ideas. My recent posts are:
 
 - [Accelerating Convergence of Newton’s Method for Degenerate Functions
 ](https://nvohra0016.github.io/talks/newtons_method/)
