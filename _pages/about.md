@@ -23,4 +23,13 @@ Alamos National Lab. I am interested in applied and computational mathematics, p
 
 I relocated to Gurugram, Haryana in 2024 where I currently stay with my wife. Outside of work, I enjoy reading classics. Among my favourite authors are Marcel Proust, Thomas Mann, Fyodor Dostoevsky, Virginia Woolf, and Ernest Hemingway.
 
-###### Last updated: October 2025
+
+## Technical blog:
+
+I also maintain a blog on my website where I write expository short articles to motivate existing or novel ideas. My recent posts are:
+
+- [Accelerating Convergence of Newton’s Method for Degenerate Functions
+](https://nvohra0016.github.io/talks/newtons_method/)
+- [An Introduction to Kalman Filters Using the Heat Equation](https://nvohra0016.github.io/talks/kalman_filter/)
+
+###### Last updated: November 2025
