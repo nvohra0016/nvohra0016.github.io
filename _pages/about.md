@@ -31,6 +31,7 @@ I also maintain a [blog](https://nvohra0016.github.io/talks/) on my website wher
 - [Accelerating Convergence of Newton’s Method for Degenerate Functions
 ](https://nvohra0016.github.io/talks/newtons_method/)  
 `Newton's method` `Butler Volmer` `Convergence`
-- [An Introduction to Kalman Filters Using the Heat Equation](https://nvohra0016.github.io/talks/kalman_filter/); `Kalman filter` `Heat equation` `ODE` 
+- [An Introduction to Kalman Filters Using the Heat Equation](https://nvohra0016.github.io/talks/kalman_filter/)  
+`Kalman filter` `Heat equation` `Monte Carlo` `ODE`
 
 ###### Last updated: November 2025
