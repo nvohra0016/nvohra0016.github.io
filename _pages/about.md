@@ -30,8 +30,8 @@ I also maintain a [blog](https://nvohra0016.github.io/talks/) on my website wher
 
 - [Accelerating Convergence of Newton’s Method for Degenerate Functions
 ](https://nvohra0016.github.io/talks/newtons_method/)  
-Keywords: Newtons method, Butler Volmer, Convergence
+**Keywords**: Newtons method, Butler Volmer, Convergence
 - [An Introduction to Kalman Filters Using the Heat Equation](https://nvohra0016.github.io/talks/kalman_filter/)  
-Keywords: Kalman filter, Heat equation, Monte Carlo, ODE
+**Keywords**: Kalman filter, Heat equation, Monte Carlo, ODE
 
 ###### Last updated: November 2025
