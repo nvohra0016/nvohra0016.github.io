@@ -45,5 +45,5 @@ where $w_1 = [w_{1,1} \; w_{1,2} \; w_{1,3} \; w_{1,4} ]^T$ (similar definition 
 
 Now let us assume that we are given $N \in \mathbb{Z}$ measurements of $y$, denoted by $\hat{y}_n, \; 1 \leq n \leq N$ for corresponding inputs (known) $x_n$. Consider the following problem statement. 
 
-*Problem statement*. How do we find the parameters $w_1, b_1, w_2$ and $b_2$ such that each $y_n$ obtained using $x_n$ from \ref{eq:nn_ex1} is ``sufficiently close" to $\hat{y}_n$? 
+*Problem statement*. How do we find the parameters $w_1, b_1, w_2$ and $b_2$ such that each $y_n$ obtained using $x_n$ from \ref{eq:nn_ex1} is `sufficiently close' to $\hat{y}_n$? 
 
