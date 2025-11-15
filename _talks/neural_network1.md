@@ -19,7 +19,7 @@ A basic neural network may be viewed as a black-box solver that can be "trained"
 A basic neural network has an architecture similar to that shown in Fig. 1. Here we consider a network that takes $x \in \mathbb{R}$ as an input and gives $y \in \mathbb{R}$ as an output. The hidden layer consists of weights and biases $w_{1,i}, b_{1,i}, w_{2,i} \in \mathbb{R}, \; 1 \leq i \leq 4$, and $b_2 \in \mathbb{R}$, along with a nonlinear smooth activation function $\sigma : \mathbb{R} \rightarrow \mathbb{R}$.
 
 <div align="center">
-<img src='/images/neural_network1_blog/neural_network_diagram.png' width='480' height='480'>
+<img src='/images/neural_network1_blog/neural_network_diagram.png' width='500' height='500'>
 </div>
 
 <div align = "center">
@@ -45,5 +45,5 @@ where $w_1 = [w_{1,1} \; w_{1,2} \; w_{1,3} \; w_{1,4} ]^T$ (similar definition 
 
 Now let us assume that we are given $N \in \mathbb{Z}$ measurements of $y$, denoted by $\hat{y}_n, \; 1 \leq n \leq N$ for corresponding inputs (known) $x_n$. Consider the following problem statement. 
 
-*Problem statement*. How do we find the parameters $w_1, b_1, w_2$ and $b_2$ such that each $y_n$ obtained using $x_n$ from \ref{eq:nn_ex1} is ``sufficiently close" to $\hat{y}_n$? 
+*Problem statement*. How do we find the parameters $w_1, b_1, w_2$ and $b_2$ such that each $y_n$ obtained using $x_n$ from \ref{eq:nn_ex1} is "sufficiently close" to $\hat{y}_n$? 
 
