@@ -19,7 +19,7 @@ A basic neural network may be viewed as a black-box solver that can be "trained"
 A basic neural network has an architecture similar to that shown in Fig. 1. Here we consider a network that takes $x \in \mathbb{R}$ as an input and gives $y \in \mathbb{R}$ as an output. The hidden layer consists of weights and biases $w_{1,i}, b_{1,i}, w_{2,i} \in \mathbb{R}, \; 1 \leq i \leq 4$, and $b_2 \in \mathbb{R}$, along with a nonlinear smooth activation function $\sigma : \mathbb{R} \rightarrow \mathbb{R}$.
 
 <div align="center">
-<img src='/images/Neural_network1_blog/neural_network_diagram.png' width='450' height='450'>
+<img src='/images/neural_network1_blog/neural_network_diagram.png' width='450' height='450'>
 </div>
 
 <div align = "center">
