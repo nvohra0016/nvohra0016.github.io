@@ -1,5 +1,5 @@
 ---
-title: "[WIP]: Neural Networks I: First Network from Scratch"
+title: "Neural Networks I: First Network from Scratch"
 collection: talks
 excerpt: "We describe the framework of neural networks and build an example from scratch using NumPy."
 date: 2025-11-15
