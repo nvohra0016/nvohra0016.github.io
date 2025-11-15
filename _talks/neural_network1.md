@@ -31,5 +31,19 @@ A basic neural network has an architecture similar to that shown in Fig. 1. Here
 In this case, the output $y$ is given by 
 
 \begin{equation}
-    y = \sum_{i=1}^{4} \sigma\left( w_{2,i} \sigma\left(x w_{1,j} + b_{1,i} \right) + b_{2} \right)
+\label{eq:nn_ex1}
+    y = \sum_{i=1}^{4} \sigma\left( w_{2,i} \sigma\left(x w_{1,j} + b_{1,i} \right) + b_{2} \right).
 \end{equation}
+
+Or, more succinctly, using matrix vector notation, we rewrite \ref{eq:nn_ex1} as
+
+\begin{equation}
+    y = \sigma \left( {w_2}^T \sigma \left(w_1 x + b_1 \right) + b_2 \right)
+\end{equation}
+
+where $w_1 = [w_{1,1} \; w_{1,2} \; w_{1,3} \; w_{1,4} ]^T$ (similar definition for $b_1$ and $w_2$), and $\sigma$ is applied component wise to the vector $w_1 x + b_1$. 
+
+Now let us assume that we are given $N \in \mathbb{Z}$ measurements of $y$, denoted by $\hat{y}_n, \; 1 \leq n \leq N$ for corresponding inputs (known) $x_n$. Consider the following problem statement. 
+
+*Problem statement*. How do we find the parameters $w_1, b_1, w_2$ and $b_2$ such that each $y_n$ obtained using $x_n$ from \ref{eq:nn_ex1} is ``sufficiently close" to $\hat{y}_n$? 
+
