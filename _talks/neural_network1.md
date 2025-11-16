@@ -49,7 +49,7 @@ Now let us assume that we are given $N \in \mathbb{Z}$ measurements of $y$, deno
 
 ## 1.2. Minimizing the Loss
 
-In order to select the appropriate parameters $\bm{w} \def [{w_1}^T \; {b_1}^T \; {w_2}^T \; {b_2}]^T$ we provide a number to what `sufficiently close' means. To this end, we specify the mean squared error as
+In order to select the appropriate parameters $\mathbf{w} \def [{w_1}^T \; {b_1}^T \; {w_2}^T \; {b_2}]^T$ we provide a number to what `sufficiently close' means. To this end, we specify the mean squared error as
 
 
 \begin{equation}
@@ -57,10 +57,10 @@ In order to select the appropriate parameters $\bm{w} \def [{w_1}^T \; {b_1}^T \
     E = \frac{1}{N}\sum_{n=1}^{N} E_n, \; E_n = \left(\hat{y}_n - y_n \right)^2.
 \end{equation}
 
-We now seek to find the best parameters that minimize the loss function $E$ given by \ref{eq:loss_function}. One of the most popular techniques is the gradient descent algorithm: let $\eta > 0$ be given. Define an iterative process as follows: given $\bm{w}^{(j)}$, perform the update
+We now seek to find the best parameters that minimize the loss function $E$ given by \ref{eq:loss_function}. One of the most popular techniques is the gradient descent algorithm: let $\eta > 0$ be given. Define an iterative process as follows: given $\mathbf{w}^{(j)}$, perform the update
 
 \begin{equation}
-    \bm{w}^{(j+1)} = \bm{w}^{(j)} - \alpha \nabla_{\bm{w}} E\left(\bm{w}^{(j)}\right),
+    \mathbf{w}^{(j+1)} = \mathbf{w}^{(j)} - \alpha \nabla_{\mathbf{w}} E\left(\mathbf{w}^{(j)}\right),
 \end{equation}
 
-where $\nabla_{\bm{w}} E = \left[ \nabla_{b_1}^T E \; \nabla_{w_1}^T E \; \nable_{w_2}^T E \;\partial_{b_2} E \right]^T$ denotes the Jacobian of $E$ with respect to $\bm{w}$.
+where $\nabla_{\mathbf{w}} E = \left[ \nabla_{b_1}^T E \; \nabla_{w_1}^T E \; \nabla_{w_2}^T E \;\partial_{b_2} E \right]^T$ denotes the Jacobian of $E$ with respect to $\mathbf{w}$.
