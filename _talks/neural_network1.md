@@ -50,7 +50,7 @@ Now let us assume that we are given $N \in \mathbb{Z}$ measurements of $y$, deno
 
 ## 1.2. Minimizing the Loss
 
-In order to select the appropriate parameters $\mathbf{w} = [{w_1}^T \; {b_1}^T \; {w_2}^T \; {b_2}]^T$ we provide a number to what `sufficiently close' means. To this end, we specify the mean squared error as
+In order to select the appropriate parameters $\mathbf{w} = [{w_1}^T \; {b_1}^T \; {w_2}^T \; {b_2}]^T$ we provide a number to what `sufficiently close' means. To this end, we specify the mean squared error (MSE) as
 
 
 \begin{equation}
@@ -91,8 +91,10 @@ We use the activation function $\sigma(x) = \tanh{(x)}$. Since the data already 
 
 We plot the output of the network at different epochs in Fig. 3. It can easily be observed that the approximation \ref{eq:nn_ex2} `approaches' the measured values as the epochs increase (in the eyeball norm!). 
 
-<div align="center">
-<img src='/images/neural_network1_blog/data_sine.png' width='450' height='450'>
+<div class='wrapper' align='center'>
+<section>
+<img id='gif-click' src='/images/neural_network1_blog/training_gif.gif'  width='470' height='470'/>
+</section>
 </div>
 
 <div align = "center">
@@ -101,6 +103,16 @@ We plot the output of the network at different epochs in Fig. 3. It can easily b
 
 <br>
 
+The final trained network at the end of $10000$ epochs, along with a plot of the MSE vs the epochs is shown in Fig. 4. It can be observed that the MSE decreases and plateaus towards the end as the parameters converge.
+
+<div align="center">
+<img src='/images/neural_network1_blog/final_trained.png' width='380' height='380'>
+<img src='/images/neural_network1_blog/mse_loss.png' width='380' height='380'>
+</div>
+
+<div align = "center">
+ Figure 4. Left: Plot showing the final results after $10000$ epochs. Right: Plot showing the MSE decreasing as the epochs increase.
+</div>
 
 
 ## Code 
