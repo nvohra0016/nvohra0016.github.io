@@ -85,7 +85,7 @@ We consider the measurements of a cosine wave $y = \cos{(2\pi t)}$ at $N = 50$ r
 
 ## 2.1. Implementation Details
 
-We use the activation function $\sigma(x) = \tanh{(x)}$. Since the data already lies in the range of the activation function, we do not scale the data any further (say so that it lies in [-1,1]). We also train the network for a maximum of $10000$ iterations, which we refer to as `epochs'. Finally, we consider a learning rate of $\eta = 0.01$ (concluded from a heuristic approach). 
+We use the activation function $\sigma(x) = \tanh{(x)}$. Since the data already lies in the range of the activation function, we do not scale the data any further (say so that it lies in [-1,1]). We also train the network for a maximum of $10000$ iterations, which we refer to as `epochs', and consider a learning rate of $\eta = 0.01$ (concluded from a heuristic approach). Finally, we initialize the parameters $\mathbf{w}^{(0)}$ using a Normal distribution $N(0,1)$.
 
 ## 2.2. Results
 
@@ -117,7 +117,163 @@ The final trained network at the end of $10000$ epochs, along with a plot of the
 
 ## Code 
 
-The code used in this post has been written by the author and can be found here:...
+The code used in this post has been written by the author and can be found below. 
+
+```
+# One layer neural network training.
+# Author: Naren Vohra
+# Email: NarenVohra1994@gmail.com
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# ################################
+# Function definitions
+# ################################
+
+# Define function to approximate and interpolate
+def my_func(x):
+    return np.sin(2 * np.pi * x)
+
+# Define activation function
+def sigma(x):
+    return np.tanh(x)
+
+def dsigma(x):
+    return (1 - np.tanh(x)**2)
+
+# Initialize weights and biases
+def intialize_weights(n_size):
+    # Set random seed for reproducibility
+    np.random.seed(42)
+    w1 = np.random.normal(loc = 0.0, scale = 1.0, size = (n_size, 1))
+    w2 = np.random.normal(loc = 0.0, scale = 1.0, size = (n_size, 1))
+    b1 = np.random.normal(loc = 0.0, scale = 1.0, size = (n_size, 1))
+    b2 = np.random.normal(loc = 0.0, scale = 1.0, size = (1, 1))
+
+    return w1, w2, b1, b2
+
+# Feed forward first stage: z = \sigma(w1 x + b1)
+def feed_forward1(x, w1, b1):
+    z = sigma(w1 * x + b1)
+    return z
+
+# Feed forward second stage: \sigma(w2 z + b2)
+def feed_forward2(z, w2, b2):
+    y_hat = sigma(np.dot(w2.T, z) + b2)
+    return y_hat
+
+# Compute gradients
+def gradients(x, w1, b1, w2, b2):
+    z = feed_forward1(x, w1, b1)
+
+    # Calculate gradients
+    dEdw1 = dsigma(np.dot(w2.T, z) + b2) * w2 * dsigma(w1 * x +  b1) * x
+    dEdb1 = dsigma(np.dot(w2.T, z) + b2) * w2 * dsigma(w1 * x +  b1)
+
+    dEdw2 = dsigma(np.dot(w2.T, z) + b2) * z
+    dEdb2 = dsigma(np.dot(w2.T, z) + b2)
+
+    return dEdw1, dEdb1, dEdw2, dEdb2
+
+# Loss function (MSE)
+def loss_fn(y, y_hat):
+    square_vals = np.abs(y - y_hat) ** 2
+    return square_vals.sum() / (2.0 * len(y))
+
+# ################################
+# Main script
+# ################################
+
+# Create dataset
+x = np.linspace(0, 1.0, 50)
+x = x.reshape(-1,1)
+y = my_func(x)
+
+# Specify size of network and other parameters
+n_size = 5
+n_epochs = 10000
+eta = 0.01
+
+# Initialize weights
+w1, w2, b1, b2= intialize_weights(n_size)
+print("Parameters initialized")
+
+# Initialize list to store MSE values
+loss_list = []
+
+# Start training network
+for epoch in np.arange(0, n_epochs, 1):
+
+    # Initialize gradients for each time step
+    dEdw1_sum, dEdb1_sum, dEdw2_sum, dEdb2_sum = 0, 0, 0, 0
+
+    # Initalize predicted value
+    y_hat = 0.0 * x
+
+    for j in np.arange(0, len(x), 1):
+        # Get y_hat
+        z = feed_forward1(x[j], w1, b1)
+        y_hat[j] = feed_forward2(z, w2, b2)
+
+        # Calculate gradients 
+        dEdw1, dEdb1, dEdw2, dEdb2 = gradients(x[j], w1, b1, w2, b2)
+
+        # Add gradients to final vector
+        dEdw1_sum += dEdw1 * (y_hat[j] - y[j])
+        dEdb1_sum += dEdb1 * (y_hat[j] - y[j])
+        dEdw2_sum += dEdw2 * (y_hat[j] - y[j])
+        dEdb2_sum += dEdb2 * (y_hat[j] - y[j])
+
+    # Compute MSE
+    loss = loss_fn(y_hat, y) 
+    loss_list.append(loss)
+
+    if epoch % 1000 == 0:
+        print(f"MSE loss at epoch {epoch} is {loss}")
+
+    if np.abs(loss) < 1e-4:
+        break 
+
+    # Update weights
+    w1 = w1 - eta * dEdw1_sum
+    b1 = b1 - eta * dEdb1_sum
+    w2 = w2 - eta * dEdw2_sum
+    b2 = b2 - eta * dEdb2_sum
+
+# Training finished
+print(f"Training finished; final MSE = {loss}")
+# Final plot of network output
+fig = plt.figure()
+plt.plot(x, y, linestyle = "-", linewidth = 1, marker = "o", markersize = 4, label = "Measured")
+plt.plot(x, y_hat, linewidth = 1.0, linestyle = "--", marker = "x", markersize = 5, label = "Predicted")
+
+plt.xticks(fontsize = 12)
+plt.yticks(fontsize = 12)
+
+plt.xlabel("t", fontsize = 14)
+plt.ylabel("y", fontsize = 14)
+
+plt.tight_layout()
+
+# Plot MSE
+# Convert list to numpy array
+loss_np = np.array(loss_list)
+
+# Plot
+fig = plt.figure()
+
+plt.plot(np.arange(0, len(loss_np), 1), loss_np, linewidth = 1.5)
+
+plt.xticks(fontsize = 12)
+plt.yticks(fontsize = 12)
+
+plt.xlabel("Epoch", fontsize = 14)
+plt.ylabel("Mean squared error E", fontsize = 14)
+
+plt.tight_layout()
+plt.show()
+```
 
 ## References
 [^1]: Christopher M. Bishop, *Pattern Recognition and Machine Learning*, 2006, Springer.
