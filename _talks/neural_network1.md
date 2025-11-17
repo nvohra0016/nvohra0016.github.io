@@ -38,6 +38,7 @@ In this case, the output $y$ is given by
 Or, more succinctly, using matrix vector notation, we rewrite \ref{eq:nn_ex1} as
 
 \begin{equation}
+\label{eq:nn_ex2}
     y = \sigma \left( {w_2}^T \sigma \left(w_1 x + b_1 \right) + b_2 \right)
 \end{equation}
 
@@ -70,17 +71,37 @@ We are now ready to implement our first neural network. We make use of the popul
 
 # 2. Example: Approximating a Cosine Wave
 
-We consider the measurements of a cosine wave $y = \cos{(2\pi x)}$ at $N = 50$ regularly spaced points $x_n$ as shown in Fig. 2. 
+We consider the measurements of a cosine wave $y = \cos{(2\pi t)}$ at $N = 50$ regularly spaced points $t_n$ as shown in Fig. 2. 
 
 <div align="center">
 <img src='/images/neural_network1_blog/data_sine.png' width='450' height='450'>
 </div>
 
 <div align = "center">
- Figure 2. Plot showing the measured data $y_n$ and input $x_n$ used to train the neural network. 
+ Figure 2. Plot showing the measured data $y_n$ as a function of the input $t_n$ used to train the neural network. 
 </div>
 
 <br>
+
+## 2.1. Implementation Details
+
+We use the activation function $\sigma(x) = \tanh{(x)}$. Since the data already lies in the range of the activation function, we do not scale the data any further (say so that it lies in [-1,1]). We also train the network for a maximum of $10000$ iterations, which we refer to as `epochs'. Finally, we consider a learning rate of $\eta = 0.01$ (concluded from a heuristic approach). 
+
+## 2.2. Results
+
+We plot the output of the network at different epochs in Fig. 3. It can easily be observed that the approximation \ref{eq:nn_ex2} `approaches' the measured values as the epochs increase (in the eyeball norm!). 
+
+<div align="center">
+<img src='/images/neural_network1_blog/data_sine.png' width='450' height='450'>
+</div>
+
+<div align = "center">
+ Figure 3. Illustration of the training process showing how the trained network approximates the measured data.
+</div>
+
+<br>
+
+
 
 ## Code 
 
