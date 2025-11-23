@@ -120,6 +120,8 @@ The final trained network at the end of $10000$ epochs, along with a plot of the
  Figure 4. Left: Plot showing the final results after $10000$ epochs. Right: Plot showing the MSE decreasing as the epochs increase.
 </div>
 
+<br>
+
 # 3. Moving Forward
 
 The above discussion shows how effectively a basic neural network may approximate given data, insofar as interpolation is concerned. However, when it comes to extrapolating (or predicting), the above algorithm does not perform well; see Fig. 5 (left) for an illustration when we feed $t > 1$ as an input to the trained network. It can be seen that the neural network does not predict accurate values for $t > 1$, for the simple reason that it does not learn the periodicity of the data. One way to solve this issue is by considering an activation function that has an inherent periodicity[^4].
