@@ -32,7 +32,7 @@ In this case, the output $y$ is given by
 
 \begin{equation}
 \label{eq:nn_ex1}
-    y = \sum_{i=1}^{4} \sigma\left( w_{2,i} \sigma\left(t w_{1,j} + b_{1,i} \right) + b_{2} \right).
+    y = \sum_{i=1}^{5} \sigma\left( w_{2,i} \sigma\left(t w_{1,j} + b_{1,i} \right) + b_{2} \right).
 \end{equation}
 
 Or, more succinctly, using matrix vector notation, we rewrite \ref{eq:nn_ex1} as
@@ -42,7 +42,7 @@ Or, more succinctly, using matrix vector notation, we rewrite \ref{eq:nn_ex1} as
     y = \sigma \left( {w_2}^T \sigma \left(w_1 t + b_1 \right) + b_2 \right)
 \end{equation}
 
-where $w_1 = [w_{1,1} \; w_{1,2} \; w_{1,3} \; w_{1,4} ]^T$ (similar definition for $b_1$ and $w_2$), and $\sigma$ is applied component wise to the vector $w_1 x + b_1$. 
+where $w_1 = [w_{1,1} \; w_{1,2} \; w_{1,3} \; w_{1,4} \; w_{1,5} ]^T$ (similar definition for $b_1$ and $w_2$), and $\sigma$ is applied component wise to the vector $w_1 x + b_1$. 
 
 Now let us assume that we are given $N \in \mathbb{Z}$ measurements of $y$, denoted by $\hat{y}_n, \; 1 \leq n \leq N$ for corresponding inputs (known) $t_n$. Consider the following problem statement. 
 
