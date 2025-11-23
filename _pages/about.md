@@ -30,7 +30,7 @@ I also maintain a [blog](https://nvohra0016.github.io/talks/) on my website wher
 
 
 - [Neural Networks I: First Network from Scratch](https://nvohra0016.github.io/talks/neural_network1/)  
-`Neural network` `forecasting` `Recusrive neural network` `Gradient descent`
+`neural network` `forecasting` `recusrive neural network` `gradient descent`
 - [Accelerating Convergence of Newton’s Method for Degenerate Functions
 ](https://nvohra0016.github.io/talks/newtons_method/)  
 `Newtons method` `Butler Volmer` `convergence`
