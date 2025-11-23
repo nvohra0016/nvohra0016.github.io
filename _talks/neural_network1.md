@@ -11,7 +11,7 @@ date: 2025-11-15
 
 # 1. Introduction
 
-Neural Networks may have been around since the 1940s[^1,2], but their importance and popularity has permeated the current era. Although a lot of articles and web pages talk about their applications, here we discuss the building blocks of neural networks. In particular, we are interested in their mathematical framework, and how they can be used in interpolation and forecasting. 
+Neural Networks may have been around since the 1940s[^1] [^2], but their importance and popularity has permeated the current era. Although a lot of articles and web pages talk about their applications, here we discuss the building blocks of neural networks. In particular, we are interested in their mathematical framework, and how they can be used in interpolation and forecasting. 
 
 ## 1.1. Components of a Neural Network
 A neural network may be viewed as a black-box solver that can be "trained" to take an input $x$ and returns an output $y$. For example, suppose we have measured the outside temperature at every hour during the day, but are interested in finding the temperature at $1:45$PM, or around noon the next day. A solution to this is to train a neural network on the hourly temperature values that have been measured to predict the value at any time (down to seconds, minutes etc.). 
