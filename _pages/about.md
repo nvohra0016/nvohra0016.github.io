@@ -28,6 +28,9 @@ I relocated to Gurugram, Haryana in 2024 where I currently stay with my wife. Ou
 
 I also maintain a [blog](https://nvohra0016.github.io/talks/) on my website where I write expository short articles to motivate existing or novel ideas. My recent posts are:
 
+
+- [Neural Networks I: First Network from Scratch](https://nvohra0016.github.io/talks/neural_network1/)
+`Neural network' `forecasting' `Recusrive neural network' `Gradient descent'
 - [Accelerating Convergence of Newton’s Method for Degenerate Functions
 ](https://nvohra0016.github.io/talks/newtons_method/)  
 `Newtons method` `Butler Volmer` `convergence`
