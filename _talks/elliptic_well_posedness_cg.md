@@ -64,10 +64,9 @@ A = \frac{1}{h}\begin{bmatrix} 1 & -1 & 0 & \dots & 0 & 0
 \\ \vdots & \vdots & \vdots & \ddots & \vdots & \vdots 
 \\ 0 & 0 & 0 & \dots & -1 & 1 
 \end{bmatrix},
+\;
+F = \begin{bmatrix} \frac{h}{2}f(x_0) \\ hf(x_1) \\ hf(x_2) \\ \vdots \\ hf(x_{M-1}) \\ \frac{h}{2}f(x_{M}) \end{bmatrix},
 $$
-\begin{equation}
-F = \begin{bmatrix} \frac{h}{2}f(x_0) & hf(x_1) & hf(x_2) & \dots & hf(x_{M-1}) & \frac{h}{2}f(x_{M}) \end{bmatrix}^T,
-\end{equation}
 
 where we have used the trapezoidal rule to approximate $\int_{0}^{1} f(x)\phi_j(x)dx$ to obtain $F$. Note that the matrix $A$ is symmetric and positive semi-definite. 
 
