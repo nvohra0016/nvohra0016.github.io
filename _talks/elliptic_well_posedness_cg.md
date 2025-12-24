@@ -19,7 +19,7 @@ We will build our own solver to solve the elliptic Poisson equation in $1D$
 
 \begin{equation}
 \label{eq:elliptic_eq}
-  -\frac{d^2 u}{dx^2} = f \text{ in } (0, 1), \; \frac{du}{dx}\left\rvert_{x = 0} = \frac{du}{dx}\left\rvert_{x=1} = 0,
+  -\frac{d^2 u}{dx^2} = f \text{ in } (0, 1), \; \frac{du}{dx}\rvert_{x = 0} = \frac{du}{dx}\rvert_{x=1} = 0,
 \end{equation}
 
 using the conjugate gradient method and we will show how convergence of our solver does not implicitly imply a physically meaningful solution (although an experienced player may have already guessed the issue at hand!).
@@ -37,7 +37,7 @@ We begin by discretizing~\ref{eq:elliptic_eq} using $P^1$ Lagrange finite elemen
 
 where $V_h$ is the subspace of piecewise-linear functions with basis functions given by
 
-\begin{equation}
+$$
 \phi_{j}(x) = \begin{cases}
 (x - x_{j-1})h^{-1}; & x \in (x_{j-1}, x_j)
 \\
@@ -47,7 +47,7 @@ where $V_h$ is the subspace of piecewise-linear functions with basis functions g
 \phi_0(x) = 1 - x h^{-1}, \; \forall x \in (0, x_1),
 \\
 \phi_M(x) = (x - x_{M-1})h^{-1}, \; \forall x \in (x_{M-1}, x_M).
-\end{equation}
+$$
 
 By considering $u_h = \sum_{j=0}^{M} U_j \phi_j$ and choosing $\phi = \phi_j$ in \ref{eq:variational_form} we obtain the discretized system
 
