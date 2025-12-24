@@ -26,6 +26,8 @@ using the conjugate gradient method and we will show how convergence of our solv
 
 # 2. Computational Solver
 
+We now provide the details of our computational solver. We consider the finite element method to discretize \ref{eq:elliptic_eq} in space and then use the conjugate gradient (CG) method to solve the resulting system of equations.
+
 ## 2.1. Numerical Discretization
 
 We begin by discretizing~\ref{eq:elliptic_eq} using $P^1$ Lagrange finite elements (standard Galerkin method). Let $\Omega = (0, 1)$ be divided into $M$ cells $(x_{j}, x_{j+1})$, $0 \leq j \leq M-1$, of uniform width denoted by $h = \frac{1}{M}$. We seek an approximation $u_h \approx u$, with $u_h \in V_h \subset H^1(0, 1)$ such that[^1] [^2]
