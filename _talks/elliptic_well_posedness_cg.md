@@ -98,10 +98,53 @@ For symmetric positive definite matrices, the convergence is guaranteed in $M+1$
 
 # 3. Results
 
-We use $M = 25$ cells, an initial guess of $U^{(0)} = 0$ (i.e. with all entries are $0$), and a prescribed tolerance of $\epsilon = 10^{-8}$. The external source $f$ is chosen as to represent a pulse function as shown in Fig. 1.
+We now use our solver on a given source function $f$. The source $f$ is chosen as to represent a pulse function and is shown in Fig. 1.
 
 
-The results are shown in Fig. 1.
+<div align="center">
+<img src='/images/convergence/source.png' width='450' height='450'>
+</div>
+
+<div align = "center">
+ Figure 1. Plot showing the source function $f$ used in the numerical example. The function takes value $0$ everywhere with $f(0.44) = f(0.52) = -1$ and $f(0.48) = 2$.
+</div>
+
+<br>
+
+We use $M = 25$ cells, an initial guess of ${u_h}^{(0)} = 0$, and a prescribed tolerance of $\epsilon = 10^{-8}$. The results are shown in Fig. 2. 
+
+<div align="center">
+<img src='/images/convergence/solution1.png' width='380' height='380'>
+<img src='/images/convergence/residual1.png' width='380' height='380'>
+</div>
+
+<div align = "center">
+Figure 2. Results showing the profile of $u_h$ (left) and the residual (right). 
+</div>
+
+<br>
+
+It can be observed that the solution $u_h$ is $0$ everywhere except at $x = 0.48$, where the source function takes the value $2$. Also, the total number of iterations taken by the CG method is $25$. 
+
+<br>
+
+**Robustness testing.** The results in Fig. 2. show the convergence of the CG method, and in fact, the solver does not struggle to converge. However, to test the robustness of our solver, we provide a different initial guess. We choose ${u_h}^{(0)} = 1$. If our computational method is indeed robust, then we should still hope for convergence to the same solution profile as shown in Fig. 2. regardless of the initial guess (reasonable intial guess!). The results with this new initial guess are shown in Fig. 3. 
+
+<div align="center">
+<img src='/images/convergence/solution2.png' width='380' height='380'>
+<img src='/images/convergence/residual2.png' width='380' height='380'>
+</div>
+
+<div align = "center">
+Figure 3. Results showing the profile of $u_h$ (left) and the residual (right) with the initial guess ${u_h}^{(0)} = 1$.
+</div>
+
+<br>
+
+The results in Fig. 3. show a similar profile for $u_h$ as in Fig. 2., but the values differ by $1$! That is, even though we have convergence in both scenarios, the values of the solution are not the same and differ almost by a value of $1$. 
+
+The reader may have guessed the reason for this behaviour, and now we make it clear. Even though we have convergence of our CG solver, the problem itself is not well-posed in the first place! That is, the solution to \ref{eq:elliptic_eq} with the given boundary conditions is not unique. It is easy to verify that if $u_h$ solves \ref{eq:variational_form}, then so does $u_h + c$, for any constant $c \in \mathbb{R}$. Thus, for different initial guesses the solver converges to different solutions, which rightfully differ by a constant ($1$ in this case). 
+
 
 
 ## References
