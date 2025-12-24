@@ -100,7 +100,7 @@ For symmetric positive definite matrices, the convergence is guaranteed in $M+1$
 
 # 3. Results
 
-We use $M = 25$ cells, an initial guess of $U^{(0)}_j = \mathcal{U}[-10, 10], \; 0 \leq j \leq M$, and a prescribed tolerance of $\epsilon = 10^{-8}$. The external source $f$ is chosen as to represent a pulse function as shown in Fig. 1.
+We use $M = 25$ cells, an initial guess of $U^{(0)} = 0$ (i.e. with all entries are $0$), and a prescribed tolerance of $\epsilon = 10^{-8}$. The external source $f$ is chosen as to represent a pulse function as shown in Fig. 1.
 
 
 The results are shown in Fig. 1.
