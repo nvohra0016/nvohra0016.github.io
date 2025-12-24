@@ -74,7 +74,7 @@ where we have used the trapezoidal rule to approximate $\int_{0}^{1} f(x)\phi_j(
 
 ## 2.2. Linear Solver
 
-The system \ref{eq:linear_system} is linear, symmetric, and can be solved using the conjugate gradient (CG) method [^3] [^1]: given $U^{(0)} \in \mathbb{R}^{M+1}$, we set $r^{(0)} = F - A U^{(0)}, \; p^{(0)} = r^{(0)}$, and we iterate as follows
+The system \ref{eq:linear_system} is linear, symmetric, and can be solved using the CG method [^3] [^1]: given $U^{(0)} \in \mathbb{R}^{M+1}$, we set $r^{(0)} = F - A U^{(0)}, \; p^{(0)} = r^{(0)}$, and iterate as follows
 
 $$
 \begin{cases}
