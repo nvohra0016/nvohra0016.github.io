@@ -77,14 +77,19 @@ The system \ref{eq:linear_system} is linear, symmetric, and can be solved using 
 
 \begin{equation}
   alpha^{(m-1)} = \frac{r^{(m-1)}^T r^{(m-1)}}{p^{(m-1)}^T A p^{(m-1)}},
-  \\
+\end{equation}
+\begin{equation}
   U^{(m)} = U^{(m-1)} + alpha^{(m-1)} r^{(m-1)}, 
-  \\
+\end{equation}
+\begin{equation}
   r^{(m)} = F - A U^{(m)},
-  \\
+\end{equation}
+\begin{equation}
   beta^{(m-1)} = \frac{r^{(m)}^T r^{(m)}}{r^{(m-1)}^T r^{(m-1)}},
-  \\
+\end{equation}
+\begin{equation}
   p^{(m)} = r^{(m)} + \beta^{(m-1)} p^{(m)}.
+\end{equation}
 \end{equation}
 
 For symmetric positive definite matrices, the convergence is guaranteed in $M+1$ iterations (ignoring the round-off error). We iterate the CG algorithm till a prescirbed tolerance $\epsilon$.
