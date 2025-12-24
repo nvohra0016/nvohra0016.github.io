@@ -58,13 +58,13 @@ By considering $u_h = \sum_{j=0}^{M} U_j \phi_j$ and choosing $\phi = \phi_j$ in
 
 where $U = [U_0 \; U_1 \; \dots \; U_{M}]^T \in \mathbb{R}^{M+1}$, and
 
-\begin{equation}
+$$
 A = \frac{1}{h}\begin{bmatrix} 1 & -1 & 0 & \dots & 0 & 0 
 \\ -1 & 2 & -1 & \dots & 0 & 0 
 \\ \vdots & \vdots & \vdots & \ddots & \vdots & \vdots 
 \\ 0 & 0 & 0 & \dots & -1 & 1 
 \end{bmatrix},
-\end{equation}
+$$
 \begin{equation}
 F = \begin{bmatrix} \frac{h}{2}f(x_0) & hf(x_1) & hf(x_2) & \dots & hf(x_{M-1}) & \frac{h}{2}f(x_{M}) \end{bmatrix}^T,
 \end{equation}
