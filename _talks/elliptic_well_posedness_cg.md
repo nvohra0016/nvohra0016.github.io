@@ -38,15 +38,15 @@ We begin by discretizing~\ref{eq:elliptic_eq} using $P^1$ Lagrange finite elemen
 where $V_h$ is the subspace of piecewise-linear functions with basis functions given by
 
 $$
-\phi_{j}(x) = \begin{cases}
+&&\phi_{j}(x) = \begin{cases}
 (x - x_{j-1})h^{-1}; & x \in (x_{j-1}, x_j)
 \\
 (x_{j+1} - x)h^{-1}; & x \in (x_j, x_{j+1})
 \end{cases}, 1 \leq j \leq M-1,
 \\
-\phi_0(x) = 1 - x h^{-1}, \; \forall x \in (0, x_1),
+&&\phi_0(x) = 1 - x h^{-1}, \; \forall x \in (0, x_1),
 \\
-\phi_M(x) = (x - x_{M-1})h^{-1}, \; \forall x \in (x_{M-1}, x_M).
+&&\phi_M(x) = (x - x_{M-1})h^{-1}, \; \forall x \in (x_{M-1}, x_M).
 $$
 
 By considering $u_h = \sum_{j=0}^{M} U_j \phi_j$ and choosing $\phi = \phi_j$ in \ref{eq:variational_form} we obtain the discretized system
@@ -92,9 +92,9 @@ $$
 
 For symmetric positive definite matrices, the convergence is guaranteed in $M+1$ iterations (ignoring the round-off error). We iterate the CG algorithm till a prescirbed tolerance $\epsilon$, i.e., we terminate the iteration when
 
-\begin{equation*}
-  \|(A U^{(m)} - F)^T (A U ^{(m)} - F)\|_2 \leq \epsilon.
-\end{equation*}
+\begin{equation}
+  \|(A U^{(m)} - F)^T (A U ^{(m)} - F)\|_2 \leq \epsilon. \nonumber
+\end{equation}
 
 # 3. Results
 
@@ -128,7 +128,7 @@ It can be observed that the solution $u_h$ is $0$ everywhere except at $x = 0.48
 
 <br>
 
-**Robustness testing.** The results in Fig. 2. show the convergence of the CG method, and in fact, the solver does not struggle to converge. However, to test the robustness of our solver, we provide a different initial guess. We choose ${u_h}^{(0)} = 1$. If our computational method is indeed robust, then we should still hope for convergence to the same solution profile as shown in Fig. 2. regardless of the initial guess (reasonable intial guess!). The results with this new initial guess are shown in Fig. 3. 
+**Robustness testing: changing the initial guess.** The results in Fig. 2. show the convergence of the CG method, and in fact, the solver does not struggle to converge. However, to test the robustness of our solver, we provide a different initial guess. We choose ${u_h}^{(0)} = 1$. If our computational method is indeed robust, then we should still hope for convergence to the same solution profile as shown in Fig. 2. regardless of the initial guess (reasonable intial guess!). The results with this new initial guess are shown in Fig. 3. 
 
 <div align="center">
 <img src='/images/convergence/solution2.png' width='380' height='380'>
