@@ -19,7 +19,7 @@ We will build our own solver to solve the elliptic Poisson equation in $1D$
 
 \begin{equation}
 \label{eq:elliptic_eq}
-  -\frac{d^2 u}{dx^2} = f \text{ in } (0, 1), \; \frac{du}{dx}\rvert_{x = 0} = \frac{du}{dx}\rvert_{x=1} = 0,
+  -\frac{d^2 u}{dx^2} = f \text{ in } (0, 1), \; \frac{du}{dx}\left\rvert_{x = 0} = \frac{du}{dx}\left\rvert_{x=1} = 0,
 \end{equation}
 
 using the conjugate gradient method and we will show how convergence of our solver does not implicitly imply a physically meaningful solution (although an experienced player may have already guessed the issue at hand!).
@@ -79,15 +79,20 @@ The system \ref{eq:linear_system} is linear, symmetric, and can be solved using 
 $$
 \alpha^{(m-1)} = \frac{ {r^{(m-1)}}^T r^{(m-1)} }{ {p^{(m-1)}}^T A p^{(m-1)} },
 $$
+
 $$  
 U^{(m)} = U^{(m-1)} + \alpha^{(m-1)} r^{(m-1)}, 
 $$
+
 $$  
 r^{(m)} = F - A U^{(m)},
 $$
+
 $$  
-beta^{(m-1)} = \frac{r^{(m)}^T r^{(m)}}{r^{(m-1)}^T r^{(m-1)}},
+\beta^{(m-1)} = \frac{ {r^{(m)}}^T r^{(m)} }{ {r^{(m-1)}}^T r^{(m-1)} },
 $$ 
+
+$$
 p^{(m)} = r^{(m)} + \beta^{(m-1)} p^{(m)}.
 $$
 
