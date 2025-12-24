@@ -38,18 +38,18 @@ We begin by discretizing~\ref{eq:elliptic_eq} using $P^1$ Lagrange finite elemen
 where $V_h$ is the subspace of piecewise-linear functions with basis functions given by
 
 $$
-&&\phi_{j}(x) = \begin{cases}
+\phi_{j}(x) = \begin{cases}
 (x - x_{j-1})h^{-1}; & x \in (x_{j-1}, x_j)
 \\
 (x_{j+1} - x)h^{-1}; & x \in (x_j, x_{j+1})
 \end{cases}, 1 \leq j \leq M-1,
 \\
-&&\phi_0(x) = 1 - x h^{-1}, \; \forall x \in (0, x_1),
+\phi_0(x) = 1 - x h^{-1}, \; \forall x \in (0, x_1),
 \\
-&&\phi_M(x) = (x - x_{M-1})h^{-1}, \; \forall x \in (x_{M-1}, x_M).
+\phi_M(x) = (x - x_{M-1})h^{-1}, \; \forall x \in (x_{M-1}, x_M).
 $$
 
-By considering $u_h = \sum_{j=0}^{M} U_j \phi_j$ and choosing $\phi = \phi_j$ in \ref{eq:variational_form} we obtain the discretized system
+By expanding $u_h = \sum_{j=0}^{M} U_j \phi_j$ and choosing $\phi = \phi_j$ in \ref{eq:variational_form} we obtain the discretized system
 
 \begin{equation}
 \label{eq:linear_system}
@@ -70,7 +70,7 @@ A = \frac{1}{h}\begin{bmatrix} 1 & -1 & 0 & \dots & 0 & 0
 F = \begin{bmatrix} \frac{h}{2}f(x_0) \\ hf(x_1) \\ hf(x_2) \\ \vdots \\ hf(x_{M-1}) \\ \frac{h}{2}f(x_{M}) \end{bmatrix},
 $$
 
-where we have used the trapezoidal rule to approximate $\int_{0}^{1} f(x)\phi_j(x)dx$ to obtain $F$. Note that the matrix $A$ is symmetric and positive semi-definite. 
+where we have used the trapezoidal rule to approximate $\int_{0}^{1} f(x)\phi_j(x)dx$ to obtain $F$. Note that the matrix $A$ is symmetric positive semi-definite. 
 
 ## 2.2. Linear Solver
 
@@ -143,7 +143,12 @@ Figure 3. Results showing the profile of $u_h$ (left) and the residual (right) w
 
 The results in Fig. 3. show a similar profile for $u_h$ as in Fig. 2., but the values differ by $1$! That is, even though we have convergence in both scenarios, the values of the solution are not the same and differ almost by a value of $1$. 
 
-The reader may have guessed the reason for this behaviour, and now we make it clear. Even though we have convergence of our CG solver, the problem itself is not well-posed in the first place! That is, the solution to \ref{eq:elliptic_eq} with the given boundary conditions is not unique. It is easy to verify that if $u_h$ solves \ref{eq:variational_form}, then so does $u_h + c$, for any constant $c \in \mathbb{R}$. Thus, for different initial guesses the solver converges to different solutions, which rightfully differ by a constant ($1$ in this case). 
+The reader may have guessed the reason for this behaviour, and now we make it clear. Even though we have convergence of our CG solver, the problem itself is *not well-posed* in the first place! That is, the solution to \ref{eq:elliptic_eq} with the given boundary conditions is *not unique*. It is easy to verify that if $u_h$ solves \ref{eq:variational_form}, then so does $u_h + c$, for any constant $c \in \mathbb{R}$. Thus, for different initial guesses the solver converges to different solutions, which rightfully differ by a constant ($1$ in this case). If one probes further (or already did when setting up the system), it can be verified that the matrix $A$ is singular (and hence not positive definite, but positive semi-definite).
+
+This little example highlights the importance of due diligence when it comes to mathematical equations. One may have a convergent solution, but the solution may not make physical sense if prior information regarding the well-posedness of the system is not known.
+
+# Further Reading
+
 
 
 
