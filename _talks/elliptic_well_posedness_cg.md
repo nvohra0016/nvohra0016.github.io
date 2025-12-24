@@ -58,7 +58,7 @@ By expanding $u_h = \sum_{j=0}^{M} U_j \phi_j$ and choosing $\phi = \phi_j$ in \
   AU = F,
 \end{equation}
 
-where $U = [U_0 \; U_1 \; \dots \; U_{M}]^T \in \mathbb{R}^{M+1}$, and $A \in \mathbb{R}^{(M+1)\times (M+1)}, $F \in \mathbb{R}^{M+1}$ are given by
+where $U = [U_0 \; U_1 \; \dots \; U_{M}]^T \in \mathbb{R}^{M+1}$, and $A \in \mathbb{R}^{(M+1)\times (M+1)}$, $F \in \mathbb{R}^{M+1}$ are given by
 
 $$
 A = \frac{1}{h}\begin{bmatrix} 1 & -1 & 0 & \dots & 0 & 0 
