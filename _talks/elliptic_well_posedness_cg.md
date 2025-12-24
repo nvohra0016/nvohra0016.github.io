@@ -37,17 +37,17 @@ We begin by discretizing~\ref{eq:elliptic_eq} using $P^1$ Lagrange finite elemen
 
 where $V_h$ is the subspace of piecewise-linear functions with basis functions given by
 
-$$
-\phi_{j}(x) = \begin{cases}
+\begin{align*}
+&\phi_{j}(x) = \begin{cases}
 (x - x_{j-1})h^{-1}; & x \in (x_{j-1}, x_j)
 \\
 (x_{j+1} - x)h^{-1}; & x \in (x_j, x_{j+1})
 \end{cases}, 1 \leq j \leq M-1,
 \\
-\phi_0(x) = 1 - x h^{-1}, \; \forall x \in (0, x_1),
+&\phi_0(x) = 1 - x h^{-1}, \; \forall x \in (0, x_1),
 \\
-\phi_M(x) = (x - x_{M-1})h^{-1}, \; \forall x \in (x_{M-1}, x_M).
-$$
+&\phi_M(x) = (x - x_{M-1})h^{-1}, \; \forall x \in (x_{M-1}, x_M).
+\end{align*}
 
 By considering $u_h = \sum_{j=0}^{M} U_j \phi_j$ and choosing $\phi = \phi_j$ in \ref{eq:variational_form} we obtain the discretized system
 
