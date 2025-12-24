@@ -56,12 +56,14 @@ By considering $u_h = \sum_{j=0}^{M} U_j \phi_j$ and choosing $\phi = \phi_j$ in
   AU = F,
 \end{equation}
 
-where $U = [U_0 \; U_1 \; \dots \; U_{M}]^T \in \mathbb{R}^{M+1}$, and
+where $U = [U_0 \; U_1 \; \dots \; U_{M}]^T \in \mathbb{R}^{M+1}$, and $A \in \mathbb{R}^{(M+1)\times (M+1)}, $F \in \mathbb{R}^{M+1}$ are given by
 
 $$
 A = \frac{1}{h}\begin{bmatrix} 1 & -1 & 0 & \dots & 0 & 0 
 \\ -1 & 2 & -1 & \dots & 0 & 0 
+\\ 0 & -1 & 2 & \dots & 0 & 0
 \\ \vdots & \vdots & \vdots & \ddots & \vdots & \vdots 
+\\ 0 & 0 & 0 & \dots & 2 & -1
 \\ 0 & 0 & 0 & \dots & -1 & 1 
 \end{bmatrix},
 \;
@@ -75,22 +77,19 @@ where we have used the trapezoidal rule to approximate $\int_{0}^{1} f(x)\phi_j(
 The system \ref{eq:linear_system} is linear, symmetric, and can be solved using the conjugate gradient (CG) method [^3] [^1]: given $U^{(0)} \in \mathbb{R}^{M+1}$, we set $r^{(0)} = F - A U^{(0)}, \; p^{(0)} = r^{(0)}$, and we iterate as follows
 
 $$
-alpha^{(m-1)} = \frac{ {r^{(m-1)}}^T r^{(m-1)} }{ {p^{(m-1)}}^T A p^{(m-1)} },
+\alpha^{(m-1)} = \frac{ {r^{(m-1)}}^T r^{(m-1)} }{ {p^{(m-1)}}^T A p^{(m-1)} },
 $$
-\end{equation}
-\begin{equation}
-  U^{(m)} = U^{(m-1)} + \alpha^{(m-1)} r^{(m-1)}, 
-\end{equation}
-\begin{equation}
-  r^{(m)} = F - A U^{(m)},
-\end{equation}
-\begin{equation}
-  beta^{(m-1)} = \frac{r^{(m)}^T r^{(m)}}{r^{(m-1)}^T r^{(m-1)}},
-\end{equation}
-\begin{equation}
-  p^{(m)} = r^{(m)} + \beta^{(m-1)} p^{(m)}.
-\end{equation}
-\end{equation}
+$$  
+U^{(m)} = U^{(m-1)} + \alpha^{(m-1)} r^{(m-1)}, 
+$$
+$$  
+r^{(m)} = F - A U^{(m)},
+$$
+$$  
+beta^{(m-1)} = \frac{r^{(m)}^T r^{(m)}}{r^{(m-1)}^T r^{(m-1)}},
+$$ 
+p^{(m)} = r^{(m)} + \beta^{(m-1)} p^{(m)}.
+$$
 
 For symmetric positive definite matrices, the convergence is guaranteed in $M+1$ iterations (ignoring the round-off error). We iterate the CG algorithm till a prescirbed tolerance $\epsilon$.
 
