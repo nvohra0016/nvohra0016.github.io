@@ -23,7 +23,7 @@ Black-box solvers are systems that are best viewed as versatile solvers that dea
 
 <br>
 
-The topic of this blog post is to exemplify the importance of verification and validation testing when using such black-box solvers, or any solver for that matter. I have personally come across an inordinate amount of reserach articles that present a new solver or numerical scheme, but do not verify or validate their scheme with known solutions, do a thorough analysis of the system, or test for robustness of the system. In such cases, even though you may have convergence of your solver, it is hard to tell if your solution has converged to the 'right solution' (if there is a 'right solution' in the first place!).
+The topic of this blog post is to exemplify the importance of verification, validation, and robustness testing when using such black-box solvers, or any solver for that matter. I have personally come across an inordinate amount of reserach articles that present a new solver or numerical scheme, but do not verify or validate their scheme with known solutions, do a thorough analysis of the system, or test for robustness of the system. In such cases, even though you may have convergence of your solver, it is hard to tell if your solution has converged to the 'right solution' (if there is a 'right solution' in the first place!).
 
 We will build our own solver to solve the elliptic Poisson equation in $1D$
 
