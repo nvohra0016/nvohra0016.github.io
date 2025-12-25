@@ -69,6 +69,7 @@ By expanding $u_h = \sum_{j=0}^{M} U_j \phi_j$ and choosing $\phi = \phi_j$ in \
 where $U = [U_0 \; U_1 \; \dots \; U_{M}]^T \in \mathbb{R}^{M+1}$, and $A \in \mathbb{R}^{(M+1)\times (M+1)}$, $F \in \mathbb{R}^{M+1}$ are given by
 
 $$
+\label{eq:discretized_system}
 A = \frac{1}{h}\begin{bmatrix} 1 & -1 & 0 & \dots & 0 & 0 
 \\ -1 & 2 & -1 & \dots & 0 & 0 
 \\ 0 & -1 & 2 & \dots & 0 & 0
@@ -154,6 +155,8 @@ The results in Fig. 3. show a similar profile for $u_h$ as in Fig. 2., but the v
 The reader may have guessed the reason for this behaviour, and now we make it clear. Even though we have convergence of our CG solver, the problem itself is *not well-posed* in the first place! That is, the solution to \ref{eq:elliptic_eq} with the given boundary conditions is *not unique*. It is easy to verify that if $u_h$ solves \ref{eq:variational_form}, then so does $u_h + c$, for any constant $c \in \mathbb{R}$. Thus, for different initial guesses the solver converges to different solutions, which rightfully differ by a constant ($1$ in this case). If one probes further (or already did when setting up the system), it can be verified that the matrix $A$ is singular (and hence not positive definite, but positive semi-definite). Finally, if instead of Neumann boundary equation we would have homogeneous Dirichlet boundary conditions $u(0) = u(1) = 0$, then we would not have run into this issue since the problem would have been well-posed.
 
 This little example highlights the importance of due diligence when it comes to mathematical equations. One may have a convergent solution, but the solution may not make physical sense if prior information regarding the well-posedness of the system is not known. Moreover, in this case, a grid convergence study would have not helped either since for an initial guess the solution would converge to a solution with order $O(h)$.
+
+**Note on the choice of quadrature.** Note that when computing $\int_{0}^{1} f \phi_j $ in \ref{eq:discretized_system} we make use of the trapezoidal rule. In the example, the function $f$ is non-zero only on a set of measure $0$ and hence the Lebesgue integral $\int_{0}^{1} f \phi_j = 0$. Thus the trapezoidal rule is a poor approximation of this integral. However, we could have obtained the same results as above by using a piecewise-constant $f$ which takes the values $2$ and $-1$ on itervals rather than at points, and for which the trapezoidal rule would have been a better approximation, and we would have obtained the same results as above.
 
 # Further Reading and Thoughts
 
