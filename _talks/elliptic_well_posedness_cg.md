@@ -136,8 +136,6 @@ Figure 3. Results showing the profile of $u_h$ (left) and the residual (right).
 
 It can be observed that the solution $u_h$ is $0$ everywhere except at $x = 0.48$, where the source function takes the value $2$. Also, the total number of iterations taken by the CG method is $25$. 
 
-<br>
-
 **Robustness testing: changing the initial guess.** The results in Fig. 2. show the convergence of the CG method, and in fact, the solver does not struggle to converge. However, to test the robustness of our solver, we provide a different initial guess. We choose ${u_h}^{(0)} = 1$. If our computational method is indeed robust, then we should still hope for convergence to the same solution profile as shown in Fig. 2. regardless of the initial guess (reasonable intial guess!). The results with this new initial guess are shown in Fig. 4. 
 
 <div align="center">
