@@ -26,9 +26,10 @@ I relocated to Gurugram, Haryana in 2024 where I currently stay with my wife. Ou
 
 ## Technical blog:
 
-I also maintain a [blog](https://nvohra0016.github.io/talks/) on my website where I write expository short articles to motivate existing or novel ideas. My recent posts are:
+I also maintain a [blog](https://nvohra0016.github.io/talks/) on my website where I write expository short articles to motivate existing or novel ideas. My fundamental target is always clarity of exosition, reproducibility of results, and bridging theory and application. My recent posts are:
 
-
+- [Convergence of Solvers and the Importance of Well-Posedness](https://nvohra0016.github.io/talks/elliptic_well_posedness_cg/)  
+`well posedness` `convergence` `conjugate gradient` `black-box` `elliptic equation`
 - [Neural Networks I: First Network from Scratch](https://nvohra0016.github.io/talks/neural_network1/)  
 `neural network` `forecasting` `recusrive neural network` `gradient descent`
 - [Accelerating Convergence of Newton’s Method for Degenerate Functions
@@ -37,4 +38,4 @@ I also maintain a [blog](https://nvohra0016.github.io/talks/) on my website wher
 - [An Introduction to Kalman Filters Using the Heat Equation](https://nvohra0016.github.io/talks/kalman_filter/)  
 `Kalman filter`, `heat equation`, `Monte Carlo`, `ODE`
 
-###### Last updated: November 2025
+###### Last updated: December 2025
