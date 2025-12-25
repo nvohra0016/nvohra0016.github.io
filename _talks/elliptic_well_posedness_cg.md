@@ -14,7 +14,7 @@ date: 2025-12-23
 Black-box solvers are systems that are best viewed as versatile solvers that deal with systems of equations without getting into too much mathetmatical detail. They are mostly closed-source solvers that take in equations or scenarios as inputs and give out the solution as an output. For example, you may have a finite element solver that solves the steady-state heat equation depending on the physical parameters (like diffusivity) and the boundary conditions that you input, along with a mesh resolution that you also provide; see Fig. 1. for a diagram showing this process. But to ensure that the solution is accurate on whatever scenario you input, it is important do convergence studies with known manufactured solutions, or at least fine-grid solutions, and most importantly, a test of robustness of the scheme.
 
 <div align="center">
-<img src='/images/convergence/black_box_solver_diagram.png' width='600' height='600'>
+<img src='/images/convergence/black_box_solver_diagram.png' width='650' height='650'>
 </div>
 
 <div align = "center">
