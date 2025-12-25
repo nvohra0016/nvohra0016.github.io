@@ -103,7 +103,7 @@ $$
 For symmetric positive definite matrices, the convergence is guaranteed in $M+1$ iterations (ignoring the round-off error). We iterate the CG algorithm till a prescirbed tolerance $\epsilon$, i.e., we terminate the iteration when
 
 \begin{equation}
-  \lVert (A U^{(m)} - F)^T (A U ^{(m)} - F) \rVert|_2 \leq \epsilon. \nonumber
+  \lVert (A U^{(m)} - F)^T (A U ^{(m)} - F) \rVert_2 \leq \epsilon. \nonumber
 \end{equation}
 
 # 3. Results
