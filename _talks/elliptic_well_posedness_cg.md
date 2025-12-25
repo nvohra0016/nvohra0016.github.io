@@ -11,9 +11,19 @@ date: 2025-12-23
 
 # 1. Introduction
 
-Black-box solvers are ............ They are mostly closed-source solvers that take in equations or scenarios as inputs and give out the solution as an output. For example, you may have a finite element solver that solves the steady-state heat equation depending on the physical parameters (like diffusivity) and the boundary conditions that you input, along with a mesh resolution that you also provide. But to ensure that the solution is accurate on whatever scenario you input, it is important do convergence studies with known manufactured solutions, or at least fine-grid solutions. 
+Black-box solvers are systems that are best viewed as versatile solvers that deal with systems of equations without getting into too much mathetmatical detail. They are mostly closed-source solvers that take in equations or scenarios as inputs and give out the solution as an output. For example, you may have a finite element solver that solves the steady-state heat equation depending on the physical parameters (like diffusivity) and the boundary conditions that you input, along with a mesh resolution that you also provide; see Fig. 1. for a diagram showing this process. But to ensure that the solution is accurate on whatever scenario you input, it is important do convergence studies with known manufactured solutions, or at least fine-grid solutions, and most importantly, a test of robustness of the scheme.
 
-The topic of this blog post is to precisely mention the importance of verification and validation testing when using such black-box solvers, or any solver for that matter. I have personally come across an inordinate amount of reserach papers that present a new solver or numerical scheme, but do not verify or validate their scheme with known solutions. In such cases, even though you may have convergence of your solver, it is hard to tell if your solution has converged to the 'right solution' (if there is a 'right solution' in the first place!).
+<div align="center">
+<img src='/images/convergence/black_box_solver_diagram.png' width='450' height='450'>
+</div>
+
+<div align = "center">
+ Figure 1. An illustration of a black box solver that solves the steady state heat equation. 
+</div>
+
+<br>
+
+The topic of this blog post is to exemplify the importance of verification and validation testing when using such black-box solvers, or any solver for that matter. I have personally come across an inordinate amount of reserach articles that present a new solver or numerical scheme, but do not verify or validate their scheme with known solutions, do a thorough analysis of the system, or test for robustness of the system. In such cases, even though you may have convergence of your solver, it is hard to tell if your solution has converged to the 'right solution' (if there is a 'right solution' in the first place!).
 
 We will build our own solver to solve the elliptic Poisson equation in $1D$
 
@@ -98,7 +108,7 @@ For symmetric positive definite matrices, the convergence is guaranteed in $M+1$
 
 # 3. Results
 
-We now use our solver on a given source function $f$. The source $f$ is chosen as to represent a pulse function and is shown in Fig. 1.
+We now use our solver on a given source function $f$. The source $f$ is chosen as to represent a pulse function and is shown in Fig. 2.
 
 
 <div align="center">
@@ -106,12 +116,12 @@ We now use our solver on a given source function $f$. The source $f$ is chosen a
 </div>
 
 <div align = "center">
- Figure 1. Plot showing the source function $f$ used in the numerical example. The function takes value $0$ everywhere with $f(0.44) = f(0.52) = -1$ and $f(0.48) = 2$.
+ Figure 2. Plot showing the source function $f$ used in the numerical example. The function takes value $0$ everywhere with $f(0.44) = f(0.52) = -1$ and $f(0.48) = 2$.
 </div>
 
 <br>
 
-We use $M = 25$ cells, an initial guess of ${u_h}^{(0)} = 0$, and a prescribed tolerance of $\epsilon = 10^{-8}$. The results are shown in Fig. 2. 
+We use $M = 25$ cells, an initial guess of ${u_h}^{(0)} = 0$, and a prescribed tolerance of $\epsilon = 10^{-8}$. The results are shown in Fig. 3. 
 
 <div align="center">
 <img src='/images/convergence/solution1.png' width='380' height='380'>
@@ -119,7 +129,7 @@ We use $M = 25$ cells, an initial guess of ${u_h}^{(0)} = 0$, and a prescribed t
 </div>
 
 <div align = "center">
-Figure 2. Results showing the profile of $u_h$ (left) and the residual (right). 
+Figure 3. Results showing the profile of $u_h$ (left) and the residual (right). 
 </div>
 
 <br>
@@ -128,7 +138,7 @@ It can be observed that the solution $u_h$ is $0$ everywhere except at $x = 0.48
 
 <br>
 
-**Robustness testing: changing the initial guess.** The results in Fig. 2. show the convergence of the CG method, and in fact, the solver does not struggle to converge. However, to test the robustness of our solver, we provide a different initial guess. We choose ${u_h}^{(0)} = 1$. If our computational method is indeed robust, then we should still hope for convergence to the same solution profile as shown in Fig. 2. regardless of the initial guess (reasonable intial guess!). The results with this new initial guess are shown in Fig. 3. 
+**Robustness testing: changing the initial guess.** The results in Fig. 2. show the convergence of the CG method, and in fact, the solver does not struggle to converge. However, to test the robustness of our solver, we provide a different initial guess. We choose ${u_h}^{(0)} = 1$. If our computational method is indeed robust, then we should still hope for convergence to the same solution profile as shown in Fig. 2. regardless of the initial guess (reasonable intial guess!). The results with this new initial guess are shown in Fig. 4. 
 
 <div align="center">
 <img src='/images/convergence/solution2.png' width='380' height='380'>
@@ -136,18 +146,40 @@ It can be observed that the solution $u_h$ is $0$ everywhere except at $x = 0.48
 </div>
 
 <div align = "center">
-Figure 3. Results showing the profile of $u_h$ (left) and the residual (right) with the initial guess ${u_h}^{(0)} = 1$.
+Figure 4. Results showing the profile of $u_h$ (left) and the residual (right) with the initial guess ${u_h}^{(0)} = 1$.
 </div>
 
 <br>
 
 The results in Fig. 3. show a similar profile for $u_h$ as in Fig. 2., but the values differ by $1$! That is, even though we have convergence in both scenarios, the values of the solution are not the same and differ almost by a value of $1$. 
 
-The reader may have guessed the reason for this behaviour, and now we make it clear. Even though we have convergence of our CG solver, the problem itself is *not well-posed* in the first place! That is, the solution to \ref{eq:elliptic_eq} with the given boundary conditions is *not unique*. It is easy to verify that if $u_h$ solves \ref{eq:variational_form}, then so does $u_h + c$, for any constant $c \in \mathbb{R}$. Thus, for different initial guesses the solver converges to different solutions, which rightfully differ by a constant ($1$ in this case). If one probes further (or already did when setting up the system), it can be verified that the matrix $A$ is singular (and hence not positive definite, but positive semi-definite).
+The reader may have guessed the reason for this behaviour, and now we make it clear. Even though we have convergence of our CG solver, the problem itself is *not well-posed* in the first place! That is, the solution to \ref{eq:elliptic_eq} with the given boundary conditions is *not unique*. It is easy to verify that if $u_h$ solves \ref{eq:variational_form}, then so does $u_h + c$, for any constant $c \in \mathbb{R}$. Thus, for different initial guesses the solver converges to different solutions, which rightfully differ by a constant ($1$ in this case). If one probes further (or already did when setting up the system), it can be verified that the matrix $A$ is singular (and hence not positive definite, but positive semi-definite). Finally, if instead of Neumann boundary equation we would have homogeneous Dirichlet boundary conditions $u(0) = u(1) = 0$, then we would not have run into this issue since the problem would have been well-posed.
 
-This little example highlights the importance of due diligence when it comes to mathematical equations. One may have a convergent solution, but the solution may not make physical sense if prior information regarding the well-posedness of the system is not known.
+This little example highlights the importance of due diligence when it comes to mathematical equations. One may have a convergent solution, but the solution may not make physical sense if prior information regarding the well-posedness of the system is not known. Moreover, in this case, a grid convergence study would have not helped either since for an initial guess the solution would converge to a solution with order $O(h)$.
 
-# Further Reading
+# Further Reading and Thoughts
+
+The issue of well-posedness becomes highly nontrivial for coupled multiphysics systems. For example, we may have a system of equations of the form 
+
+\begin{equation}
+\label{eq:multiphysics_coupled}
+ L_1(u, v) = 0, \; L_2(u, v) = 0,
+\end{equation}
+
+where $L_1, L_2$ are two differential operators. For systems like \ref{eq:multiphysics_coupled} an iterative approach of the form: given ${u_h}^{(m-1)}, {v_h}^{(m-1)}$, first solve for ${u_h}^{(m)}$ and then ${v_h}^{(m)}$ with an algorithm of the form
+
+$$
+\begin{cases}
+  {L_1}_h({u_h}^{(m)}, {v_h}^{(m-1)}) = 0
+  \\
+  {L_2}_h ({u_h}^{(m)}, {v_h}^{(m)}) = 0
+\end{cases},
+$$
+
+where ${L_1}_h$ and ${L_2}_h$ are appropriate approximations of $L_1$ and $L_2$, respectively.
+Such an iterative approach may converge, but it is important do a thorough analysis of the well-posedness of the system beforehand to avoid any spurious non-physical results as explained above.
+
+It is well-known that the CG method converges for non-singular systems; see [^4] [^5] for a more thorough analysis.
 
 
 
@@ -156,3 +188,5 @@ This little example highlights the importance of due diligence when it comes to 
 [^1]: Alexandre Ern, Jean-Luc Guermond, *Theory and Practice of Finite Elements*, 2004, Springer.
 [^2]: Claes Johnson, *Numerical solutions of partial differential equations by the finite element method*, 1987, Cambridge University Press.
 [^3]: C. T. Kelley, *Iterative Methods for Linear and Nonlinear Equations*, 1995, Society for Industrial and Applied Mathematics.
+[^4]: Jonathan R Shewchuk, *An Introduction to the Conjugate Gradient Method Without the Agonizing Pain*, 1994, Carnegie Mellon University. 
+[^5]: Hayami, Ken, *Convergence of the Conjugate Gradient Method on Singular Systems*, 2018,  arXiv:1809.00793.
