@@ -1,7 +1,7 @@
 ---
 title: "Convergence of Solvers and the Importance of Well-Posedness"
 collection: talks
-excerpt: "We solve the Poisson equation and examine the implications of convergence of a conjugate gradient based solver."
+excerpt: "We solve the Poisson equation by setting up a black-box solver and examine the implications of convergence for a particular scenario."
 date: 2025-12-23
 ---
 
