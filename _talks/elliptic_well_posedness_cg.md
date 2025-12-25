@@ -40,7 +40,7 @@ We now provide the details of our computational solver. We consider the finite e
 
 ## 2.1. Numerical Discretization
 
-We begin by discretizing~\ref{eq:elliptic_eq} using $P^1$ Lagrange finite elements (standard Galerkin method). Let $\Omega = (0, 1)$ be divided into $M$ cells $(x_{j}, x_{j+1})$, $0 \leq j \leq M-1$, of uniform width denoted by $h = \frac{1}{M}$. We seek an approximation $u_h \approx u$, with $u_h \in V_h \subset H^1(0, 1)$ such that[^1] [^2]
+We begin by discretizing \ref{eq:elliptic_eq} using $P^1$ Lagrange finite elements (standard Galerkin method). Let $\Omega = (0, 1)$ be divided into $M$ cells $(x_{j}, x_{j+1})$, $0 \leq j \leq M-1$, of uniform width denoted by $h = \frac{1}{M}$. We seek an approximation $u_h \approx u$, with $u_h \in V_h \subset H^1(0, 1)$ such that[^1] [^2]
 
 \begin{equation}
 \label{eq:variational_form}
@@ -103,7 +103,7 @@ $$
 For symmetric positive definite matrices, the convergence is guaranteed in $M+1$ iterations (ignoring the round-off error). We iterate the CG algorithm till a prescirbed tolerance $\epsilon$, i.e., we terminate the iteration when
 
 \begin{equation}
-  \|(A U^{(m)} - F)^T (A U ^{(m)} - F)\|_2 \leq \epsilon. \nonumber
+  \lVert (A U^{(m)} - F)^T (A U ^{(m)} - F) \rVert|_2 \leq \epsilon. \nonumber
 \end{equation}
 
 # 3. Results
