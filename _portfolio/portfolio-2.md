@@ -1,101 +1,165 @@
 ---
-title: "Thermo-Hydro-Mechanical Analysis of Permafrost."
-excerpt: "Mathematical analysis of the coupling governing subsidence of thawing permafrost by using Biot's poroelasticity equations and the Stefan problem.<br/><img src='/images/SIAM_news_HM_ex1.png'  width='700' height='700'>"
+title: "Profitability of Batteries Performing Arbitrage in Wholesale Markets with Cyclic Degradation"
+excerpt: "Linear approximation of cyclic degradation of batteries and their use in estimating arbitrage profits.<br/><img src='/images/3_bus_system.png'  width='600' height='600'>"
 collection: portfolio
 ---
 
+# 1. Battery Energy Storage Systems Model
 
-To study the land subsidence caused by thawing permafrost, one needs to analyze the coupling of the different mechanisms involved. Namely, these are deformation, flow, and energy. Analyzing these together, however, leads to numerically expensive complications and hence they must be studied individually and then coupled in a simpler fashion; see our brief overview article published in SIAM News Online here: [Modeling Permafrost: Soil, Ice, and Some Really Hard Mathematics](https://sinews.siam.org/Details-Page/modeling-permafrost-soil-ice-and-some-really-hard-mathematics)
+Battery Energy Storage Systems (BESS) hold an important role in various avenues of power systems, from complementing renewable energy sources (such as Solar) to participating in electricity markets for arbitrage and ancillary services. The basic set of linearized equations for BESS are as follows[^1]
+
+\begin{equation}
+\label{eq:SOC}
+SOC_n = SOC_{n-1} + \tau\left(\eta P^c_n - \frac{1}{\eta}P^d_n\right)
+\end{equation}
+
+where $SOC_n$ [MWh] is the state of charge at time step $n$, $P^c_n, P^d_n$ [MW] are the charge and discharge rates of the battery, respectively, $\eta$ [-] is the round trip efficiency, and $\tau$ [h] is the time step. The variables are further bounded $\forall n$
+
+\begin{equation}
+\label{eq:BESS_constraints}
+P_{min} \leq P^c_n, \; P^d_n \leq P_{max}, \; 0 < SOC_{min} \leq SOC_n \leq SOC_{max} < E_B,
+\end{equation}
+
+where $E_B$ [MWh] is the capacity of the battery.
+
+## 1.1 Example: Arbitrage in wholesale electricity market
+
+We consider a basic scenario where a given battery performs arbitrage in the wholesale electricity markets: that is, it charges up when the electricity prices are low and discharges when the prices are high, thereby marking a profit. If $\theta_n$ [Rs/MWh] is the wholesale market price at time step $n$, then we wish to find the optimial solution to 
+
+\begin{equation}
+\label{eq:objective}
+\text{minimize} \sum_{n} \left(P^c_n \theta_n - P^d_n \theta_n \right) \tau
+\end{equation}
+
+given by eq. \ref{eq:SOC}-\ref{eq:BESS_constraints}.
+
+We assume perfect foresight of the market prices, i.e., we assume prior knowledge of the wholesale market prices over the entire day at any given time. 
+
+We consider a $1$[MWh] battery with maximum charging/discharging rates $1$ [MW], and a round trip efficiency of $\eta = 0.9$. We take 15 [min] real time market prices (RTM) from IEX[^2] for the randomly chosen day of 15th February, 2025; see Fig. 1 below.
 
 <div align="center">
-<img src='/images/thaw_cartoon5.png' width='500' height='500'>
+<img src='/images/BESS_project_images/wholesaleprices_RTM_15022025.png' width='420' height='420'>
 </div>
 <div align="center">
-Simulation created by the author with deal.ii and Blender.
+Figure 1. Real time market prices used in the simulation.
 </div>
-## Thermo-hydro-mechanical coupling
 
-To couple flow [H], deformation[M], and energy [T], we need to consider thermo-hydro-mechanical models that take into account phase change [T] as well.
+<br>
+
+**Results and discusion.** The results are shown in Fig. 2 below.
 
 <div align="center">
-<img src='/images/ResearchSketchDiagram1.png' width='500' height='500'>
+<img src='/images/BESS_project_images/example1_SOC.png' width='380' height='380'>
+<img src='/images/BESS_project_images/example1_Pd_Pc.png' width='380' height='380'>
 </div>
-
-## [HM]: Biot's poroelasticity equations:
-Flow [H] and deformation [M] can be modeled using Biot's poroelasticity equations given below [1], [2]
-
 <div align="center">
-<img src='/images/Biot_system.png' width='500' height='300'>
+Figure 2. State of charge (left) and charge/discharge rates (right) for the numerical example. 
 </div>
 
-### Example: 
+<br>
 
-**Terzaghi's Problem; 1D soil compaction**: Consider the compaction ​of a column of saturated soil with impermeable walls and bottom but with a free draining top (see figure on right for boundary conditions). When an external unit stress is applied on the top, the column of soil consolidates. The resulting pressure distribution can be solved for analytically using Biot's equations. The simulation below shows the compaction of a column of soil using a sinusoidal force applied at the top of the of the column. Starting from the top left, the 4 sub-simulations show, in a clockwise order,  the domain deformation, pore pressure, y-displacement and the x-displacement. 
+The battery follows two complete cycles following the peak electricity prices during the peak demand periods $t \approx 6$[h] and $t \approx 18$[h]. The battery first charges around $t \approx 4$[h] when the prices are at the lowest and discharges when the prices are high around $t \approx 8$[h]. Later in the day, the battery charges around $t \approx 13$[h] and discharges when the prices are highest around $t \approx 20$[h]. In this example, there are also two small charging/discharging periods following the local maximums of the prices around $t \approx 9$[h] and $t \approx 17$[h]. 
 
-[![Soil consolidation](/images/soil_consolidation_video_shot.png)](https://youtu.be/yGoINILFoo0 "Click to view simulation")
+In this case the objective value comes out to be -28654.91 [Rs], indicating a net profit. 
+
+# 2. Accounting for Cyclic Degradation
+
+We now consider the degradation associated with battery cycling. Typically, the life of a battery (i.e., the number of cycles it is able to perform) depends on the depth of discharge (DOD) at which it is cycled, where the DOD is defined as the absolute difference between the state of charge in consecutive time steps divided by the capacity. We denote the cycles by $\alpha(DOD)$; see Fig. 3 for an illustration (adapted from[^3] using an exponential function).
 
 <div align = "center">
-Simulation created by the author using deal.ii
+<img src='/images/BESS_project_images/cycle_life.png' width='380' height='380'>
+</div>
+<div align = "center">
+Figure 3. Plot showing the number of cycles $\alpha$ as a function of DOD.
 </div>
 
-A 1D code in MATLAB to solve the Biot's equations is written by the author here [https://github.com/nvohra0016/Biot1D-MATLAB](https://github.com/nvohra0016/Biot1D-MATLAB). The documentation has also been provided. 
+<br>
 
-## [Tp]: Energy with phase change: Stefan problem
-The classical formulation of the Stefan problem allows one to solve for the domain and temperature of the different phases (eg. ice and water) [3]
-<div align="center">
-<img src='/images/Stefan_problem.png' width='600' height='600'>
-</div>
+If the cost of replacing the battery is $R$ [Rs], then the cost of one cycle is given by[^4]
 
-By defining the enthalpy, the weak form can be derived.
-<div align="center">
-<img src='/images/Stefan_weak_form.png' width='600' height='600'>
-</div>
+\begin{equation}
+\label{eq:cycle_cost}
+C^{cyc} = \frac{R}{\alpha\left(\delta \right)}.
+\end{equation}
 
-### Application to Permafrost Modeling:
+Or, noting that the discharge rate associated with a DOD $\delta$ can be obtained from \ref{eq:SOC} as
 
-Permafrost is ground that remains frozen for two or more years. In the upper portion of permafrost, called the active layer, the temperature increases in the summer and decreases throughout the rest of the year. Hence the depth of this layer changes due to an increase of ambient temperature, and this causes the thawing of some portions of permafrost, which has further environmental consequences. 
+\begin{equation}
+ P^{d} = \frac{\eta E_B \delta}{\tau},
+\end{equation}
 
-One of important features of permafrost is the presence of unfrozen water at low temperatures. This phenomenon is not fully explained, and is accompanied by lowering the freezing temperatures in small pores. A variety of algebraic expressions exist in literature to model the unfrozen water content. These are derived empirically. Consequently, the corresponding enthalpy curves are marked by an increased regularity that is absent in the Stefan problem [4], [5].
+we can rewrite \ref{eq:cycle_cost} as
 
-<div align="center">
-<img src='/images/StefanPermafrostDifference.png' width='700' height='700'>
-</div>
+\begin{equation}
+\label{eq:cycle_cost_pd}
+C^{cyc}\left(P^{d} \right) = \frac{R}{\alpha\left(\eta^{-1} {E_B}^{-1} \tau P^{d} \right)}.
+\end{equation}
 
-### Example:
-**Estimating the extent of permafrost thaw**: The simulation results the [Tp] model of permafrost thaw under warming climate conditions is shown below. The active layer depth can be estimated by tracking the 0 degree C isotherm. Assuming climate warming rate of 1 C/year, over 4 years, the model predicts that the depth of the active layer of a 5 meter column of permafrost increases by 4.5 times. 
-<div align="center">
-<img src='/images/permafrost_example3.png' width='600' height='600'>
+Taking the cost of cycling into account, our objective function \ref{eq:objective} now becomes
+
+\begin{equation}
+\label{eq:objective_cycles}
+\text{minimize} \sum_{n} \left(P^c_n \theta_n - P^d_n \theta_n \right) \tau + C^{cyc}\left(P^d_n \right).
+\end{equation}
+
+The issue (slight!) with \ref{eq:objective_cycles} is that it introduces a nonlinearity in the objective function. To this end, we linearize the function $1/\alpha$ to provide an estimate of the solution to \ref{eq:objective_cycles}. Let $\beta_1, \beta_2 \approx 1/\alpha$ be two linear approximations such that $\beta_1 <= 1/\alpha  <= \beta_2; see Fig. 4 for an illustration.
+
+<div align = "center">
+<img src='/images/BESS_project_images/inverse_cycle_life.png' width='380' height='380'>
 </div>
 
 <div align = "center">
-Simulation created by the author using MATLAB and Blender
+Figure 4. Plot showing the inverse of the cycles, $1/\alpha$, and its two linear approximations $\beta_1$ and $\beta_2$.
 </div>
 
-<br> 
+<br>
 
-For a complete treatment of the equations and the numerical algorithm developed to solve the fully coupled [TpHM] system, the reader is refer to our work [6, 7].
+Note that the choice of $\beta_1$ and $\beta_2$ provide a bound for our objective function, and help us to under- and overestimate the net profits. We make this clear with the next example.
+
+## 2.1 Example: Arbitrage with Cyclic Degradation
+
+We now return to our [example](example-of-arbitrage-in-wholesale-electricity-market). We consider a replacement cost of $R = 2 \times 10^5$ [Rs] (see note below) and $E_B = 1$ [MWh]. We now consider the quarterly RTM prices taken from 1/8/2025 - 3/8/2025 from IEX[^2] (total of 72 hours). The cycle degradation curves are taken as in Fig. 3 and Fig. 4.
+
+**Results and discussion.** The results are shown in Fig. 5 and Fig. 6. 
+
+<div align = "center">
+<img src='/images/BESS_project_images/soc_cycle_degradation1.png' width='700' height='700'>
+</div>
+
+
+<div align = "center">
+Figure 5. Plot showing the wholesale price (blue) and SOC (black) profile when using the linear function $\beta_1$. Also shown is the SOC profile when no cycling costs are taken (faded black).
+</div>
+
+<br>
+
+<div align = "center">
+<img src='/images/BESS_project_images/soc_cycle_degradation2.png' width='700' height='700'>
+</div>
+ 
+
+<div align = "center">
+Figure 6. Plot showing the wholesale price (blue) and SOC (black) profile when using the linear function $\beta_2$. Also shown is the SOC profile when no cycling costs are taken (faded black).
+</div>
+
+<br>
+
+It can be observed that when cycle degradation cost is included, the battery cycles through smaller DOD values. For example, around $t \approx 30$[h], the battery only charges till an SOC $\approx 0.5$ when $\beta_1$ is used compared to $1$ earlier, and when $\beta_2$ is used it only charges till $\approx 0.25$ to minimize degradation costs. Moreover, around $t \approx 48$ [h], the battery does not charge at all when $\beta_2$ is used compared to earlier. 
+
+In case of $\beta_1$ and $\beta_2$, a net profit of $16398$ [Rs] and $11988$ [Rs] is made, respectively, and when no cyclic degradation is considered, the profit is $23162$ [Rs]. Our choice of linear approximations provides a profit interval of $[11988, 16398]$ in case a nonlinear solver were to be used to solve the system. 
+
+**Note on choice of replacement cost R.** *We now justify the value of $R = 2 \times 10^5$ [Rs] used in the above example. The choice was made to clearly demonstrate the effect of cyclic degradation on arbitrage and cycling behaviour of the battery, and may vary from the actual cost of a $1$ [MWh] battery. If a higher cost of $R \approx O(10^7)$ is used, then the battery does not make a profit from the given wholesale prices and parameters. For known battery parameters, this examples also serves to provide a ballpark for $R$ for which the battery makes a profit.*
+
+
+## Code
+
+The code for the dispatch model has been written by the author using GAMS and Python. An equivalent code has also been developed in Pyomo[^5]. 
+
 
 ## References
-<a id="1">[1]</a> 
-Biot, M. A. (1941),
-[*General theory of three-dimensional consolidation*](aip.scitation.org/doi/10.1063/1.1712886).
+[^1]: D. Pozo (2022), Linear battery models for power system analysis, Electric Power Systems Research, 212.
+[^2]: Indian Energy Exchange (retrieved in 2025), [https://www.iexindia.com/market-data/real-time-market/market-snapshot](https://www.iexindia.com/market-data/real-time-market/market-snapshot).
+[^3]: N. Padmanabhan, M. Ahmed, K. Bhattacharya (2020), Battery Energy Storage Systems in Energy and Reserve Markets, IEEE Transactions on Power Systems, Vol. 35, No. 1. 
+[^4]: Y. Shi et al. (2019), Optimal Battery Control Under Cycle Aging Mechanisms in Pay for Performance Settings, IEEE Transactions on Automatic Control, Vol. 64, No. 6.
+[^5]: M. L. Bynum et al.,*Pyomo - Optimization Modeling in Python*, 2021, Springer, Third Edition Vol. 67.
 
-<a id="2">[2]</a> 
-Phillips, Wheeler (2007),
-[*A coupling of mixed and continuous Galerkin finite element methods for poroelasticity I: the continuous in time case*](https://link.springer.com/article/10.1007/s10596-007-9045-y).
-
-<a id="3">[3]</a> 
-Visintin (1996),
-[*Models of Phase Transition*](https://link.springer.com/book/10.1007/978-1-4612-4078-5).
-
-<a id="3">[4]</a> 
-Osterkamp, Burn (2003), [*Permafrost*](https://www.sciencedirect.com/science/article/pii/B0122270908003110).
-
-<a id="3">[5]</a> 
-Nicolsky, Romanovsky, Tipenko (2007), [*Using in-situ temperature measurements to estimate saturated soil thermal properties by solving a sequence of optimization problems*](https://tc.copernicus.org/articles/1/41/2007/).
-
-<a id="3">[6]</a> 
-Vohra, Peszynska (2024), [*Robust conservative scheme and nonlinear solver for phase transitions in heterogeneous permafrost*](https://www.sciencedirect.com/science/article/abs/pii/S0377042723006623).
-
-<a id="3">[7]</a> 
-Vohra, Peszynska (2024), [*Iteratively coupled mixed finite element solver for thermo-hydro-mechanical modeling of permafrost thaw*](https://www.sciencedirect.com/science/article/pii/S2590037424000098).
