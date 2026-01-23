@@ -1,5 +1,5 @@
 ---
-title: "On Cause of Spurious Oscillations for Stable Numerical Methods"
+title: "On the Cause of Spurious Oscillations for Stable Numerical Methods"
 collection: talks
 excerpt: "We explore the cause behind spurious numerical oscillations when solving the heterogeneous heat equation and develop a robust algorithm using appropriate numerical quadrature."
 date: 2026-1-23
@@ -27,14 +27,14 @@ To motivate the existence of spurious oscillations, we consider the heat equatio
 
 where $\theta$ [$^\circ C$] is the temperature (the primary variable to solve for), $c$ [J/m$^3$ C$^\circ$] is the known volumetric heat capacity of the material, $k = k(x)$ [J/m $^\circ C$ s] is the known thermal conductivity, and $f$ [J/m$^3$ s] is the known external source. Here $T$ [s] denotes the time period. Here we consider homogeneous Dirichlet boundary conditions $\theta(0, t) = \theta(1, t) = 0, \; \forall t \in (0, T)$. 
 
-We discretize our system using piecewise-linear Galerkin elements. In particular, let $V_h$ denote the space of piecewise-linear functions, and let $\\{\phi_{i + \frac{1}{2}}\\}$ denote the basis functions of $V_h$. Following the notation closesly as in our earlier post: [Convergence of Solvers and the Importance of Well-posedness](https://nvohra0016.github.io/talks/elliptic_well_posedness_cg/), we set up the system in a matrix vector form using implicit time stepping as (with $f = 0$)
+We discretize our system using piecewise-linear Galerkin elements. In particular, for a given spatial grid size $h > 0$, let $V_h$ denote the space of piecewise-linear functions, and let $\\{\phi_{i + \frac{1}{2}}\\}$ denote the basis functions of $V_h$. Following the notation closesly as in our earlier post: [Convergence of Solvers and the Importance of Well-posedness](https://nvohra0016.github.io/talks/elliptic_well_posedness_cg/), we set up the system in a matrix vector form using implicit time stepping as (with $f = 0$)
 
 \begin{equation}
 \label{eq:implicit_discretized}
     M \Theta{n} + \tau A \Theta^{n} = M \Theta^{n-1},
 \end{equation}
 
-where $\Theta^n$ collects the values of the temperature unknowns at the grid points at time step $n$, $\tau > 0$ is the time step size, and $M$ and $A$ are the mass and stiffness matrices, respectively. These are defined as
+where $\Theta^n \in \mathbb{R}^I$ collects the values of the temperature unknowns at the interior grid points (with $I$ denoting the number of interior grid vertices) at time step $n$, $\tau > 0$ is the time step size, and $M$ and $A$ are the mass and stiffness matrices, respectively. These are defined as
 
 \begin{equation}
     M_{i, j} = \int_0^1 c \phi_i(x) \phi_j(x) dx, \; A_{i, j} = \int_0^1 k(x) \phi_i(x) \phi_j(x) dx.
@@ -44,7 +44,7 @@ It is easy to observe that $M$ and $A$ are symmetric and positive definite (SPD)
 
 ## 2.1. A Stability Estimate of the Implicit Euler Scheme
 
-Let the norm $\|\cdot \|_M$ be defined as $\|U\|_M = \sqrt{U^T M U}, \; \forall U \in \mathbb{R}^I$. Since $M$ is SPD, it is easy to verify that $\|\cdot \|_M$ is a norm. We prove the following stability estimate. 
+Let the norm $\\|\cdot \\|_M$ be defined as $\|\U \\|_M = \sqrt{U^T M U}, \; \forall U \in \mathbb{R}^I$. Since $M$ is SPD, it is easy to verify that $\\| \cdot \\|_M$ is a norm. We prove the following stability estimate. 
 
 **Theorem.** Let $\Theta^0$ be given. Then, for the scheme given by \ref{equ:implicit_discretized}, we have
 
@@ -67,7 +67,7 @@ Note that the estimate \ref{eq:theorem_stability} is independent of $\tau > 0$. 
 
 \begin{equation}
 \label{eq:proof1}
-    (M\theta^n - M \Theta^{n-1}, \Theta^n) + \tau (A\Theta^n, \Theta^n) = 0.
+    (M\Theta^n - M \Theta^{n-1}, \Theta^n) + \tau (A\Theta^n, \Theta^n) = 0.
 \end{equation}
 
 Noting that since $M$ is symmetric, we have $(M \Theta^n, \Theta^{n-1}) = (M \Theta^{n-1}, \Theta^n)$, and hence we have the identity
@@ -89,6 +89,12 @@ Now, note that since $M$ and $A$ are SPD, all terms on the LHS of \ref{eq:proof3
 \begin{equation}
     \frac{1}{2}(M\Theta^n, \Theta^n) \leq \frac{1}{2} (M\Theta^{n-1}, \Theta^{n-1}).
 \end{equation}
+
+By induction, we have our result. 
+
+<p style="text-align: right;">&#x25A1;</p>
+
+# 2.2. Test Scenario
 
 
 
