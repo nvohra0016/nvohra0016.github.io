@@ -2,7 +2,7 @@
 title: "On Cause of Spurious Oscillations for Stable Numerical Methods"
 collection: talks
 excerpt: "We explore the cause behind spurious numerical oscillations when solving the heterogeneous heat equation and develop a robust algorithm using appropriate numerical quadrature."
-date: 2025-10-19
+date: 2026-1-23
 ---
 
 <script type="text/javascript" async
@@ -50,7 +50,7 @@ Let the norm $\|\cdot \|_M$ be defined as $\|U\|_M = \sqrt{U^T M U}, \; \forall 
 
 \begin{equation}
 \label{eq:theorem_stability}
-    \|\Theta^n\|_M \leq \|\Theta^{0}\|_M, \; \forall n \geq 1.
+    \\|\Theta^n \\|_M \leq \\|\Theta^{0} \\|_M, \; \forall n \geq 1.
 \end{equation}
 
 
@@ -58,7 +58,7 @@ Let the norm $\|\cdot \|_M$ be defined as $\|U\|_M = \sqrt{U^T M U}, \; \forall 
 Note that the estimate \ref{eq:theorem_stability} is independent of $\tau > 0$. We can further use the properties of $M$ to get the estimates...? Let $(U, V) = V^T U, \; \forall U, V \in \mathbb{R}^I$ denote the Euclidean inner product.
 
 \begin{equation}
-    \lambda_{min}(M) \|U \|_2 \leq \lambda_{max} \|U \|_2.
+    \lambda_{min}(M) \\|U \\|_2 \leq \lambda_{max} \|U \|_2.
 \end{equation}
 
  which essentially guarantees that our numerical solution does not blow up as the time step progressess.
@@ -74,7 +74,7 @@ Noting that since $M$ is symmetric, we have $(M \Theta^n, \Theta^{n-1}) = (M \Th
 
 \begin{equation}
 \label{eq:proof2}
-    (M(\Theta^n - \Theta^{n-1}), \Theta^n}) = \frac{1}{2} (M\theta^n, \Theta^n) - \frac{1}{2} (M \Theta^{n-1}, \Theta^{n-1}) + \frac{1}{2} (M(\Theta^n - \Theta^{n-1}), \Theta^n - \Theta^{n-1}).
+    \left(M(\Theta^n - \Theta^{n-1}), \Theta^n \right) = \frac{1}{2} (M\theta^n, \Theta^n) - \frac{1}{2} (M \Theta^{n-1}, \Theta^{n-1}) + \frac{1}{2} (M(\Theta^n - \Theta^{n-1}), \Theta^n - \Theta^{n-1}).
 \end{equation}
 
 Substituting \ref{eq:proof2} into \ref{eq:proof1} gives
