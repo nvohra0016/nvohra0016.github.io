@@ -31,7 +31,7 @@ We discretize our system using piecewise-linear Galerkin elements. In particular
 
 \begin{equation}
 \label{eq:implicit_discretized}
-    M \Theta{n} + \tau A \Theta^{n} = M \Theta^{n-1},
+    M \Theta^n + \tau A \Theta^{n} = M \Theta^{n-1},
 \end{equation}
 
 where $\Theta^n \in \mathbb{R}^I$ collects the values of the temperature unknowns at the interior grid points (with $I$ denoting the number of interior grid vertices) at time step $n$, $\tau > 0$ is the time step size, and $M$ and $A$ are the mass and stiffness matrices, respectively. These are defined as
