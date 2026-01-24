@@ -150,7 +150,7 @@ Figure 3. Results showing the temperature profile near the start of the simulati
 
 <br>
 
-It can be observed that now for the first few time steps, spurious oscillations arise in the temperature profile as shown in Fig. 3. (left). The oscillations eventually die out as time progresses, and we get a smooth solution as in the case of $\tau = 3600$. If we look at the $M$-norm values of the temperature, $\\| \theta\\|_M$, over time, we get a monotonically decreasing curve, as expected from Lemma 1; see Fig. 4 (left). We get the same behaviour of the energy norm $\\| \theta \\|_2$.  
+It can be observed that now for the first few time steps, spurious oscillations arise in the temperature profile as shown in Fig. 3. (left). The oscillations eventually die out as time progresses, and we get a smooth solution as in the case of $\tau = 3600$. If we look at the $M$-norm values of the temperature, $\\| \theta\\|_M$, over time, we get a monotonically decreasing curve, as expected from Lemma 1; see Fig. 4 (left). We get the same behaviour of the energy norm $\lVert \theta \rVert_2$.  
 
 <div align="center">
 <img src='/images/m_matrix_oscillations/norm_homogeneous_small_time_step.png' width='380' height='380'>
@@ -163,7 +163,45 @@ It can be observed that now for the first few time steps, spurious oscillations 
 
 <br>
 
-This "overshooting" and "undershooting" behaviour of the function has been noted in literature. In fact, the issue becomes clear when we consider the $\lVert \theta \rVert_\infty$ values over the time; see Fig. 4. (right). The plot shows that the values of $\lVert \theta \rVert_\infty$ oscillate towards the beginning of the solution before they start decreasing monotonically. That is, our numerical scheme does not guarantee the boundedness of $\lVert \theta \rVert_\infty$ for all time step sizes $\tau > 0$. 
+This "overshooting" and "undershooting" behaviour of the function has been noted in literature. In fact, the issue becomes clear when we consider the $\lVert \theta \rVert_\infty$ values over the time; see Fig. 4. (right). The plot shows that the values of $\lVert \theta \rVert_\infty$ oscillate towards the beginning of the solution before they start decreasing monotonically. That is, our numerical scheme does not guarantee the boundedness of $\lVert \theta \rVert_\infty$ for all time step sizes $\tau > 0$. The issue only gets worse when we consider heterogeneous media.
+
+### 2.2.1. Example of Heterogeneous Media
+
+We now re-run our example but using a heterogeneous media. We vary the thermal condutivity as follows
+
+$$
+\k(x) = 
+\begin{cases}
+0.0025; & \forall x \in [0, 0.5], 
+\\
+0.5; & \text{ otherwise}.
+\end{cases}
+$$
+
+The simulation with a time step of $\tau = 1800$ [s] and grid size $h = 0.02$ [m] is shown in Fig. 5. Now in addition to $x = 0.4$ and $x = 0.6$, oscillations also arise near the interface of the heterogeneity, i.e., near $x = 0.5$ [m].
+
+<div align="center">
+<img src='/images/m_matrix_oscillations/temperature_heterogeneous1.png' width='380' height='380'>
+<img src='/images/m_matrix_oscillations/temperature_heterogeneous2.png' width='380' height='380'>
+</div>
+
+<div align = "center">
+Figure 5. Plots showing the temperature profile at $t \approx 4$ [hr] (left) and $t = 48$ [hr] (right) for heterogeneous media example. The light dusk color in the plot identifies the material with lower thermal conductivity. In this case, notice the presence of additional oscillations near the boundary of the media ($x = 0.5$ [m]).
+</div>
+
+<br>
+
+The $\lVert \theta \rVert_\infty$ values over time show the extent of the oscillations polluting the numerical solution; see Fig. 6. 
+
+<div align="center">
+<img src='/images/m_matrix_oscillations/norm_linf_heterogeneous_small_time_step.png' width='450' height='450'>
+</div>
+
+<div align = "center">
+ Figure 6. Plot showing the error $\lVert \theta \rVert_\infty$ values over time for the case heterogeneous media.
+</div>
+
+<br>
 
 This "overshooting" and "undershooting" of the temperature behaviour exemplifies a violation of the *discrete maximum principle*.
 
