@@ -181,8 +181,8 @@ $$
 The simulation with a time step of $\tau = 1800$ [s] and grid size $h = 0.02$ [m] is shown in Fig. 5. Now in addition to $x = 0.4$ and $x = 0.6$, oscillations also arise near the interface of the heterogeneity, i.e., near $x = 0.5$ [m].
 
 <div align="center">
-<img src='/images/m_matrix_oscillations/temperature_heterogeneous1.png' width='380' height='380'>
-<img src='/images/m_matrix_oscillations/temperature_heterogeneous2.png' width='380' height='380'>
+<img src='/images/m_matrix_oscillations/temperature_heterogeneous_1.png' width='380' height='380'>
+<img src='/images/m_matrix_oscillations/temperature_heterogeneous_2.png' width='380' height='380'>
 </div>
 
 <div align = "center">
