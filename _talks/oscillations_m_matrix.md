@@ -163,7 +163,7 @@ It can be observed that now for the first few time steps, spurious oscillations 
 
 <br>
 
-This "overshooting" and "undershooting" behaviour of the function has been noted in literature. In fact, the issue becomes clear when we consider the $\lVert \theta \rVert_\infty$ values over the time; see Fig. 4. (right). The plot shows that the values of $\\| \theta \\|_\infty$ oscillate towards the beginning of the solution before they start decreasing monotonically. That is, our numerical scheme does not guarantee the boundedness of $\\|\theta \\|_\infty$ for all time step sizes $\tau > 0$. 
+This "overshooting" and "undershooting" behaviour of the function has been noted in literature. In fact, the issue becomes clear when we consider the $\lVert \theta \rVert_\infty$ values over the time; see Fig. 4. (right). The plot shows that the values of $\lVert \theta \rVert_\infty$ oscillate towards the beginning of the solution before they start decreasing monotonically. That is, our numerical scheme does not guarantee the boundedness of $\lVert \theta \rVert_\infty$ for all time step sizes $\tau > 0$. 
 
 This "overshooting" and "undershooting" of the temperature behaviour exemplifies a violation of the *discrete maximum principle*.
 
