@@ -1,5 +1,5 @@
 ---
-title: "On the Cause of Spurious Oscillations for Stable Numerical Methods"
+title: "On the Cause of Spurious Oscillations for Stable Numerical Methods [WIP]"
 collection: talks
 excerpt: "We explore the cause behind spurious numerical oscillations when solving the heterogeneous heat equation and develop a robust algorithm using appropriate numerical quadrature."
 date: 2026-1-23
@@ -46,7 +46,7 @@ It is easy to observe that $M$ and $A$ are symmetric and positive definite (SPD)
 
 Let the norm $\\|\cdot \\|_M$ be defined as $\|\U \\|_M = \sqrt{U^T M U}, \; \forall U \in \mathbb{R}^I$. Since $M$ is SPD, it is easy to verify that $\\| \cdot \\|_M$ is a norm. We prove the following stability estimate. 
 
-**Lemma 1.** Let $\Theta^0$ be given. Then, for the scheme given by \ref{equ:implicit_discretized}, we have
+**Lemma 1.** Let $\Theta^0$ be given. Then, for the scheme given by \ref{eq:implicit_discretized}, we have
 
 \begin{equation}
 \label{eq:theorem_stability}
@@ -145,12 +145,12 @@ We now test for the robustness of our algorithm. For large time steps, similar t
 </div>
 
 <div align = "center">
-Figure 3. Results showing the temperature profile near the start of the simulation at $t = 60$ [s] (left) and after consider time steps at $t = 3000$ [s] (right). Notice the oscillations near $x = 0.4$ and $x = 0.6$ when $t = 60$. 
+Figure 3. Results showing the temperature profile near the start of the simulation at $t = 60$ [s] (left) and after consider time steps at $t = 3000$ [s] (right). Notice the oscillations near $x = 0.4$ and $x = 0.6$ when $t = 60$. Also shown are dashed lines which highlight the maximum ($y = 1$) and minimum ($y = 0$) values of the initial solution $\theta_0$. 
 </div>
 
 <br>
 
-It can be observed that now for the first few time steps, spurious oscillations arise in the temperature profile as shown in Fig. 3. (left). The oscillations eventually die out as time progresses, and we get a smooth solution as in the case of $\tau = 3600$. If we look at the $M$-norm values of the temperature, $\\| \theta\\|_M$, over time, we get a monotonically decreasing curve, as expected from Lemma 1; see Fig. 4 (left). We get the same behaviour of the energy norm $\lVert \theta \rVert_2$.  
+It can be observed that now for the first few time steps, spurious oscillations arise in the temperature profile as shown in Fig. 3. (left). The oscillations lead to the temperature profile over- and undershooting the bounds of the initial temperature profile. That is, the temperature profile at $t = 60$ [s] shows values $> 1$ and $< 0$ being achieved, which lacks physical soundness: indeed, we do not expect the temperature to go higher or lower than the initial state in the absence of any sources or sink terms. The oscillations eventually die out as time progresses, and we get a smooth solution as in the case of $\tau = 3600$. If we look at the $M$-norm values of the temperature, $\\| \theta\\|_M$, over time, we get a monotonically decreasing curve, as expected from Lemma 1; see Fig. 4 (left). We get the same behaviour of the energy norm $\lVert \theta \rVert_2$.  
 
 <div align="center">
 <img src='/images/m_matrix_oscillations/norm_homogeneous_small_time_step.png' width='380' height='380'>
@@ -163,14 +163,14 @@ It can be observed that now for the first few time steps, spurious oscillations 
 
 <br>
 
-This "overshooting" and "undershooting" behaviour of the function has been noted in literature. In fact, the issue becomes clear when we consider the $\lVert \theta \rVert_\infty$ values over the time; see Fig. 4. (right). The plot shows that the values of $\lVert \theta \rVert_\infty$ oscillate towards the beginning of the solution before they start decreasing monotonically. That is, our numerical scheme does not guarantee the boundedness of $\lVert \theta \rVert_\infty$ for all time step sizes $\tau > 0$. The issue only gets worse when we consider heterogeneous media.
+This "overshooting" and "undershooting" behaviour of the function has been noted in literature. In fact, the issue becomes easy to spot when we consider the $\lVert \theta \rVert_\infty$ values over the time; see Fig. 4. (right). The plot shows that the values of $\lVert \theta \rVert_\infty$ oscillate towards the beginning of the solution before they start decreasing monotonically. That is, our numerical scheme does not guarantee the boundedness of $\lVert \theta \rVert_\infty$ for all time step sizes $\tau > 0$. The oscillations become more pronounced when we consider heterogeneous media.
 
 ### 2.2.1. Example of Heterogeneous Media
 
 We now re-run our example but using a heterogeneous media. We vary the thermal condutivity as follows
 
 $$
-\k(x) = 
+k(x) = 
 \begin{cases}
 0.0025; & \forall x \in [0, 0.5], 
 \\
@@ -203,10 +203,21 @@ The $\lVert \theta \rVert_\infty$ values over time show the extent of the oscill
 
 <br>
 
+We now dig deeper into the cause of these oscillations.
+
 This "overshooting" and "undershooting" of the temperature behaviour exemplifies a violation of the *discrete maximum principle*.
+
+## 2.2. M-matrices and Oscillations
+
+We begin this section with a definition that characterizes M-matrices. 
+
+**Definition 1.** *A non-singular square matrix $X$ is called an M-matrix if it has non-positive off diagonal elements, and positive diagonal elements, and if every entry of $X^{-1}$ is non-negative (i.e., if $X^{-1} \geq 0$) [^3]*
+
+We now make use of the following Lemma from [^3] to get an equivalent characterization of M-matrices.
+Returning to our system \ref{eq:implicit_discretized}, it can be observed that
 
 
 ## References
 [^1]: Randall J. LeVeque, *Finite Difference Methods for Ordinary and Partial Differential Equations*, SIAM, 2007.
 [^2]: Alexandre Ern, Jean-Luc Guermond, *Theory and Practice of Finite Elements*, 2004, Springer.
-[^3]: Fuzhen Zhang, *Matrix Theory: Basic Results and Techniques*, Springer, 2010, Second edition.
+[^3]: Jurgen Fuhrmann, *Existence and uniqueness of solutions of certain systems of algebraic equations with off-diagonal nonlinearity*, 2001, Applied Numerical Mathematics. 
