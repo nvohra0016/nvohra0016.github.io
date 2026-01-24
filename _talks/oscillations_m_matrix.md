@@ -150,20 +150,22 @@ Figure 3. Results showing the temperature profile near the start of the simulati
 
 <br>
 
-It can be observed that now for the first few time steps, spurious oscillations arise in the temperature profile as shown in Fig. 3. (left). The oscillations eventually die out as time progresses, and we get a smooth solution as in the case of $\tau = 3600$. If we look at the $M$-norm values of the temperature, $\\| \theta\\|_M$, over time, we get a monotonically decreasing curve, as expected from Lemma 1; see Fig. 4. 
+It can be observed that now for the first few time steps, spurious oscillations arise in the temperature profile as shown in Fig. 3. (left). The oscillations eventually die out as time progresses, and we get a smooth solution as in the case of $\tau = 3600$. If we look at the $M$-norm values of the temperature, $\\| \theta\\|_M$, over time, we get a monotonically decreasing curve, as expected from Lemma 1; see Fig. 4 (left). We get the same behaviour of the energy norm $\\| \theta \\|_2$.  
 
 <div align="center">
-<img src='/images/m_matrix_oscillations/norm_homogeneous_small_time_step.png' width='450' height='450'>
+<img src='/images/m_matrix_oscillations/norm_homogeneous_small_time_step.png' width='380' height='380'>
+<img src='/images/m_matrix_oscillations/norm_linf_homogeneous_small_time_step.png' width='380' height='380'>
 </div>
 
 <div align = "center">
- Figure 4. Plot showing the values $\\| \theta \\|_M$ over time.
+ Figure 4. Plot showing the values $\\| \theta \\|_M$ and $\\ \theta \\|_2$ (left) and the values of $\\| \theta \\|_\infty$ over time (right).
 </div>
 
 <br>
 
-This "overshooting" and "undershooting" behaviour of the function
+This "overshooting" and "undershooting" behaviour of the function has been noted in literature. In fact, the issue becomes clear when we consider the $\\| \theta \\|_\infty$ values over the time; see Fig. 4. (right). The plot shows that the values of $\\| \theta \\|_\infty$ oscillate towards the beginning of the solution before they start decreasing monotonically. That is, our numerical scheme does not guarantee the boundedness of $\\|\theta \\|_\infty$ for all time step sizes $\tau > 0$. 
 
+This "overshooting" and "undershooting" of the temperature behaviour exemplifies a violation of the *discrete maximum principle*.
 
 
 ## References
