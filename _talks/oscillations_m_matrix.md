@@ -270,7 +270,7 @@ $$
 Since $\\{ \phi_i \\}$ are piecewise-linear polynomial, we make use Gaussian quadrature to compute the values \ref{eq:mass_matrix_entry}. Now let us consider an approximation using the trapezoidal rule. This gives
 
 $$
-M^'_{i, j} = \sum_{v=1}{N_h} \frac{h}{2}\left( \phi_i(x_v) \phi_j(x_v) \right) 
+M'_{i, j} = \sum_{v=1}{N_h} \frac{h}{2}\left( \phi_i(x_v) \phi_j(x_v) \right) 
 =
 \begin{cases}
 h; & \forall i = j,
