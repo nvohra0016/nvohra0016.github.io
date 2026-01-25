@@ -217,7 +217,7 @@ Let us return to our system \ref{eq:implicit_discretized} to see how we can leve
 
 $$
 \label{eq:system_entries}
-   M + \tauA =  \begin{bmatrix}
+   \begin{bmatrix}
         \left(\frac{4ch}{6} + \frac{2\tau k}{h} \right) & \left( \frac{ch}{6} - \frac{\tau k}{h}\right) & 0 & \dots & 0 & 0
         \\
         \left(\frac{ch}{6} - \frac{\tau k}{h} \right) & \left(\frac{4ch}{6} + \frac{2\tau k}{h}\right) & \left(\frac{ch}{6} - \frac{\tau k}{h} \right) & \dots & 0 & 0
