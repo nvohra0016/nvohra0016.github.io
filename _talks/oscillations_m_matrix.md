@@ -1,7 +1,7 @@
 ---
-title: "On the Cause of Spurious Oscillations for Stable Numerical Methods [WIP]"
+title: "On the Cause of Spurious Oscillations for Stable Numerical Methods"
 collection: talks
-excerpt: "We explore the cause behind spurious numerical oscillations when solving the heterogeneous heat equation and develop a robust algorithm using appropriate numerical quadrature."
+excerpt: "We explore the cause behind spurious numerical oscillations when solving the heat equation and develop a robust algorithm using appropriate numerical quadrature."
 date: 2026-1-23
 ---
 
@@ -16,7 +16,7 @@ Non-physical oscillations in numerical solutions are almost always linked to the
 Although it is true that implicit methods do not have a time step restriction, choosing a very small time step can lead to a non-monotone system which also produces oscillations. In this blog post, this is what we precisely demonstrate. We consider the well-known heat equation, and show how oscillations can arise for the stable backward Euler time stepping method. We then propose a remedy for these oscillations, and show its robustness in higher dimensional settings.
 
 
-# 2. Example: Heat equation
+# 2. Oscillations in Backward Euler for the Heat equation
 
 To motivate the existence of spurious oscillations, we consider the heat equation on $\Omega = (0, 1)$
 
@@ -34,7 +34,7 @@ We discretize our system using piecewise-linear Galerkin elements. In particular
     M \Theta^n + \tau A \Theta^{n} = M \Theta^{n-1},
 \end{equation}
 
-where $\Theta^n \in \mathbb{R}^I$ collects the values of the temperature unknowns at the interior grid points (with $I$ denoting the number of interior grid vertices) at time step $n$, $\tau > 0$ is the time step size, and $M$ and $A$ are the mass and stiffness matrices, respectively. These are defined as
+where $\Theta^n \in \mathbb{R}^L$ collects the values of the temperature unknowns at the interior grid points (with $L$ denoting the number of interior grid vertices) at time step $n$, $\tau > 0$ is the time step size, and $M$ and $A$ are the mass and stiffness matrices, respectively. These are defined as
 
 \begin{equation}
     M_{i, j} = \int_0^1 c \phi_i(x) \phi_j(x) dx, \; A_{i, j} = \int_0^1 k(x) \phi_i(x) \phi_j(x) dx.
@@ -44,7 +44,7 @@ It is easy to observe that $M$ and $A$ are symmetric and positive definite (SPD)
 
 ## 2.1. A Stability Estimate of the Implicit Euler Scheme
 
-Let the norm $\\|\cdot \\|_M$ be defined as $\|\U \\|_M = \sqrt{U^T M U}, \; \forall U \in \mathbb{R}^I$. Since $M$ is SPD, it is easy to verify that $\\| \cdot \\|_M$ is a norm. We prove the following stability estimate. 
+Let the norm $\lVert \cdot \rVert_M$ be defined as $\lVert \U \rVert_M = \sqrt{U^T M U}, \; \forall U \in \mathbb{R}^L$. Since $M$ is SPD, it is easy to verify that $\\| \cdot \\|_M$ is a norm. We prove the following stability estimate. 
 
 **Lemma 2.1.1.** Let $\Theta^0$ be given. Then, for the scheme given by \ref{eq:implicit_discretized}, we have
 
@@ -121,7 +121,7 @@ The initial condition is shown in Fig. 1.
 
 <br>
 
-We assume a homogeneous medium and consider material properties similar to water, i.e., we consider $c = 10^6$ [J/ m$^3$ $^\circ$ C] $k = 0.5$ [J/m $^\circ$ C s]. The boundary conditions are as above, i.e., homogeneous Dirichlet. The results for grid size $h = 0.02$ [m] and time step $\tau = 1800$ [hr] are shown in Fig. 2.
+We assume a homogeneous medium and consider material properties similar to water, i.e., we consider $c = 10^6$ [J/ m$^3$ $^\circ$ C] $k = 0.5$ [J/m $^\circ$ C s]. The boundary conditions are as above, i.e., homogeneous Dirichlet. The results for grid size $h = 0.02$ [m] and time step $\tau = 1800$ [s] are shown in Fig. 2.
 
 <div class='wrapper' align='center'>
 <section>
@@ -135,7 +135,7 @@ We assume a homogeneous medium and consider material properties similar to water
 
 <br>
 
-It can be observed that the temperature profile slowly and smoothly decays as the time progresses, and finally reaches a steady state value of $\theta = 0$. 
+It can be observed that the temperature profile slowly and smoothly decays as the time progresses, and finally approaches the  steady state value of $\theta = 0$. 
 
 We now test for the robustness of our algorithm. For large time steps, similar temperature profiles as in Fig. 2. are obtained and nothing interesting happens. On the other hand, let us decrease the time step to gauge the temperature profile over smaller time periods. We consider $\tau = 1$ [s], and re-run the simulation over $(0, 2)$ [hr]. The results after a few time steps are shown in Fig. 3. 
 
@@ -150,7 +150,7 @@ Figure 3. Results showing the temperature profile near the start of the simulati
 
 <br>
 
-It can be observed that now for the first few time steps, spurious oscillations arise in the temperature profile as shown in Fig. 3. (left). The oscillations lead to the temperature profile over- and undershooting the bounds of the initial temperature profile. That is, the temperature profile at $t = 60$ [s] shows values $> 1$ and $< 0$ being achieved, which lacks physical soundness: indeed, we do not expect the temperature to go higher or lower than the initial state in the absence of any sources or sink terms. The oscillations eventually die out as time progresses, and we get a smooth solution as in the case of $\tau = 3600$. If we look at the $M$-norm values of the temperature, $\\| \theta\\|_M$, over time, we get a monotonically decreasing curve, as expected from Lemma 2.1.1.; see Fig. 4 (left). We get the same behaviour of the energy norm $\lVert \theta \rVert_2$.  
+It can be observed that now for the first few time steps, spurious oscillations arise in the temperature profile as shown in Fig. 3. (left). The oscillations lead to the temperature profile over- and undershooting the bounds of the initial temperature profile. That is, the temperature profile at $t = 60$ [s] shows values greater than $1$ [$^\circ$ C] and less than $0$ [$^\circ$ C] being achieved, which lacks physical soundness: indeed, we do not expect the temperature to go higher or lower than the initial state in the absence of any sources or sink terms. The oscillations eventually die out as time progresses, and we get a smooth solution as in the case of $\tau = 3600$. If we look at the $M$-norm values of the temperature, $\\| \theta\\|_M$, over time, we get a monotonically decreasing curve, as expected from Lemma 2.1.1.; see Fig. 4 (left). We get the same behaviour of the energy norm $\lVert \theta \rVert_2$.  
 
 <div align="center">
 <img src='/images/m_matrix_oscillations/norm_homogeneous_small_time_step.png' width='380' height='380'>
@@ -163,7 +163,7 @@ It can be observed that now for the first few time steps, spurious oscillations 
 
 <br>
 
-The issue becomes easy to spot when we consider the $\lVert \theta \rVert_\infty$ values over the time; see Fig. 4. (right). The plot shows that the values of $\lVert \theta \rVert_\infty$ oscillate towards the beginning of the solution before they start decreasing monotonically. That is, our numerical scheme does not guarantee the boundedness of $\lVert \theta \rVert_\infty$ for all time step sizes $\tau > 0$. The oscillations become more pronounced when we consider heterogeneous media.
+However, the issue becomes easy to spot when we consider the $\lVert \theta \rVert_\infty$ values over the time; see Fig. 4. (right). The plot shows that the values of $\lVert \theta \rVert_\infty$ oscillate towards the beginning of the solution before they start decreasing monotonically. That is, our numerical scheme does not guarantee the boundedness of $\lVert \theta \rVert_\infty$ for all time step sizes $\tau > 0$. The oscillations become more pronounced when we consider heterogeneous media.
 
 ## 2.3. Heterogeneous Media
 
@@ -203,8 +203,7 @@ The $\lVert \theta \rVert_\infty$ values over time show the extent of the oscill
 
 <br>
 
-
-This overshooting and undershooting of the temperature behaviour exemplifies a violation of the *discrete maximum principle*. The issue has been well-studied in literature, and now we analyze the issue and provide a remedy for the same.
+This overshooting and undershooting behaviour of the temperature profile exemplifies a violation of the *discrete maximum principle*. The issue has been well-studied in literature, and now we analyze the cause of the issue and provide a remedy for the same.
 
 # 3. M-matrices and Oscillations
 
@@ -254,7 +253,7 @@ We now move on to remedy this problem. Let us briefly recap what the issue is: w
 
 ## 3.1. Positivity and Bounds Preservation
 
-From the previous section, we have some motivation: we wish to ensure that regardless of our time step $\tau$, the system $M + \tau A$ remains an M-matrix. This will ensure the positivity of the solution. To this end, let us revisit how our mass matrix M is computed. The entries are given by
+From the previous section, we have some motivation: we wish to ensure that regardless of our time step $\tau$, the system $\left(M + \tau A \right)$ remains an M-matrix. This will ensure the positivity of the solution. To this end, let us revisit how our mass matrix M is computed. The entries are given by
 
 $$
 \label{eq:mass_matrix_entry}
@@ -279,13 +278,13 @@ h; & \forall i = j,
 \end{cases}
 $$
 
-where $\\{x_v \\}$ are the vertices of the grid $\Omega_h$. That is, the trapezoidal rule gives a diagonal mass matrix $M' = hI$. This immediately ensures that the system matrix $(M' + \tau A)$ has non-positive off-diagonal elements regardless of $\tau$, since $A$ has non-positive off-diagonal elements. Hence, by Definition 1, the matrix $(M' + \tau A)$ is an M-matrix for any $\tau > 0$. Thus we have $\forall \tau > 0$
+where $\\{x_v \\}$ are the vertices of the grid $\Omega_h$. That is, the trapezoidal rule gives a diagonal mass matrix $M' = hI$. This immediately ensures that the system matrix $\left(M' + \tau A \right)$ has non-positive off-diagonal elements regardless of $\tau$, since $A$ has non-positive off-diagonal elements. Hence, by Definition 1, the matrix $(M' + \tau A)$ is an M-matrix for any $\tau > 0$. Thus we have $\forall \tau > 0$
 
 \begin{equation}
     \Theta^{n} = \left(M' + \tau A \right)^{-1} \Theta^{n-1} \geq 0, \; \text{ if } \Theta^{n-1} \geq 0.
 \end{equation}
 
-But what about overshooting? That is, how do we ensure that $\Theta^n$ does not exceed the maximum value of $\Theta^{n-1}$? Thankfully, a stronger stability result can be obtained for M-matrices. We make use of the following Theorem from [^4] which gives us an $L^\infty$ bound for our new trapezoidal scheme.
+This takes care of the undershooting behaviour by ensuring that the temperature profile does not dip below $0$ [$^\circ$ C]. But what about overshooting? That is, how do we ensure that $\Theta^n$ does not exceed the maximum value of $\Theta^{n-1}$? Thankfully, a stronger stability result can be obtained for M-matrices. We make use of the following Theorem from [^4] which gives us an $L^\infty$ bound for our new trapezoidal scheme.
 
 **Theorem 3.1.1.** Let $Y \in \mathbb{R}^L$ be row-wise weakly diagonally dominant, i.e., for $Y = [Y_{i, j}]$
 
@@ -325,7 +324,7 @@ This proves the result.
 
 <p style="text-align: right;">&#x25A1;</p>
 
-Lemma 3.1.2. essentially ensures that our solution does not face the overshooting behaviour as seen before, while the positivity of the solution will ensure no undershooting. Let us demonstrate this by revisiting the examples as earlier.
+Lemma 3.1.2. essentially ensures that our solution does not face the overshooting behaviour as seen before, while the positivity of the solution will ensure no undershooting. Let us demonstrate this by revisiting the examples as earlier. Henceforth we shall call this refer to this scheme which uses $M'$ as the `Trapezoidal quad.' and to the earlier scheme as `Gaussian quad.' scheme.
 
 ### 3.2. Homogeneous Example Revisited
 
@@ -381,6 +380,11 @@ Finally, the $\lVert \theta \rVert_\infty$ plot over time also shows that the va
 
 <br>
 
+# Further Reading
+
+The example above highlights the importance of considering all aspects of a numerical scheme, of which stability is inherently indispensable, but so is the behaviour of the solution. This all forms a part of the robustness of the algorithm. Indeed, as is common, one may employ the backward Euler method and adaptive time stepping (which is an extremely common technique for non-linear systems), but if care is not taken in ensuring the scheme is positivity and bounds preservation, spurious oscillations will be sure to pollute the behaviour of the solution. The experienced reader may relate the above to *discrete maximum principle* and *monotnonicity of scheme*. 
+
+The oscillations shown above are not just limited to the heat equation. The author has demonstrated the existence of such oscillations in poroelastic systems as well [^5]. 
 
 
 ## References
@@ -388,3 +392,4 @@ Finally, the $\lVert \theta \rVert_\infty$ plot over time also shows that the va
 [^2]: Alexandre Ern, Jean-Luc Guermond, *Theory and Practice of Finite Elements*, 2004, Springer.
 [^3]: R. J. Plemmons, *M-Matrix Characterizations.I - Nonsingular M-Matrices*, 1977, Linear Algebra and its Applications (18).
 [^4]: Jurgen Fuhrmann, *Existence and uniqueness of solutions of certain systems of algebraic equations with off-diagonal nonlinearity*, 2001, Applied Numerical Mathematics. 
+[^5]: Vohra, N. and Peszynska, M., *Iteratively coupled mixed finite element solver for thermo-hydro-mechanical modeling of permafrost thaw*, 2024, Results in Applied Mathematics (22).
