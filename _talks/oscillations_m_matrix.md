@@ -398,7 +398,6 @@ The oscillations shown above are not just limited to the heat equation. The auth
 [^3]: Claes Johnson, *Numerical solutions of partial differential equations by the finite element method*, 1987, Cambridge University Press.
 [^4]: R. J. Plemmons, *M-Matrix Characterizations.I - Nonsingular M-Matrices*, 1977, Linear Algebra and its Applications (18).
 [^5]: Jurgen Fuhrmann, *Existence and uniqueness of solutions of certain systems of algebraic equations with off-diagonal nonlinearity*, 2001, Applied Numerical Mathematics. 
-[^6]: Hao Li,  Xiangxiong Zhang, *On the monotonicity and discrete maximum principle of the finite difference implementation of C0-Q2 finite element method*, 2020, Numerische
-Mathematik. 
+[^6]: Hao Li,  Xiangxiong Zhang, *On the monotonicity and discrete maximum principle of the finite difference implementation of C0-Q2 finite element method*, 2020, Numerische Mathematik.
 [^7]: Vohra, N. and Peszynska, M., *Iteratively coupled mixed finite element solver for thermo-hydro-mechanical modeling of permafrost thaw*, 2024, Results in Applied Mathematics (22).
 [^8]: Vohra, N. and Peszynska, M., *Robust conservative scheme and nonlinear solver for phase transitions in heterogeneous permafrost*, 2024, Journal of Computational and Applied Mathematics. 
