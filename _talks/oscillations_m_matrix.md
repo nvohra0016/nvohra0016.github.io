@@ -207,7 +207,7 @@ We now dig deeper into the cause of these oscillations.
 
 This "overshooting" and "undershooting" of the temperature behaviour exemplifies a violation of the *discrete maximum principle*.
 
-## 2.2. M-matrices and Oscillations
+# 3. M-matrices and Oscillations
 
 We begin this section with a definition that characterizes M-matrices. 
 
@@ -252,24 +252,40 @@ For our homogeneous example above, this gives us a lower bound of $\tau \geq 133
 
 We now move on to remedy this problem. Let us briefly recap what the issue is: we need a numerical scheme that ensures the solution does not over- or undershoot the bounds set by the initial condition $\Theta_0$. In short, we are looking for a scheme that satisfies an analogue of the maximum principle for parabolic equations.
 
-### 2.2.1. Positivity and Bounds Preservation
+## 3.1. Positivity and Bounds Preservation
 
 From the previous section, we have some motivation: we wish to ensure that regardless of our time step $\tau$, the system $M + \tau A$ remains an M-matrix. This will ensure the positivity of the solution. To this end, let us revisit how our mass matrix M is computed. The entries are given by
 
 $$
 \label{eq:mass_matrix_entry}
-    M_{i, j} = \int_0^1 \phi_i(x) \phi_j(x) dx = \begin{cases} \frac{4h}{6}; \text{ if} i = j, \\ \frac{h}{6}; \text{ otherwise}.
+M_{i, j} = \int_0^1 \phi_i(x) \phi_j(x) dx 
+=
+\begin{cases}
+\frac{4ch}{6}; & \forall i = j,
+\\
+\frac{ch}{6}; & \text{ otherwise}.
+\end{cases}
 $$
 
 Since $\\{ \phi_i \\}$ are piecewise-linear polynomial, we make use Gaussian quadrature to compute the values \ref{eq:mass_matrix_entry}. Now let us consider an approximation using the trapezoidal rule. This gives
 
 $$
-    M_{i, j} = \sum_{v=1}{N_h} \frac{h}{2}\left( \phi_i(x_v) \phi_j(x_v) \right) = \begin{cases} h; \text{ if} i = j, \\ 0; \text{ otherwise}.
+M^'_{i, j} = \sum_{v=1}{N_h} \frac{h}{2}\left( \phi_i(x_v) \phi_j(x_v) \right) 
+=
+\begin{cases}
+h; & \forall i = j,
+\\
+0; & \text{ otherwise}.
+\end{cases}
 $$
 
-That is, the trapezoidal rule gives a diagonal mass matrix $M = hI$. This immediately ensures that the system matrix $(M + \tau A)$ has non-positive off-diagonal elements regardless of $\tau$, since $A$ has non-positive off-diagonal elements. Hence, by Definition 1, the matrix $(M + \tau A)$ is an M-matrix for any $\tau > 0$. 
+That is, the trapezoidal rule gives a diagonal mass matrix $M^' = hI$. This immediately ensures that the system matrix $(M^' + \tau A)$ has non-positive off-diagonal elements regardless of $\tau$, since $A$ has non-positive off-diagonal elements. Hence, by Definition 1, the matrix $(M^' + \tau A)$ is an M-matrix for any $\tau > 0$. Thus we have $\forall \tau > 0$
 
-We now also make use of the following Theorem from [^4] ...
+\begin{equation}
+    \Theta^{n} = \left(M^' + \tau A \right)^{-1} \Theta^{n-1} \geq 0, \; \text{ if } \Theta^{n-1} \geq 0.
+\end{equation}
+
+We now also make use of the following Theorem from [^4] which further gives us an $L^\infty$ bound for our scheme.
 
 **Theorem 2.** Let $Y \in \mathbb{R}^L$ be row-wise weakly diagonally dominant, i.e., for $Y = [Y_{i, j}]$
 
@@ -279,7 +295,19 @@ We now also make use of the following Theorem from [^4] ...
 
 Then $Y + D$ is an M-matrix for each positive diagonal matrix $D \in \mathbb{R}^L$, and $\lVert \left(I + Y \right) \rVert_\infty \leq 1$. 
 
+It becomes clear that with the trapezoidal, $\left(M^' + \tau A \right)$ is weakly diagonally dominant, since $A$ is weakly diagonally dominant. Moreover, since $M^' = hI$, we can simply write \ref{eq:implicit_discretized} as
 
+\begin{equation}
+    \left(I + \frac{\tau}{h} A \right) \Theta^n = \Theta^{n-1},
+\end{equation}
+
+which gives
+
+\begin{equation}
+    \Theta^n = \left(I + \frac{\tau}{h} A \right)^{-1} \Theta^{n-1}.
+\end{equation}
+
+By Theorem 2, we have $\lVert \Theta^n \rVert_\infty \leq \lVert\Theta^{n-1} \rVert_\infty, \; \forall n \geq 1$. 
 
 ## References
 [^1]: Randall J. LeVeque, *Finite Difference Methods for Ordinary and Partial Differential Equations*, SIAM, 2007.
