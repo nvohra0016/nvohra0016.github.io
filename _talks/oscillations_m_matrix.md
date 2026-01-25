@@ -137,7 +137,7 @@ We assume a homogeneous medium and consider material properties similar to water
 
 It can be observed that the temperature profile slowly and smoothly decays as the time progresses, and finally reaches a steady state value of $\theta = 0$. 
 
-We now test for the robustness of our algorithm. For large time steps, similar temperature profiles as in Fig. 2. are obtained and nothing interesting happens. On the other hand, let us decrease the time step to gauge the temperature profile over smaller time periods. We consider $\tau = 1$ [s], and re-run the simulation. The results after a few time steps are shown in Fig. 3. 
+We now test for the robustness of our algorithm. For large time steps, similar temperature profiles as in Fig. 2. are obtained and nothing interesting happens. On the other hand, let us decrease the time step to gauge the temperature profile over smaller time periods. We consider $\tau = 1$ [s], and re-run the simulation over $(0, 2)$ [hr]. The results after a few time steps are shown in Fig. 3. 
 
 <div align="center">
 <img src='/images/m_matrix_oscillations/oscillations_homogeneous0.png' width='380' height='380'>
