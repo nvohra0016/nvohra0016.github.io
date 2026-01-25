@@ -125,12 +125,12 @@ We assume a homogeneous medium and consider material properties similar to water
 
 <div class='wrapper' align='center'>
 <section>
-<img id='gif-click' src='/images/neural_network1_blog/training_gif.gif'  width='470' height='470'/>
+<img id='gif-click' src='/images/m_matrix_oscillations/homogeneous_profile.gif'  width='470' height='470'/>
 </section>
 </div>
 
 <div align = "center">
- Figure 2. PLACEHOLDER Simulation showing the temperature profile evolution over time.
+ Figure 2. Simulation showing the temperature profile evolution over time.
 </div>
 
 <br>
@@ -309,7 +309,7 @@ which gives
 
 By Theorem 2, we have $\lVert \Theta^n \rVert_\infty \leq \lVert\Theta^{n-1} \rVert_\infty, \; \forall n \geq 1$. This essentially ensures that our solution does not face the over- or undershooting behaviour as seen before. Let us demonstrate this by revisiting the examples as earlier.
 
-### 3.1.2. Homogeneous Example Revisited
+### 3.2. Homogeneous Example Revisited
 
 We consider the same parameters as earlier for the homogeneous media example with a time step of $\tau = 1$ [s]. The results are shown in Fig. 7. 
 
@@ -336,7 +336,7 @@ It can be observed that the new trapezoidal scheme does not lead to any spurious
 
 <br>
 
-### 3.1.2. Heterogeneous Media Revisited
+### 3.2. Heterogeneous Media Revisited
 
 We now test our new trapezoidal scheme on heterogeneous media. With the same heterogeneous parameters as earlier, we compute the simulation using $\tau = 1$ [s] over a time period of $(0, 60)$ [hr]. The results are shown in Fig. 9. 
 
