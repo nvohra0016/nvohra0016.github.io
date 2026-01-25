@@ -214,7 +214,7 @@ This overshooting and undershooting behaviour of the temperature profile exempli
 
 A keyword we will be looking at is *M-matrices*. Let us begin this section with a definition that characterizes M-matrices. 
 
-**Definition 3.1.** *A non-singular square matrix $Y \in \mathbb{R}^l$ is called an M-matrix if it has non-positive off-diagonal elements and if $Y + D$ is non-singular for each non-negative diagonal matrix $D \in \mathbb{R}^l$ [^5].* 
+**Definition 3.1.** *A non-singular square matrix $Y \in \mathbb{R}^{L \times L}$ is called an M-matrix if it has non-positive off-diagonal elements and if $Y + D$ is non-singular for each non-negative diagonal matrix $D \in \mathbb{R}^{L \times L}$ [^4].* 
 
 A well-known property of M-matrices is positivity of inverses, i.e., for an M-matrix $Y$, we have each entry of $Y^{-1}$ is non-negative. We denote this by $Y^{-1} \geq 0$. This is one of the properties that we are interested in to ensure that our temperature does not undershoot for small time step sizes.
 
@@ -289,15 +289,15 @@ where $\\{x_v \\}$ are the vertices of the grid $\Omega_h$. That is, the trapezo
     \Theta^{n} = \left(M' + \tau A \right)^{-1} \Theta^{n-1} \geq 0, \; \text{ if } \Theta^{n-1} \geq 0.
 \end{equation}
 
-This takes care of the undershooting behaviour by ensuring that the temperature profile does not dip below $0$ [$^\circ$ C]. But what about overshooting? That is, how do we ensure that $\Theta^n$ does not exceed the maximum value of $\Theta^{n-1}$? Thankfully, a stronger stability result can be obtained for M-matrices. We make use of the following Theorem from [^4] which gives us an $L^\infty$ bound for our new trapezoidal scheme.
+This takes care of the undershooting behaviour by ensuring that the temperature profile does not dip below $0$ [$^\circ$ C]. But what about overshooting? That is, how do we ensure that $\Theta^n$ does not exceed the maximum value of $\Theta^{n-1}$? Thankfully, a stronger stability result can be obtained for M-matrices. We make use of the following Theorem from [^5] which gives us an $L^\infty$ bound for our new trapezoidal scheme.
 
-**Theorem 3.1.1.** Let $Y \in \mathbb{R}^L$ be row-wise weakly diagonally dominant, i.e., for $Y = [Y_{i, j}]$
+**Theorem 3.1.1.** Let $Y \in \mathbb{R}^{L \times L}$ be row-wise weakly diagonally dominant, i.e., for $Y = [Y_{i, j}]$
 
 \begin{equation}
     |Y_{i,j}| \geq \sum_{j \neq i} |Y_{i, j}|, \; \forall i \in \{1, 2, \dots, L \}.
 \end{equation}
 
-Then $Y + D$ is an M-matrix for each positive diagonal matrix $D \in \mathbb{R}^L$, and $\lVert \left(I + Y \right) \rVert_\infty \leq 1$. 
+Then $Y + D$ is an M-matrix for each positive diagonal matrix $D \in \mathbb{R}^{L \times L}$, and $\lVert \left(I + Y \right) \rVert_\infty \leq 1$. 
 
 It becomes clear that with the trapezoidal, $\left(M' + \tau A \right)$ is weakly diagonally dominant, since $A$ is weakly diagonally dominant. This allows us to prove the following Lemma.
 
