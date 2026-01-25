@@ -74,7 +74,7 @@ Noting that since $M$ is symmetric, we have $(M \Theta^n, \Theta^{n-1}) = (M \Th
 
 \begin{equation}
 \label{eq:proof2}
-    \left(M(\Theta^n - \Theta^{n-1}), \Theta^n \right) = \frac{1}{2} (M\theta^n, \Theta^n) - \frac{1}{2} (M \Theta^{n-1}, \Theta^{n-1}) + \frac{1}{2} (M(\Theta^n - \Theta^{n-1}), \Theta^n - \Theta^{n-1}).
+    \left(M(\Theta^n - \Theta^{n-1}), \Theta^n \right) = \frac{1}{2} (M\Theta^n, \Theta^n) - \frac{1}{2} (M \Theta^{n-1}, \Theta^{n-1}) + \frac{1}{2} (M(\Theta^n - \Theta^{n-1}), \Theta^n - \Theta^{n-1}).
 \end{equation}
 
 Substituting \ref{eq:proof2} into \ref{eq:proof1} gives
@@ -229,17 +229,35 @@ Now let us return to our system \ref{eq:implicit_discretized}. The matrix $A$ ha
 
 $$
     \begin{bmatrix}
-        \left(\frac{4ch}{6} + \tau \frac{2k}{h} \right) & \left( \frac{ch}{6} - \tau \frac{1}{h}\right) & 0 & \dots & 0 & 0
+        \left(\frac{4ch}{6} + \frac{2\tau k}{h} \right) & \left( \frac{ch}{6} - \frac{\tau k}{h}\right) & 0 & \dots & 0 & 0
         \\
-        \left(\frac{ch}{6} - \tau \frac{k}{h} \right) & \left(\frac{4ch}{6} + \tau \frac{2k}{h}\right) & \left(\frac{ch}{6} - \tau \frac{k}{h} \right) & \dots & 0 & 0
+        \left(\frac{ch}{6} - \frac{\tau k}{h} \right) & \left(\frac{4ch}{6} + \frac{2\tau k}{h}\right) & \left(\frac{ch}{6} - \frac{\tau k}{h} \right) & \dots & 0 & 0
         \\
         \vdots & \vdots & \vdots & \ddots & \vdots & \vdots
         \\
-        0 & 0 & 0 & \dots & \left( \frac{ch}{6} - \tau \frac{1}{h}\right) & \left(\frac{4ch}{6} + \tau \frac{2k}{h} \right) 
-
+        0 & 0 & 0 & \dots & \left( \frac{ch}{6} - \frac{\tau k}{h}\right) & \left(\frac{4ch}{6} + \frac{2\tau k}{h} \right) 
     \end{bmatrix}
 $$
 
+Note that $(M + \tau A) + D$ will always be non-singular for any non-negative diagonal matrix $D$, since $A$ and $M$ are already SPD. In order to make $M + \tau A$ an M-matrix, we need to ensure that it has non-positive off-diagonal entries. The reader may have already guessed the problem at small $\tau$: as $\tau$ approaches $0$, we have
+
+\begin{equation}
+   \left( \frac{ch}{6} - \tau \frac{1}{h}\right) > 0
+\end{equation}
+
+and hence $M + \tau A$ ceases to be an M-matrix. Thus, since 
+
+\begin{equation}
+    \Theta^n = \left(M + \tau A \right)^{-1} M\Theta^{n-1},
+\end{equation}
+
+if $\Theta^{n-1} \geq 0$, then $M\Theta^{n-1} \geq 0$ since $M \geq 0$, however, since $M + \tau A$ is not an M-matrix for small $\tau$, $\left(M + \tau A \right)^{-1}$ may not be positive. The sufficient condition for $M + \tau A$ to be an M-matrix is
+
+\begin{equation}
+    \tau \geq \frac{ch^2}{6k}.
+\end{equation}
+
+For our homogeneous example above, this gives us a lower bound of $\tau \geq 133.33$ [s], and thus explains the undershooting of the solution for $\tau = 1$ [s] when the solution $\Theta^n$ dips below zero in Fig. 3. 
 
 
 
