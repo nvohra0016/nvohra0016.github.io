@@ -215,15 +215,6 @@ We begin this section with a definition that characterizes M-matrices.
 
 A well-known property of M-matrices is positivity of inverses, i.e., for an M-matrix $Y$, we have each entry of $Y^{-1}$ is non-negative. We denote this by $Y^{-1} \geq 0$. 
 
-We now make use of the following Theorem from [^4] to get an equivalent characterization of M-matrices.
-
-**Theorem 2.** Let $Y \in \mathbb{R}^L$ be row-wise weakly diagonally dominant, i.e., for $Y = [Y_{i, j}]$
-
-\begin{equation}
-    |Y_{i,j}| \geq \sum_{j \neq i} |Y_{i, j}|, \; \forall i \in \{1, 2, \dots, L \}.
-\end{equation}
-
-Then $Y + D$ is an M-matrix for each positive diagonal matrix $D \in \mathbb{R}^L$, and $\lVert \left(I + Y \right) \rVert_\infty \leq 1$. 
 
 Now let us return to our system \ref{eq:implicit_discretized}. The matrix $A$ has non-positive off diagonal and positive diagonal entries (look at its tridiagonal structure). In fact, the matrix $A$ is weakly diagonally dominant. However, the entries of $M + \tau A$ are given by (for homogeneous media)
 
@@ -257,7 +248,36 @@ if $\Theta^{n-1} \geq 0$, then $M\Theta^{n-1} \geq 0$ since $M \geq 0$, however,
     \tau \geq \frac{ch^2}{6k}.
 \end{equation}
 
-For our homogeneous example above, this gives us a lower bound of $\tau \geq 133.33$ [s], and thus explains the undershooting of the solution for $\tau = 1$ [s] when the solution $\Theta^n$ dips below zero in Fig. 3. 
+For our homogeneous example above, this gives us a lower bound of $\tau \geq 133.33$ [s], and thus explains the undershooting of the solution for $\tau = 1$ [s] when the solution $\Theta^n$ dips below zero in Fig. 3. The over-shooting can similarly be explained by considering $\Theta^n - \max{\Theta_0}$ and with some algebraic manipulation.
+
+We now move on to remedy this problem. Let us briefly recap what the issue is: we need a numerical scheme that ensures the solution does not over- or undershoot the bounds set by the initial condition $\Theta_0$. In short, we are looking for a scheme that satisfies an analogue of the maximum principle for parabolic equations.
+
+### 2.2.1. Positivity and Bounds Preservation
+
+From the previous section, we have some motivation: we wish to ensure that regardless of our time step $\tau$, the system $M + \tau A$ remains an M-matrix. This will ensure the positivity of the solution. To this end, let us revisit how our mass matrix M is computed. The entries are given by
+
+$$
+\label{eq:mass_matrix_entry}
+    M_{i, j} = \int_0^1 \phi_i(x) \phi_j(x) dx = \begin{cases} \frac{4h}{6}; \text{ if} i = j, \\ \frac{h}{6}; \text{ otherwise}.
+$$
+
+Since $\\{ \phi_i \\}$ are piecewise-linear polynomial, we make use Gaussian quadrature to compute the values \ref{eq:mass_matrix_entry}. Now let us consider an approximation using the trapezoidal rule. This gives
+
+$$
+    M_{i, j} = \sum_{v=1}{N_h} \frac{h}{2}\left( \phi_i(x_v) \phi_j(x_v) \right) = \begin{cases} h; \text{ if} i = j, \\ 0; \text{ otherwise}.
+$$
+
+That is, the trapezoidal rule gives a diagonal mass matrix $M = hI$. This immediately ensures that the system matrix $(M + \tau A)$ has non-positive off-diagonal elements regardless of $\tau$, since $A$ has non-positive off-diagonal elements. Hence, by Definition 1, the matrix $(M + \tau A)$ is an M-matrix for any $\tau > 0$. 
+
+We now also make use of the following Theorem from [^4] ...
+
+**Theorem 2.** Let $Y \in \mathbb{R}^L$ be row-wise weakly diagonally dominant, i.e., for $Y = [Y_{i, j}]$
+
+\begin{equation}
+    |Y_{i,j}| \geq \sum_{j \neq i} |Y_{i, j}|, \; \forall i \in \{1, 2, \dots, L \}.
+\end{equation}
+
+Then $Y + D$ is an M-matrix for each positive diagonal matrix $D \in \mathbb{R}^L$, and $\lVert \left(I + Y \right) \rVert_\infty \leq 1$. 
 
 
 
