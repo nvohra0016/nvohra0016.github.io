@@ -295,7 +295,7 @@ We now also make use of the following Theorem from [^4] which further gives us a
 
 Then $Y + D$ is an M-matrix for each positive diagonal matrix $D \in \mathbb{R}^L$, and $\lVert \left(I + Y \right) \rVert_\infty \leq 1$. 
 
-It becomes clear that with the trapezoidal, $\left(M^' + \tau A \right)$ is weakly diagonally dominant, since $A$ is weakly diagonally dominant. Moreover, since $M^' = hI$, we can simply write \ref{eq:implicit_discretized} as
+It becomes clear that with the trapezoidal, $\left(M' + \tau A \right)$ is weakly diagonally dominant, since $A$ is weakly diagonally dominant. Moreover, since $M' = hI$, we can simply write \ref{eq:implicit_discretized} as
 
 \begin{equation}
     \left(I + \frac{\tau}{h} A \right) \Theta^n = \Theta^{n-1},
@@ -315,7 +315,7 @@ We consider the same parameters as earlier for the homogeneous media example wit
 
 <div align="center">
 <img src='/images/m_matrix_oscillations/comp_temperature_homogeneous0.png' width='380' height='380'>
-<img src='/images/m_matrix_oscillations/com_temperature_homogeneous1.png' width='380' height='380'>
+<img src='/images/m_matrix_oscillations/comp_temperature_homogeneous1.png' width='380' height='380'>
 </div>
 
 <div align = "center">
@@ -342,7 +342,7 @@ We now test our new trapezoidal scheme on heterogeneous media. With the same het
 
 <div align="center">
 <img src='/images/m_matrix_oscillations/comp_temperature_heterogeneous0.png' width='380' height='380'>
-<img src='/images/m_matrix_oscillations/com_temperature_heterogeneous1.png' width='380' height='380'>
+<img src='/images/m_matrix_oscillations/comp_temperature_heterogeneous1.png' width='380' height='380'>
 </div>
 
 <div align = "center">
