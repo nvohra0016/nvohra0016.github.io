@@ -211,13 +211,40 @@ This "overshooting" and "undershooting" of the temperature behaviour exemplifies
 
 We begin this section with a definition that characterizes M-matrices. 
 
-**Definition 1.** *A non-singular square matrix $X$ is called an M-matrix if it has non-positive off diagonal elements, and positive diagonal elements, and if every entry of $X^{-1}$ is non-negative (i.e., if $X^{-1} \geq 0$) [^3]*
+**Definition 1.** *A non-singular square matrix $Y \in \mathbb{R}^l$ is called an M-matrix if it has non-positive off diagonal elements, and if $Y + D$ is non-singular for each non-negative diagonal matrix $D \in \mathbb{R}^l$ [^3].* 
 
-We now make use of the following Lemma from [^3] to get an equivalent characterization of M-matrices.
-Returning to our system \ref{eq:implicit_discretized}, it can be observed that
+A well-known property of M-matrices is positivity of inverses, i.e., for an M-matrix $Y$, we have each entry of $Y^{-1}$ is non-negative. We denote this by $Y^{-1} \geq 0$. 
+
+We now make use of the following Theorem from [^4] to get an equivalent characterization of M-matrices.
+
+**Theorem 2.** Let $Y \in \mathbb{R}^L$ be row-wise weakly diagonally dominant, i.e., for $Y = [Y_{i, j}]$
+
+\begin{equation}
+    |Y_{i,j}| \geq \sum_{j \neq i} |Y_{i, j}|, \; \forall i \in \{1, 2, \dots, L \}.
+\end{equation}
+
+Then $Y + D$ is an M-matrix for each positive diagonal matrix $D \in \mathbb{R}^L$, and $\lVert \left(I + Y \right) \rVert_\infty \leq 1$. 
+
+Now let us return to our system \ref{eq:implicit_discretized}. The matrix $A$ has non-positive off diagonal and positive diagonal entries (look at its tridiagonal structure). In fact, the matrix $A$ is weakly diagonally dominant. However, the entries of $M + \tau A$ are given by (for homogeneous media)
+
+$$
+    \begin{bmatrix}
+        \left(\frac{4ch}{6} + \tau \frac{2k}{h} \right) & \left( \frac{ch}{6} - \tau \frac{1}{h}\right) & 0 & \dots & 0 & 0
+        \\
+        \left(\frac{ch}{6} - \tau \frac{k}{h} \right) & \left(\frac{4ch}{6} + \tau \frac{2k}{h}\right) & \left(\frac{ch}{6} - \tau \frac{k}{h} \right) & \dots & 0 & 0
+        \\
+        \vdots & \vdots & \vdots & \ddots & \vdots & \vdots
+        \\
+        0 & 0 & 0 & \dots & \left( \frac{ch}{6} - \tau \frac{1}{h}\right) & \left(\frac{4ch}{6} + \tau \frac{2k}{h} \right) 
+
+    \end{bmatrix}
+$$
+
+
 
 
 ## References
 [^1]: Randall J. LeVeque, *Finite Difference Methods for Ordinary and Partial Differential Equations*, SIAM, 2007.
 [^2]: Alexandre Ern, Jean-Luc Guermond, *Theory and Practice of Finite Elements*, 2004, Springer.
-[^3]: Jurgen Fuhrmann, *Existence and uniqueness of solutions of certain systems of algebraic equations with off-diagonal nonlinearity*, 2001, Applied Numerical Mathematics. 
+[^3]: R. J. Plemmons, *M-Matrix Characterizations.I - Nonsingular M-Matrices*, 1977, Linear Algebra and its Applications (18).
+[^4]: Jurgen Fuhrmann, *Existence and uniqueness of solutions of certain systems of algebraic equations with off-diagonal nonlinearity*, 2001, Applied Numerical Mathematics. 
