@@ -289,7 +289,7 @@ where $\\{x_v \\}$ are the vertices of the grid $\Omega_h$. That is, the trapezo
     \Theta^{n} = \left(M' + \tau A \right)^{-1} \Theta^{n-1} \geq 0, \; \text{ if } \Theta^{n-1} \geq 0.
 \end{equation}
 
-This takes care of the undershooting behaviour by ensuring that the temperature profile does not dip below $0$ [$^\circ$ C]. But what about overshooting? That is, how do we ensure that $\Theta^n$ does not exceed the maximum value of $\Theta^{n-1}$? Thankfully, a stronger stability result can be obtained for M-matrices. We make use of the following Theorem from [^5] which gives us an $L^\infty$ bound for our new trapezoidal scheme.
+This takes care of the undershooting behaviour by ensuring that the temperature profile does not dip below $0$ [$^\circ$ C]. But what about overshooting? That is, how do we ensure that $\Theta^n$ does not exceed the maximum value of $\Theta^{n-1}$? Thankfully, a stronger bounds preserving result can be obtained for M-matrices. We make use of the following Theorem from [^5] which gives us an $L^\infty$ bound for our new trapezoidal scheme.
 
 **Theorem 3.1.1.** Let $Y \in \mathbb{R}^{L \times L}$ be row-wise weakly diagonally dominant, i.e., for $Y = [Y_{i, j}]$
 
