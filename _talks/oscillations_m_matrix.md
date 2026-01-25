@@ -44,7 +44,7 @@ It is easy to observe that $M$ and $A$ are symmetric and positive definite (SPD)
 
 ## 2.1. A Stability Estimate of the Implicit Euler Scheme
 
-Let the norm $\lVert \cdot \rVert_M$ be defined as $\lVert \U \rVert_M = \sqrt{U^T M U}, \; \forall U \in \mathbb{R}^L$. Since $M$ is SPD, it is easy to verify that $\\| \cdot \\|_M$ is a norm. We prove the following stability estimate. 
+Let the norm $\lVert \cdot \rVert_M$ be defined as $\lVert U \rVert_M = \sqrt{U^T M U}, \; \forall U \in \mathbb{R}^L$. Since $M$ is SPD, it is easy to verify that $\\| \cdot \\|_M$ is a norm. We prove the following stability estimate. 
 
 **Lemma 2.1.1.** Let $\Theta^0$ be given. Then, for the scheme given by \ref{eq:implicit_discretized}, we have
 
@@ -53,15 +53,13 @@ Let the norm $\lVert \cdot \rVert_M$ be defined as $\lVert \U \rVert_M = \sqrt{U
     \\|\Theta^n \\|_M \leq \\|\Theta^{0} \\|_M, \; \forall n \geq 1.
 \end{equation}
 
-
-
-Note that the estimate \ref{eq:theorem_stability} is independent of $\tau > 0$. We can further use the properties of $M$ to get the estimates...? Let $(U, V) = V^T U, \; \forall U, V \in \mathbb{R}^I$ denote the Euclidean inner product.
+The estimate \ref{eq:theorem_stability} essentially guarantees that our numerical solution does not blow up as the time step progressess. Indeed, the $\lVert \cdot \rVert_M$ norm is equivalent to the Euclidean norm using the bounds 
 
 \begin{equation}
-    \lambda_{min}(M) \\|U \\|_2 \leq \lambda_{max} \|U \|_2.
+    \lambda_{min} \lVert U \rVert_2 \leq \\lVert U \rVert_M \leq \lambda_{max} \lVert U \rVert_2,
 \end{equation}
 
- which essentially guarantees that our numerical solution does not blow up as the time step progressess.
+where $\lambda_{min}$ and $\lambda_{max}$ are the minimum and maximum eigenvalues of $M$, respectively, and $\lVert \cdot \rVert_2$ is the Euclidean norm.
 
 *Proof.* Taking the inner product of \ref{eq:implicit_discretized} with $\Theta^{n}$, we have
 
@@ -90,11 +88,18 @@ Now, note that since $M$ and $A$ are SPD, all terms on the LHS of \ref{eq:proof3
     \frac{1}{2}(M\Theta^n, \Theta^n) \leq \frac{1}{2} (M\Theta^{n-1}, \Theta^{n-1}).
 \end{equation}
 
+That is, we have
+
+\begin{equation}
+\label{eq:proof4}
+    \lVert \Theta^n \rVert_M \leq \lVert \Theta^{n-1} \rVert_M, \; \forall n \geq 1.
+\end{equation}
+
 By induction, we have our result. 
 
 <p style="text-align: right;">&#x25A1;</p>
 
-**Note on the choice of norm.** *If the matrix $M$ were a diagonal matrix, such as $M = h I$ (as we will obtain later), then the norm $\\| \cdot \\|_M = \\| \cdot \\|_2$.*
+**Note on the choice of norm.** *If the matrix $M$ were a diagonal matrix, such as $M = h I$ (as we will obtain later), then the norm $\\| \cdot \\|_M = h \\| \cdot \\|_2$. In our experiments, we have also observed the inequality \label{eq:proof4} to be satisfied by the Euclidean norms. For more stability estimates, the reader is referred to [^2] [^3].*
 
 ## 2.2. Homogeneous Media Example
 
@@ -209,7 +214,7 @@ This overshooting and undershooting behaviour of the temperature profile exempli
 
 A keyword we will be looking at is *M-matrices*. Let us begin this section with a definition that characterizes M-matrices. 
 
-**Definition 1.** *A non-singular square matrix $Y \in \mathbb{R}^l$ is called an M-matrix if it has non-positive off-diagonal elements and if $Y + D$ is non-singular for each non-negative diagonal matrix $D \in \mathbb{R}^l$ [^3].* 
+**Definition 1.** *A non-singular square matrix $Y \in \mathbb{R}^l$ is called an M-matrix if it has non-positive off-diagonal elements and if $Y + D$ is non-singular for each non-negative diagonal matrix $D \in \mathbb{R}^l$ [^5].* 
 
 A well-known property of M-matrices is positivity of inverses, i.e., for an M-matrix $Y$, we have each entry of $Y^{-1}$ is non-negative. We denote this by $Y^{-1} \geq 0$. This is one of the properties that we are interested in to ensure that our temperature does not undershoot for small time step sizes.
 
@@ -317,14 +322,14 @@ which gives
 By Theorem 3.1.1.,
 
 \begin{equation}
-    \lVert \Theta^n \rVert_\infty \leq \lVert\left(I + \frac{\tau}{h} A \right)^{-1} \rVert_\infty \lVert \Theta^{n-1} \rVert_\infty \leq \lVert \Theta^{n-1} \rVert_\infty.
+    \lVert \Theta^n \rVert_\infty \leq \Big\lVert\left(I + \frac{\tau}{h} A \right)^{-1} \Big\rVert_\infty \lVert \Theta^{n-1} \rVert_\infty \leq \lVert \Theta^{n-1} \rVert_\infty.
 \end{equation}
 
 This proves the result.
 
 <p style="text-align: right;">&#x25A1;</p>
 
-Lemma 3.1.2. essentially ensures that our solution does not face the overshooting behaviour as seen before, while the positivity of the solution will ensure no undershooting. Let us demonstrate this by revisiting the examples as earlier. Henceforth we shall call this refer to this scheme which uses $M'$ as the `Trapezoidal quad.' and to the earlier scheme as `Gaussian quad.' scheme.
+Lemma 3.1.2. essentially ensures that our solution does not face the overshooting behaviour as seen before, while the positivity of the solution will ensure no undershooting. Let us demonstrate this by revisiting the examples as earlier. Henceforth we shall call this refer to this scheme which uses $M'$ as the "Trapezoidal quad." and to the earlier scheme as "Gaussian quad." scheme.
 
 ### 3.2. Homogeneous Example Revisited
 
@@ -384,12 +389,13 @@ Finally, the $\lVert \theta \rVert_\infty$ plot over time also shows that the va
 
 The example above highlights the importance of considering all aspects of a numerical scheme, of which stability is inherently indispensable, but so is the behaviour of the solution. This all forms a part of the robustness of the algorithm. Indeed, as is common, one may employ the backward Euler method and adaptive time stepping (which is an extremely common technique for non-linear systems), but if care is not taken in ensuring the scheme is positivity and bounds preservation, spurious oscillations will be sure to pollute the behaviour of the solution. The experienced reader may relate the above to *discrete maximum principle* and *monotnonicity of scheme*. 
 
-The oscillations shown above are not just limited to the heat equation. The author has demonstrated the existence of such oscillations in poroelastic systems as well [^5]. 
+The oscillations shown above are not just limited to the heat equation. The author has demonstrated the existence of such oscillations in poroelastic systems as well [^6]. 
 
 
 ## References
 [^1]: Randall J. LeVeque, *Finite Difference Methods for Ordinary and Partial Differential Equations*, SIAM, 2007.
 [^2]: Alexandre Ern, Jean-Luc Guermond, *Theory and Practice of Finite Elements*, 2004, Springer.
-[^3]: R. J. Plemmons, *M-Matrix Characterizations.I - Nonsingular M-Matrices*, 1977, Linear Algebra and its Applications (18).
-[^4]: Jurgen Fuhrmann, *Existence and uniqueness of solutions of certain systems of algebraic equations with off-diagonal nonlinearity*, 2001, Applied Numerical Mathematics. 
-[^5]: Vohra, N. and Peszynska, M., *Iteratively coupled mixed finite element solver for thermo-hydro-mechanical modeling of permafrost thaw*, 2024, Results in Applied Mathematics (22).
+[^3]: Claes Johnson, *Numerical solutions of partial differential equations by the finite element method*, 1987, Cambridge University Press.
+[^4]: R. J. Plemmons, *M-Matrix Characterizations.I - Nonsingular M-Matrices*, 1977, Linear Algebra and its Applications (18).
+[^5]: Jurgen Fuhrmann, *Existence and uniqueness of solutions of certain systems of algebraic equations with off-diagonal nonlinearity*, 2001, Applied Numerical Mathematics. 
+[^6]: Vohra, N. and Peszynska, M., *Iteratively coupled mixed finite element solver for thermo-hydro-mechanical modeling of permafrost thaw*, 2024, Results in Applied Mathematics (22).
