@@ -99,7 +99,7 @@ By induction, we have our result.
 
 <p style="text-align: right;">&#x25A1;</p>
 
-**Note on the choice of norm.** *If the matrix $M$ were a diagonal matrix, such as $M = h I$ (as we will obtain later), then the norm $\\| \cdot \\|_M = h \\| \cdot \\|_2$. In our experiments, we have also observed the inequality \label{eq:proof4} to be satisfied by the Euclidean norms. For more stability estimates, the reader is referred to [^2] [^3].*
+**Note on the choice of norm.** *If the matrix $M$ were a diagonal matrix, such as $M = h I$ (as we will obtain later), then the norm $\\| \cdot \\|_M = h \\| \cdot \\|_2$. In our experiments, we have also observed the inequality \ref{eq:proof4} to be satisfied by the Euclidean norms. For more stability estimates, the reader is referred to [^2] [^3].*
 
 ## 2.2. Homogeneous Media Example
 
@@ -214,7 +214,7 @@ This overshooting and undershooting behaviour of the temperature profile exempli
 
 A keyword we will be looking at is *M-matrices*. Let us begin this section with a definition that characterizes M-matrices. 
 
-**Definition 1.** *A non-singular square matrix $Y \in \mathbb{R}^l$ is called an M-matrix if it has non-positive off-diagonal elements and if $Y + D$ is non-singular for each non-negative diagonal matrix $D \in \mathbb{R}^l$ [^5].* 
+**Definition 3.1.** *A non-singular square matrix $Y \in \mathbb{R}^l$ is called an M-matrix if it has non-positive off-diagonal elements and if $Y + D$ is non-singular for each non-negative diagonal matrix $D \in \mathbb{R}^l$ [^5].* 
 
 A well-known property of M-matrices is positivity of inverses, i.e., for an M-matrix $Y$, we have each entry of $Y^{-1}$ is non-negative. We denote this by $Y^{-1} \geq 0$. This is one of the properties that we are interested in to ensure that our temperature does not undershoot for small time step sizes.
 

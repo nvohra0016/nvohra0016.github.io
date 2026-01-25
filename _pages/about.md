@@ -41,4 +41,4 @@ I also maintain a [blog](https://nvohra0016.github.io/talks/) on my website wher
 - [An Introduction to Kalman Filters Using the Heat Equation](https://nvohra0016.github.io/talks/kalman_filter/)  
 `Kalman filter`, `heat equation`, `Monte Carlo`, `ODE`
 
-###### Last updated: December 2025
+###### Last updated: January 2026
