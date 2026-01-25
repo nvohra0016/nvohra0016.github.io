@@ -46,7 +46,7 @@ It is easy to observe that $M$ and $A$ are symmetric and positive definite (SPD)
 
 Let the norm $\\|\cdot \\|_M$ be defined as $\|\U \\|_M = \sqrt{U^T M U}, \; \forall U \in \mathbb{R}^I$. Since $M$ is SPD, it is easy to verify that $\\| \cdot \\|_M$ is a norm. We prove the following stability estimate. 
 
-**Lemma 1.** Let $\Theta^0$ be given. Then, for the scheme given by \ref{eq:implicit_discretized}, we have
+**Lemma 2.1.1.** Let $\Theta^0$ be given. Then, for the scheme given by \ref{eq:implicit_discretized}, we have
 
 \begin{equation}
 \label{eq:theorem_stability}
@@ -150,7 +150,7 @@ Figure 3. Results showing the temperature profile near the start of the simulati
 
 <br>
 
-It can be observed that now for the first few time steps, spurious oscillations arise in the temperature profile as shown in Fig. 3. (left). The oscillations lead to the temperature profile over- and undershooting the bounds of the initial temperature profile. That is, the temperature profile at $t = 60$ [s] shows values $> 1$ and $< 0$ being achieved, which lacks physical soundness: indeed, we do not expect the temperature to go higher or lower than the initial state in the absence of any sources or sink terms. The oscillations eventually die out as time progresses, and we get a smooth solution as in the case of $\tau = 3600$. If we look at the $M$-norm values of the temperature, $\\| \theta\\|_M$, over time, we get a monotonically decreasing curve, as expected from Lemma 1; see Fig. 4 (left). We get the same behaviour of the energy norm $\lVert \theta \rVert_2$.  
+It can be observed that now for the first few time steps, spurious oscillations arise in the temperature profile as shown in Fig. 3. (left). The oscillations lead to the temperature profile over- and undershooting the bounds of the initial temperature profile. That is, the temperature profile at $t = 60$ [s] shows values $> 1$ and $< 0$ being achieved, which lacks physical soundness: indeed, we do not expect the temperature to go higher or lower than the initial state in the absence of any sources or sink terms. The oscillations eventually die out as time progresses, and we get a smooth solution as in the case of $\tau = 3600$. If we look at the $M$-norm values of the temperature, $\\| \theta\\|_M$, over time, we get a monotonically decreasing curve, as expected from Lemma 2.1.1.; see Fig. 4 (left). We get the same behaviour of the energy norm $\lVert \theta \rVert_2$.  
 
 <div align="center">
 <img src='/images/m_matrix_oscillations/norm_homogeneous_small_time_step.png' width='380' height='380'>
@@ -163,7 +163,7 @@ It can be observed that now for the first few time steps, spurious oscillations 
 
 <br>
 
-This "overshooting" and "undershooting" behaviour of the function has been noted in literature. In fact, the issue becomes easy to spot when we consider the $\lVert \theta \rVert_\infty$ values over the time; see Fig. 4. (right). The plot shows that the values of $\lVert \theta \rVert_\infty$ oscillate towards the beginning of the solution before they start decreasing monotonically. That is, our numerical scheme does not guarantee the boundedness of $\lVert \theta \rVert_\infty$ for all time step sizes $\tau > 0$. The oscillations become more pronounced when we consider heterogeneous media.
+The issue becomes easy to spot when we consider the $\lVert \theta \rVert_\infty$ values over the time; see Fig. 4. (right). The plot shows that the values of $\lVert \theta \rVert_\infty$ oscillate towards the beginning of the solution before they start decreasing monotonically. That is, our numerical scheme does not guarantee the boundedness of $\lVert \theta \rVert_\infty$ for all time step sizes $\tau > 0$. The oscillations become more pronounced when we consider heterogeneous media.
 
 ## 2.3. Heterogeneous Media
 
@@ -203,23 +203,22 @@ The $\lVert \theta \rVert_\infty$ values over time show the extent of the oscill
 
 <br>
 
-We now dig deeper into the cause of these oscillations.
 
-This "overshooting" and "undershooting" of the temperature behaviour exemplifies a violation of the *discrete maximum principle*.
+This overshooting and undershooting of the temperature behaviour exemplifies a violation of the *discrete maximum principle*. The issue has been well-studied in literature, and now we analyze the issue and provide a remedy for the same.
 
 # 3. M-matrices and Oscillations
 
-We begin this section with a definition that characterizes M-matrices. 
+A keyword we will be looking at is *M-matrices*. Let us begin this section with a definition that characterizes M-matrices. 
 
-**Definition 1.** *A non-singular square matrix $Y \in \mathbb{R}^l$ is called an M-matrix if it has non-positive off diagonal elements, and if $Y + D$ is non-singular for each non-negative diagonal matrix $D \in \mathbb{R}^l$ [^3].* 
+**Definition 1.** *A non-singular square matrix $Y \in \mathbb{R}^l$ is called an M-matrix if it has non-positive off-diagonal elements, and if $Y + D$ is non-singular for each non-negative diagonal matrix $D \in \mathbb{R}^l$ [^3].* 
 
-A well-known property of M-matrices is positivity of inverses, i.e., for an M-matrix $Y$, we have each entry of $Y^{-1}$ is non-negative. We denote this by $Y^{-1} \geq 0$. 
+A well-known property of M-matrices is positivity of inverses, i.e., for an M-matrix $Y$, we have each entry of $Y^{-1}$ is non-negative. We denote this by $Y^{-1} \geq 0$. This is one of the properties that we are interested in to ensure that our temperature does not undershoot for small time step sizes.
 
-
-Now let us return to our system \ref{eq:implicit_discretized}. The matrix $A$ has non-positive off diagonal and positive diagonal entries (look at its tridiagonal structure). In fact, the matrix $A$ is weakly diagonally dominant. However, the entries of $M + \tau A$ are given by (for homogeneous media)
+Let us return to our system \ref{eq:implicit_discretized} to see how we can leverage the properties of M-matrices. The matrix $A$ has non-positive off-diagonal and positive diagonal entries (look at its tridiagonal structure). In fact, the matrix $A$ is *weakly diagonally dominant* (see the next section). The entries of $(M + \tau A)$ are given by (for homogeneous media)
 
 $$
-    \begin{bmatrix}
+\label{eq:system_entries}
+   M + \tauA =  \begin{bmatrix}
         \left(\frac{4ch}{6} + \frac{2\tau k}{h} \right) & \left( \frac{ch}{6} - \frac{\tau k}{h}\right) & 0 & \dots & 0 & 0
         \\
         \left(\frac{ch}{6} - \frac{\tau k}{h} \right) & \left(\frac{4ch}{6} + \frac{2\tau k}{h}\right) & \left(\frac{ch}{6} - \frac{\tau k}{h} \right) & \dots & 0 & 0
@@ -227,12 +226,13 @@ $$
         \vdots & \vdots & \vdots & \ddots & \vdots & \vdots
         \\
         0 & 0 & 0 & \dots & \left( \frac{ch}{6} - \frac{\tau k}{h}\right) & \left(\frac{4ch}{6} + \frac{2\tau k}{h} \right) 
-    \end{bmatrix}
+    \end{bmatrix}.
 $$
 
-Note that $(M + \tau A + D)$ will always be non-singular for any non-negative diagonal matrix $D$, since $A$ and $M$ are already SPD. In order to make $(M + \tau A)$ an M-matrix, we need to ensure that it has non-positive off-diagonal entries. The reader may have already guessed the problem at small $\tau$: as $\tau$ approaches $0$, we have
+Note that $(M + \tau A + D)$ will always be non-singular for any non-negative diagonal matrix $D$, since $A$ and $M$ are already SPD. In order for $(M + \tau A)$ to be an M-matrix, we need to ensure that it has non-positive off-diagonal entries. The reader may have already guessed the problem at small $\tau$: as $\tau$ approaches $0$, from \ref{eq:system_entries}, it can be observed that the off-diagonal entries are
 
 \begin{equation}
+\label{eq:tau_estimate}
    \left( \frac{ch}{6} - \tau \frac{1}{h}\right) > 0
 \end{equation}
 
@@ -242,13 +242,13 @@ and hence $M + \tau A$ ceases to be an M-matrix. Thus, since
     \Theta^n = \left(M + \tau A \right)^{-1} M\Theta^{n-1},
 \end{equation}
 
-if $\Theta^{n-1} \geq 0$, then $M\Theta^{n-1} \geq 0$ since $M \geq 0$, however, since $M + \tau A$ is not an M-matrix for small $\tau$, $\left(M + \tau A \right)^{-1}$ may not be positive. The sufficient condition for $M + \tau A$ to be an M-matrix is
+if $\Theta^{n-1} \geq 0$, then $M\Theta^{n-1} \geq 0$ since $M \geq 0$, however, since $M + \tau A$ is not an M-matrix for small $\tau$, $\left(M + \tau A \right)^{-1}$ may not be positive. From \ref{eq:tau_estimate} the sufficient condition for $\left(M + \tau A\right)$ to be an M-matrix is
 
 \begin{equation}
     \tau \geq \frac{ch^2}{6k}.
 \end{equation}
 
-For our homogeneous example above, this gives us a lower bound of $\tau \geq 133.33$ [s], and thus explains the undershooting of the solution for $\tau = 1$ [s] when the solution $\Theta^n$ dips below zero in Fig. 3. The over-shooting can similarly be explained by considering $\Theta^n - \max{\Theta_0}$ and with some algebraic manipulation.
+For our homogeneous example above, this gives us a lower bound of approximately $\tau \geq 134$ [s], and thus explains the undershooting of the solution for $\tau = 1$ [s] where the solution $\Theta^n$ dips below zero in Fig. 3. 
 
 We now move on to remedy this problem. Let us briefly recap what the issue is: we need a numerical scheme that ensures the solution does not over- or undershoot the bounds set by the initial condition $\Theta_0$. In short, we are looking for a scheme that satisfies an analogue of the maximum principle for parabolic equations.
 
@@ -267,7 +267,7 @@ M_{i, j} = \int_0^1 \phi_i(x) \phi_j(x) dx
 \end{cases}
 $$
 
-Since $\\{ \phi_i \\}$ are piecewise-linear polynomial, we make use Gaussian quadrature to compute the values \ref{eq:mass_matrix_entry}. Now let us consider an approximation using the trapezoidal rule. This gives
+Since $\\{ \phi_i \\}$ are piecewise-linear polynomial, we make use of Gaussian quadrature to compute the values \ref{eq:mass_matrix_entry}. Now let us consider an approximation using the trapezoidal rule. This gives
 
 $$
 M'_{i, j} = \sum_{v=1}^{N_h} \frac{h}{2}\left( \phi_i(x_v) \phi_j(x_v) \right) 
@@ -285,9 +285,9 @@ where $\\{x_v \\}$ are the vertices of the grid $\Omega_h$. That is, the trapezo
     \Theta^{n} = \left(M' + \tau A \right)^{-1} \Theta^{n-1} \geq 0, \; \text{ if } \Theta^{n-1} \geq 0.
 \end{equation}
 
-We now also make use of the following Theorem from [^4] which further gives us an $L^\infty$ bound for our scheme.
+But what about overshooting? That is, how do we ensure that $\Theta^n$ does not exceed the maximum value of $\Theta^{n-1}$? Thankfully, a stronger stability result can be obtained for M-matrices. We make use of the following Theorem from [^4] which gives us an $L^\infty$ bound for our new trapezoidal scheme.
 
-**Theorem 2.** Let $Y \in \mathbb{R}^L$ be row-wise weakly diagonally dominant, i.e., for $Y = [Y_{i, j}]$
+**Theorem 3.1.1.** Let $Y \in \mathbb{R}^L$ be row-wise weakly diagonally dominant, i.e., for $Y = [Y_{i, j}]$
 
 \begin{equation}
     |Y_{i,j}| \geq \sum_{j \neq i} |Y_{i, j}|, \; \forall i \in \{1, 2, \dots, L \}.
@@ -295,7 +295,15 @@ We now also make use of the following Theorem from [^4] which further gives us a
 
 Then $Y + D$ is an M-matrix for each positive diagonal matrix $D \in \mathbb{R}^L$, and $\lVert \left(I + Y \right) \rVert_\infty \leq 1$. 
 
-It becomes clear that with the trapezoidal, $\left(M' + \tau A \right)$ is weakly diagonally dominant, since $A$ is weakly diagonally dominant. Moreover, since $M' = hI$, we can simply write \ref{eq:implicit_discretized} as
+It becomes clear that with the trapezoidal, $\left(M' + \tau A \right)$ is weakly diagonally dominant, since $A$ is weakly diagonally dominant. This allows us to prove the following Lemma.
+
+**Lemma 3.1.2.** The solution $\Theta^n$ to \ref{eq:implicit_discretized} when the mass matrix $M'$ is computed using the trapezoidal rule satisfies
+
+\begin{equation}
+    \lVert \Theta^n \rVert \leq \lVert \Theta^{n-1} \rVert, \forall n \geq 1.
+\end{equation}
+
+*Proof* The proof follows in a straight forward manner from Theorem 3.1.1. Since $M' = hI$, we can simply write \ref{eq:implicit_discretized} as
 
 \begin{equation}
     \left(I + \frac{\tau}{h} A \right) \Theta^n = \Theta^{n-1},
@@ -307,7 +315,17 @@ which gives
     \Theta^n = \left(I + \frac{\tau}{h} A \right)^{-1} \Theta^{n-1}.
 \end{equation}
 
-By Theorem 2, we have $\lVert \Theta^n \rVert_\infty \leq \lVert\Theta^{n-1} \rVert_\infty, \; \forall n \geq 1$. This essentially ensures that our solution does not face the over- or undershooting behaviour as seen before. Let us demonstrate this by revisiting the examples as earlier.
+By Theorem 3.1.1.,
+
+\begin{equation}
+    \lVert \Theta^n \rVert_\infty \leq \lVert\left(I + \frac{\tau}{h} A \right)^{-1} \rVert_\infty \lVert \Theta^{n-1} \rVert_\infty \leq \lVert \Theta^{n-1} \rVert_\infty.
+\end{equation}
+
+This proves the result.
+
+<p style="text-align: right;">&#x25A1;</p>
+
+Lemma 3.1.2. essentially ensures that our solution does not face the overshooting behaviour as seen before, while the positivity of the solution will ensure no undershooting. Let us demonstrate this by revisiting the examples as earlier.
 
 ### 3.2. Homogeneous Example Revisited
 
