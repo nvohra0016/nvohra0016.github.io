@@ -27,7 +27,7 @@ To motivate the existence of spurious oscillations, we consider the heat equatio
 
 where $\theta$ [$^\circ C$] is the temperature (the primary variable to solve for), $c$ [J/m$^3$ C$^\circ$] is the known volumetric heat capacity of the material, $k = k(x)$ [J/m $^\circ C$ s] is the known thermal conductivity, and $f$ [J/m$^3$ s] is the known external source. Here $T$ [s] denotes the time period. Here we consider homogeneous Dirichlet boundary conditions $\theta(0, t) = \theta(1, t) = 0, \; \forall t \in (0, T)$. 
 
-We discretize our system using piecewise-linear Galerkin elements. In particular, for a given spatial grid size $h > 0$ determined by the number of cells in the grid $N_h$ (i.e., $h = {N_h}^{-1}$), let $V_h$ denote the space of piecewise-linear functions, and let $\\{\phi_{i + \frac{1}{2}}\\}$ denote the basis functions of $V_h$. Following the notation closesly as in our earlier post: [Convergence of Solvers and the Importance of Well-posedness](https://nvohra0016.github.io/talks/elliptic_well_posedness_cg/), we set up the system in a matrix vector form using implicit time stepping as (with $f = 0$)
+We discretize our system using piecewise-linear Galerkin elements. In particular, let $\Omega_h$ denote the grid for a given spatial grid size $h > 0$ determined by the number of cells in the grid $N_h$ (i.e., $h = {N_h}^{-1}$), let $V_h$ denote the space of piecewise-linear functions, and let $\\{\phi_{i + \frac{1}{2}}\\}$ denote the basis functions of $V_h$. Following the notation closesly as in our earlier post: [Convergence of Solvers and the Importance of Well-posedness](https://nvohra0016.github.io/talks/elliptic_well_posedness_cg/), we set up the system in a matrix vector form using implicit time stepping as (with $f = 0$)
 
 \begin{equation}
 \label{eq:implicit_discretized}
@@ -96,7 +96,7 @@ By induction, we have our result.
 
 **Note on the choice of norm.** *If the matrix $M$ were a diagonal matrix, such as $M = h I$ (as we will obtain later), then the norm $\\| \cdot \\|_M = \\| \cdot \\|_2$.*
 
-# 2.2. Test Scenario
+## 2.2. Homogeneous Media Example
 
 We now consider the cooling of a 1D object $1$ [m] long the middle portion of which is kept at $1$ [$^\circ$C], and the rest at $0$ [$^\circ$ C]. That is, we consider the initial condition
 
@@ -121,7 +121,7 @@ The initial condition is shown in Fig. 1.
 
 <br>
 
-We consider material properties similar to water, i.e., we consider $c = 10^6$ [J/ m$^3$ $^\circ$ C] $k = 0.5$ [J/m $^\circ$ C s]. The boundary conditions are as above, i.e., homogeneous Dirichlet. The results for grid size $h = 0.02$ [m] and time step $\tau = 1800$ [hr] are shown in Fig. 2.
+We assume a homogeneous medium and consider material properties similar to water, i.e., we consider $c = 10^6$ [J/ m$^3$ $^\circ$ C] $k = 0.5$ [J/m $^\circ$ C s]. The boundary conditions are as above, i.e., homogeneous Dirichlet. The results for grid size $h = 0.02$ [m] and time step $\tau = 1800$ [hr] are shown in Fig. 2.
 
 <div class='wrapper' align='center'>
 <section>
@@ -165,7 +165,7 @@ It can be observed that now for the first few time steps, spurious oscillations 
 
 This "overshooting" and "undershooting" behaviour of the function has been noted in literature. In fact, the issue becomes easy to spot when we consider the $\lVert \theta \rVert_\infty$ values over the time; see Fig. 4. (right). The plot shows that the values of $\lVert \theta \rVert_\infty$ oscillate towards the beginning of the solution before they start decreasing monotonically. That is, our numerical scheme does not guarantee the boundedness of $\lVert \theta \rVert_\infty$ for all time step sizes $\tau > 0$. The oscillations become more pronounced when we consider heterogeneous media.
 
-### 2.2.1. Example of Heterogeneous Media
+## 2.3. Heterogeneous Media
 
 We now re-run our example but using a heterogeneous media. We vary the thermal condutivity as follows
 
@@ -178,7 +178,7 @@ k(x) =
 \end{cases}
 $$
 
-The simulation with a time step of $\tau = 1800$ [s] and grid size $h = 0.02$ [m] is shown in Fig. 5. Now in addition to $x = 0.4$ and $x = 0.6$, oscillations also arise near the interface of the heterogeneity, i.e., near $x = 0.5$ [m].
+The simulation with a time step of $\tau = 1$ [s] and grid size $h = 0.02$ [m] over a time period of $(0, 60)$ [hr] is shown in Fig. 5. Now in addition to $x = 0.4$ and $x = 0.6$, oscillations also arise near the interface of the heterogeneity, i.e., near $x = 0.5$ [m].
 
 <div align="center">
 <img src='/images/m_matrix_oscillations/temperature_heterogeneous_1.png' width='380' height='380'>
@@ -270,19 +270,19 @@ $$
 Since $\\{ \phi_i \\}$ are piecewise-linear polynomial, we make use Gaussian quadrature to compute the values \ref{eq:mass_matrix_entry}. Now let us consider an approximation using the trapezoidal rule. This gives
 
 $$
-M'_{i, j} = \sum_{v=1}{N_h} \frac{h}{2}\left( \phi_i(x_v) \phi_j(x_v) \right) 
+M'_{i, j} = \sum_{v=1}^{N_h} \frac{h}{2}\left( \phi_i(x_v) \phi_j(x_v) \right) 
 =
 \begin{cases}
 h; & \forall i = j,
 \\
-0; & \text{ otherwise}.
+0; & \text{ otherwise},
 \end{cases}
 $$
 
-That is, the trapezoidal rule gives a diagonal mass matrix $M^' = hI$. This immediately ensures that the system matrix $(M^' + \tau A)$ has non-positive off-diagonal elements regardless of $\tau$, since $A$ has non-positive off-diagonal elements. Hence, by Definition 1, the matrix $(M^' + \tau A)$ is an M-matrix for any $\tau > 0$. Thus we have $\forall \tau > 0$
+where $\\{x_v \\}$ are the vertices of the grid $\Omega_h$. That is, the trapezoidal rule gives a diagonal mass matrix $M' = hI$. This immediately ensures that the system matrix $(M' + \tau A)$ has non-positive off-diagonal elements regardless of $\tau$, since $A$ has non-positive off-diagonal elements. Hence, by Definition 1, the matrix $(M' + \tau A)$ is an M-matrix for any $\tau > 0$. Thus we have $\forall \tau > 0$
 
 \begin{equation}
-    \Theta^{n} = \left(M^' + \tau A \right)^{-1} \Theta^{n-1} \geq 0, \; \text{ if } \Theta^{n-1} \geq 0.
+    \Theta^{n} = \left(M' + \tau A \right)^{-1} \Theta^{n-1} \geq 0, \; \text{ if } \Theta^{n-1} \geq 0.
 \end{equation}
 
 We now also make use of the following Theorem from [^4] which further gives us an $L^\infty$ bound for our scheme.
@@ -307,7 +307,63 @@ which gives
     \Theta^n = \left(I + \frac{\tau}{h} A \right)^{-1} \Theta^{n-1}.
 \end{equation}
 
-By Theorem 2, we have $\lVert \Theta^n \rVert_\infty \leq \lVert\Theta^{n-1} \rVert_\infty, \; \forall n \geq 1$. 
+By Theorem 2, we have $\lVert \Theta^n \rVert_\infty \leq \lVert\Theta^{n-1} \rVert_\infty, \; \forall n \geq 1$. This essentially ensures that our solution does not face the over- or undershooting behaviour as seen before. Let us demonstrate this by revisiting the examples as earlier.
+
+### 3.1.2. Homogeneous Example Revisited
+
+We consider the same parameters as earlier for the homogeneous media example with a time step of $\tau = 1$ [s]. The results are shown in Fig. 7. 
+
+<div align="center">
+<img src='/images/m_matrix_oscillations/comp_temperature_homogeneous0.png' width='380' height='380'>
+<img src='/images/m_matrix_oscillations/com_temperature_homogeneous1.png' width='380' height='380'>
+</div>
+
+<div align = "center">
+Figure 7. Plots showing the temperature profile at $t = 60$ [s] (left) and $t = 3000$ [s] (right) using the full Gaussian quadrature (blue, as earlier) and with the new trapezoidal rule (orange). Notice that with the new trapezoidal scheme, there are no oscillations around $x = 0.4$ and $x = 0.6$ as present for the Gaussian qudarature scheme.
+</div>
+
+<br>
+
+It can be observed that the new trapezoidal scheme does not lead to any spurious oscillations, i.e., no over- or undershooting as earlier. In fact, plotting the $\|\theta\|_\infty$ norm makes clear that the solution in fact remains within the bounds of the initial condition; see Fig. 8. 
+
+<div align="center">
+<img src='/images/m_matrix_oscillations/norm_linf_comp_homogeneous_small_time_step.png' width='450' height='450'>
+</div>
+
+<div align = "center">
+ Figure 8. Plot showing the error $\lVert \theta \rVert_\infty$ values over time for the new trapezoidal scheme (orange) and the earlier Gaussian quadrature scheme (blue). Notice that the new scheme does not have any oscillations near the start.
+</div>
+
+<br>
+
+### 3.1.2. Heterogeneous Media Revisited
+
+We now test our new trapezoidal scheme on heterogeneous media. With the same heterogeneous parameters as earlier, we compute the simulation using $\tau = 1$ [s] over a time period of $(0, 60)$ [hr]. The results are shown in Fig. 9. 
+
+<div align="center">
+<img src='/images/m_matrix_oscillations/comp_temperature_heterogeneous0.png' width='380' height='380'>
+<img src='/images/m_matrix_oscillations/com_temperature_heterogeneous1.png' width='380' height='380'>
+</div>
+
+<div align = "center">
+Figure 9. Plots showing the temperature profile at $t \approx 4$ [hr] (left) and $t = 48$ [hr] (right) using the full Gaussian quadrature (blue, as earlier) and with the new trapezoidal rule (orange). The new trapezoidal scheme does not feature any oscillations around $x = 0.4$, $x = 0.6$ or the interface $x = 0.5$ as present for the Gaussian qudarature scheme.
+</div>
+
+<br>
+
+Finally, the $\lVert \theta \rVert_\infty$ plot over time also shows that the values remain bounded as opposed to earlier; see Fig. 10.
+
+<div align="center">
+<img src='/images/m_matrix_oscillations/norm_linf_comp_homogeneous_small_time_step.png' width='450' height='450'>
+</div>
+
+<div align = "center">
+ Figure 10. Plot showing the error $\lVert \theta \rVert_\infty$ values over time for the new trapezoidal scheme (orange) and the earlier Gaussian quadrature scheme (blue). The new trapezoidal scheme features a bounded curve with no over-shooting of the solution.
+</div>
+
+<br>
+
+
 
 ## References
 [^1]: Randall J. LeVeque, *Finite Difference Methods for Ordinary and Partial Differential Equations*, SIAM, 2007.
