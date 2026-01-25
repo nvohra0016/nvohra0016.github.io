@@ -13,7 +13,7 @@ date: 2026-1-23
 
 Non-physical oscillations in numerical solutions are almost always linked to the stability of the underlying numerical method. In time dependent problems, the most well known example is the violation of the Courant–Friedrichs–Lewy (CFL) condition for explicit time stepping methods [^1]. The stability for such methods can usually be attained by choosing a small enough time step, which also depends on the spaitial grid size. This however, leads to computationally expensive simulations, requiring more time steps and memory for large time periods. Another way to obtain stability is to use implicit methods, like the backward Euler, which are known to be unconditionally stable. This means that there are no restrictions on the time step size to ensure stability, although a large enough time step comes with loss of accuracy. 
 
-Although it is true that implicit methods do not have a time step restriction, choosing a very small time step can lead to a non-monotone system which also produces oscillations. In this blog post, this is what we precisely demonstrate. We consider the well-known heat equation, and show how oscillations can arise for the stable backward Euler time stepping method. We then propose a remedy for these oscillations, and show its robustness in higher dimensional settings.
+Although it is true that implicit methods do not have a time step restriction, choosing a very small time step can lead to a non-monotone system which also produces oscillations. In this blog post, this is what we precisely demonstrate. We consider the well-known heat equation, and show how oscillations can arise for the stable backward Euler time stepping method. We then propose a remedy for these oscillations, and show its robustness in heterogeneous media and higher dimensional settings.
 
 
 # 2. Oscillations in Backward Euler for the Heat equation
@@ -233,7 +233,7 @@ $$
     \end{bmatrix}.
 $$
 
-Note that $(M + \tau A + D)$ will always be non-singular for any non-negative diagonal matrix $D$, since $A$ and $M$ are already SPD. In order for $(M + \tau A)$ to be an M-matrix, we need to ensure that it has non-positive off-diagonal entries. The reader may have already guessed the problem at small $\tau$: as $\tau$ approaches $0$, from \ref{eq:system_entries}, it can be observed that the off-diagonal entries are
+Note that $(M + \tau A + D)$ will always be non-singular for any non-negative diagonal matrix $D$, since $A$ and $M$ are already SPD, and hence $(M + \tau A + D)$ will be SPD. In order for $(M + \tau A)$ to be an M-matrix, we need to ensure that it has non-positive off-diagonal entries. The reader may have already guessed the problem at small $\tau$: as $\tau$ approaches $0$, from \ref{eq:system_entries}, it can be observed that the off-diagonal entries are
 
 \begin{equation}
 \label{eq:tau_estimate}
@@ -322,7 +322,7 @@ which gives
 By Theorem 3.1.1.,
 
 \begin{equation}
-    \lVert \Theta^n \rVert_\infty \leq \Big\lVert\left(I + \frac{\tau}{h} A \right)^{-1} \Big\rVert_\infty \lVert \Theta^{n-1} \rVert_\infty \leq \lVert \Theta^{n-1} \rVert_\infty.
+    \lVert \Theta^n \rVert_\infty \leq \Bigg\lVert\left(I + \frac{\tau}{h} A \right)^{-1} \Bigg\rVert_\infty \lVert \Theta^{n-1} \rVert_\infty \leq \lVert \Theta^{n-1} \rVert_\infty.
 \end{equation}
 
 This proves the result.
@@ -389,7 +389,7 @@ Finally, the $\lVert \theta \rVert_\infty$ plot over time also shows that the va
 
 The example above highlights the importance of considering all aspects of a numerical scheme, of which stability is inherently indispensable, but so is the behaviour of the solution. This all forms a part of the robustness of the algorithm. Indeed, as is common, one may employ the backward Euler method and adaptive time stepping (which is an extremely common technique for non-linear systems), but if care is not taken in ensuring the scheme is positivity and bounds preservation, spurious oscillations will be sure to pollute the behaviour of the solution. The experienced reader may relate the above to *discrete maximum principle* and *monotnonicity of scheme*. 
 
-The oscillations shown above are not just limited to the heat equation. The author has demonstrated the existence of such oscillations in poroelastic systems as well [^6]. 
+The oscillations shown above are not just limited to the heat equation. The author has demonstrated the existence of such oscillations in poroelastic systems as well where mixed finite elements have been used for discretization [^6]. Moreover, for an application of the bounds proved in Lemma 3.1.2. on the convergence of Newton's method, see [^7].
 
 
 ## References
@@ -399,3 +399,4 @@ The oscillations shown above are not just limited to the heat equation. The auth
 [^4]: R. J. Plemmons, *M-Matrix Characterizations.I - Nonsingular M-Matrices*, 1977, Linear Algebra and its Applications (18).
 [^5]: Jurgen Fuhrmann, *Existence and uniqueness of solutions of certain systems of algebraic equations with off-diagonal nonlinearity*, 2001, Applied Numerical Mathematics. 
 [^6]: Vohra, N. and Peszynska, M., *Iteratively coupled mixed finite element solver for thermo-hydro-mechanical modeling of permafrost thaw*, 2024, Results in Applied Mathematics (22).
+[^7]: Vohra, N. and Peszynska, M., *Robust conservative scheme and nonlinear solver for phase transitions in heterogeneous permafrost*, 2024, Journal of Computational and Applied Mathematics. 
