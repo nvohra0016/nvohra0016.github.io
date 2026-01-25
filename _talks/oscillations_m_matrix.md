@@ -140,8 +140,8 @@ It can be observed that the temperature profile slowly and smoothly decays as th
 We now test for the robustness of our algorithm. For large time steps, similar temperature profiles as in Fig. 2. are obtained and nothing interesting happens. On the other hand, let us decrease the time step to gauge the temperature profile over smaller time periods. We consider $\tau = 1$ [s], and re-run the simulation. The results after a few time steps are shown in Fig. 3. 
 
 <div align="center">
-<img src='/images/m_matrix_oscillations/oscillations_60_seconds_homogeneous.png' width='380' height='380'>
-<img src='/images/m_matrix_oscillations/oscillations_3000_seconds_homogeneous.png' width='380' height='380'>
+<img src='/images/m_matrix_oscillations/oscillations_homogeneous0.png' width='380' height='380'>
+<img src='/images/m_matrix_oscillations/oscillations_homogeneous1.png' width='380' height='380'>
 </div>
 
 <div align = "center">
@@ -230,7 +230,7 @@ $$
     \end{bmatrix}
 $$
 
-Note that $(M + \tau A) + D$ will always be non-singular for any non-negative diagonal matrix $D$, since $A$ and $M$ are already SPD. In order to make $M + \tau A$ an M-matrix, we need to ensure that it has non-positive off-diagonal entries. The reader may have already guessed the problem at small $\tau$: as $\tau$ approaches $0$, we have
+Note that $(M + \tau A + D)$ will always be non-singular for any non-negative diagonal matrix $D$, since $A$ and $M$ are already SPD. In order to make $(M + \tau A)$ an M-matrix, we need to ensure that it has non-positive off-diagonal entries. The reader may have already guessed the problem at small $\tau$: as $\tau$ approaches $0$, we have
 
 \begin{equation}
    \left( \frac{ch}{6} - \tau \frac{1}{h}\right) > 0
@@ -354,7 +354,7 @@ Figure 9. Plots showing the temperature profile at $t \approx 4$ [hr] (left) and
 Finally, the $\lVert \theta \rVert_\infty$ plot over time also shows that the values remain bounded as opposed to earlier; see Fig. 10.
 
 <div align="center">
-<img src='/images/m_matrix_oscillations/norm_linf_comp_homogeneous_small_time_step.png' width='450' height='450'>
+<img src='/images/m_matrix_oscillations/norm_linf_comp_heterogeneous_small_time_step.png' width='450' height='450'>
 </div>
 
 <div align = "center">
