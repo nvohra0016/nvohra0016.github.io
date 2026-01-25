@@ -387,9 +387,9 @@ Finally, the $\lVert \theta \rVert_\infty$ plot over time also shows that the va
 
 # Further Reading
 
-The example above highlights the importance of considering all aspects of a numerical scheme, of which stability is inherently indispensable, but so is the behaviour of the solution. This all forms a part of the robustness of the algorithm. Indeed, as is common, one may employ the backward Euler method and adaptive time stepping (which is an extremely common technique for non-linear systems), but if care is not taken in ensuring the scheme is positivity and bounds preservation, spurious oscillations will be sure to pollute the behaviour of the solution. The experienced reader may relate the above to *discrete maximum principle* and *monotnonicity of scheme*. 
+The example above highlights the importance of considering all aspects of a numerical scheme, of which stability is inherently indispensable, but so is the behaviour of the solution. This all forms a part of the robustness of the algorithm. Indeed, as is common, one may employ the backward Euler method and adaptive time stepping (which is an extremely common technique for non-linear systems), but if care is not taken in ensuring the scheme is positivity and bounds preservation, spurious oscillations will be sure to pollute the behaviour of the solution. The experienced reader may relate the above to *discrete maximum principle* and *monotnonicity of scheme*; see for example [^6].
 
-The oscillations shown above are not just limited to the heat equation. The author has demonstrated the existence of such oscillations in poroelastic systems as well where mixed finite elements have been used for discretization [^6]. Moreover, for an application of the bounds proved in Lemma 3.1.2. on the convergence of Newton's method, see [^7].
+The oscillations shown above are not just limited to the heat equation. The author has demonstrated the existence of such oscillations in poroelastic systems as well where mixed finite elements have been used for discretization [^7]. Moreover, for an application of the bounds proved in Lemma 3.1.2. on the convergence of Newton's method, see [^8].
 
 
 ## References
@@ -398,5 +398,7 @@ The oscillations shown above are not just limited to the heat equation. The auth
 [^3]: Claes Johnson, *Numerical solutions of partial differential equations by the finite element method*, 1987, Cambridge University Press.
 [^4]: R. J. Plemmons, *M-Matrix Characterizations.I - Nonsingular M-Matrices*, 1977, Linear Algebra and its Applications (18).
 [^5]: Jurgen Fuhrmann, *Existence and uniqueness of solutions of certain systems of algebraic equations with off-diagonal nonlinearity*, 2001, Applied Numerical Mathematics. 
-[^6]: Vohra, N. and Peszynska, M., *Iteratively coupled mixed finite element solver for thermo-hydro-mechanical modeling of permafrost thaw*, 2024, Results in Applied Mathematics (22).
-[^7]: Vohra, N. and Peszynska, M., *Robust conservative scheme and nonlinear solver for phase transitions in heterogeneous permafrost*, 2024, Journal of Computational and Applied Mathematics. 
+[^6]: Hao Li,  Xiangxiong Zhang, *On the monotonicity and discrete maximum principle of the finite difference implementation of C0-Q2 finite element method*, 2020, Numerische
+Mathematik. 
+[^7]: Vohra, N. and Peszynska, M., *Iteratively coupled mixed finite element solver for thermo-hydro-mechanical modeling of permafrost thaw*, 2024, Results in Applied Mathematics (22).
+[^8]: Vohra, N. and Peszynska, M., *Robust conservative scheme and nonlinear solver for phase transitions in heterogeneous permafrost*, 2024, Journal of Computational and Applied Mathematics. 
