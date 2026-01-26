@@ -399,17 +399,17 @@ The above discussion does not restrict itself to 1D. In fact, the same behaviour
 
 <br>
 
-We consdier the domain $\Omega = (0, 1)^2$ [m$^2$]. We choose a low thermal conductivity value of $k = 0.5$ [J/m $^\circ$ C s] and a high thermal conductivity value of $k = 20$ [J/m $^\circ$ C s]. The heat capacity is taken as $c = 10^6$ [J/m$^3$ $^\circ$ C]. The Dirichlet boundary conditions for $\theta(x, y, t)$ are
+We consdier the domain $\Omega = (0, 1)^2$ [m$^2$]. We choose a low thermal conductivity value of $k = 10^{-4}$ [J/m $^\circ$ C s] and a high thermal conductivity value of $k = 20$ [J/m $^\circ$ C s]. The heat capacity is taken as $c = 10^6$ [J/m$^3$ $^\circ$ C]. The Dirichlet boundary conditions for $\theta(x, y, t)$ are
 
 $$
 \theta(0, y, t) = \begin{cases}
-1; & \forall y \in [0.3, 0.7],
+1; & \forall y \in [0.1, 0.9],
 \\
 0; & \text{ otherwise}.
 \end{cases}
 $$
 
-We run the simulation over $(0, 4)$ [hr] with uniform cells and spatial grid size $10^{-4}$ [m$^2$] and time step size $\tau = 60$ [s]. The results are shown in Fig. 12. 
+We run the simulation over $(0, 6)$ [hr] with uniform cells and spatial grid size $10^{-4}$ [m$^2$] and time step size $\tau = 60$ [s]. The results are shown in Fig. 12. 
 
 
 <div class='wrapper' align='center'>
@@ -419,12 +419,12 @@ We run the simulation over $(0, 4)$ [hr] with uniform cells and spatial grid siz
 </div>
 
 <div align = "center">
- Figure 12. Results for 2D heterogeneous media. The top GIF shows results from the Gaussian quadrature scheme and the bottom one for the trapezoidal quadrature scheme. The black lines represent the contours for all negative temperature values. Negative values have also been highlighted with blue colormap. Notice that the trapezoidal quadrature results have no negative temperature values.
+ Figure 12. Results for 2D heterogeneous media. The top GIF shows results from the Gaussian quadrature scheme and the bottom one for the trapezoidal quadrature scheme. Negative values have been highlighted with blue colormap. Notice that the trapezoidal quadrature results have no negative temperature values.
 </div>
 
 <br>
 
-It can be seen that the Gaussian quadrature scheme has a noisy profile, highlighted by black contour lines of negative temperature values. The colormap has also been selected such that negative values are represented by shades of blue. Notice that the Gaussian quadature scheme shows negative temperature regions, but the trapezoidal scheme preserves the bounds of the initial condition and the boundary condition. The results demonstrate the robustness of the scheme in 2D. The same has been observed by the author in 3D as well.
+It can be seen that the Gaussian quadrature scheme has a noisy profile, highlighted by the colormap that has been selected such that negative values are represented by blue. Notice that the Gaussian quadature scheme shows negative temperature regions, but the trapezoidal scheme preserves the bounds of the initial condition and the boundary condition. The results demonstrate the robustness of the scheme in 2D. The same has been observed by the author in 3D as well.
 
 
 # Further Reading
