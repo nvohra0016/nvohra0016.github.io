@@ -390,7 +390,7 @@ The above discussion does not restrict itself to 1D. In fact, the same behaviour
 
 
 <div align="center">
-<img src='/images/m_matrix_oscillations/2D_diagram.png' width='450' height='450'>
+<img src='/images/m_matrix_oscillations/2D_diagram.png' width='420' height='420'>
 </div>
 
 <div align = "center">
