@@ -25,7 +25,7 @@ To motivate the existence of spurious oscillations, we consider the heat equatio
     \partial_t \left(c \theta \right) - \nabla \cdot \left(k \nabla \theta \right) = f, \; \text{ in } \Omega \times (0, T),
 \end{equation}
 
-where $\theta$ [$^\circ C$] is the temperature (the primary variable to solve for), $c$ [J/m$^3$ C$^\circ$] is the known volumetric heat capacity of the material, $k = k(x)$ [J/m $^\circ C$ s] is the known thermal conductivity, and $f$ [J/m$^3$ s] is the known external source. Here $T$ [s] denotes the time period. Here we consider homogeneous Dirichlet boundary conditions $\theta(0, t) = \theta(1, t) = 0, \; \forall t \in (0, T)$. 
+where $\theta$ [$^\circ C$] is the temperature (the primary variable to solve for), $c$ [J/m$^3$ C$^\circ$] is the known volumetric heat capacity of the material, $k = k(x)$ [J/m $^\circ C$ s] is the known thermal conductivity, and $f$ [J/m$^3$ s] is the known external source. Here $T$ [s] denotes the time period. Here we consider homogeneous Dirichlet boundary conditions $\theta(0, t) = \theta(1, t) = 0, \; \forall t \in (0, T)$. Finally, the initial condition $\theta(x, 0) = \theta_0(x)$ is known.
 
 We discretize our system using piecewise-linear Galerkin elements. In particular, let $\Omega_h$ denote the grid for a given spatial grid size $h > 0$ determined by the number of cells in the grid $N_h$ (i.e., $h = {N_h}^{-1}$), let $V_h$ denote the space of piecewise-linear functions, and let $\\{\phi_{i + \frac{1}{2}}\\}$ denote the basis functions of $V_h$. Following the notation closesly as in our earlier post: [Convergence of Solvers and the Importance of Well-posedness](https://nvohra0016.github.io/talks/elliptic_well_posedness_cg/), we set up the system in a matrix vector form using implicit time stepping as (with $f = 0$)
 
@@ -46,11 +46,11 @@ It is easy to observe that $M$ and $A$ are symmetric and positive definite (SPD)
 
 Let the norm $\lVert \cdot \rVert_M$ be defined as $\lVert U \rVert_M = \sqrt{U^T M U}, \; \forall U \in \mathbb{R}^L$. Since $M$ is SPD, it is easy to verify that $\\| \cdot \\|_M$ is a norm. We prove the following stability estimate. 
 
-**Lemma 2.1.1.** Let $\Theta^0$ be given. Then, for the scheme given by \ref{eq:implicit_discretized}, we have
+**Lemma 2.1.1.** Let $\Theta_0$ be given. Then, for the scheme given by \ref{eq:implicit_discretized}, we have
 
 \begin{equation}
 \label{eq:theorem_stability}
-    \\|\Theta^n \\|_M \leq \\|\Theta^{0} \\|_M, \; \forall n \geq 1.
+    \\|\Theta^n \\|_M \leq \\|\Theta_{0} \\|_M, \; \forall n \geq 1.
 \end{equation}
 
 The estimate \ref{eq:theorem_stability} essentially guarantees that our numerical solution does not blow up as the time step progressess. Indeed, the $\lVert \cdot \rVert_M$ norm is equivalent to the Euclidean norm using the bounds 
