@@ -383,11 +383,29 @@ Finally, the $\lVert \theta \rVert_\infty$ plot over time also shows that the va
  Figure 10. Plot showing the error $\lVert \theta \rVert_\infty$ values over time for the new trapezoidal scheme (orange) and the earlier Gaussian quadrature scheme (blue). The new trapezoidal scheme features a bounded curve with no over-shooting of the solution.
 </div>
 
+
+### 3.3. 2D Heterogeneous Media
+
+The above discussion does not restrict itself to 1D. In fact, the same behaviour and remedy works in higher dimensions. Below, we present the results for a 2D simulation of heterogeneous media; see Fig. 11.
+
+<div class='wrapper' align='center'>
+<section>
+<img id='gif-click' src='/images/m_matrix_oscillations/output_stacked.gif'  width='470' height='470'/>
+</section>
+</div>
+
+<div align = "center">
+ Figure 11. Results for 2D heterogeneous media. The top GIF shows results from the Gaussian quadrature scheme and the bottom one for the trapezoidal quadrature scheme. The black lines represent the contours for all negative temperature values. Negative values have also been highlighted with blue colormap. Notice that the trapezoidal quadrature results have no negative temperature values.
+</div>
+
 <br>
+
+It can be seen that the Gaussian quadrature scheme has a noisy profile, highlighted by black contour lines of negative temperature values. The colormap has also been selected such that negative values are represented by shades of blue. Notice that the Gaussian quadature scheme shows negative temperature regions, but the trapezoidal scheme preserves the bounds of the initial condition and the boundary condition. The results demonstrate the robustness of the scheme in 2D. The same has been observed by the author in 3D as well.
+
 
 # Further Reading
 
-The example above highlights the importance of considering all aspects of a numerical scheme, of which stability is inherently indispensable, but so is the behaviour of the solution. This all forms a part of the robustness of the algorithm. Indeed, as is common, one may employ the backward Euler method and adaptive time stepping (which is an extremely common technique for non-linear systems), but if care is not taken in ensuring the scheme is positivity and bounds preservation, spurious oscillations will be sure to pollute the behaviour of the solution. The experienced reader may relate the above to *discrete maximum principle* and *monotnonicity of scheme*; see for example [^6].
+The example above highlights the importance of considering all aspects of a numerical scheme, of which stability is inherently indispensable, but so is the behaviour of the solution. This all forms a part of the robustness of the algorithm. Indeed, as is common, one may employ the backward Euler method and adaptive time stepping (which is an extremely common technique for non-linear systems), but if care is not taken in ensuring the scheme is positivity and bounds preservation, spurious oscillations will be sure to pollute the behaviour of the solution. The experienced reader may relate the above to *discrete maximum principle* and *monotnonicity of scheme*; see for example [^6]. Another common term for this technique is *mass lumping* or *selective integration*, which is widely used in computational mechanics.
 
 The oscillations shown above are not just limited to the heat equation. The author has demonstrated the existence of such oscillations in poroelastic systems as well where mixed finite elements have been used for discretization [^7]. Moreover, for an application of the bounds proved in Lemma 3.1.2. on the convergence of Newton's method, see [^8].
 
