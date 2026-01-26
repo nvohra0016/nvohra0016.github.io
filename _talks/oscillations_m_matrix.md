@@ -399,7 +399,7 @@ The above discussion does not restrict itself to 1D. In fact, the same behaviour
 
 <br>
 
-We choose a low thermal conductivity value of $k = 0.5$ [J/m $^\circ$ C s] and a high thermal conductivity value of $k = 20$ [J/m $^\circ$ C s]. The heat capacity is taken as $c = 10^6$ [J/m$^3$ $^\circ$ C]. The Dirichlet boundary conditions for $\theta(x, y, t)$ are
+We consdier the domain $\Omega = (0, 1)^2$ [m$^2$]. We choose a low thermal conductivity value of $k = 0.5$ [J/m $^\circ$ C s] and a high thermal conductivity value of $k = 20$ [J/m $^\circ$ C s]. The heat capacity is taken as $c = 10^6$ [J/m$^3$ $^\circ$ C]. The Dirichlet boundary conditions for $\theta(x, y, t)$ are
 
 $$
 \theta(0, y, t) = \begin{cases}
