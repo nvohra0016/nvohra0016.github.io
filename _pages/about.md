@@ -30,7 +30,6 @@ I also maintain a [blog](https://nvohra0016.github.io/talks/) on my website wher
 
 - [On the Cause of Spurious Oscillations for Stable Numerical Methods](https://nvohra0016.github.io/talks/oscillations_m_matrix/)  
 `oscillations` `Galerkin elements` `backward Euler` `heat equation` `discrete maximum principle` `M-matrix` `finite elements` `dealii`
-
 - [Convergence of Solvers and the Importance of Well-Posedness](https://nvohra0016.github.io/talks/elliptic_well_posedness_cg/)  
 `well posedness` `convergence` `conjugate gradient` `black-box` `elliptic equation`
 - [Neural Networks I: First Network from Scratch](https://nvohra0016.github.io/talks/neural_network1/)  
