@@ -409,7 +409,7 @@ $$
 \end{cases}
 $$
 
-We run the simulation over $(0, 6)$ [hr] with uniform cells and spatial grid size $10^{-4}$ [m$^2$] and time step size $\tau = 60$ [s]. The results are shown in Fig. 12. 
+We run the simulation over $(0, 6)$ [hr] with uniform cells and spatial grid size $10^{-4}$ [m$^2$] and time step size $\tau = 60$ [s]. We implement the discretization in the open source finite element library deal.II [^6]. The results are shown in Fig. 12. 
 
 
 <div class='wrapper' align='center'>
@@ -429,9 +429,9 @@ It can be seen that the Gaussian quadrature scheme has a noisy profile, highligh
 
 # Further Reading
 
-The example above highlights the importance of considering all aspects of a numerical scheme, of which stability is inherently indispensable, but so is the behaviour of the solution. This all forms a part of the robustness of the algorithm. Indeed, as is common, one may employ the backward Euler method and adaptive time stepping (which is an extremely common technique for non-linear systems), but if care is not taken in ensuring the scheme is positivity and bounds preservation, spurious oscillations will be sure to pollute the behaviour of the solution. The experienced reader may relate the above to *discrete maximum principle* and *monotnonicity of scheme*; see for example [^6]. Another common term for this technique is *mass lumping* or *selective integration*, which is widely used in computational mechanics.
+The example above highlights the importance of considering all aspects of a numerical scheme, of which stability is inherently indispensable, but so is the behaviour of the solution. This all forms a part of the robustness of the algorithm. Indeed, as is common, one may employ the backward Euler method and adaptive time stepping (which is an extremely common technique for non-linear systems), but if care is not taken in ensuring the scheme is positivity and bounds preservation, spurious oscillations will be sure to pollute the behaviour of the solution. The experienced reader may relate the above to *discrete maximum principle* and *monotnonicity of scheme*; see for example [^7]. Another common term for this technique is *mass lumping* or *selective integration*, which is widely used in computational mechanics.
 
-The oscillations shown above are not just limited to the heat equation. The author has demonstrated the existence of such oscillations in poroelastic systems as well where mixed finite elements have been used for discretization [^7]. Moreover, for an application of the bounds proved in Lemma 3.1.2. on the convergence of Newton's method, see [^8].
+The oscillations shown above are not just limited to the heat equation. The author has demonstrated the existence of such oscillations in poroelastic systems as well where mixed finite elements have been used for discretization [^8]. Moreover, for an application of the bounds proved in Lemma 3.1.2. on the convergence of Newton's method, see [^9].
 
 
 ## References
@@ -440,6 +440,7 @@ The oscillations shown above are not just limited to the heat equation. The auth
 [^3]: Claes Johnson, *Numerical solutions of partial differential equations by the finite element method*, 1987, Cambridge University Press.
 [^4]: R. J. Plemmons, *M-Matrix Characterizations.I - Nonsingular M-Matrices*, 1977, Linear Algebra and its Applications (18).
 [^5]: Jurgen Fuhrmann, *Existence and uniqueness of solutions of certain systems of algebraic equations with off-diagonal nonlinearity*, 2001, Applied Numerical Mathematics. 
-[^6]: Hao Li,  Xiangxiong Zhang, *On the monotonicity and discrete maximum principle of the finite difference implementation of C0-Q2 finite element method*, 2020, Numerische Mathematik.
-[^7]: Vohra, N. and Peszynska, M., *Iteratively coupled mixed finite element solver for thermo-hydro-mechanical modeling of permafrost thaw*, 2024, Results in Applied Mathematics (22).
-[^8]: Vohra, N. and Peszynska, M., *Robust conservative scheme and nonlinear solver for phase transitions in heterogeneous permafrost*, 2024, Journal of Computational and Applied Mathematics. 
+[^6]: Daniel Arndt et al., *The deal.II library, Version 9.7*, Journal of Numerical Mathematics, 2025.
+[^7]: Hao Li,  Xiangxiong Zhang, *On the monotonicity and discrete maximum principle of the finite difference implementation of C0-Q2 finite element method*, 2020, Numerische Mathematik.
+[^8]: Vohra, N. and Peszynska, M., *Iteratively coupled mixed finite element solver for thermo-hydro-mechanical modeling of permafrost thaw*, 2024, Results in Applied Mathematics (22).
+[^9]: Vohra, N. and Peszynska, M., *Robust conservative scheme and nonlinear solver for phase transitions in heterogeneous permafrost*, 2024, Journal of Computational and Applied Mathematics. 
