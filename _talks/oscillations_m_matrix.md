@@ -50,7 +50,7 @@ Let the norm $\lVert \cdot \rVert_M$ be defined as $\lVert U \rVert_M = \sqrt{U^
 
 \begin{equation}
 \label{eq:theorem_stability}
-    \\|\Theta^n \\|_M \leq \\|\Theta_{0} \\|_M, \; \forall n \geq 1.
+    \lVert \Theta^n \rVert_M \leq \lVert \Theta_{0} \rVert_M, \; \forall n \geq 1.
 \end{equation}
 
 The estimate \ref{eq:theorem_stability} essentially guarantees that our numerical solution does not blow up as the time step progressess. Indeed, the $\lVert \cdot \rVert_M$ norm is equivalent to the Euclidean norm using the bounds 
