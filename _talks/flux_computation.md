@@ -1,7 +1,7 @@
 ---
-title: "Investigation into Monotonicity of Solution of the Heat Equation on Fluxes"
+title: "Investigation into the Effect of Monotonicity of Numerical Methods for the Heat Equation on Average Measured Temperature"
 collection: talks
-excerpt: "We consider a 3 dimensional physical scenario to simulate a heating object and compute the average temperature a monotone and non-monotone scheme."
+excerpt: "We consider a 3 dimensional physical scenario to simulate a heating object and compute the average temperature over its boundary for a monotone and non-monotone scheme."
 date: 2026-2-21
 ---
 
@@ -11,17 +11,21 @@ date: 2026-2-21
 
 # 1. Introduction
 
-In this post, we investigate the physical impact of oscillations arising due to non-monotone schemes for the heat equation; see our discussion in [On the Cause of Spurious Oscillations in Stable Numerical Methods](https://nvohra0016.github.io/talks/oscillations_m_matrix/) for an in-depth analysis of the cause of oscillations. In particular, we are interested in quantifying the discrepancies in the measurable... We return to the heat equation
+In this post, we investigate the physical impact of oscillations arising due to non-monotone schemes for the heat equation; see our discussion in [On the Cause of Spurious Oscillations in Stable Numerical Methods](https://nvohra0016.github.io/talks/oscillations_m_matrix/) for an in-depth analysis of the cause of oscillations. We return to the heat equation
 
 $$
-    \partial_t \left( c \theta \right) - \nabla \cdot \left(k \nabla \theta \right) = f, \; \text{ in } \Omega.
+    \partial_t \left( c \theta \right) - \nabla \cdot \left(k \nabla \theta \right) = 0, \; \text{ in } \Omega,
 $$
 
-We have already demonstrated in our previous post how implicit Euler Galerkin schemes using $P_1/Q_1$ elements violate the *monotonicity* condition of the solution, i.e., they do not preserve the positivity of the solution. Physically, we observe negative temperature values in the absence of any sink terms or negative Dirichlet boundary conditions. An in-depth analysis shows how the scheme becomes non-monotone, i.e., it does not preserve the positivity of the solution when the thermal conductivity or time step becomes too small. We also develop a scheme using appropriate quadrature that solves this issue and produces a monotone scheme, thereby eliminating the spurious oscillation causing negative temperature values. 
+where $\Omega \subset \mathbb{R}^3$, and are interested in quantifying the discrepancies in measurable quantities, such as the average temperature over a subset of the boundary face.
+
+We have already demonstrated in our previous post how implicit Euler Galerkin schemes using $P_1/Q_1$ elements violate the *monotonicity* condition of the solution, i.e., they do not preserve the positivity of the solution (and the initial bounds). Physically, we observe negative temperature values in the absence of any sink terms or negative Dirichlet boundary conditions. An in-depth analysis shows how the scheme becomes non-monotone, i.e., it does not preserve the positivity of the solution when the thermal conductivity or time step becomes too small. We also developed a scheme using appropriate quadrature that solves this issue and produces a monotone scheme, thereby eliminating the spurious oscillation causing negative temperature values. 
+
 
 ## 1.1. Example setup
 
-We now explore how much impact these oscillations have on a measurable quantity such as the average temperature over a given subset of one of the boundary faces. To this end, we consider a three-dimensional heterogeneous material occupying $\Omega = (0,1)^3$ as shown below.
+
+We now simulate a physical scenario to understand the effect of the negative temperature oscillations produced by the Gaussian quadrature compared to the inconsistency introduced by the trapezoidal quadrature. To this end, we consider a three-dimensional heterogeneous material occupying $\Omega = (0,1)^3$ as shown below.
 
 <div align="center">
 <img src='/images/flux_computation/domain_diagram.png' width='600' height='600'>
@@ -33,7 +37,7 @@ We now explore how much impact these oscillations have on a measurable quantity 
 
 <br>
 
-The thermal conductivity and heat capacity for the two types of materials is $k_{high} = 1000$ [J/m $^\circ$ C s], $c_{high} = 10^6$ [J/m$^3$ s] and $k_{low} = 0.05$ [J/m $^\circ$ C s], $c_{low} = 10^6$ [J/m$^3$ s].
+The thermal conductivity and heat capacity for the two types of materials is $k_{high} = 1000$ [J/m $^\circ$ C s], $c_{high} = 10^6$ [J/m$^3$ s] and $k_{low} = 0.05$ [J/m $^\circ$ C s], $c_{low} = 10^6$ [J/m$^3$ s]. We consider Dirichlet boundary conditions on $\\{ 0 \\} \times (0,1) \times (0,1)$ where we set $\theta = 1$ [$^\circ$ C], and on the other faces we consider the Neumann no-flux boundary condition $\nabla \theta \cdot \nu = 0$. 
 
 # 2. Numerical Scheme and Solver
 
@@ -69,7 +73,6 @@ To compare our approaches (a) and (b), we first compute the reference solution u
 <br>
 
 We now compute the solution using the Gaussian quadrature and trapezoidal quadrature on a uniform mesh with cell width $h = 0.025$ [m], and compute the average temperature given by \ref{eq:measured_value}. The results are shown in Fig. 3.
-
 
 <div align="center">
 <img src='/images/flux_computation/average_temperature.png' width='420' height='420'>
