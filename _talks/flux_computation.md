@@ -23,13 +23,23 @@ We have already demonstrated in our previous post how implicit Euler Galerkin sc
 
 We now explore how much impact these oscillations have on a measurable quantity such as the average temperature over a given subset of one of the boundary faces. To this end, we consider a three-dimensional heterogeneous domain as shown below.
 
+<div align="center">
+<img src='/images/flux_computation/domain_diagram.png' width='420' height='420'>
+</div>
+
+<div align = "center">
+ Figure 1. Illustration of the heterogeneous domain used for the numerical simulation.
+</div>
+
+<br>
+
+The thermal conductivity and heat capacity for the two types of materials is $k_{high} = 1000$ [J/m $^\circ$ C s], $c_{high} = 10^6$ [J/m$^3$ s] and $k_{low} = 0.01$ [J/m $^\circ$ C s], $c_{low} = 10^6$ [J/m$^3$ s].
+
 # 2. Numerical Scheme and Solver
 
-We consider first order implicit time stepping and spatial discretization using $Q_1$ bilinear elements. We consider two aproaches: (a) using the full quadrature when computing the mass matrix (Gaussian quadrature) and (b) using the trapezoidal rule to compute the mass matrix; see [On the Cause of Spurious Oscillations in Stable Numerical Methods](https://nvohra0016.github.io/talks/oscillations_m_matrix/) for complete details of the two approaches.
+We consider first order implicit time stepping and spatial discretization using $Q_1$ bilinear elements. We consider two aproaches: (a) using the full quadrature when computing the mass matrix (Gaussian quadrature) and (b) using the trapezoidal rule to compute the mass matrix; see [On the Cause of Spurious Oscillations in Stable Numerical Methods](https://nvohra0016.github.io/talks/oscillations_m_matrix/) for complete details of the two approaches. We now know that approach (a) will lead to negative temperature values and (b) will preserve the positivity and bounds of the solution.
 
-We now know that approach (a) will lead to negative temperature values and (b) will preserve the positivity and bounds of the solution. 
-
-We develop and implement our scheme in deal.II [^1]. To efficiently handle the large scale of the problem, we parallelize our implementation using MPI and Petsc, the interface of which is offered in deal.II itself. As part of the linear solver, we consider the conjugate gradient method with the algebraic multigrid (AMG) preconditioner.
+We develop and implement our scheme in deal.II [^1]. To efficiently handle the large scale of the problem, we parallelize our implementation using MPI and PETSc [^2], the interface of which is offered in deal.II itself. As part of the linear solver, we consider the conjugate gradient (CG) method with the algebraic multigrid (AMG) preconditioner.
 
 # 2.1. Measured Quantity
 
