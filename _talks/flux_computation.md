@@ -21,19 +21,19 @@ We have already demonstrated in our previous post how implicit Euler Galerkin sc
 
 ## 1.1. Example setup
 
-We now explore how much impact these oscillations have on a measurable quantity such as the average temperature over a given subset of one of the boundary faces. To this end, we consider a three-dimensional heterogeneous domain as shown below.
+We now explore how much impact these oscillations have on a measurable quantity such as the average temperature over a given subset of one of the boundary faces. To this end, we consider a three-dimensional heterogeneous material occupying $\Omega = (0,1)^3$ as shown below.
 
 <div align="center">
 <img src='/images/flux_computation/domain_diagram.png' width='600' height='600'>
 </div>
 
 <div align = "center">
- Figure 1. Illustration of the heterogeneous domain used for the numerical simulation.
+ Figure 1. Illustration of the heterogeneous domain used for the numerical simulation. Left: domain showing the 4 rectangular boxes of heterogeneity on the surface. Right: sliced view showing the 4 cuboids that form the heterogeneity.
 </div>
 
 <br>
 
-The thermal conductivity and heat capacity for the two types of materials is $k_{high} = 1000$ [J/m $^\circ$ C s], $c_{high} = 10^6$ [J/m$^3$ s] and $k_{low} = 0.01$ [J/m $^\circ$ C s], $c_{low} = 10^6$ [J/m$^3$ s].
+The thermal conductivity and heat capacity for the two types of materials is $k_{high} = 1000$ [J/m $^\circ$ C s], $c_{high} = 10^6$ [J/m$^3$ s] and $k_{low} = 0.05$ [J/m $^\circ$ C s], $c_{low} = 10^6$ [J/m$^3$ s].
 
 # 2. Numerical Scheme and Solver
 
@@ -41,7 +41,7 @@ We consider first order implicit time stepping and spatial discretization using 
 
 We develop and implement our scheme in deal.II [^1]. To efficiently handle the large scale of the problem, we parallelize our implementation using MPI and PETSc [^2], the interface of which is offered in deal.II itself. As part of the linear solver, we consider the conjugate gradient (CG) method with the algebraic multigrid (AMG) preconditioner.
 
-# 2.1. Measured Quantity
+## 2.1. Measured Quantity
 
 In order to compare the two approaches, we compute the temperature average on a subset of one of the boundaries
 
@@ -52,7 +52,37 @@ $$
 
 where $\theta^n_h$ is the discretized solution obtained at time step $n$, and $\Omega_M \subset \partial \Omega$ is a chosen subset. The motive for chosing \ref{eq:measured_value} is that it allows us to measure the temperature at one face of the heating object thereby mimicing actual physical measurements.
 
+For our numerical results, we consider $\Gamma_F = \\{ 1 \\} \times (0.25, 0.75) \times (0.25, 0.75)$. 
+
 # 3. Results
+
+To compare our approaches (a) and (b), we first compute the reference solution using a really fine spatial mesh. We run the simulation over $(0, 24)$ [hr] using a time step of $\tau = 1$ [hr], and a uniform spatial mesh using edge length $0.00625$ [m] (corresponding to roughly 5 million degrees of freedom!). The simulation is launched on 10 processors, and the results at the first and last time steps are shown in Fig. 2.
+
+<div align="center">
+<img src='/images/flux_computation/fine_mesh_results.png' width='500' height='500'>
+</div>
+
+<div align = "center">
+ Figure 2. Results at $t = 1$ [hr] (left) and $t = 24$ [hr] (right) for the reference solution (fine grid).
+</div>
+
+<br>
+
+We now compute the solution using the Gaussian quadrature and trapezoidal quadrature on a uniform mesh with cell width $h = 0.025$ [m], and compute the average temperature given by \ref{eq:measured_value}. The results are shown in Fig. 3.
+
+
+<div align="center">
+<img src='/images/flux_computation/average_temperature.png' width='420' height='420'>
+</div>
+
+<div align = "center">
+ Figure 3. Results showing the average temperature computed using the Gaussian quadrature and trapezoidal quadrature. Also shown are the average temperature values for the reference solution.
+</div>
+
+<br>
+
+**Discussion of results** It can be observed from Fig. 3. that the Gaussian quadrature yields values closer to the reference solution than the trapezoidal quadature when using a coarse mesh, even though spurious oscillations (negative temperature values) are present when using the Gaussian quadrature. That is, even though the trapezoidal quadrature leads to positivity preserving scheme, the error introduced by the quadrature itself leads to large differences in the measured average temperature values.
+
 
 ## References
 [^1]: Daniel Arndt et al., *The deal.II library, Version 9.7*, Journal of Numerical Mathematics, 2025.
