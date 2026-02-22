@@ -331,7 +331,7 @@ This proves the result.
 
 Lemma 3.1.2. essentially ensures that our solution does not face the overshooting behaviour as seen before, while the positivity of the solution will ensure no undershooting. Let us demonstrate this by revisiting the examples as earlier. Henceforth we shall call this refer to this scheme which uses $M'$ as the "Trapezoidal quad." and to the earlier scheme as "Gaussian quad." scheme.
 
-**Note on a simpler remedy** *The reader may have already understood that since the cause of oscillations is the lack of an M-matrix structure of $\left( M + \tau A \right)$, the same can very well be obtained by simply reducing $h$, i.e., by refining the spatial grid size. That, however, may not always be possible due to computational efficiency constraints.*
+**Note on a simpler remedy.** *The reader may have already understood that since the cause of oscillations is the lack of an M-matrix structure of $\left( M + \tau A \right)$, the same can very well be obtained by simply reducing $h$, i.e., by refining the spatial grid size. That, however, may not always be possible due to computational efficiency constraints.*
 
 ### 3.2. Homogeneous Example Revisited
 
