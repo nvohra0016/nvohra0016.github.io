@@ -1,5 +1,5 @@
 ---
-title: "On the Cause of Spurious Oscillations for Stable Numerical Methods"
+title: "On the Cause of Spurious Oscillations in Stable Numerical Methods"
 collection: talks
 excerpt: "We explore the cause behind spurious numerical oscillations when solving the heat equation and develop a robust algorithm using appropriate numerical quadrature."
 date: 2026-1-23
