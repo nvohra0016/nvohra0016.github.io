@@ -27,7 +27,7 @@ We now explore how much impact these oscillations have on a measurable quantity 
 
 We consider first order implicit time stepping and spatial discretization using $Q_1$ bilinear elements. We consider two aproaches: (a) using the full quadrature when computing the mass matrix (Gaussian quadrature) and (b) using the trapezoidal rule to compute the mass matrix; see [On the Cause of Spurious Oscillations in Stable Numerical Methods](https://nvohra0016.github.io/talks/oscillations_m_matrix/) for complete details of the two approaches.
 
-It is now known that approach (a) will lead to negative temperature values and (b) will preserve the positivity and bounds of the solution. 
+We now know that approach (a) will lead to negative temperature values and (b) will preserve the positivity and bounds of the solution. 
 
 We develop and implement our scheme in deal.II [^1]. To efficiently handle the large scale of the problem, we parallelize our implementation using MPI and Petsc, the interface of which is offered in deal.II itself. As part of the linear solver, we consider the conjugate gradient method with the algebraic multigrid (AMG) preconditioner.
 
