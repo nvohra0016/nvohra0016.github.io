@@ -51,10 +51,10 @@ In order to compare the two approaches, we compute the temperature average on a 
 
 $$
 \label{eq:measured_value}
-    \overline{\theta^n} = \frac{\int_{\Omega_M} \theta^n_h }{\int_{\Omega_M} 1},
+    \overline{\theta^n} = \frac{\int_{\Gamma_F} \theta^n_h d\Gamma }{\int_{\Gamma_F} 1 d\Gamma},
 $$
 
-where $\theta^n_h$ is the discretized solution obtained at time step $n$, and $\Omega_M \subset \partial \Omega$ is a chosen subset. The motive for chosing \ref{eq:measured_value} is that it allows us to measure the temperature at one face of the heating object thereby mimicing actual physical measurements.
+where $\theta^n_h$ is the discretized solution obtained at time step $n$, and $\Gamma_F \subset \partial \Omega$ is a chosen subset. The motive for chosing \ref{eq:measured_value} is that it allows us to measure the temperature at one face of the heating object thereby mimicing actual physical measurements.
 
 For our numerical results, we consider $\Gamma_F = \\{ 1 \\} \times (0.25, 0.75) \times (0.25, 0.75)$. 
 
