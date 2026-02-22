@@ -24,7 +24,7 @@ We have already demonstrated in our previous post how implicit Euler Galerkin sc
 We now explore how much impact these oscillations have on a measurable quantity such as the average temperature over a given subset of one of the boundary faces. To this end, we consider a three-dimensional heterogeneous domain as shown below.
 
 <div align="center">
-<img src='/images/flux_computation/domain_diagram.png' width='420' height='420'>
+<img src='/images/flux_computation/domain_diagram.png' width='600' height='600'>
 </div>
 
 <div align = "center">
@@ -50,7 +50,7 @@ $$
     \overline{\theta^n} = \frac{\int_{\Omega_M} \theta^n_h }{\int_{\Omega_M} 1},
 $$
 
-where $\Omega_M \subset \partial \Omega$ is a chosen subset. The motive for chosing \ref{eq:measured_value} is that it allows us to measure the temperature at one face of the heating object thereby mimicing actual physical measurements.
+where $\theta^n_h$ is the discretized solution obtained at time step $n$, and $\Omega_M \subset \partial \Omega$ is a chosen subset. The motive for chosing \ref{eq:measured_value} is that it allows us to measure the temperature at one face of the heating object thereby mimicing actual physical measurements.
 
 # 3. Results
 
