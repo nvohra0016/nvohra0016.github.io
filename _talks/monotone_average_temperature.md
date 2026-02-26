@@ -42,7 +42,7 @@ We now simulate a physical scenario to understand the effect of the negative tem
 
 <br>
 
-The thermal conductivity and heat capacity for the two types of materials is $k_{high} = 1000$ [J/m $^\circ$ C s], $c_{high} = 10^6$ [J/m$^3$ s] and $k_{low} = 0.20$ [J/m $^\circ$ C s], $c_{low} = 10^6$ [J/m$^3$ s]. We consider Dirichlet boundary conditions on $\\{ 0 \\} \times (0,1) \times (0,1)$ where we set $\theta = 1$ [$^\circ$ C], and on the other faces we consider the Neumann no-flux boundary condition $\nabla \theta \cdot \nu = 0$. 
+The thermal conductivity and heat capacity for the high conductivity material is $k = 1000$ [J/m $^\circ$ C s], $c = 10^6$ [J/m$^3$ s] and for the low conductivity material is $k = 0.20$ [J/m $^\circ$ C s], $c = 10^7$ [J/m$^3$ s]. We consider Dirichlet boundary conditions on $\\{ 0 \\} \times (0,1) \times (0,1)$ where we set $\theta = 1$ [$^\circ$ C], and on the other faces we consider the Neumann no-flux boundary condition $\nabla \theta \cdot \nu = 0$. 
 
 ## 1.2. Measured Quantity: Average Temperature
 
@@ -74,8 +74,8 @@ We develop and implement our scheme in deal.II [^1]. To efficiently handle the l
 To compare our approaches (a) and (b), we first compute the reference solution using a really fine spatial mesh. We run the simulation over $(0, 24)$ [hr] using a time step of $\tau = 0.25$ [hr], and a uniform spatial mesh using edge length $0.00625$ [m] (corresponding to more than 4 million degrees of freedom!). The simulation is launched on 10 processors, and the results at the a few time steps are shown in Fig. 2. The simulations takes roughly 3.8 hours to finish on my pesonal macbook, with maximum 13 iterations for the CG solver per time step.
 
 <div align="center">
-<img src='/images/flux_computation/fine_mesh_results0.svg' width='500' height='500'>
-<img src='/images/flux_computation/fine_mesh_results1.svg' width='500' height='500'>
+<img src='/images/flux_computation/fine_mesh_results0.svg' width='600' height='600'>
+<img src='/images/flux_computation/fine_mesh_results1.svg' width='600' height='600'>
 </div>
 
 <div align = "center">
