@@ -17,7 +17,7 @@ $$
     \partial_t \left( c \theta \right) - \nabla \cdot \left(k \nabla \theta \right) = 0, \; \text{ in } \Omega,
 $$
 
-where $\theta$ [$^\circ C$] is the temperature, $c$ [J/m$^3$ C$^\circ$] is the known volumetric heat capacity of the material, and $k = k(x)$ [J/m $^\circ C$ s] is the known thermal conductivity. We are interested in quantifying the discrepancies in measurable quantities, such as the average temperature over a subset of the boundary face.
+where $\theta$ [$^\circ$ C] is the temperature, $c$ [J/m$^3$ $^\circ$ C] is the known volumetric heat capacity of the material, and $k = k(x)$ [J/m $^\circ$ C s] is the known thermal conductivity. We are interested in quantifying the discrepancies in measurable quantities, such as the average temperature over a subset of the boundary face.
 
 We consider (a) non-monotone implicit and (b) monotone implicit scheme. We wish to quantify the differences in these two approaches when simulating a physical scenario of an object heating. In our previous post, we investigated the cause of spurious numerical oscillations arising due to a non-monotone scheme (in cases of low time step size and low thermal conductivity); see our discussion in [On the Cause of Spurious Oscillations in Stable Numerical Methods](https://nvohra0016.github.io/talks/oscillations_m_matrix/) for an in-depth analysis of the cause of oscillations. We return to the heat equation
 
