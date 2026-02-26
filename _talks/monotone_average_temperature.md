@@ -83,6 +83,8 @@ To compare our approaches (a) and (b), we first compute the reference solution u
 
 <br>
 
+Owing to the highly heterogeneous nature of the example, most of the temperature change happens in the high conductivity region represented by the 4 rectangular bars (as shown in the sliced view in Fig. 2.). The other part of the domain does not show much temperature variation, and by $12$ [hr] the solution almost appears to reach a steady state value.
+
 We now compute the solution using the Gaussian quadrature and trapezoidal quadrature on a uniform mesh with cell width $h = 0.05$ [m], and compute the average temperature given by \ref{eq:measured_value}, and we use a time step $\tau = 2.0$ [hr]. The average temperature is shown in Fig. 3.
 
 <div align="center">
