@@ -28,6 +28,8 @@ I relocated to Gurugram, Haryana in 2024 where I currently stay with my wife. Ou
 
 I also maintain a [blog](https://nvohra0016.github.io/talks/) on my website where I write expository short articles to motivate existing or novel ideas. My fundamental target is always clarity of exosition, reproducibility of results, and bridging theory and application. My recent posts are:
 
+- [Effect of Monotonicity of Numerical Schemes for the Heat Equation on Average Measured Temperature](https://nvohra0016.github.io/talks/monotone_average_temperature/)  
+`heterogeneity` `Galerkin elements` `monotone` `heat equation` `parallel solver` `dealii`
 - [On the Cause of Spurious Oscillations in Stable Numerical Methods](https://nvohra0016.github.io/talks/oscillations_m_matrix/)  
 `oscillations` `Galerkin elements` `backward Euler` `heat equation` `discrete maximum principle` `M-matrix` `finite elements` `dealii`
 - [Convergence of Solvers and the Importance of Well-Posedness](https://nvohra0016.github.io/talks/elliptic_well_posedness_cg/)  
