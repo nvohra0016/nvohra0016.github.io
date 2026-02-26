@@ -29,7 +29,7 @@ We now explain the heterogeneous physical scenario used in our investigation.
 
 ## 1.1. Example Setup
 
-We now simulate a physical scenario to understand the effect of the negative temperature oscillations produced by the Gaussian quadrature compared to the inconsistency introduced by the trapezoidal quadrature. To this end, we consider a three-dimensional heterogeneous material occupying $\Omega = (0,1)^3$ as shown below.
+We now simulate a physical scenario to understand the effect of the negative temperature oscillations produced by the Gaussian quadrature compared to the inconsistency introduced by the trapezoidal quadrature. To this end, we consider a three-dimensional heterogeneous material occupying $\Omega = (0,1)^3$ [m$^3$] as shown below.
 
 <div align="center">
 <img src='/images/flux_computation/domain_diagram.png' width='600' height='600'>
