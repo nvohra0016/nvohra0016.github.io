@@ -74,8 +74,8 @@ We develop and implement our scheme in deal.II [^1]. To efficiently handle the l
 To compare our approaches (a) and (b), we first compute the reference solution using a really fine spatial mesh. We run the simulation over $(0, 24)$ [hr] using a time step of $\tau = 0.25$ [hr], and a uniform spatial mesh using edge length $0.00625$ [m] (corresponding to more than 4 million degrees of freedom!). The simulation is launched on 10 processors, and the results at the a few time steps are shown in Fig. 2. The simulations takes roughly 3.8 hours to finish on my pesonal macbook, with maximum 13 iterations for the CG solver per time step.
 
 <div align="center">
-<img src='/images/flux_computation/fine_mesh_results0.svg' width='600' height='600'>
-<img src='/images/flux_computation/fine_mesh_results1.svg' width='600' height='600'>
+<img src='/images/flux_computation/fine_mesh_results0.svg' width='700' height='700'>
+<img src='/images/flux_computation/fine_mesh_results1.svg' width='700' height='700'>
 </div>
 
 <div align = "center">
