@@ -79,7 +79,7 @@ To compare our approaches (a) and (b), we first compute the reference solution u
 </div>
 
 <div align = "center">
- Figure 2. Results at $t = 0.25$, $t = 1$, $t = 12$ and $t = 24$ [hr] for the reference solution.
+ Figure 2. Results at $t = 0.25$, $t = 1$, $t = 12$ and $t = 24$ [hr] for the reference solution. Here the domain is sliced at $x \approx 0.35$ to show the portion occupied by the high conductivity material (shown by the 4 protruding bars).
 </div>
 
 <br>
