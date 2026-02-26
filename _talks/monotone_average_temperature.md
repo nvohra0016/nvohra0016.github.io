@@ -97,7 +97,7 @@ We now compute the solution using the Gaussian quadrature and trapezoidal quadra
 
 <br>
 
-From the figure, the temperature error for approach (a) is $\lVert \overline{\theta^n} \rVert_\infty = 0.1590$ [$^\circ$ C] and for approach (b) $0.2323$ [$^\circ$ C].
+From the figure, the temperature error over the entire simulation time period for approach (a) is $\lVert \overline{\theta^n} - \overline{\theta^n_{ref}} \rVert_\infty = 0.1590$ [$^\circ$ C] and for approach (b) $\lVert \overline{\theta^n} - \overline{\theta_{ref}^n} \rVert_\infty = 0.2323$ [$^\circ$ C], where $\theta^n_{ref}$ referes to the reference solution at time step $n$.
 
 **Discussion of results.** It can be observed from Fig. 3. that the Gaussian quadrature (approach (a)) yields values closer to the reference solution than the trapezoidal quadature (approach (b)) when using a coarse mesh, even though spurious oscillations (negative temperature values) are present when using the Gaussian quadrature. That is, even though the trapezoidal quadrature leads to positivity preserving scheme, the error introduced by the quadrature itself leads to large differences in the measured average temperature values.
 
