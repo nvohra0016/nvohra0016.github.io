@@ -71,14 +71,15 @@ We develop and implement our scheme in deal.II [^1]. To efficiently handle the l
 
 # 3. Results
 
-To compare our approaches (a) and (b), we first compute the reference solution using a really fine spatial mesh. We run the simulation over $(0, 24)$ [hr] using a time step of $\tau = 0.25$ [hr], and a uniform spatial mesh using edge length $0.00625$ [m] (corresponding to more than 4 million degrees of freedom!). The simulation is launched on 10 processors, and the results at the first and last time steps are shown in Fig. 2. The simulations takes roughly 3.8 hours to finish on my pesonal macbook, with maximum 13 iterations for the CG solver per time step.
+To compare our approaches (a) and (b), we first compute the reference solution using a really fine spatial mesh. We run the simulation over $(0, 24)$ [hr] using a time step of $\tau = 0.25$ [hr], and a uniform spatial mesh using edge length $0.00625$ [m] (corresponding to more than 4 million degrees of freedom!). The simulation is launched on 10 processors, and the results at the a few time steps are shown in Fig. 2. The simulations takes roughly 3.8 hours to finish on my pesonal macbook, with maximum 13 iterations for the CG solver per time step.
 
 <div align="center">
-<img src='/images/flux_computation/fine_mesh_results.png' width='500' height='500'>
+<img src='/images/flux_computation/fine_mesh_results0.svg' width='500' height='500'>
+<img src='/images/flux_computation/fine_mesh_results1.svg' width='500' height='500'>
 </div>
 
 <div align = "center">
- Figure 2. Results at $t = 1$ [hr] (left) and $t = 24$ [hr] (right) for the reference solution.
+ Figure 2. Results at $t = 0.25$, $t = 1$, $t = 12$ and $t = 24$ [hr] for the reference solution.
 </div>
 
 <br>
