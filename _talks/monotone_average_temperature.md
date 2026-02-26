@@ -71,7 +71,7 @@ We develop and implement our scheme in deal.II [^1]. To efficiently handle the l
 
 # 3. Results
 
-To compare our approaches (a) and (b), we first compute the reference solution using a really fine spatial mesh. We run the simulation over $(0, 24)$ [hr] using a time step of $\tau = 0.25$ [hr], and a uniform spatial mesh using edge length $0.00625$ [m] (corresponding to more than 4 million degrees of freedom!). The simulation is launched on 10 processors, and the results at the first and last time steps are shown in Fig. 2. The simulations takes roughly 3.8 hours to finish on my pesonal macbook.
+To compare our approaches (a) and (b), we first compute the reference solution using a really fine spatial mesh. We run the simulation over $(0, 24)$ [hr] using a time step of $\tau = 0.25$ [hr], and a uniform spatial mesh using edge length $0.00625$ [m] (corresponding to more than 4 million degrees of freedom!). The simulation is launched on 10 processors, and the results at the first and last time steps are shown in Fig. 2. The simulations takes roughly 3.8 hours to finish on my pesonal macbook, with maximum 13 iterations for the CG solver per time step.
 
 <div align="center">
 <img src='/images/flux_computation/fine_mesh_results.png' width='500' height='500'>
@@ -95,10 +95,39 @@ We now compute the solution using the Gaussian quadrature and trapezoidal quadra
 
 <br>
 
-**Discussion of results** It can be observed from Fig. 3. that the Gaussian quadrature (approach (a)) yields values closer to the reference solution than the trapezoidal quadature (approach (b)) when using a coarse mesh, even though spurious oscillations (negative temperature values) are present when using the Gaussian quadrature. That is, even though the trapezoidal quadrature leads to positivity preserving scheme, the error introduced by the quadrature itself leads to large differences in the measured average temperature values. 
+From the figure, the temperature error for approach (a) is $\lVert \overline{\theta^n} \rVert_\infty = 0.1590$ [$^\circ$ C] and for approach (b) $0.2323$ [$^\circ$ C].
+
+**Discussion of results.** It can be observed from Fig. 3. that the Gaussian quadrature (approach (a)) yields values closer to the reference solution than the trapezoidal quadature (approach (b)) when using a coarse mesh, even though spurious oscillations (negative temperature values) are present when using the Gaussian quadrature. That is, even though the trapezoidal quadrature leads to positivity preserving scheme, the error introduced by the quadrature itself leads to large differences in the measured average temperature values.
+
+At first glance, it might seem questionable if approach (b) even converges to the reference solution. However, a quick grid convergence study where we refine the cell width edge to be $h \in \\{0.05, 0.025, 0.0125\\}$ [m] with corresponding $\tau \in \\{2, 1, 0.5 \\}$ [hr] shows that the average temperature values actually approach the reference solution; see Fig. 4. 
+
+<div align="center">
+<img src='/images/flux_computation/average_temperature_trap_grid_convergence.png' width='420' height='420'>
+</div>
+
+<div align = "center">
+ Figure 4. Plot showing the results for a grid convergence study for approach (b) with the average temperature profiles for different grid sizes. 
+</div>
+
+<br>
+
+On the solver side, not much of a difference exists between the two approaches. The CG iterations for both approaches are about 12-13 per time step (with the AMG preconditioner). 
+
+**Summary.** The above example demonstrates that even in the presence of spurious oscillations, approach (a) yields results closer to the reference solution when computing the average temperature. However, approach (b) is not without its merits: at very small time steps (even for a fine grid), spurious oscillations from approach (a) tend to dominate the soundness of the physical problem (i.e. how can we have negative temperatures in a heating scenario?) and approach (b) would yield more physically sound results, since a smaller grid size also means that the quadrature error decreases.
+
 
 ## Further Reading
+
+The above example demonstrated the seemingly negligible effect of spurious oscillations on average measured temperature. While in this case, it appears that using the *conditionally monotone* approach (a) is more accurate, care must be taken in multiphysics problems. That is, suppose we were to reconstruct a continuous flux $\tilde{q} \approx -k \nabla \theta$, and use it in coupled transport problem of the form
+
+$$
+\label{eq:coupled_problem_transport}
+  \partial_t C + \nabla \cdot \left(\tilde{q} C \right) = 0,
+$$
+
+where $C$ measures some concentration. Then how would these spurious oscillations transfer over to the numerical solution of \ref{eq:coupled_problem_transport}? The author of this blog has already demonstrated the presence of similar oscillations in mixed finite elements [^3], when the full quadrature is used to compute the mass matrix of H$_{div}$ Raviart-Thomas elements. It would be an interesting idea to explore how monotone schemes interact with each other in multiphysics problems, although that is the subject of a future blog post.
 
 ## References
 [^1]: Daniel Arndt et al., *The deal.II library, Version 9.7*, Journal of Numerical Mathematics, 2025.
 [^2]: S. Balay et al., *PETSc/TAO Users Manual  ANL-21/39 - Revision 3.24*, OSTI.GOV, 2025.
+[^3]: Vohra, N. and Peszynska, M., *Robust conservative scheme and nonlinear solver for phase transitions in heterogeneous permafrost*, 2024, Journal of Computational and Applied Mathematics. 
