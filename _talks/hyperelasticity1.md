@@ -79,10 +79,10 @@ We now present the weak formulation for \ref{eq:stress_eq}-\ref{eq:Dirichlet_bou
 
 $$
 \label{eq:continuous_weak_form}
-  \int_{\Omega} T(u) : \nabla \phi = \int_{\Omega} f \phi, \; \forall \phi \in H_0^1(\Omega).
+  \int_{\Omega} T(u) : \nabla \phi = \int_{\Omega} f \phi, \; \forall \phi \in H_0^1(\Omega),
 $$
 
-The existence of a solution to \ref{eq:continuous_weak_form} is established using the implicit function theorem in [Ciarlet' 1988, Theorem 6.4-1] for the St-Venant Kirchhoff material \ref{eq:st_venant_fpks}, and using Gårding operators in [Oden' 1979, Theorem 7.1] under more regularity assumptions.
+where $:$ is the contraction operator between two tensors defined as $A : B = \sum_{i, j = 1}^{M} A_{i,j} B_{i, j}$ for any two $A, B \in \mathbb{R}^{M \times M}. The existence of a solution to \ref{eq:continuous_weak_form} is established using the implicit function theorem in [Ciarlet' 1988, Theorem 6.4-1] for the St-Venant Kirchhoff material \ref{eq:st_venant_fpks}, and using Gårding operators in [Oden' 1979, Theorem 7.1] under more regularity assumptions.
 
 We now present the fully discrete formulation. In this post, we focus on 1D, and in $P_1$ elements. Let $\Omega = (0, 1)$, and let $\Omega$ be divided into $M$ cells $(x_{j}, x_{j+1})$, $0 \leq j \leq M-1$, of uniform width denoted by $h = \frac{1}{M}$. Let $V_h$ is the subspace of piecewise-linear functions with basis functions given by
 
@@ -153,7 +153,7 @@ That is, for any $f \in R_2$, i.e., if $\lVert f \rVert_\infty$ is small enough,
 
 <p style="text-align: right;">&#x25A1;</p>
 
-**Note.** The above result does not prove the non-existence of solutions for any arbitrary $f$. In fact, in our numerical experiments we have obtained solutions for large $\lVert f \rVert_\infty$, however, another issue lurks with the nonlinear system above. A crucial point to consider now is how we still have not mentioned *uniqueness* for our hyperelastic system. For linear elasticity, both uniqueness and existence is well-established and follows from Korn's inequality [^1], but for hyperelastic system this is not the case. As we shall explore below, uniqueness for hyperelastic systems indeed isn't guaranteed and leads to spurious oscillations.
+The above result does not prove the non-existence of solutions for any arbitrary $f$. In fact, in our numerical experiments we have obtained solutions for large $\lVert f \rVert_\infty$, however, another issue lurks with the nonlinear system above. A crucial point to consider now is how we still have not mentioned *uniqueness* for our hyperelastic system. For linear elasticity, both uniqueness and existence is well-established and follows from Korn's inequality [^1], but for hyperelastic system this is not the case. As we shall explore below, uniqueness for hyperelastic systems indeed isn't guaranteed and leads to spurious oscillations.
 
 # 3. Numerical Experiments
 
@@ -167,7 +167,7 @@ $$
   U^{(m)} = U^{(m-1)} + \delta U^{(m)}. \nonumber
 $$
 
-We perform the Newton step till we obtain convergence of the residuals $\lVert \mathcal{T}(U^{(m-1)}) - L_f \rVert_\infty < \epsilon_{tol}$ or $\lvert \delta U^{(m)} \rVert_\infty < \epsilon_{tol}$, for some prescribed tolerance $\epsilon_{tol} > 0$.
+We perform the Newton step till we obtain convergence of the residuals $\lVert \mathcal{T}(U^{(m-1)}) - L_f \rVert_\infty < \epsilon_{tol}$ or $\lVert \delta U^{(m)} \rVert_\infty < \epsilon_{tol}$, for some prescribed tolerance $\epsilon_{tol} > 0$.
 
 Since we are using $P_1$ elements for the displacement $u$, this means that $F$ is a piecewise-constant on each grid cell. This makes numerical integration straightforward when computing the Jacobians of $\mathcal{T}$. Indeed, from \ref{eq:proof_jacobian} we have
 
