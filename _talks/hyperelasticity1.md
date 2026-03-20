@@ -53,7 +53,7 @@ In this post, we consider the simplest constitutive relation for a hyperelastic 
 
 $$
 \label{eq:st_venant_fpks}
-  T(u) = F(u) \left(\lamba \text{tr}(E(u)) I + 2\mu E(u) \right),
+  T(u) = F(u) \left(\lambda \text{tr}(E(u)) I + 2\mu E(u) \right),
 $$
 
 where $\lambda \in \mathbb{R}$ and $\mu \in \mathbb{R}$ are Lamé parameters related to the Youngs modulus $E_Y \in \mathbb{R}$ and Poisson ratio $\nu \in \mathbb{R}$ by
@@ -82,7 +82,7 @@ $$
   \int_{\Omega} T(u) : \nabla \phi = \int_{\Omega} f \phi, \; \forall \phi \in H_0^1(\Omega).
 $$
 
-The existence of a solution to \ref{eq:continuos_weak_form} is established using the implicit function theorem in [Ciarlet' 1988, Theorem 6.4-1] for the St-Venant Kirchhoff material \ref{eq:st_venant_fpks}, and using Gårding operators in [Oden' 1979, Theorem 7.1] under more regularity assumptions.
+The existence of a solution to \ref{eq:continuous_weak_form} is established using the implicit function theorem in [Ciarlet' 1988, Theorem 6.4-1] for the St-Venant Kirchhoff material \ref{eq:st_venant_fpks}, and using Gårding operators in [Oden' 1979, Theorem 7.1] under more regularity assumptions.
 
 We now present the fully discrete formulation. In this post, we focus on 1D, and in $P_1$ elements. Let $\Omega = (0, 1)$, and let $\Omega$ be divided into $M$ cells $(x_{j}, x_{j+1})$, $0 \leq j \leq M-1$, of uniform width denoted by $h = \frac{1}{M}$. Let $V_h$ is the subspace of piecewise-linear functions with basis functions given by
 
@@ -111,13 +111,13 @@ $$
 where $U \in \mathbb{R}^{M-1}$ collects the entries of $u_h = \sum_{j} U_j \phi_j$, i.e., $U = [U_1 \; U_2 \; \dots \; U_{M-1}]^T$, and $\mathcal{T} : \mathbb{R}^{M-1} \rightarrow \mathbb{R}^{M-1}$ is a nonlinear map with entries
 
 $$
-  [\mathcal{T}(U)]_i = \mathcal{T}_i = \int_{\Omega} T(u_h)  \frac{d \phi_i}{dX},
+  \mathcal{T}_i = \int_{\Omega} T(u_h)  \frac{d \phi_i}{dX},
 $$
 
 and the vector $L_f \in \mathbb{R}^{M-1}$ collects the entries
 
 $$
-  [L_f]_i = {L_f}_i = \int_\Omega f \phi_i.
+  {L_f}_i = \int_\Omega f \phi_i.
 $$
 
 We now present a little existence result.
@@ -127,17 +127,29 @@ We now present a little existence result.
 *Proof* We make use of the inverse function theorem. First note that, for $U = 0$ (here we mean $0 \in \mathbb{R}^{M-1}$), we have $T(U) = 0$. Now, consider the Jacobian $J_T$ of $T$ 
 
 $$
-  [J_T(U)]_{i, j} = \frac{\partial \mathcal{T}_i}{\partial U_j}.
+  {J_T(U)}_{i, j} = \frac{\partial \mathcal{T}_i}{\partial U_j}.
 $$
 
 By the chain rule, we have
 
 $$
-  [J_T(U)]_{i, j} = \int_\Omega \frac{1}{2}\left(F^2 - 1 \right) \frac{d \phi_i}{dX} \frac{d\phi_j}{dX}.
+\label{eq:proof_jacobian}
+  {J_T(U)}_{i, j} = \int_\Omega \frac{1}{2}\left(F^2 - 1 \right) \frac{d \phi_i}{dX} \frac{d\phi_j}{dX}.
 $$
+
+For $U = 0$, since $F = 0$, we have from \ref{eq:proof_jacobian} that $J_T(0) = -{2h}^{-1}\text{tri}(1, 2, 1)$ is a tri-diagonal matrix such that $-J_T(0)$ is symmetric positive definite. Hence $J_T(0)$ is invertible. Thus, by the inverse function theorem [^5] $\exists$ open neighborhoods $O_1, O_2 \subset \mathbb{R}^{M-1}$ $0 \in O_1$, $0 \in O_2$, $\mathcal{T}$ is one-one on $O_1$, and
+
+$$
+  \mathcal{T}(O_1) = O_2,
+$$
+
+That is, for any $f \in O_2$, $\exists U_f \in O_1$ such that $\mathcal{T}(U_f) = f$. This completes the proof.
+
+<p style="text-align: right;">&#x25A1;</p>
 
 ## References
 [^1]: Philippe G. Ciarlet, *Mathematical Elasticity: Volume 1: Three-dimensional Elasticity*, 1988, Elsevier Science Publishers.
 [^2]: I. H. Shames and F. A. Cozzarelli, *Elastic and Inelastic Stress Analysis*, 1997, Taylor and Francis Group.
 [^3]: J. Bonet and R. D. Wood, *Nonlinear Continuum Mechanics for Finite Element Analysis*, 1997, Cambridge University Press.
 [^4]: J. Tinsley Oden, *Existence Theorems for a Class of Problems in Nonlinear Elasticity*, 1979, Journal of Mathematical Analysis and Applications.
+[^5]: W. Rudin, *Principles of Mathematical Analysis*, 1976, McGraw-Hill, Inc., 3rd edition.
