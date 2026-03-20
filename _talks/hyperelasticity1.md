@@ -130,14 +130,20 @@ $$
   {\mathcal{J}(U)}_{i, j} = \frac{\partial \mathcal{T}_i}{\partial U_j}.
 $$
 
-By the chain rule, we have
+By definition, since $E(u_h) = \frac{1}{2}(F(u_h)^2 - 1)$, we have
+
+$$
+  \mathcal{T}_{i} = \frac{\left(\lambda + 2\mu\right)}{2}\int_\Omega \left(F(u_h)^3 - 1) \frac{d\phi_i}{dX}
+$$
+
+Since $u_h = \sum_j U_j \phi_j$, by the chain rule, we have
 
 $$
 \label{eq:proof_jacobian}
-  {\mathcal{J}}(U)}_{i, j} = \int_\Omega \frac{1}{2}\left(F^2 - 1 \right) \frac{d \phi_i}{dX} \frac{d\phi_j}{dX}.
+  {\mathcal{J}}(U)}_{i, j} = \left(\lambda + 2 \mu \right) \int_\Omega \frac{1}{2}\left(3F(u_h)^2 - 1 \right) \frac{d \phi_i}{dX} \frac{d\phi_j}{dX}.
 $$
 
-For $U = 0$, since $F = 0$, we have from \ref{eq:proof_jacobian} that $J_T(0) = -{2h}^{-1}\text{tri}(1, 2, 1)$ is a tri-diagonal matrix such that $-\mathcal{J}_T(0)$ is symmetric positive definite. Hence $\mathcal{J}(0)$ is invertible. Thus, by the inverse function theorem [^5] $\exists$ open neighborhoods $R_1, R_2 \subset \mathbb{R}^{M-1}$ $0 \in R_1$, $0 \in R_2$, $\mathcal{T}$ is one-one on $O_1$, and
+For $U = 0$, we have $F(u_h) = 1$, and thus we have from \ref{eq:proof_jacobian} that $J_T(0) = \frac{\left(\lambda + 2\mu \right)}{h}\text{tri}(1, 2, 1)$ is a tri-diagonal matrix such that $\mathcal{J}_T(0)$ is symmetric positive definite. Hence $\mathcal{J}(0)$ is invertible. Thus, by the inverse function theorem [^5] $\exists$ open neighborhoods $R_1, R_2 \subset \mathbb{R}^{M-1}$ $0 \in R_1$, $0 \in R_2$, $\mathcal{T}$ is one-one on $O_1$, and
 
 $$
   \mathcal{T}(R_1) = R_2,
@@ -149,16 +155,25 @@ That is, for any $f \in R_2$, i.e., if $\lVert f \rVert_\infty$ is small enough,
 
 <br>
 
-A crucial point to consider now is how we still have not mentioned *uniqueness* for our hyperelastic system. For linear elasticity, both uniqueness and existence is well-established and follows from Korn's inequality [^1], but for hyperelastic system this is not the case. As we shall explore below, uniqueness for hyperelastic systems indeed isn't guaranteed and leads to spurious oscillations.
+Note that the above theorem does not prove the non-existence of solutions for any arbitrary $f$. In fact, in our numerical experiments we have obtained solutions for large $\lVert f \rVert_\infty$, however, another issue lurks with the nonlinear system above. A crucial point to consider now is how we still have not mentioned *uniqueness* for our hyperelastic system. For linear elasticity, both uniqueness and existence is well-established and follows from Korn's inequality [^1], but for hyperelastic system this is not the case. As we shall explore below, uniqueness for hyperelastic systems indeed isn't guaranteed and leads to spurious oscillations.
 
 # 3. Numerical Implementation and Experiments
 
 We now describe the details of our numerical implementation. We make use of Newton's method to solve the system \ref{eq:nonlinear_map_eq}. First note that, since we are using $P_1$ elements for the displacement $u$, this means that $F$ is a piecewise-constant on each grid cell. This makes numerical integration straightforward when computing the Jacobians of $\mathcal{T}$ since from \ref{eq:proof_jacobian}
 
 $$
-  \mathcal{J}_{i, j} = \frac{1}{2}\left(3 F(U_i) \right)...
+  \mathcal{J}_{i, i} = \frac{\left(\lambda + 2\mu \right)}{2h}\left( 3F_{i}^2 + 3F_{i+1}^2 - 2  \right), \nonumber
+  \\
+  F_i = \frac{\left(U_{i+1} - U_i \right)}{2}, F_{i+1} = \frac{\left(U_{i+2} - U_{i+1} \right)}{2}, \nonumber
 $$
 
+$$
+  \mathcal{J}_{i, i+1} = -\frac{\left(\lambda + 2\mu \right)}{2h}\left(3F_{i+1}^2 - 1  \right), \; F_i = \frac{\left(U_{i+1} - U_i \right)}{2}, \nonumber
+$$
+
+$$
+  \mathcal{J}_{i, i-1} = -\frac{\left(\lambda + 2\mu \right)}{2h}\left(3F_{i}^2 - 1  \right), \; F_i = \frac{\left(U_{i+1} - U_i \right)}{2}. \nonumber
+$$
 
 ## References
 [^1]: Philippe G. Ciarlet, *Mathematical Elasticity: Volume 1: Three-dimensional Elasticity*, 1988, Elsevier Science Publishers.
