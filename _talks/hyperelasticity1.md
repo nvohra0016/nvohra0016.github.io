@@ -53,7 +53,7 @@ In this post, we consider the simplest constitutive relation for a hyperelastic 
 
 $$
 \label{eq:st_venant_fpks}
-  T(u) = F(u) \left(\lambda \text{tr}(E(u)) I + 2\mu E(u) \right),
+  T(u) = F(u) \left[\lambda \text{tr}(E(u)) I + 2\mu E(u) \right],
 $$
 
 where $\lambda \in \mathbb{R}$ and $\mu \in \mathbb{R}$ are Lamé parameters related to the Youngs modulus $E_Y \in \mathbb{R}$ and Poisson ratio $\nu \in \mathbb{R}$ by
@@ -63,7 +63,7 @@ $$
   \lambda = \frac{E_Y \nu}{(1 + \nu)(1 - 2\nu)}, \; \mu = \frac{E_Y}{2(1 + \nu)}.
 $$
 
-**Note on the choice of the St-Venant Kirchhoff material** *It can be shown that the St-Venant Kirchhoff material is not the most sound way of approximating physically observed material behaviour. Indeed, it can be shown that such a material, i.e., where the the stress relation is given by \ref{eq:st_venant_fpks}, can undergo extreme deformation to arbitrarily small volumes in a finite by expending finite energy. This, however, is physically inconsistent with natural materials. Better choices include Neo-Hookean materials, Ogden... For more information, see... Here we make use of \ref{eq:st_venant_fkps} due to its simple form.*
+**Note on the choice of the St-Venant Kirchhoff material.** *It can be shown that the St-Venant Kirchhoff material is not the most sound way of approximating physically observed material behaviour. Indeed, it can be shown that such a material, i.e., where the the stress relation is given by \ref{eq:st_venant_fpks}, can undergo extreme deformation to arbitrarily small volumes in a finite by expending finite energy. This, however, is physically inconsistent with natural materials. Better choices include Neo-Hookean materials, Ogden... For more information, see... Here we make use of \ref{eq:st_venant_fpks} due to its simple form.*
 
 ### 2.2.2. Linear Elasticity
 
@@ -101,7 +101,7 @@ $$
   \int_{\Omega} T(u_h)  \frac{d \phi_i}{dX} = \int_{\Omega} f \phi_i, \; \forall 0 \leq i \leq M.
 $$
 
-**Existence of solution** Before we set up a numerical experiment, we first prove the existence of a solution to \ref{eq:discrete_weak_form} for appropriate forces $f$. We can rewrite \ref{eq:discrete_weak_form} as
+**Existence of solution.** Before we set up a numerical experiment, we first prove the existence of a solution to \ref{eq:discrete_weak_form} for appropriate forces $f$. We can rewrite \ref{eq:discrete_weak_form} as
 
 $$
 \label{eq:nonlinear_map_eq}
@@ -122,30 +122,43 @@ $$
 
 We now present a little existence result.
 
-**Theorem 2.3.1.** Let $f \in C^0(\Omega)$. Then, for $\|f\|_\infty$ small enough, there exists a solution to \ref{eq:nonlinear_map_eq}.
+**Theorem 2.3.1.** Let $f \in C^0(\Omega)$. Then, for $\lVert f \rVert_\infty$ small enough, there exists a solution to \ref{eq:nonlinear_map_eq}.
 
-*Proof* We make use of the inverse function theorem. First note that, for $U = 0$ (here we mean $0 \in \mathbb{R}^{M-1}$), we have $T(U) = 0$. Now, consider the Jacobian $J_T$ of $T$ 
+*Proof* We make use of the inverse function theorem. First note that, for $U = 0$ (here we mean $0 \in \mathbb{R}^{M-1}$), we have $\mathcal{T}(U) = 0$. Now, consider the Jacobian $\mathcal{J}$ of $\mathcal{T}$ 
 
 $$
-  {J_T(U)}_{i, j} = \frac{\partial \mathcal{T}_i}{\partial U_j}.
+  {\mathcal{J}(U)}_{i, j} = \frac{\partial \mathcal{T}_i}{\partial U_j}.
 $$
 
 By the chain rule, we have
 
 $$
 \label{eq:proof_jacobian}
-  {J_T(U)}_{i, j} = \int_\Omega \frac{1}{2}\left(F^2 - 1 \right) \frac{d \phi_i}{dX} \frac{d\phi_j}{dX}.
+  {\mathcal{J}}(U)}_{i, j} = \int_\Omega \frac{1}{2}\left(F^2 - 1 \right) \frac{d \phi_i}{dX} \frac{d\phi_j}{dX}.
 $$
 
-For $U = 0$, since $F = 0$, we have from \ref{eq:proof_jacobian} that $J_T(0) = -{2h}^{-1}\text{tri}(1, 2, 1)$ is a tri-diagonal matrix such that $-J_T(0)$ is symmetric positive definite. Hence $J_T(0)$ is invertible. Thus, by the inverse function theorem [^5] $\exists$ open neighborhoods $O_1, O_2 \subset \mathbb{R}^{M-1}$ $0 \in O_1$, $0 \in O_2$, $\mathcal{T}$ is one-one on $O_1$, and
+For $U = 0$, since $F = 0$, we have from \ref{eq:proof_jacobian} that $J_T(0) = -{2h}^{-1}\text{tri}(1, 2, 1)$ is a tri-diagonal matrix such that $-\mathcal{J}_T(0)$ is symmetric positive definite. Hence $\mathcal{J}(0)$ is invertible. Thus, by the inverse function theorem [^5] $\exists$ open neighborhoods $R_1, R_2 \subset \mathbb{R}^{M-1}$ $0 \in R_1$, $0 \in R_2$, $\mathcal{T}$ is one-one on $O_1$, and
 
 $$
-  \mathcal{T}(O_1) = O_2,
+  \mathcal{T}(R_1) = R_2,
 $$
 
-That is, for any $f \in O_2$, $\exists U_f \in O_1$ such that $\mathcal{T}(U_f) = f$. This completes the proof.
+That is, for any $f \in R_2$, i.e., if $\lVert f \rVert_\infty$ is small enough, $\exists U_f \in R_1$ such that $\mathcal{T}(U_f) = f$. This completes the proof.
 
 <p style="text-align: right;">&#x25A1;</p>
+
+<br>
+
+A crucial point to consider now is how we still have not mentioned *uniqueness* for our hyperelastic system. For linear elasticity, both uniqueness and existence is well-established and follows from Korn's inequality [^1], but for hyperelastic system this is not the case. As we shall explore below, uniqueness for hyperelastic systems indeed isn't guaranteed and leads to spurious oscillations.
+
+# 3. Numerical Implementation and Experiments
+
+We now describe the details of our numerical implementation. We make use of Newton's method to solve the system \ref{eq:nonlinear_map_eq}. First note that, since we are using $P_1$ elements for the displacement $u$, this means that $F$ is a piecewise-constant on each grid cell. This makes numerical integration straightforward when computing the Jacobians of $\mathcal{T}$ since from \ref{eq:proof_jacobian}
+
+$$
+  \mathcal{J}_{i, j} = \frac{1}{2}\left(3 F(U_i) \right)...
+$$
+
 
 ## References
 [^1]: Philippe G. Ciarlet, *Mathematical Elasticity: Volume 1: Three-dimensional Elasticity*, 1988, Elsevier Science Publishers.
