@@ -18,7 +18,7 @@ Let the body occupied by $\Omega$ be under some external forces. Let $\Omega'$ d
 
 ## 2.1. Kinematics
 
-We denote the position of a particle in the reference state $\Omega$ by $X \in \Omega$. In the deformed state, we denote the position by $x = \phi (X) \in \Omega'$, where $\phi : \Omega \rightarrow \mathbb{R}^3$ denotes the deformation, and $\Omega' = \phi(\Omega)$. Further, let $F = \nabla \phi \in \mathbb{R}^{3 \times 3}$ denote the deformation gradient, and let $u(X) = \phi(X) - I$ denote the displacement. 
+We denote the position of a particle in the reference state $\Omega$ by $X \in \Omega$. In the deformed state, we denote the position by $x = \phi (X) \in \Omega'$, where $\phi : \Omega \rightarrow \mathbb{R}^3$ denotes the deformation, and $\Omega' = \phi(\Omega)$. Further, let $F = \nabla \phi \in \mathbb{R}^{3 \times 3}$ denote the deformation gradient, and let $u(X) = \phi(X) - I$ denote the displacement. Here and below we have $\nabla = \nabla_X$ (with respect to $X$).
 
 We denote the right Cauchy-Green strain tensor by $C = F^T F$, and the Green-St-Venant strain tensor by $E = \frac{1}{2}\left( C - I \right)$, where $I \in \mathbb{R}^{3 \times 3}$ is the identity matrix. This gives us
 
@@ -84,13 +84,13 @@ $$
 
 where $:$ is the contraction operator between two tensors defined as $A : B = \sum_{i, j = 1}^{M} A_{i,j} B_{i, j}$ for any two $A, B \in \mathbb{R}^{M \times M}$. The existence of a solution to \ref{eq:continuous_weak_form} is established using the implicit function theorem in [Ciarlet' 1988, Theorem 6.4-1] for the St-Venant Kirchhoff material \ref{eq:st_venant_fpks}, and using Gårding operators in [Oden' 1979, Theorem 7.1] under more regularity assumptions.
 
-We now present the fully discrete formulation. In this post, we focus on 1D, and in $P_1$ elements. Let $\Omega = (0, 1)$, and let $\Omega$ be divided into $M$ cells $(x_{j}, x_{j+1})$, $0 \leq j \leq M-1$, of uniform width denoted by $h = \frac{1}{M}$. Let $V_h$ is the subspace of piecewise-linear functions with basis functions given by
+We now present the fully discrete formulation. In this post, we focus on 1D, and in $P_1$ elements. Let $\Omega = (0, 1)$, and let $\Omega$ be divided into $M$ cells $(X_{j}, X_{j+1})$, $0 \leq j \leq M-1$, of uniform width denoted by $h = \frac{1}{M}$. Let $V_h$ is the subspace of piecewise-linear functions with basis functions given by
 
 $$
-\psi_{j}(x) = \begin{cases}
-(x - x_{j-1})h^{-1}; & x \in (x_{j-1}, x_j)
+\psi_{j}(X) = \begin{cases}
+(X - X_{j-1})h^{-1}; & X \in (X_{j-1}, X_j)
 \\
-(x_{j+1} - x)h^{-1}; & x \in (x_j, x_{j+1})
+(X_{j+1} - X)h^{-1}; & X \in (X_j, X_{j+1})
 \end{cases}, 1 \leq j \leq M-1,
 $$
 
@@ -167,7 +167,7 @@ $$
   U^{(m)} = U^{(m-1)} + \delta U^{(m)}. \nonumber
 $$
 
-We perform the Newton step till we obtain convergence of the residuals $\lVert \mathcal{T}(U^{(m-1)}) - L_f \rVert_\infty < \epsilon_{tol}$ or $\lVert \delta U^{(m)} \rVert_\infty < \epsilon_{tol}$, for some prescribed tolerance $\epsilon_{tol} > 0$.
+We perform the Newton step till we obtain convergence of the residuals $\lVert \mathcal{T}(U^{(m-1)}) - L_f \rVert_\infty < \epsilon_{rel, tol}$ or $\lVert \delta U^{(m)} \rVert_\infty < \epsilon_{tol}$, for some prescribed tolerance $\epsilon_{abs, tol} > 0$. In our simulations, we use $\epsilon_{abs, tol} = 10^{-12}$ and $\epsilon_{rel, tol} = 10^{-14}$.
 
 Since we are using $P_1$ elements for the displacement $u$, this means that $F$ is a piecewise-constant on each grid cell. This makes numerical integration straightforward when computing the Jacobians of $\mathcal{T}$. Indeed, from \ref{eq:proof_jacobian} we have
 
@@ -183,9 +183,12 @@ $$
   \mathcal{J}_{i, i-1} = -\frac{\left(\lambda + 2\mu \right)}{2h}\left(3F_{i}^2 - 1  \right), \; F_i = \frac{\left(U_{i+1} - U_i \right)}{2}. \nonumber
 $$
 
+The implementation is done using the Python library Numpy [^8].
+
+
 ## 3.2. Numerical Experiment: Deformation Under Dead Load
 
-We now consider a physical scenario with a homogenous material occupying $\Omega = (0, 1)$ [m] with $E_Y = 10^7$ [Pa] and $\nu = 0.48$ [-] to mimic the properties of rubber [^7]. We consider $f \in \\{10^6, \; 4 \times 10^7,  \\}$ [N/m$^3$]. We simulate using a grid size of $h = 0.05$ [m]. The results are shown in Fig. 2. 
+We now consider a physical scenario with a homogenous material occupying $\Omega = (0, 1)$ [m] with $E_Y = 10^7$ [Pa] and $\nu = 0.48$ [-] to mimic the properties of rubber [^7]. We consider $f \in \\{10^6, \; 4 \times 10^7,  \\}$ [N/m$^3$]. We simulate using a grid size of $h = 0.05$ [m]. We use an initial guess $U^{(0)} = 0$. The results are shown in Fig. 2. 
 
 <div align="center">
 <img src='/images/hyperelasticity1/f_small_M_25.png' width='380' height='380'>
@@ -202,6 +205,23 @@ It can be observed from Fig. 2. that up to forces of O($10^6$), linear elasticit
 
 On the solver side, the Newton's method performs well and converges within $6$ iterations when $f = 4 \times 10^6$ and within $2$ iterations when $f = 10^6$. 
 
+**Robustness of Newton's Method.** We now investigate the robustness of Newton's method to a different initial guess, which ensures the accuracy of the solver and also helps us implement a dynamic time dependent problem later on. Since the solution is close to a parabolic initial guess $U^{(0)}(X) = X(1 - X)$. The results are plotted in Fig. 3. 
+
+<div align="center">
+<img src='/images/hyperelasticity1/f_large_M_20_1.png' width='380' height='380'>
+<img src='/images/hyperelasticity1/f_large_M_20_fenics_compare.png' width='380' height='380'>
+</div>
+
+<div align = "center">
+ Figure 2. Results showing the displacement due to $f = 10^6$ (left) and $f = 4 \times 10^7$ (right) forces. 
+</div>
+
+<br>
+
+
+
+
+
 
 ## References
 [^1]: Philippe G. Ciarlet, *Mathematical Elasticity: Volume 1: Three-dimensional Elasticity*, 1988, Elsevier Science Publishers.
@@ -211,3 +231,4 @@ On the solver side, the Newton's method performs well and converges within $6$ i
 [^5]: W. Rudin, *Principles of Mathematical Analysis*, 1976, McGraw-Hill, Inc., 3rd edition.
 [^6]: C. T. Kelley, *Iterative Methods for Linear and Nonlinear Equations*, 1995, Society for Industrial and Applied Mathematics.
 [^7]: *Young’s Modulus of Elasticity – Values for Common Materials*, *Poisson's Ratio – Definition, Values for Materials, and Applications* Engineering Toolbox, retrieved in 2026.
+[^8]: Charles R. Harris et al., *Array programming with NumPy*, 2020, Springer Science and Business Media (LLC).
