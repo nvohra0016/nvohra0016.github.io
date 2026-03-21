@@ -256,6 +256,6 @@ For an application of the Newton's method to semismooth function the reader is r
 [^3]: W. Rudin, *Principles of Mathematical Analysis*, 1976, McGraw-Hill, Inc., 3rd edition.
 [^4]: F. Brosa et al., *A continuum of physics-based lithium-ion battery models reviewed*, 2022, Progress in Energy, 4.
 [^5]: Gregory L. Plett, *Battery Management Systems, Volume 1: Battery Modeling Battery Modeling*, 2015, Artech House Publishers.
-[^6]: *Electrical Conductivity of some Common Materials*, Engineering Toolbox, retreived in 2025.
+[^6]: *Electrical Conductivity of some Common Materials*, Engineering Toolbox, retrieved in 2025.
 [^7]: P. Virtanen et al., *SciPy 1.0: Fundamental Algorithms for Scientific Computing in Python*, 2020, Nature Methods, 17.
 [^8]: N. Vohra, M. Peszynska, *Robust conservative scheme and nonlinear solver for phase transitions in heterogeneous permafrost*, 2024, Journal of Computational and Applied Mathematics, 442.

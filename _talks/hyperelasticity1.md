@@ -79,7 +79,7 @@ We now present the weak formulation for \ref{eq:stress_eq}-\ref{eq:Dirichlet_bou
 
 $$
 \label{eq:continuous_weak_form}
-  \int_{\Omega} T(u) : \nabla \phi = \int_{\Omega} f \phi, \; \forall \phi \in H_0^1(\Omega),
+  \int_{\Omega} T(u) : \nabla \psi = \int_{\Omega} f \psi, \; \forall \psi \in H_0^1(\Omega),
 $$
 
 where $:$ is the contraction operator between two tensors defined as $A : B = \sum_{i, j = 1}^{M} A_{i,j} B_{i, j}$ for any two $A, B \in \mathbb{R}^{M \times M}$. The existence of a solution to \ref{eq:continuous_weak_form} is established using the implicit function theorem in [Ciarlet' 1988, Theorem 6.4-1] for the St-Venant Kirchhoff material \ref{eq:st_venant_fpks}, and using Gårding operators in [Oden' 1979, Theorem 7.1] under more regularity assumptions.
@@ -87,7 +87,7 @@ where $:$ is the contraction operator between two tensors defined as $A : B = \s
 We now present the fully discrete formulation. In this post, we focus on 1D, and in $P_1$ elements. Let $\Omega = (0, 1)$, and let $\Omega$ be divided into $M$ cells $(x_{j}, x_{j+1})$, $0 \leq j \leq M-1$, of uniform width denoted by $h = \frac{1}{M}$. Let $V_h$ is the subspace of piecewise-linear functions with basis functions given by
 
 $$
-\phi_{j}(x) = \begin{cases}
+\psi_{j}(x) = \begin{cases}
 (x - x_{j-1})h^{-1}; & x \in (x_{j-1}, x_j)
 \\
 (x_{j+1} - x)h^{-1}; & x \in (x_j, x_{j+1})
@@ -98,7 +98,7 @@ The fully discrete form of \ref{eq:continuous_weak_form} reads as follows: find 
 
 $$
 \label{eq:discrete_weak_form}
-  \int_{\Omega} T(u_h)  \frac{d \phi_i}{dX} = \int_{\Omega} f \phi_i, \; \forall 0 \leq i \leq M.
+  \int_{\Omega} T(u_h)  \frac{d \psi_i}{dX} = \int_{\Omega} f \psi_i, \; \forall 0 \leq i \leq M.
 $$
 
 **Existence of solution.** Before we set up a numerical experiment, we first prove the existence of a solution to \ref{eq:discrete_weak_form} for appropriate forces $f$. We can rewrite \ref{eq:discrete_weak_form} as
@@ -111,13 +111,13 @@ $$
 where $U \in \mathbb{R}^{M-1}$ collects the entries of $u_h = \sum_{j} U_j \phi_j$, i.e., $U = [U_1 \; U_2 \; \dots \; U_{M-1}]^T$, and $\mathcal{T} : \mathbb{R}^{M-1} \rightarrow \mathbb{R}^{M-1}$ is a nonlinear map with entries
 
 $$
-  \mathcal{T}_i = \int_{\Omega} T(u_h)  \frac{d \phi_i}{dX},
+  \mathcal{T}_i = \int_{\Omega} T(u_h)  \frac{d \psi_i}{dX},
 $$
 
 and the vector $L_f \in \mathbb{R}^{M-1}$ collects the entries
 
 $$
-  {L_f}_i = \int_\Omega f \phi_i.
+  {L_f}_i = \int_\Omega f \psi_i.
 $$
 
 We now present a little existence result.
@@ -133,14 +133,14 @@ $$
 By definition, since $E(u_h) = \frac{1}{2}(F(u_h)^2 - 1)$, we have
 
 $$
-  \mathcal{T}_{i} = \frac{\left(\lambda + 2\mu\right)}{2}\int_\Omega \left(F(u_h)^3 - 1 \right) \frac{d\phi_i}{dX}
+  \mathcal{T}_{i} = \frac{\left(\lambda + 2\mu\right)}{2}\int_\Omega \left(F(u_h)^3 - 1 \right) \frac{d\psi_i}{dX}
 $$
 
-Since $u_h = \sum_j U_j \phi_j$, by the chain rule, we have
+Since $u_h = \sum_j U_j \psi_j$, by the chain rule, we have
 
 $$
 \label{eq:proof_jacobian}
-  {\mathcal{J}(U)}_{i, j} = \frac{\left(\lambda + 2 \mu \right)}{2} \int_\Omega \left(3F(u_h)^2 - 1 \right) \frac{d \phi_i}{dX} \frac{d\phi_j}{dX}.
+  {\mathcal{J}(U)}_{i, j} = \frac{\left(\lambda + 2 \mu \right)}{2} \int_\Omega \left(3F(u_h)^2 - 1 \right) \frac{d \psi_i}{dX} \frac{d\psi_j}{dX}.
 $$
 
 For $U = 0$, we have $F(u_h) = 1$, and thus we have from \ref{eq:proof_jacobian} that $J_T(0) = \frac{\left(\lambda + 2\mu \right)}{h}\text{tri}(1, 2, 1)$ is a tri-diagonal matrix such that $\mathcal{J}_T(0)$ is symmetric positive definite. Hence $\mathcal{J}(0)$ is invertible. Thus, by the inverse function theorem [^5] $\exists$ open neighborhoods $R_1, R_2 \subset \mathbb{R}^{M-1}$ $0 \in R_1$, $0 \in R_2$, $\mathcal{T}$ is one-one on $O_1$, and
@@ -185,7 +185,23 @@ $$
 
 ## 3.2. Numerical Experiment: Deformation Under Dead Load
 
-We now consider a physical scenario with a homogenous material occupying $\Omega = (0, 1)$ [m] with $E_Y = 10^6$ [Pa] and $\nu = 0.45$ [-]. We consider $f = 100$. We simulate using a grid size of $h = 0.05$ [m].
+We now consider a physical scenario with a homogenous material occupying $\Omega = (0, 1)$ [m] with $E_Y = 10^7$ [Pa] and $\nu = 0.48$ [-] to mimic the properties of rubber [^7]. We consider $f \in \\{10^6, \; 4 \times 10^7,  \\}$ [N/m$^3$]. We simulate using a grid size of $h = 0.05$ [m]. The results are shown in Fig. 2. 
+
+<div align="center">
+<img src='/images/hyperelasticity1/f_small_M_25.png' width='380' height='380'>
+<img src='/images/hyperelasticity1/f_large_M_25.png' width='380' height='380'>
+</div>
+
+<div align = "center">
+ Figure 2. Results showing the displacement due to $f = 10^6$ (left) and $f = 4 \times 10^7$ (right) forces. 
+</div>
+
+<br>
+
+It can be observed from Fig. 2. that up to forces of O($10^6$), linear elasticity provides a good approximation and is quite close to the hyperelastic solution. For large magnitude loads, however, the difference in displacements becomes more apparent as seen in the right plot of Fig. 2. This is also consistent with the result in [Ciarlet' 1988, Theorem 6.8-1] which provides an estimate of the difference of the linear elasticity and hyperelasticity displacements up to the norm of $f$.
+
+On the solver side, the Newton's method performs well and converges within $6$ iterations when $f = 4 \times 10^6$ and within $2$ iterations when $f = 10^6$. 
+
 
 ## References
 [^1]: Philippe G. Ciarlet, *Mathematical Elasticity: Volume 1: Three-dimensional Elasticity*, 1988, Elsevier Science Publishers.
@@ -194,3 +210,4 @@ We now consider a physical scenario with a homogenous material occupying $\Omega
 [^4]: J. Tinsley Oden, *Existence Theorems for a Class of Problems in Nonlinear Elasticity*, 1979, Journal of Mathematical Analysis and Applications.
 [^5]: W. Rudin, *Principles of Mathematical Analysis*, 1976, McGraw-Hill, Inc., 3rd edition.
 [^6]: C. T. Kelley, *Iterative Methods for Linear and Nonlinear Equations*, 1995, Society for Industrial and Applied Mathematics.
+[^7]: *Young’s Modulus of Elasticity – Values for Common Materials*, *Poisson's Ratio – Definition, Values for Materials, and Applications* Engineering Toolbox, retrieved in 2026.
