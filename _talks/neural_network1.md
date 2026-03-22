@@ -137,7 +137,7 @@ The above discussion shows how effectively a basic neural network may approximat
 
 <br>
 
-In the next post, we show how we can circumvent this problem to some degree using Recusrive Neural Networks (RNN), and by rearranging the input dataset to conform with supervised learning techniques. We exemplify this in Fig. 5 (right): indeed, it can be observed that the predicted values are much closer to the periodic nature of the data as opposed to the simple network constructed in this post.
+In a future post, we show how we can circumvent this problem to some degree using Recusrive Neural Networks (RNN), and by rearranging the input dataset to conform with supervised learning techniques. We exemplify this in Fig. 5 (right): indeed, it can be observed that the predicted values are much closer to the periodic nature of the data as opposed to the simple network constructed in this post.
 
 ## Code 
 
@@ -304,3 +304,7 @@ plt.show()
 [^2]: Simon Haykin, *Neural Networks and Learning Machines*, 2009, 3rd edition, Pearson.
 [^4]: Charles R. Harris et al., *Array programming with NumPy*, 2020, Springer Science and Business Media (LLC).
 [^3]: Liu Ziyin, Tilman Hartwig, Masahito Ueda, *Neural Networks Fail to Learn Periodic Functions and How to Fix It*, 2020, arXiv e-prints.
+
+<br>
+
+**Last updated:** March 2026.
