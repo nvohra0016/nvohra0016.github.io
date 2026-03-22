@@ -188,7 +188,7 @@ The implementation is done using the Python library Numpy [^8].
 
 ## 3.2. Numerical Experiment: Deformation Under Dead Load
 
-We now consider a physical scenario with a homogenous material occupying $\Omega = (0, 1)$ [m] with $E_Y = 10^7$ [Pa] and $\nu = 0.48$ [-] to mimic the properties of rubber [^7]. We consider $f \in \\{10^6, \; 4 \times 10^7,  \\}$ [N/m$^3$]. We simulate using a grid size of $h = 0.05$ [m]. We use an initial guess $U^{(0)} = 0$. The results are shown in Fig. 2.
+We now consider a physical scenario with a homogenous material occupying $\Omega = (0, 1)$ [m] with $E_Y = 10^7$ [Pa] and $\nu = 0.48$ [-] to mimic the properties of rubber [^7]. We consider $f \in \\{10^6, \; 4 \times 10^7 \\}$ [N/m$^3$]. We simulate using a grid size of $h = 0.05$ [m]. We use an initial guess $U^{(0)} = 0$. The results are shown in Fig. 2.
 
 <div align="center">
 <img src='/images/hyperelasticity1/f_small_M_25.png' width='380' height='380'>
@@ -203,7 +203,7 @@ We now consider a physical scenario with a homogenous material occupying $\Omega
 
 It can be observed from Fig. 2. that up to forces of O($10^6$), linear elasticity provides a good approximation and is quite close to the hyperelastic solution. For large magnitude loads, however, the difference in displacements becomes more apparent as seen in the right plot of Fig. 2. This is also consistent with the result in [Ciarlet' 1988, Theorem 6.8-1] which provides an estimate of the difference of the linear elasticity and hyperelasticity displacements up to the norm of $f$.
 
-On the solver side, the Newton's method performs well and converges within $6$ iterations when $f = 4 \times 10^6$ and within $2$ iterations when $f = 10^6$. 
+On the solver side, Newton's method performs well and converges within $6$ iterations when $f = 4 \times 10^6$ and within $2$ iterations when $f = 10^6$. 
 
 **Robustness of Newton's Method.** We now investigate the robustness of Newton's method to a different initial guess, which ensures the accuracy of the solver and also helps us implement a dynamic time dependent problem later on. Since the solution is close to a parabolic profile, we choose an initial guess $U^{(0)}(X) = X(1 - X)$. The results are plotted in Fig. 3. 
 
@@ -238,7 +238,7 @@ For the case when the initial guess is $U^{(0)} = 0.0$, the solution profiles ar
 
 # 4. Issues with Well-Posedness: Non-uniqueness of Solution
 
-The numerical results above highlight the lack of robustness of our nonlinear solver: we have convergence, but the solution profiles are not unique. Of course, uniqueness is the first thing to look at, since the reader may have noted that till now we have only spoken of existence and no uniqueness. Indeed, we now show that we can ver well have situations with our St-Venant Kirchhoff system where multiple solutions exist.
+The numerical results above highlight the lack of robustness of our nonlinear solver: we have convergence, but the solution profiles are not unique. Of course, uniqueness is the first thing to look at, since the reader may have noted that till now we have only spoken of existence and no uniqueness. Indeed, we now show that we can very well have situations with our St-Venant Kirchhoff system where multiple solutions exist.
 
 We now proceed with constructing one such scenario. Consider the Dirichlet boundary conditions 
 
@@ -246,7 +246,7 @@ $$
   u(0) = 0, \; u(1) = -1.5.
 $$
 
-Let $f = 0$, and let $E_Y > 0$ and $\nu > 0$ be given. Consider the two solution profiles given by (see Fig. 5)
+Let $f = 0$, and let $E_Y > 0$ and $\nu \in (0, 0.5)$ be given. Consider the two solution profiles given by (see Fig. 5)
 
 $$
 u_1(X) = \begin{cases}
