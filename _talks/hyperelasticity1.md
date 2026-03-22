@@ -1,7 +1,7 @@
 ---
 title: "Into Mechanics: Investigating Hyperelasticity"
 collection: talks
-excerpt: "We consider hyperelasticity equations and investigate the robustness of Newton's method for the St Venant Kirchhoff materials."
+excerpt: "We consider hyperelasticity equations and investigate well-posedness for St-Venant Kirchhoff materials and the challenges of Newton's method as a nonlinear solver."
 date: 2026-3-18
 ---
 
@@ -284,6 +284,28 @@ $$
 $$
 
 it can be easily verified that $T(u_1) = 0$. Similar case follows for $u_2$ and it holds that $T(u_2) = 0$. Thus the variational form \ref{eq:discrete_weak_form} is satisfied for at least two different solutions, thereby providing non-uniqueness of the system. 
+
+**Note.** *The reader may construct more such piecewise-linear displacement profiles by simply finding more roots of the polynomial*
+
+$$
+  g(\alpha) = \alpha(\alpha + 1)(\alpha + 2) - f,
+$$
+
+*for any given constant $f \in \mathbb{R}$.*
+
+This helps explain the issue that we faced above, i.e., the Newton's method has performed well, and it just probably converged to a different solution *that was closer to the initial guess*. In fact, if we consider a coarse grid profile of what we have in Fig. 3 as the initial guess, then the solution converges to a similar profile for finer grids as well. 
+
+## Further Reading and Thoughts
+
+The above exposition provides a brief (very brief!) introduction to hyperelasticity, in particular, to nonlinear mechanics. We considered the simplest form of materials, the St-Venant Kirchhoff material, owing to its simple expression, and demonstrated the challenges of Newton's method insofar as non-uniqueness of the solution is concerned. Here we also note another issue, namely that the Jacobian may not always be invertible. Indeed, considering
+
+$$
+  {\mathcal{J}(U)}_{i, j} = \frac{\left(\lambda + 2 \mu \right)}{2} \int_\Omega \left(3F(u_h)^2 - 1 \right) \frac{d \psi_i}{dX} \frac{d\psi_j}{dX}.
+$$
+
+it can be seen when $F_h \approx \sqrt{\frac{1}{3}}$ then $\mathcal{J}$ becomes singular. This highlights the importance of a good initial guess and robustness in general. The author of this post has also investigated fixed point iteration and line search methods, but to no remarkable avail: although the fixed point iteration avoids inverting the Jacobian, it is very slow owing to its linear convergence and may require posing the system as a contraction map.
+
+We plan to continue our investigation and consider higher dimensions and different methods and materials. That however, is the topic of a future blog post.
 
 ## References
 [^1]: Philippe G. Ciarlet, *Mathematical Elasticity: Volume 1: Three-dimensional Elasticity*, 1988, Elsevier Science Publishers.
