@@ -18,7 +18,7 @@ Let the body occupied by $\Omega$ be under some external forces, and let $\Omega
 
 ## 2.1. Kinematics
 
-We denote the position of a particle in the reference state $\Omega$ by $X \in \Omega$. In the deformed state, we denote the position by $x = \phi (X) \in \Omega'$, where $\phi : \Omega \rightarrow \mathbb{R}^3$ denotes the deformation, and $\Omega' = \phi(\Omega)$. The reference and deformed configuration are considered in the same basis denoted by $\\{e_1, e_2, e_3 \\}$. Further, let $F(X) = \nabla \phi(X) \in \mathbb{R}^{3 \times 3}$ denote the deformation gradient, and let $u(X) = \phi(X) - I$ denote the displacement. Here and below we have $\nabla = \nabla_X$ (with respect to $X$).
+We denote the position of a particle in the reference state $\Omega$ by $X \in \Omega$. In the deformed state, we denote the position by $x = \phi (X) \in \Omega'$, where $\phi : \Omega \rightarrow \mathbb{R}^3$ denotes the deformation, and $\Omega' = \phi(\Omega)$. The reference and deformed configuration are considered in the same basis denoted by $\\{e_1, e_2, e_3 \\}$. Further, let $F(X) = \nabla \phi(X) \in \mathbb{R}^{3 \times 3}$ denote the deformation gradient, and let $u(X) = \phi(X) - X$ denote the displacement. Here and below we have $\nabla = \nabla_X$ (with respect to $X$).
 
 We denote the right Cauchy-Green strain tensor by $C = F^T F$, and the Green-St-Venant strain tensor by $E = \frac{1}{2}\left( C - I \right)$, where $I \in \mathbb{R}^{3 \times 3}$ is the identity matrix. This gives us
 
@@ -30,7 +30,7 @@ $$
 Finally, the linearized strain is given by $\epsilon = \frac{1}{2}\left(\nabla u + \nabla u^T \right)$, and it can be seen that $\epsilon \approx E$ for small displacements $u$.
 
 <div align="center">
-<img src='/images/hyperelasticity1/illustration_notation.png' width='450' height='450'>
+<img src='/images/hyperelasticity1/illustration_notation.png' width='600' height='600'>
 </div>
 
 <div align = "center">
