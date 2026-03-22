@@ -14,11 +14,11 @@ date: 2026-3-18
 
 # 2. Governing Equations
 
-Let the body occupied by $\Omega$ be under some external forces. Let $\Omega'$ denote the current deformed configuration. Since we wish to solve the system of equations to obtain the displacement field, we consider the system of equations in the reference configuration, and focus on the finite element formulation. The reader is referred to well-known references [^1] [^2] [^3] for... theory, and the list is by no means (even vaguely) exhaustive.
+Let the body occupied by $\Omega$ be under some external forces, and let $\Omega'$ denote its deformed configuration (see Fig. 1 for an illustration). Since we wish to solve the system of equations to obtain the displacement field, we consider the system of equations in the reference configuration, and focus on the finite element formulation. The reader is referred to well-known references [^1] [^2] [^3] for an introduction and overview of the system of equations (the list is by no means, even vaguely, exhaustive!). We now provide a brief overview of the system of equations.
 
 ## 2.1. Kinematics
 
-We denote the position of a particle in the reference state $\Omega$ by $X \in \Omega$. In the deformed state, we denote the position by $x = \phi (X) \in \Omega'$, where $\phi : \Omega \rightarrow \mathbb{R}^3$ denotes the deformation, and $\Omega' = \phi(\Omega)$. Further, let $F = \nabla \phi \in \mathbb{R}^{3 \times 3}$ denote the deformation gradient, and let $u(X) = \phi(X) - I$ denote the displacement. Here and below we have $\nabla = \nabla_X$ (with respect to $X$).
+We denote the position of a particle in the reference state $\Omega$ by $X \in \Omega$. In the deformed state, we denote the position by $x = \phi (X) \in \Omega'$, where $\phi : \Omega \rightarrow \mathbb{R}^3$ denotes the deformation, and $\Omega' = \phi(\Omega)$. The reference and deformed configuration are considered in the same basis denoted by $\\{e_1, e_2, e_3 \\}$. Further, let $F(X) = \nabla \phi(X) \in \mathbb{R}^{3 \times 3}$ denote the deformation gradient, and let $u(X) = \phi(X) - I$ denote the displacement. Here and below we have $\nabla = \nabla_X$ (with respect to $X$).
 
 We denote the right Cauchy-Green strain tensor by $C = F^T F$, and the Green-St-Venant strain tensor by $E = \frac{1}{2}\left( C - I \right)$, where $I \in \mathbb{R}^{3 \times 3}$ is the identity matrix. This gives us
 
@@ -28,6 +28,16 @@ $$
 $$
 
 Finally, the linearized strain is given by $\epsilon = \frac{1}{2}\left(\nabla u + \nabla u^T \right)$, and it can be seen that $\epsilon \approx E$ for small displacements $u$.
+
+<div align="center">
+<img src='/images/hyperelasticity1/illustration_notation.png' width='450' height='450'>
+</div>
+
+<div align = "center">
+ Figure 1. Illustration of the reference and deformed configurations.
+</div>
+
+<br>
 
 ## 2.2. Equilibrium Equations
 
@@ -49,7 +59,7 @@ We now list the constitutive relations for the first Piola-Kirchhoff stress tens
 
 ### 2.2.1. Hyperelasticity: St-Venant Kirchhoff Material
 
-In this post, we consider the simplest constitutive relation for a hyperelastic material, the St-Venant Kirchhoff relation.  For the St-Venant Kirchhoff material, the first Piola-Kirchhoff stress tensor is given by 
+In this post, we consider the simplest constitutive relation for a hyperelastic material, the St-Venant Kirchhoff relation.  For the St-Venant Kirchhoff material, the first Piola-Kirchhoff stress tensor is given by [^1]
 
 $$
 \label{eq:st_venant_fpks}
@@ -143,7 +153,7 @@ $$
   {\mathcal{J}(U)}_{i, j} = \frac{\left(\lambda + 2 \mu \right)}{2} \int_\Omega \left(3F(u_h)^2 - 1 \right) \frac{d \psi_i}{dX} \frac{d\psi_j}{dX}.
 $$
 
-For $U = 0$, we have $F(u_h) = 1$, and thus we have from \ref{eq:proof_jacobian} that $J_T(0) = \frac{\left(\lambda + 2\mu \right)}{h}\text{tri}(1, 2, 1)$ is a tri-diagonal matrix such that $\mathcal{J}_T(0)$ is symmetric positive definite. Hence $\mathcal{J}(0)$ is invertible. Thus, by the inverse function theorem [^5] $\exists$ open neighborhoods $R_1, R_2 \subset \mathbb{R}^{M-1}$ $0 \in R_1$, $0 \in R_2$, $\mathcal{T}$ is one-one on $O_1$, and
+For $U = 0$, we have $F(u_h) = 1$, and thus we have from \ref{eq:proof_jacobian} that $J_T(0) = \frac{\left(\lambda + 2\mu \right)}{h}\text{tri}(1, 2, 1)$ is a tri-diagonal matrix such that $\mathcal{J}_T(0)$ is symmetric positive definite. Hence $\mathcal{J}(0)$ is invertible. Thus, by the inverse function theorem [^6] $\exists$ open neighborhoods $R_1, R_2 \subset \mathbb{R}^{M-1}$ $0 \in R_1$, $0 \in R_2$, $\mathcal{T}$ is one-one on $O_1$, and
 
 $$
   \mathcal{T}(R_1) = R_2,
@@ -153,13 +163,13 @@ That is, for any $f \in R_2$, i.e., if $\lVert f \rVert_\infty$ is small enough,
 
 <p style="text-align: right;">&#x25A1;</p>
 
-The above result does not prove the non-existence of solutions for any arbitrary $f$. In fact, in our numerical experiments we have obtained solutions for large $\lVert f \rVert_\infty$, however, another issue lurks with the nonlinear system above. A crucial point to consider now is how we still have not mentioned *uniqueness* for our hyperelastic system. For linear elasticity, both uniqueness and existence is well-established and follows from Korn's inequality [^1], but for hyperelastic system this is not the case. As we shall explore below, uniqueness for hyperelastic systems indeed isn't guaranteed and leads to spurious oscillations.
+The above result does not prove the non-existence of solutions for any arbitrary $f$. In fact, in our numerical experiments we have obtained solutions for large $\lVert f \rVert_\infty$, however, another issue lurks with the nonlinear system above. A crucial point to consider now is how we still have not mentioned *uniqueness* for our hyperelastic system. For linear elasticity, both uniqueness and existence is well-established and follows from Korn's inequality [^1] [^5], but for hyperelastic system this is not the case. As we shall explore below, uniqueness for hyperelastic systems indeed isn't guaranteed and leads to spurious oscillations.
 
 # 3. Numerical Experiments
 
 ## 3.1. Nonlinear Solver and Implementation Details
 
-We now describe the details of our numerical implementation. We make use of Newton's method to solve the system \ref{eq:nonlinear_map_eq}. Starting with an initial guess $U^{(0)}$, we perform the step [^6]
+We now describe the details of our numerical implementation. We make use of Newton's method to solve the system \ref{eq:nonlinear_map_eq}. Starting with an initial guess $U^{(0)}$, we iterate as follows [^7]:
 
 $$
   \mathcal{J}(U^{(m-1)}) \delta U^{(m)} = -\left(\mathcal{T}(U^{(m-1)}) - L_f \right), \nonumber
@@ -183,7 +193,7 @@ $$
   \mathcal{J}_{i, i-1} = -\frac{\left(\lambda + 2\mu \right)}{2h}\left(3F_{i}^2 - 1  \right), \; F_i = \frac{\left(U_{i+1} - U_i \right)}{2}. \nonumber
 $$
 
-The implementation is done using the Python library Numpy [^8].
+The implementation is done using the Python library Numpy [^9].
 
 
 ## 3.2. Numerical Experiment: Deformation Under Dead Load
@@ -220,7 +230,7 @@ On the solver side, Newton's method performs well and converges within $6$ itera
 
 Things now take an interesting turn. The Newton solver converges, but the displacement profile is very different from what we obtained in Fig. 2. Naturally, the first instinct is to refine the grid and see what happens, but to no avail. Fig. 2 also shows the solution profile for a refined grid, which does not look promising either. Here also we have convergence of the Newton's method, albeit for around $40$ iterations this time. 
 
-The next step is to make sure that our numerical implementation is correct, and for that reason we also implement the St-Venant Kirchhoff hyperelastic system using FEniCS [^9]. 
+The next step is to make sure that our numerical implementation is correct, and for that reason we also implement the St-Venant Kirchhoff hyperelastic system using FEniCS [^10]. 
 
 **Results verification using FEniCS.** We first verify our solution is using the initial guess $U^{(0)} = 0$, and then using $U^{(0)} = X(1-X)$. The results are shown in Fig. 4.
 
@@ -313,8 +323,9 @@ We plan to continue our investigation and consider higher dimensions and differe
 [^2]: I. H. Shames and F. A. Cozzarelli, *Elastic and Inelastic Stress Analysis*, 1997, Taylor and Francis Group.
 [^3]: J. Bonet and R. D. Wood, *Nonlinear Continuum Mechanics for Finite Element Analysis*, 1997, Cambridge University Press.
 [^4]: J. Tinsley Oden, *Existence Theorems for a Class of Problems in Nonlinear Elasticity*, 1979, Journal of Mathematical Analysis and Applications.
-[^5]: W. Rudin, *Principles of Mathematical Analysis*, 1976, McGraw-Hill, Inc., 3rd edition.
-[^6]: C. T. Kelley, *Iterative Methods for Linear and Nonlinear Equations*, 1995, Society for Industrial and Applied Mathematics.
-[^7]: *Young’s Modulus of Elasticity – Values for Common Materials*, *Poisson's Ratio – Definition, Values for Materials, and Applications* Engineering Toolbox, retrieved in 2026.
-[^8]: Charles R. Harris et al., *Array programming with NumPy*, 2020, Springer Science and Business Media (LLC).
-[^9]: I. A. Baratta et al., *DOLFINx: The next generation FEniCS problem solving environment*, 2023.
+[^5]: S. C. Brenner and L. R. Scott, *The Mathematical Theory of Finite Element Methods*, 2008, Springer, 3rd Edition.
+[^6]: W. Rudin, *Principles of Mathematical Analysis*, 1976, McGraw-Hill, Inc., 3rd edition.
+[^7]: C. T. Kelley, *Iterative Methods for Linear and Nonlinear Equations*, 1995, Society for Industrial and Applied Mathematics.
+[^8]: *Young’s Modulus of Elasticity – Values for Common Materials*, *Poisson's Ratio – Definition, Values for Materials, and Applications* Engineering Toolbox, retrieved in 2026.
+[^9]: Charles R. Harris et al., *Array programming with NumPy*, 2020, Springer Science and Business Media (LLC).
+[^10]: I. A. Baratta et al., *DOLFINx: The next generation FEniCS problem solving environment*, 2023.
