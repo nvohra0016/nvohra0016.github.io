@@ -188,7 +188,7 @@ The implementation is done using the Python library Numpy [^8].
 
 ## 3.2. Numerical Experiment: Deformation Under Dead Load
 
-We now consider a physical scenario with a homogenous material occupying $\Omega = (0, 1)$ [m] with $E_Y = 10^7$ [Pa] and $\nu = 0.48$ [-] to mimic the properties of rubber [^7]. We consider $f \in \\{10^6, \; 4 \times 10^7,  \\}$ [N/m$^3$]. We simulate using a grid size of $h = 0.05$ [m]. We use an initial guess $U^{(0)} = 0$. The results are shown in Fig. 2. 
+We now consider a physical scenario with a homogenous material occupying $\Omega = (0, 1)$ [m] with $E_Y = 10^7$ [Pa] and $\nu = 0.48$ [-] to mimic the properties of rubber [^7]. We consider $f \in \\{10^6, \; 4 \times 10^7,  \\}$ [N/m$^3$]. We simulate using a grid size of $h = 0.05$ [m]. We use an initial guess $U^{(0)} = 0$. The results are shown in Fig. 2.
 
 <div align="center">
 <img src='/images/hyperelasticity1/f_small_M_25.png' width='380' height='380'>
@@ -205,23 +205,85 @@ It can be observed from Fig. 2. that up to forces of O($10^6$), linear elasticit
 
 On the solver side, the Newton's method performs well and converges within $6$ iterations when $f = 4 \times 10^6$ and within $2$ iterations when $f = 10^6$. 
 
-**Robustness of Newton's Method.** We now investigate the robustness of Newton's method to a different initial guess, which ensures the accuracy of the solver and also helps us implement a dynamic time dependent problem later on. Since the solution is close to a parabolic initial guess $U^{(0)}(X) = X(1 - X)$. The results are plotted in Fig. 3. 
+**Robustness of Newton's Method.** We now investigate the robustness of Newton's method to a different initial guess, which ensures the accuracy of the solver and also helps us implement a dynamic time dependent problem later on. Since the solution is close to a parabolic profile, we choose an initial guess $U^{(0)}(X) = X(1 - X)$. The results are plotted in Fig. 3. 
 
 <div align="center">
-<img src='/images/hyperelasticity1/f_large_M_20_1.png' width='380' height='380'>
-<img src='/images/hyperelasticity1/f_large_M_20_fenics_compare.png' width='380' height='380'>
+<img src='/images/hyperelasticity1/f_large_M_20_1.png' width='450' height='450'>
 </div>
 
 <div align = "center">
- Figure 2. Results showing the displacement due to $f = 10^6$ (left) and $f = 4 \times 10^7$ (right) forces. 
+ Figure 3. Result showing the displacement due to different initial guess.
 </div>
 
 <br>
 
+Things now take an interesting turn. The Newton solver converges, but the displacement profile is very different from what we obtained in Fig. 2. Naturally, the first instinct is to refine the grid and see what happens, but to no avail. Fig. 2 also shows the solution profile for a refined grid, which looks...
 
+The next step is to make sure that our numerical implementation is correct, and for that reason we also implement the St-Venant Kirchhoff hyperelastic system using FEniCS [^9]. 
 
+**Results verification using FEniCS.** We first verify our solution is using the initial guess $U^{(0)} = 0$, and then using $U^{(0)} = X(1-X)$. The results are shown in Fig. 4.
 
+<div align="center">
+<img src='/images/hyperelasticity1/f_small_M_25.png' width='380' height='380'>
+<img src='/images/hyperelasticity1/f_large_M_25.png' width='380' height='380'>
+</div>
 
+<div align = "center">
+ Figure 4. Results showing the displacement due to $f = 10^6$ (left) and $f = 4 \times 10^7$ (right) forces. 
+</div>
+
+<br>
+
+For the case when the initial guess is $U^{(0)} = 0.0$, the solution profiles are almost identical and we achieve good agreement. When the initial profile is $U^{(0)} = X(1-X)$, both the solution profiles look irregular, albeit both codes converge ifnot to the same solution. This gives us more confidence in our implementation, and helps us identify the reason for this aberrant behavior.
+
+# 4. Issues with Well-Posedness: Non-uniqueness of Solution
+
+The numerical results above highlight the lack of robustness of our nonlinear solver: we have convergence, but the solution profiles are not unique. Of course, uniqueness is the first thing to look at, since the reader may have noted that till now we have only spoken of existence and no uniqueness. Indeed, we now show that we can ver well have situations with our St-Venant Kirchhoff system where multiple solutions exist.
+
+We now proceed with constructing one such scenario. Consider the Dirichlet boundary conditions 
+
+$$
+  u(0) = 0, \; u(1) = -1.5.
+$$
+
+Let $f = 0$, and let $E_Y > 0$ and $\nu > 0$ be given. Consider the two solution profiles given by (see Fig. 5)
+
+$$
+u_1(X) = \begin{cases}
+-X; & X \in (0, 0.5)
+\\
+-2X + 0.5; & X \in (0.5, 1)
+\end{cases}, \;
+u_2(X) = \begin{cases}
+-2X; & X \in (0, 0.5)
+\\
+-X - 0.5; & X \in (0.5, 1)
+\end{cases}.
+$$
+
+<div align="center">
+<img src='/images/hyperelasticity1/non_unique_profiles.png' width='450' height='450'>
+</div>
+
+<div align = "center">
+ Figure 5. Two different displacement profiles in $H^1(\Omega)$ for boundary conditions $u(0) = 0$ and $u(1) = -1.5$.
+</div>
+
+<br>
+
+Clearly $u_1 \in H^1(\Omega)$ and $u_2 \in H^1(\Omega)$. Now by using the definition of $F = 1 + \frac{du}{dX}$ and $E = \frac{1}{2}\left(F^2 - 1 \right)$ and \ref{eq:st_venant_fpks} we have
+
+$$
+  T(u) = \frac{(\lambda + 2\mu)}{2} \left(\frac{du}{dX}\right) \left(1 + \frac{du}{dX}\right) \left(2 + \frac{du}{dX} \right).
+$$
+
+Since $u_1$ is piecewise linear, and
+
+$$
+  \frac{du_1}{dX} = -1 \text{ on } (0, 0.5), \; \frac{du_1}{dX} = -2 \text{ on } (0.5, 1),
+$$
+
+it can be easily verified that $T(u_1) = 0$. Similar case follows for $u_2$ and it holds that $T(u_2) = 0$. Thus the variational form \ref{eq:discrete_weak_form} is satisfied for at least two different solutions, thereby providing non-uniqueness of the system. 
 
 ## References
 [^1]: Philippe G. Ciarlet, *Mathematical Elasticity: Volume 1: Three-dimensional Elasticity*, 1988, Elsevier Science Publishers.
@@ -232,3 +294,4 @@ On the solver side, the Newton's method performs well and converges within $6$ i
 [^6]: C. T. Kelley, *Iterative Methods for Linear and Nonlinear Equations*, 1995, Society for Industrial and Applied Mathematics.
 [^7]: *Young’s Modulus of Elasticity – Values for Common Materials*, *Poisson's Ratio – Definition, Values for Materials, and Applications* Engineering Toolbox, retrieved in 2026.
 [^8]: Charles R. Harris et al., *Array programming with NumPy*, 2020, Springer Science and Business Media (LLC).
+[^9]: I. A. Baratta et al., *DOLFINx: The next generation FEniCS problem solving environment*, 2023.
