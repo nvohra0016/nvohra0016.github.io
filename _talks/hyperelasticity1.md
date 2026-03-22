@@ -205,7 +205,7 @@ It can be observed from Fig. 2. that up to forces of O($10^6$), linear elasticit
 
 On the solver side, Newton's method performs well and converges within $6$ iterations when $f = 4 \times 10^6$ and within $2$ iterations when $f = 10^6$. 
 
-**Robustness of Newton's Method.** We now investigate the robustness of Newton's method to a different initial guess, which ensures the accuracy of the solver and also helps us implement a dynamic time dependent problem later on. Since the solution is close to a parabolic profile, we choose an initial guess $U^{(0)}(X) = X(1 - X)$. The results are plotted in Fig. 3. 
+**Robustness of Newton's Method.** We now investigate the robustness of Newton's method to a different initial guess, which ensures the accuracy of the solver and also helps us implement a dynamic time dependent problem later on. Since the solution is close to a parabolic profile, we choose a non-zero initial guess $U^{(0)}(X) = X(1 - X)$. The results are plotted in Fig. 3. 
 
 <div align="center">
 <img src='/images/hyperelasticity1/f_large_M_20_1.png' width='380' height='380'>
@@ -213,7 +213,7 @@ On the solver side, Newton's method performs well and converges within $6$ itera
 </div>
 
 <div align = "center">
- Figure 3. Result showing the displacement due to different initial guess.
+ Figure 3. Result showing the displacement profiles due to a non-zero initial guess for two different grid sizes: $h = 0.05$ [m] (left) and $h = 0.02$ [m] (right).
 </div>
 
 <br>
@@ -225,17 +225,17 @@ The next step is to make sure that our numerical implementation is correct, and 
 **Results verification using FEniCS.** We first verify our solution is using the initial guess $U^{(0)} = 0$, and then using $U^{(0)} = X(1-X)$. The results are shown in Fig. 4.
 
 <div align="center">
-<img src='/images/hyperelasticity1/f_small_M_25.png' width='380' height='380'>
-<img src='/images/hyperelasticity1/f_large_M_25.png' width='380' height='380'>
+<img src='/images/hyperelasticity1/f_large_M_20_fenics_comp.png' width='380' height='380'>
+<img src='/images/hyperelasticity1/f_large_M_20_fenics_comp_1.png' width='380' height='380'>
 </div>
 
 <div align = "center">
- Figure 4. Results showing the displacement due to $f = 10^6$ (left) and $f = 4 \times 10^7$ (right) forces. 
+ Figure 4. Results showing the displacement profiles for zero (left) and non-zero (right) initial guesses using the Author's own Numpy code implementation and using FEniCS.
 </div>
 
 <br>
 
-For the case when the initial guess is $U^{(0)} = 0.0$, the solution profiles are almost identical and we achieve good agreement. When the initial profile is $U^{(0)} = X(1-X)$, both the solution profiles look irregular, albeit both codes converge ifnot to the same solution. This gives us more confidence in our implementation, and helps us identify the reason for this aberrant behavior.
+For both the cases, the solution profiles are almost identical and we achieve good agreement. This gives us more confidence in our implementation, and helps us to further investigate and identify the reason for this aberrant behavior of the nonlinear solver.
 
 # 4. Issues with Well-Posedness: Non-uniqueness of Solution
 
