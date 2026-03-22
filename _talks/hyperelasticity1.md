@@ -208,7 +208,8 @@ On the solver side, Newton's method performs well and converges within $6$ itera
 **Robustness of Newton's Method.** We now investigate the robustness of Newton's method to a different initial guess, which ensures the accuracy of the solver and also helps us implement a dynamic time dependent problem later on. Since the solution is close to a parabolic profile, we choose an initial guess $U^{(0)}(X) = X(1 - X)$. The results are plotted in Fig. 3. 
 
 <div align="center">
-<img src='/images/hyperelasticity1/f_large_M_20_1.png' width='450' height='450'>
+<img src='/images/hyperelasticity1/f_large_M_20_1.png' width='380' height='380'>
+<img src='/images/hyperelasticity1/f_large_M_50_1.png' width='380' height='380'>
 </div>
 
 <div align = "center">
@@ -217,7 +218,7 @@ On the solver side, Newton's method performs well and converges within $6$ itera
 
 <br>
 
-Things now take an interesting turn. The Newton solver converges, but the displacement profile is very different from what we obtained in Fig. 2. Naturally, the first instinct is to refine the grid and see what happens, but to no avail. Fig. 2 also shows the solution profile for a refined grid, which looks...
+Things now take an interesting turn. The Newton solver converges, but the displacement profile is very different from what we obtained in Fig. 2. Naturally, the first instinct is to refine the grid and see what happens, but to no avail. Fig. 2 also shows the solution profile for a refined grid, which does not look promising either. Here also we have convergence of the Newton's method, albeit for around $40$ iterations this time. 
 
 The next step is to make sure that our numerical implementation is correct, and for that reason we also implement the St-Venant Kirchhoff hyperelastic system using FEniCS [^9]. 
 
@@ -291,7 +292,7 @@ $$
   g(\alpha) = \alpha(\alpha + 1)(\alpha + 2) - f,
 $$
 
-*for any given constant $f \in \mathbb{R}$.*
+*for any given constant $f \in \mathbb{R}$. In fact, similar profiles can be construced for the homogeneous Dirichlet boundary conditions as well by finding $\alpha_1, \alpha_2$ which satisfy $\alpha_1 \alpha_2 < 0$ for $f > 0$, $f$ small enough, for instance.*
 
 This helps explain the issue that we faced above, i.e., the Newton's method has performed well, and it just probably converged to a different solution *that was closer to the initial guess*. In fact, if we consider a coarse grid profile of what we have in Fig. 3 as the initial guess, then the solution converges to a similar profile for finer grids as well. 
 
