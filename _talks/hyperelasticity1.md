@@ -22,7 +22,7 @@ where $T$ is the first Piola-Kirchhoff stress tensor, and $f$ is a given force. 
 We focus on a simple 1D scenario of deformation due to a constant force (dead load) for a clamped object. We are particularly interested to understand how the displacement profile for such a simple scenario looks for a hyperelastic and linear elastic model.
 
 <div align="center">
-<img src='/images/hyperelasticity1/clamped_bar_illustration.png' width='600' height='600'>
+<img src='/images/hyperelasticity1/clamped_bar_illustration.png' width='550' height='550'>
 </div>
 
 <div align = "center">
@@ -343,7 +343,7 @@ In the above discussion, another key aspect that we have implicitly assumed is t
 
 Thus, in the above examples, the deformation map $\phi$ loses its injectivity, which makes the results physically unsound as well. This is also what happens when $f$ becomes too large. Since orientation preservation is an important assumption and aspect of existence and uniqueness results, we will aim to potentially investigate and implement that in a future blog post.
 
-**Note.** *Whether enforcing $F > 0$ will solve the uniqueness issue, however, is another matter that has to be investigated. Take for example the non-unique solution profiles that were constructed above in Fig. 5. By a similar method, for some $f < 0$, $f$ small, we can find $\alpha_1, \alpha_2$ that solve \ref{eq:polynomial_g} such that $\alpha_1, \alpha_2 \in (-1, 0)$ (since $g < 0 in (0, 1)$, and $g(0) = g(1) = 0$). Then, by considering a suitable Dirichlet boundary condition, we can construct similar displacement profiles which satisfy $\frac{du}{dX} \in \\{\alpha_1, \alpha_2 \\}$, which would also satisfy $F = 1 + \frac{du}{dX} > 0$ since $\alpha_1, \alpha_2 > -1$. Thus, physically sound results might also require enforcing some necessary conditions on the boundary values as well.*
+**Note.** *Whether enforcing $F > 0$ will solve the uniqueness issue, however, is another matter that has to be investigated. Take for example the non-unique solution profiles that were constructed above in Fig. 5. By a similar method, for some $f < 0$, $f$ small, we can find $\alpha_1, \alpha_2$ that solve \ref{eq:polynomial_g} such that $\alpha_1, \alpha_2 \in (-1, 0)$ (since $g < 0$ in $(0, 1)$, and $g(0) = g(1) = 0$). Then, by considering a suitable Dirichlet boundary condition, we can construct similar displacement profiles which satisfy $\frac{du}{dX} \in \\{\alpha_1, \alpha_2 \\}$, which would also satisfy $F = 1 + \frac{du}{dX} > 0$ since $\alpha_1, \alpha_2 > -1$. Thus, physically sound results might also require enforcing some necessary conditions on the boundary values as well.*
 
 ## Further Reading and Thoughts
 
