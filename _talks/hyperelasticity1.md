@@ -11,6 +11,7 @@ date: 2026-3-18
 
 # 1. Introduction
 
+In this post, we investigate nonlinear models for mechanics. In particular, we start with hyperelasticity equations at their face value, and implement a numerical algorithm to solve them.
 
 # 2. Governing Equations
 
@@ -18,7 +19,7 @@ Let the body occupied by $\Omega$ be under some external forces, and let $\Omega
 
 ## 2.1. Kinematics
 
-We denote the position of a particle in the reference state $\Omega$ by $X \in \Omega$. In the deformed state, we denote the position by $x = \phi (X) \in \Omega'$, where $\phi : \Omega \rightarrow \mathbb{R}^3$ denotes the deformation, and $\Omega' = \phi(\Omega)$. The reference and deformed configuration are considered in the same basis denoted by $\\{e_1, e_2, e_3 \\}$. Further, let $F(X) = \nabla \phi(X) \in \mathbb{R}^{3 \times 3}$ denote the deformation gradient, and let $u(X) = \phi(X) - X$ denote the displacement. Here and below we have $\nabla = \nabla_X$ (with respect to $X$).
+We denote the position of a particle in the reference state $\Omega$ by $X \in \Omega$. In the deformed state, we denote the position by $x = \phi (X) \in \Omega'$, where $\phi : \Omega \rightarrow \mathbb{R}^3$ denotes the deformation, and $\Omega' = \phi(\Omega)$. The reference and deformed configuration are considered in the same basis denoted by $\\{e_1, e_2, e_3 \\}$. Further, let $F(X) = \nabla \phi(X) \in \mathbb{R}^{3 \times 3}$ denote the deformation gradient, and let $u(X) = \phi(X) - X$ denote the displacement. Here and below we have $\nabla = \nabla_X$ (with respect to $X$). We also assume that the deformation is orientation preserving, i.e., det$\nabla \phi > 0$ in $\Omega$.
 
 We denote the right Cauchy-Green strain tensor by $C = F^T F$, and the Green-St-Venant strain tensor by $E = \frac{1}{2}\left( C - I \right)$, where $I \in \mathbb{R}^{3 \times 3}$ is the identity matrix. This gives us
 
@@ -80,7 +81,7 @@ $$
 In the linear elastic framework, the first Piola-Kirchhoff stress tensor is given by
 
 $$
-  T(u) = \left(\lambda \text{tr}(\epsilon(u))I + 2 \mu \epsilon(u) \right).
+  T(u) = \lambda \text{tr}(\epsilon(u))I + 2 \mu \epsilon(u).
 $$
 
 ## 2.3. Weak Formulation and Existence of Solution
@@ -198,7 +199,7 @@ The implementation is done using the Python library Numpy [^9].
 
 ## 3.2. Numerical Experiment: Deformation Under Dead Load
 
-We now consider a physical scenario with a homogenous material occupying $\Omega = (0, 1)$ [m] with $E_Y = 10^7$ [Pa] and $\nu = 0.48$ [-] to mimic the properties of rubber [^7]. We consider $f \in \\{10^6, \; 4 \times 10^7 \\}$ [N/m$^3$]. We simulate using a grid size of $h = 0.05$ [m]. We use an initial guess $U^{(0)} = 0$. The results are shown in Fig. 2.
+We now consider a physical scenario with a homogenous material occupying $\Omega = (0, 1)$ [m] with $E_Y = 10^7$ [Pa] and $\nu = 0.48$ [-] to mimic the properties of rubber [^8]. We consider $f \in \\{10^6, \; 4 \times 10^7 \\}$ [N/m$^3$]. We simulate using a grid size of $h = 0.05$ [m]. We use an initial guess $U^{(0)} = 0$. The results are shown in Fig. 2.
 
 <div align="center">
 <img src='/images/hyperelasticity1/f_small_M_25.png' width='380' height='380'>
@@ -304,7 +305,24 @@ $$
 
 *for any given constant $f \in \mathbb{R}$. In fact, similar profiles can be construced for the homogeneous Dirichlet boundary conditions as well by finding $\alpha_1, \alpha_2$ which satisfy $\alpha_1 \alpha_2 < 0$ for $f > 0$, $f$ small enough, for instance.*
 
-This helps explain the issue that we faced above, i.e., the Newton's method has performed well, and it just probably converged to a different solution *that was closer to the initial guess*. In fact, if we consider a coarse grid profile of what we have in Fig. 3 as the initial guess, then the solution converges to a similar profile for finer grids as well. 
+This helps explain the issue that we faced above, i.e., the Newton's method has performed well, and it just probably converged to a different solution *that was closer to the initial guess that was chosen*. In fact, if we consider a coarse grid profile of what we have in Fig. 3 as the initial guess, then the solution converges to a similar profile for finer grids as well. 
+
+# 4.1. Lack of Injectivity of $\phi$ and Orientation Preservation
+
+In the above discussion, another key aspect that we have implicitly assumed is that det$\nabla \phi = F > 0$. That, however, has not been enforced by us in the numerical implementation. Indeed, if we plot the deformation gradient $F$ for the examples above, it is clear that $F > 0$ ceases to hold true. This is shown in Fig. 6. for the case of $h = 0.02$ [m].
+
+<div align="center">
+<img src='/images/hyperelasticity1/deformation_gradient_F.png' width='380' height='380'>
+<img src='/images/hyperelasticity1/deformation_gradient_F_1.png' width='380' height='380'>
+</div>
+
+<div align = "center">
+ Figure 6. Results showing the deformation gradient profiles $F$ when the initial guess is zero (left) and non-zero (right). Notice that in the case when the initial guess is non-zero, the deformation gradient becomes negative.
+</div>
+
+<br>
+
+Thus, in the above examples, the deformation map $\phi$ loses its injectivity, which makes the results physically unsound as well. Since orientation preservation is an important assumption and aspect of existence and uniqueness results, we will aim to potentially implement that in a future blog post.
 
 ## Further Reading and Thoughts
 
@@ -314,9 +332,9 @@ $$
   {\mathcal{J}(U)}_{i, j} = \frac{\left(\lambda + 2 \mu \right)}{2} \int_\Omega \left(3F(u_h)^2 - 1 \right) \frac{d \psi_i}{dX} \frac{d\psi_j}{dX}.
 $$
 
-it can be seen when $F_h \approx \sqrt{\frac{1}{3}}$ then $\mathcal{J}$ becomes singular. This highlights the importance of a good initial guess and robustness in general. The author of this post has also investigated fixed point iteration and line search methods, but to no remarkable avail: although the fixed point iteration avoids inverting the Jacobian, it is very slow owing to its linear convergence and may require posing the system as a contraction map.
+it can be seen when $F_h \approx \sqrt{\frac{1}{3}}$ then $\mathcal{J}$ becomes singular. This highlights the importance of a good initial guess and robustness in general. The author of this post has also investigated fixed point iteration and line search methods, but to no remarkable avail: although the fixed point iteration avoids inverting the Jacobian, it is very slow owing to its linear convergence and may require posing the system as a contraction map. Moreover (now unsurprisingly due to non-uniqueness) with such methods convergence to irregular profiles as above was also observed.
 
-We plan to continue our investigation and consider higher dimensions and different methods and materials. That however, is the topic of a future blog post.
+We plan to continue our investigation and consider higher dimensions and different methods and materials, and also looking at orientation preservation. That however, is the topic of a future blog post.
 
 ## References
 [^1]: Philippe G. Ciarlet, *Mathematical Elasticity: Volume 1: Three-dimensional Elasticity*, 1988, Elsevier Science Publishers.
