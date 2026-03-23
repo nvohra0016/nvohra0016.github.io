@@ -96,7 +96,7 @@ $$
 
 ### 2.2.2. Linear Elasticity
 
-In the linear elastic framework, the first Piola-Kirchhoff stress tensor is given by
+In the linear elastic framework, the first Piola-Kirchhoff stress tensor is given by [^1]
 
 $$
   T(u) = \lambda \text{tr}(\epsilon(u))I + 2 \mu \epsilon(u).
@@ -172,7 +172,7 @@ $$
   {\mathcal{J}(U)}_{i, j} = \frac{\left(\lambda + 2 \mu \right)}{2} \int_\Omega \left(3F(u_h)^2 - 1 \right) \frac{d \psi_i}{dX} \frac{d\psi_j}{dX}.
 $$
 
-For $U = 0$, we have $F(u_h) = 1$, and thus we have from \ref{eq:proof_jacobian} that $J_T(0) = \frac{\left(\lambda + 2\mu \right)}{h}\text{tri}(1, 2, 1)$ is a tri-diagonal matrix such that $\mathcal{J}_T(0)$ is symmetric positive definite. Hence $\mathcal{J}(0)$ is invertible. Thus, by the inverse function theorem [^6] $\exists$ open neighborhoods $R_1, R_2 \subset \mathbb{R}^{M-1}$ $0 \in R_1$, $0 \in R_2$, $\mathcal{T}$ is one-one on $O_1$, and
+For $U = 0$, we have $F(u_h) = 1$, and thus we have from \ref{eq:proof_jacobian} that $\mathcal{J}(0) = \frac{\left(\lambda + 2\mu \right)}{h}\text{tri}(-1, 2, -1)$ is a tri-diagonal matrix such that $\mathcal{J}_T(0)$ is symmetric positive definite. Hence $\mathcal{J}(0)$ is invertible. Thus, by the inverse function theorem [^6] $\exists$ open neighborhoods $R_1, R_2 \subset \mathbb{R}^{M-1}$ $0 \in R_1$, $0 \in R_2$, $\mathcal{T}$ is one-one on $O_1$, and
 
 $$
   \mathcal{T}(R_1) = R_2,
