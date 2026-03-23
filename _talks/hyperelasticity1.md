@@ -151,7 +151,7 @@ $$
 
 We now present a little existence result.
 
-**Theorem 2.3.1.** Let $f \in C^0(\Omega)$. Then, for $\lVert f \rVert_\infty$ small enough, there exists a solution to \ref{eq:nonlinear_map_eq}.
+**Theorem 2.3.1.** Let $f \in L^2(\Omega)$. Then, for $\lVert f \rVert_\infty$ small enough, there exists a solution to \ref{eq:nonlinear_map_eq}.
 
 *Proof.* We make use of the inverse function theorem. First note that, for $U = 0$ (here we mean $0 \in \mathbb{R}^{M-1}$), we have $\mathcal{T}(U) = 0$. Now, consider the Jacobian $\mathcal{J}$ of $\mathcal{T}$ 
 
@@ -343,7 +343,7 @@ In the above discussion, another key aspect that we have implicitly assumed is t
 
 Thus, in the above examples, the deformation map $\phi$ loses its injectivity, which makes the results physically unsound as well. This is also what happens when $f$ becomes too large. Since orientation preservation is an important assumption and aspect of existence and uniqueness results, we will aim to potentially investigate and implement that in a future blog post.
 
-**Note.** *Whether enforcing $F > 0$ will solve the uniqueness issue, however, is another matter that has to be investigated. Take for example the non-unique solution profiles that were constructed above in Fig. 5. By a similar method, for some $f < 0$, $f$ small, we can find $\alpha_1, \alpha_2$ that solve \ref{eq:polynomial_g} such that $\alpha_1, \alpha_2 \in (-1, 0)$ (since $g < 0 in (0, 1), and $g(0) = g(1) = 0$). Then, by considering a suitable Dirichlet boundary condition, we can construct similar displacement profiles which satisfy $\frac{du}{dX} \in \\{\alpha_1, \alpha_2 \\}$, which would also satisfy $F = 1 + \frac{du}{dX} > 0$ since $\alpha_1, \alpha_2 > -1$. Thus, physically sound results might also require enforcing some necessary conditions on the boundary values as well.*
+**Note.** *Whether enforcing $F > 0$ will solve the uniqueness issue, however, is another matter that has to be investigated. Take for example the non-unique solution profiles that were constructed above in Fig. 5. By a similar method, for some $f < 0$, $f$ small, we can find $\alpha_1, \alpha_2$ that solve \ref{eq:polynomial_g} such that $\alpha_1, \alpha_2 \in (-1, 0)$ (since $g < 0 in (0, 1)$, and $g(0) = g(1) = 0$). Then, by considering a suitable Dirichlet boundary condition, we can construct similar displacement profiles which satisfy $\frac{du}{dX} \in \\{\alpha_1, \alpha_2 \\}$, which would also satisfy $F = 1 + \frac{du}{dX} > 0$ since $\alpha_1, \alpha_2 > -1$. Thus, physically sound results might also require enforcing some necessary conditions on the boundary values as well.*
 
 ## Further Reading and Thoughts
 
