@@ -182,7 +182,7 @@ That is, for any $f \in R_2$, i.e., if $\lVert f \rVert_\infty$ is small enough,
 
 <p style="text-align: right;">&#x25A1;</p>
 
-The above result does not prove the non-existence of solutions for any arbitrary $f$. In fact, in our numerical experiments we have obtained solutions for large $\lVert f \rVert_\infty$, however, another issue lurks with the nonlinear system above. A crucial point to consider now is how we still have not mentioned *uniqueness* for our hyperelastic system. For linear elasticity, both uniqueness and existence is well-established and follows from Korn's inequality [^1] [^5], but for hyperelastic system this is not the case. As we shall explore below, uniqueness for hyperelastic systems indeed isn't guaranteed and leads to spurious oscillations.
+The above result does not prove the non-existence of solutions for any arbitrary $f$, but, in our numerical experiments we have obtained solutions for large $\lVert f \rVert_\infty$. However, another issue lurks with the nonlinear system above. A crucial point to consider now is how we still have not mentioned *uniqueness* for our hyperelastic system. For linear elasticity, both uniqueness and existence is well-established and follows from Korn's inequality [^1] [^5], but for hyperelastic system this is not the case. As we shall explore below, uniqueness for hyperelastic systems indeed isn't guaranteed and leads to spurious oscillations.
 
 # 3. Numerical Experiments
 
