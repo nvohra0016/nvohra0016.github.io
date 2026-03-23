@@ -11,13 +11,16 @@ date: 2026-3-18
 
 # 1. Introduction
 
-In this post, we investigate nonlinear models for mechanics. In particular, we start with hyperelasticity equations at their face value, and work on implementing a numerical algorithm to solve the equations. In particular, we look to solve for the displacement $u$ in
+In this post, we investigate nonlinear models for mechanics. We start with hyperelasticity equations at their face value, and work on implementing a numerical algorithm to solve the equations. In particular, we look to solve for the displacement $u$ in
 
 $$
+\label{eq:system}
   -\nabla \cdot T(u) = f,
 $$
 
-where $T$ is the first Piola-Kirchhoff stress tensor, and $f$ is a given force. We make use of the finite element method by first establishing a weak form. As we progress through solving the equations, many issues arise owing to the physical soundness of the solution. We also solve the linear elasticity equations to see how the hyperelastic system looks in comparison. Solving linear elastic system is mostly well-known, and the well-posedness of the weak form of the system can be proved using by establishing the coercivity of the bilinear form using Korn's inequality. This however, does not come easy for hyperelasticity.
+where $T$ is the first Piola-Kirchhoff stress tensor for a hyperelastic material, and $f$ is a given force. 
+
+We make use of the finite element method by first establishing a weak form for the system \eqref{eq:system}. We make clear the challenges that arise as we progress through solving the equations, mostly related to the physical soundness of the solution. As a reference, we also solve the linear elasticity equations to see how the hyperelastic solution profiles look in comparison. Solving linear elastic system is mostly well-known, and the well-posedness of the weak form of the system can be proved using by establishing the coercivity of the bilinear form using Korn's inequality. This however, does not come easy for hyperelasticity.
 
 We focus on a simple 1D scenario of deformation due to a constant force (dead load) for a clamped object. We are particularly interested to understand how the displacement profile for such a simple scenario looks for a hyperelastic and linear elastic model.
 
