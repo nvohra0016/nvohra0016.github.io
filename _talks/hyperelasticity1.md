@@ -11,11 +11,29 @@ date: 2026-3-18
 
 # 1. Introduction
 
-In this post, we investigate nonlinear models for mechanics. In particular, we start with hyperelasticity equations at their face value, and implement a numerical algorithm to solve them.
+In this post, we investigate nonlinear models for mechanics. In particular, we start with hyperelasticity equations at their face value, and work on implementing a numerical algorithm to solve the equations. In particular, we look to solve for the displacement $u$ in
+
+$$
+  -\nabla \cdot T(u) = f,
+$$
+
+where $T$ is the first Piola-Kirchhoff stress tensor, and $f$ is a given force. We make use of the finite element method by first establishing a weak form. As we progress through solving the equations, many issues arise owing to the physical soundness of the solution. We also solve the linear elasticity equations to see how the hyperelastic system looks in comparison. Solving linear elastic system is mostly well-known, and the well-posedness of the weak form of the system can be proved using by establishing the coercivity of the bilinear form using Korn's inequality. This however, does not come easy for hyperelasticity.
+
+We focus on a simple 1D scenario of deformation due to a constant force (dead load) for a clamped object. We are particularly interested to understand how the displacement profile for such a simple scenario looks for a hyperelastic and linear elastic model.
+
+<div align="center">
+<img src='/images/hyperelasticity1/clamped_bar_illustration.png' width='600' height='600'>
+</div>
+
+<div align = "center">
+ Figure 1. Illustration of an clamped object under constant external force.
+</div>
+
+<br>
 
 # 2. Governing Equations
 
-Let the body occupied by $\Omega$ be under some external forces, and let $\Omega'$ denote its deformed configuration (see Fig. 1 for an illustration). Since we wish to solve the system of equations to obtain the displacement field, we consider the system of equations in the reference configuration, and focus on the finite element formulation. The reader is referred to well-known references [^1] [^2] [^3] for an introduction and overview of the system of equations (the list is by no means, even vaguely, exhaustive!). We now provide a brief overview of the system of equations.
+Let the body occupied by $\Omega$ be under some external forces, and let $\Omega'$ denote its deformed configuration (see Fig. 2 for an illustration). Since we wish to solve the system of equations to obtain the displacement field, we consider the system of equations in the reference configuration, and focus on the finite element formulation. The reader is referred to well-known references [^1] [^2] [^3] for an introduction and overview of the system of equations (the list is by no means, even vaguely, exhaustive!). We now provide a brief overview of the system of equations.
 
 ## 2.1. Kinematics
 
@@ -35,7 +53,7 @@ Finally, the linearized strain is given by $\epsilon = \frac{1}{2}\left(\nabla u
 </div>
 
 <div align = "center">
- Figure 1. Illustration of the reference and deformed configurations.
+ Figure 2. Illustration of the reference and deformed configurations.
 </div>
 
 <br>
@@ -74,7 +92,7 @@ $$
   \lambda = \frac{E_Y \nu}{(1 + \nu)(1 - 2\nu)}, \; \mu = \frac{E_Y}{2(1 + \nu)}.
 $$
 
-**Note on the choice of the St-Venant Kirchhoff material.** *It can be shown that the St-Venant Kirchhoff material is not the most sound way of approximating physically observed material behaviour. Indeed, it can be shown that such a material, i.e., where the the stress relation is given by \ref{eq:st_venant_fpks}, can undergo extreme deformation to arbitrarily small volumes in a finite by expending finite energy. This, however, is physically inconsistent with natural materials. Better choices include Neo-Hookean materials, Ogden... For more information, see... Here we make use of \ref{eq:st_venant_fpks} due to its simple form.*
+**Note on the choice of the St-Venant Kirchhoff material.** *It can be shown that the St-Venant Kirchhoff material is not the most sound way of approximating physically observed material behavior. Indeed, it can be shown that such a material, i.e., where the the stress relation is given by \ref{eq:st_venant_fpks}, can undergo extreme deformation to arbitrarily small volumes by expending finite energy. This is physically inconsistent with natural materials, and better choices instead of \eqref{eq:st_venant_fpks} include Neo-Hookean materials, Ogden, Mooney Rivlin [^1] [^3] etc. Here we make use of \ref{eq:st_venant_fpks} due to its simple form.*
 
 ### 2.2.2. Linear Elasticity
 
@@ -199,7 +217,7 @@ The implementation is done using the Python library Numpy [^9].
 
 ## 3.2. Numerical Experiment: Deformation Under Dead Load
 
-We now consider a physical scenario with a homogenous material occupying $\Omega = (0, 1)$ [m] with $E_Y = 10^7$ [Pa] and $\nu = 0.48$ [-] to mimic the properties of rubber [^8]. We consider $f \in \\{10^6, \; 4 \times 10^7 \\}$ [N/m$^3$]. We simulate using a grid size of $h = 0.05$ [m]. We use an initial guess $U^{(0)} = 0$. The results are shown in Fig. 2.
+We now consider a physical scenario as shown in Fig. 1 with a homogenous material occupying $\Omega = (0, 1)$ [m] with $E_Y = 10^7$ [Pa] and $\nu = 0.48$ [-] to mimic the properties of rubber [^8]. We consider $f \in \\{10^6, \; 4 \times 10^7 \\}$ [N/m$^3$]. We simulate using a grid size of $h = 0.05$ [m]. We use an initial guess $U^{(0)} = 0$. The results are shown in Fig. 3.
 
 <div align="center">
 <img src='/images/hyperelasticity1/f_small_M_25.png' width='380' height='380'>
@@ -207,16 +225,16 @@ We now consider a physical scenario with a homogenous material occupying $\Omega
 </div>
 
 <div align = "center">
- Figure 2. Results showing the displacement due to $f = 10^6$ (left) and $f = 4 \times 10^7$ (right) forces. 
+ Figure 3. Results showing the displacement due to $f = 10^6$ (left) and $f = 4 \times 10^7$ (right) forces. 
 </div>
 
 <br>
 
-It can be observed from Fig. 2. that up to forces of O($10^6$), linear elasticity provides a good approximation and is quite close to the hyperelastic solution. For large magnitude loads, however, the difference in displacements becomes more apparent as seen in the right plot of Fig. 2. This is also consistent with the result in [Ciarlet' 1988, Theorem 6.8-1] which provides an estimate of the difference of the linear elasticity and hyperelasticity displacements up to the norm of $f$.
+It can be observed from Fig. 3. that up to forces of O($10^6$), linear elasticity provides a good approximation and is quite close to the hyperelastic solution. For large magnitude loads, however, the difference in displacements becomes more apparent as seen in the right plot of Fig. 3. This is also consistent with the result in [Ciarlet' 1988, Theorem 6.8-1] which provides an estimate of the difference of the linear elasticity and hyperelasticity displacements up to the norm of $f$.
 
 On the solver side, Newton's method performs well and converges within $6$ iterations when $f = 4 \times 10^6$ and within $2$ iterations when $f = 10^6$. 
 
-**Robustness of Newton's Method.** We now investigate the robustness of Newton's method to a different initial guess, which ensures the accuracy of the solver and also helps us implement a dynamic time dependent problem later on. Since the solution is close to a parabolic profile, we choose a non-zero initial guess $U^{(0)}(X) = X(1 - X)$. The results are plotted in Fig. 3. 
+**Robustness of Newton's Method.** We now investigate the robustness of Newton's method to a different initial guess, which ensures the accuracy of the solver and also helps us implement a dynamic time dependent problem later on. Since the solution is close to a parabolic profile, we choose a non-zero initial guess $U^{(0)}(X) = X(1 - X)$. The results are plotted in Fig. 4. 
 
 <div align="center">
 <img src='/images/hyperelasticity1/f_large_M_20_1.png' width='380' height='380'>
@@ -224,16 +242,16 @@ On the solver side, Newton's method performs well and converges within $6$ itera
 </div>
 
 <div align = "center">
- Figure 3. Result showing the displacement profiles due to a non-zero initial guess for two different grid sizes: $h = 0.05$ [m] (left) and $h = 0.02$ [m] (right).
+ Figure 4. Result showing the displacement profiles due to a non-zero initial guess for two different grid sizes: $h = 0.05$ [m] (left) and $h = 0.02$ [m] (right).
 </div>
 
 <br>
 
-Things now take an interesting turn. The Newton solver converges, but the displacement profile is very different from what we obtained in Fig. 2. Naturally, the first instinct is to refine the grid and see what happens, but to no avail. Fig. 2 also shows the solution profile for a refined grid, which does not look promising either. Here also we have convergence of the Newton's method, albeit for around $40$ iterations this time. 
+Things now take an interesting turn. The Newton solver converges, but the displacement profile is very different from what we obtained in Fig. 3. Naturally, the first instinct is to refine the grid and see what happens, but to no avail. Fig. 4 also shows the solution profile for a refined grid, which does not look promising either. Here also we have convergence of the Newton's method, albeit for around $40$ iterations this time. 
 
 The next step is to make sure that our numerical implementation is correct, and for that reason we also implement the St-Venant Kirchhoff hyperelastic system using FEniCS [^10]. 
 
-**Results verification using FEniCS.** We first verify our solution is using the initial guess $U^{(0)} = 0$, and then using $U^{(0)} = X(1-X)$. The results are shown in Fig. 4.
+**Results verification using FEniCS.** We first verify our solution is using the initial guess $U^{(0)} = 0$, and then using $U^{(0)} = X(1-X)$. The results are shown in Fig. 5.
 
 <div align="center">
 <img src='/images/hyperelasticity1/f_large_M_20_fenics_comp.png' width='380' height='380'>
@@ -241,7 +259,7 @@ The next step is to make sure that our numerical implementation is correct, and 
 </div>
 
 <div align = "center">
- Figure 4. Results showing the displacement profiles for zero (left) and non-zero (right) initial guesses using the Author's own Numpy code implementation and using FEniCS.
+ Figure 5. Results showing the displacement profiles for zero (left) and non-zero (right) initial guesses using the Author's own Numpy code implementation and using FEniCS.
 </div>
 
 <br>
@@ -258,7 +276,7 @@ $$
   u(0) = 0, \; u(1) = -1.5.
 $$
 
-Let $f = 0$, and let $E_Y > 0$ and $\nu \in (0, 0.5)$ be given. Consider the two solution profiles given by (see Fig. 5)
+Let $f = 0$, and let $E_Y > 0$ and $\nu \in (0, 0.5)$ be given. Consider the two solution profiles given by (see Fig. 6)
 
 $$
 u_1(X) = \begin{cases}
@@ -278,7 +296,7 @@ $$
 </div>
 
 <div align = "center">
- Figure 5. Two different displacement profiles in $H^1(\Omega)$ for boundary conditions $u(0) = 0$ and $u(1) = -1.5$.
+ Figure 6. Two different displacement profiles in $H^1(\Omega)$ for boundary conditions $u(0) = 0$ and $u(1) = -1.5$.
 </div>
 
 <br>
@@ -310,7 +328,7 @@ This helps explain the issue that we faced above, i.e., the Newton's method has 
 
 # 4.1. Lack of Injectivity of $\phi$ and Orientation Preservation
 
-In the above discussion, another key aspect that we have implicitly assumed is that det$\nabla \phi = F > 0$. That, however, has not been enforced by us in the numerical implementation. Indeed, if we plot the deformation gradient $F$ for the examples above, it is clear that $F > 0$ ceases to hold true. This is shown in Fig. 6. for the case of $h = 0.02$ [m].
+In the above discussion, another key aspect that we have implicitly assumed is that det$\nabla \phi = F > 0$. That, however, has not been enforced by us in the numerical implementation. Indeed, if we plot the deformation gradient $F$ for the examples above, it is clear that $F > 0$ ceases to hold true. This is shown in Fig. 7. for the case of $h = 0.02$ [m].
 
 <div align="center">
 <img src='/images/hyperelasticity1/deformation_gradient_F.png' width='380' height='380'>
@@ -318,15 +336,14 @@ In the above discussion, another key aspect that we have implicitly assumed is t
 </div>
 
 <div align = "center">
- Figure 6. Results showing the deformation gradient profiles $F$ when the initial guess is zero (left) and non-zero (right). Notice that in the case when the initial guess is non-zero, the deformation gradient becomes negative.
+ Figure 7. Results showing the deformation gradient profiles $F$ when the initial guess is zero (left) and non-zero (right). Notice that in the case when the initial guess is non-zero, the deformation gradient becomes negative.
 </div>
 
 <br>
 
-Thus, in the above examples, the deformation map $\phi$ loses its injectivity, which makes the results physically unsound as well. Since orientation preservation is an important assumption and aspect of existence and uniqueness results, we will aim to potentially investigate and implement that in a future blog post.
+Thus, in the above examples, the deformation map $\phi$ loses its injectivity, which makes the results physically unsound as well. This is also what happens when $f$ becomes too large. Since orientation preservation is an important assumption and aspect of existence and uniqueness results, we will aim to potentially investigate and implement that in a future blog post.
 
 **Note.** *Whether enforcing $F > 0$ will solve the uniqueness issue, however, is another matter that has to be investigated. Take for example the non-unique solution profiles that were constructed above in Fig. 5. By a similar method, for some $f < 0$, $f$ small, we can find $\alpha_1, \alpha_2$ that solve \ref{eq:polynomial_g} such that $\alpha_1, \alpha_2 \in (-1, 0)$ (since $g < 0 in (0, 1), and $g(0) = g(1) = 0$). Then, by considering a suitable Dirichlet boundary condition, we can construct similar displacement profiles which satisfy $\frac{du}{dX} \in \\{\alpha_1, \alpha_2 \\}$, which would also satisfy $F = 1 + \frac{du}{dX} > 0$ since $\alpha_1, \alpha_2 > -1$. Thus, physically sound results might also require enforcing some necessary conditions on the boundary values as well.*
-
 
 ## Further Reading and Thoughts
 
