@@ -300,6 +300,7 @@ it can be easily verified that $T(u_1) = 0$. Similar case follows for $u_2$ and 
 **Note.** *The reader may construct more such piecewise-linear displacement profiles by simply finding more roots of the polynomial*
 
 $$
+\label{eq:polynomial_g}
   g(\alpha) = \alpha(\alpha + 1)(\alpha + 2) - f,
 $$
 
@@ -322,7 +323,10 @@ In the above discussion, another key aspect that we have implicitly assumed is t
 
 <br>
 
-Thus, in the above examples, the deformation map $\phi$ loses its injectivity, which makes the results physically unsound as well. Since orientation preservation is an important assumption and aspect of existence and uniqueness results, we will aim to potentially implement that in a future blog post.
+Thus, in the above examples, the deformation map $\phi$ loses its injectivity, which makes the results physically unsound as well. Since orientation preservation is an important assumption and aspect of existence and uniqueness results, we will aim to potentially investigate and implement that in a future blog post.
+
+**Note.** *Whether enforcing $F > 0$ will solve the uniqueness issue, however, is another matter that has to be investigated. Take for example the non-unique solution profiles that were constructed above in Fig. 5. By a similar method, for some $f < 0$, $f$ small, we can find $\alpha_1, \alpha_2$ that solve \ref{eq:polynomial_g} such that $\alpha_1, \alpha_2 \in (-1, 0)$ (since $g < 0 in (0, 1), and $g(0) = g(1) = 0$). Then, by considering a suitable Dirichlet boundary condition, we can construct similar displacement profiles which satisfy $\frac{du}{dX} \in \\{\alpha_1, \alpha_2 \\}$, which would also satisfy $F = 1 + \frac{du}{dX} > 0$ since $\alpha_1, \alpha_2 > -1$. Thus, physically sound results might also require enforcing some necessary conditions on the boundary values as well.*
+
 
 ## Further Reading and Thoughts
 
@@ -334,7 +338,7 @@ $$
 
 it can be seen when $F_h \approx \sqrt{\frac{1}{3}}$ then $\mathcal{J}$ becomes singular. This highlights the importance of a good initial guess and robustness in general. The author of this post has also investigated fixed point iteration and line search methods, but to no remarkable avail: although the fixed point iteration avoids inverting the Jacobian, it is very slow owing to its linear convergence and may require posing the system as a contraction map. Moreover (now unsurprisingly due to non-uniqueness) with such methods convergence to irregular profiles as above was also observed.
 
-We plan to continue our investigation and consider higher dimensions and different methods and materials, and also looking at orientation preservation. That however, is the topic of a future blog post.
+We plan to continue our investigation and consider higher dimensions and different methods and materials, and also look at orientation preservation. That however, is the topic of a future blog post.
 
 ## References
 [^1]: Philippe G. Ciarlet, *Mathematical Elasticity: Volume 1: Three-dimensional Elasticity*, 1988, Elsevier Science Publishers.
