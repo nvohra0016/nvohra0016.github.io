@@ -22,7 +22,7 @@ where $T$ is the first Piola-Kirchhoff stress tensor, and $f$ is a given force. 
 We focus on a simple 1D scenario of deformation due to a constant force (dead load) for a clamped object. We are particularly interested to understand how the displacement profile for such a simple scenario looks for a hyperelastic and linear elastic model.
 
 <div align="center">
-<img src='/images/hyperelasticity1/clamped_bar_illustration.png' width='550' height='550'>
+<img src='/images/hyperelasticity1/clamped_bar_illustration.png' width='500' height='500'>
 </div>
 
 <div align = "center">
@@ -92,7 +92,7 @@ $$
   \lambda = \frac{E_Y \nu}{(1 + \nu)(1 - 2\nu)}, \; \mu = \frac{E_Y}{2(1 + \nu)}.
 $$
 
-**Note on the choice of the St-Venant Kirchhoff material.** *It can be shown that the St-Venant Kirchhoff material is not the most sound way of approximating physically observed material behavior. Indeed, it can be shown that such a material, i.e., where the the stress relation is given by \ref{eq:st_venant_fpks}, can undergo extreme deformation to arbitrarily small volumes by expending finite energy. This is physically inconsistent with natural materials, and better choices instead of \eqref{eq:st_venant_fpks} include Neo-Hookean materials, Ogden, Mooney Rivlin [^1] [^3] etc. Here we make use of \ref{eq:st_venant_fpks} due to its simple form.*
+**Note on the choice of the St-Venant Kirchhoff material.** *It can be shown that the St-Venant Kirchhoff material is not the most sound way of approximating physically observed material behavior. Indeed, it can be shown that such a material, i.e., where the the stress relation is given by \ref{eq:st_venant_fpks}, can undergo extreme deformation to arbitrarily small volumes by expending finite energy. This is physically inconsistent with natural materials, and better choices instead of \eqref{eq:st_venant_fpks} include Neo-Hookean materials, Ogden etc. [^1] [^3] Here we make use of \ref{eq:st_venant_fpks} due to its simple form.*
 
 ### 2.2.2. Linear Elasticity
 
