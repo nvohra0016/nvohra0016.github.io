@@ -175,7 +175,7 @@ $$
   {\mathcal{J}(U)}_{i, j} = \frac{\left(\lambda + 2 \mu \right)}{2} \int_\Omega \left(3F(u_h)^2 - 1 \right) \frac{d \psi_i}{dX} \frac{d\psi_j}{dX}.
 $$
 
-For $U = 0$, we have $F(u_h) = 1$, and thus we have from \eqref{eq:proof_jacobian} that $\mathcal{J}(0) = \frac{\left(\lambda + 2\mu \right)}{h}\text{tri}(-1, 2, -1)$ is a tri-diagonal matrix such that $\mathcal{J}_T(0)$ is symmetric positive definite. Hence $\mathcal{J}(0)$ is invertible. Thus, by the inverse function theorem [^6] $\exists$ open neighborhoods $R_1, R_2 \subset \mathbb{R}^{M-1}$ $0 \in R_1$, $0 \in R_2$, $\mathcal{T}$ is one-one on $O_1$, and
+For $U = 0$, we have $F(u_h) = 1$, and thus we have from \eqref{eq:proof_jacobian} that $\mathcal{J}(0) = \frac{\left(\lambda + 2\mu \right)}{h}\text{tri}(-1, 2, -1)$ is a tri-diagonal matrix and is symmetric positive definite. Hence $\mathcal{J}(0)$ is invertible. Thus, by the inverse function theorem [^6], $\exists$ open neighborhoods $R_1, R_2 \subset \mathbb{R}^{M-1}$ $0 \in R_1$, $0 \in R_2$, $\mathcal{T}$ is one-one on $O_1$, and
 
 $$
   \mathcal{T}(R_1) = R_2,
@@ -185,7 +185,9 @@ That is, for any $f \in R_2$, i.e., if $\lVert f \rVert_\infty$ is small enough,
 
 <p style="text-align: right;">&#x25A1;</p>
 
-The above result does not prove the non-existence of solutions for any arbitrary $f$, but, in our numerical experiments we have obtained solutions for large $\lVert f \rVert_\infty$. However, another issue lurks with the nonlinear system above. A crucial point to consider now is how we still have not mentioned *uniqueness* for our hyperelastic system. For linear elasticity, both uniqueness and existence is well-established and follows from Korn's inequality [^1] [^5], but for hyperelastic system this is not the case. As we shall explore below, uniqueness for hyperelastic systems indeed isn't guaranteed and leads to spurious oscillations.
+The above result does not prove the existence of solutions for any arbitrary $f$ but in our numerical experiments we have obtained solutions for large $\lVert f \rVert_\infty$. 
+
+A crucial point to consider now is how we still have not mentioned *uniqueness* for our hyperelastic system. For linear elasticity, both uniqueness and existence is well-established and follows from Korn's inequality [^1] [^5], but for hyperelastic system this is not the case. As we shall explore below, uniqueness for hyperelastic systems indeed isn't guaranteed and leads to non-physical results.
 
 # 3. Numerical Experiments
 
@@ -252,7 +254,7 @@ On the solver side, Newton's method performs well and converges within $6$ itera
 
 <br>
 
-Things now take an interesting turn. The Newton solver converges, but the displacement profile is very different from what we obtained in Fig. 3. Naturally, the first instinct is to refine the grid and see what happens, but to no avail. Fig. 4 also shows the solution profile for a refined grid, which does not look promising either. 
+Things now take an interesting turn. The Newton solver converges, but the displacement profile is very different from what we obtained in Fig. 3. This is also an issue since the results in Fig. 4 are not entirely physical as the deformation gradient $F$ ceases to be positive, i.e., the deformation loses its orientation preservation property (see Fig. 7). Naturally, the first instinct is to refine the grid and see what happens, but to no avail. Fig. 4 also shows the solution profile for a refined grid, which does not look promising either. 
 
 The next step is to make sure that our numerical implementation is correct, and for that reason we also implement the St-Venant Kirchhoff hyperelastic system using FEniCS [^10]. 
 
@@ -273,7 +275,7 @@ For both the cases, the solution profiles are almost identical and we achieve go
 
 # 4. Issues with Well-Posedness: Non-uniqueness of Solution
 
-The numerical results above highlight the lack of robustness of our nonlinear solver: we have convergence, but the solution profiles are not unique. Of course, uniqueness is the first thing to look at, since the reader may have noted that till now we have only spoken of existence and no uniqueness. Indeed, we now show that we can very well have situations with our St-Venant Kirchhoff system where multiple solutions exist.
+From a numerical point of view (disregarding physical meaning of the solution), the results above highlight the lack of robustness of our nonlinear solver: we have convergence, but the solution profiles are not unique. Of course, uniqueness is the first thing to look at, and the reader may have noted that till now we have only spoken of existence and not uniqueness. Indeed, we now show that we can very well have situations with our St-Venant Kirchhoff system where multiple solutions exist.
 
 We now proceed with constructing one such scenario. Consider the Dirichlet boundary conditions 
 
@@ -331,9 +333,9 @@ $$
 
 This helps explain the issue that we faced above, i.e., the Newton's method has performed well, and it just probably converged to a different solution *that was closer to the initial guess that was chosen*. In fact, if we consider a coarse grid profile of what we have in Fig. 3 as the initial guess, then the solution converges to a similar profile for finer grids as well. 
 
-# 4.1. Lack of Injectivity of $\phi$ and Orientation Preservation
+# 4.1. Lack of Orientation Preservation: $F < 0$
 
-In the above discussion, another key aspect that we have implicitly assumed is that det$\nabla \phi = F > 0$. That, however, has not been enforced by us in the numerical implementation. Indeed, if we plot the deformation gradient $F$ for the examples above, it is clear that $F > 0$ ceases to hold true. This is shown in Fig. 7. for the case of $h = 0.02$ [m].
+In the above discussion, another key aspect that we have implicitly assumed is that det$\nabla \phi = F > 0$. This means that the map $\phi$ remains injective and invertible (no two points in the reference configuration are mapped to the same point in the current configuration), providing some physical soundness to the solution. This, however, has not been enforced by us in the numerical implementation. Indeed, if we plot the deformation gradient $F$ for the examples above, it is clear that $F > 0$ ceases to hold true. This is shown in Fig. 7. for the case of $h = 0.02$ [m].
 
 <div align="center">
 <img src='/images/hyperelasticity1/deformation_gradient_F.png' width='380' height='380'>
@@ -341,7 +343,7 @@ In the above discussion, another key aspect that we have implicitly assumed is t
 </div>
 
 <div align = "center">
- Figure 7. Results showing the deformation gradient profiles $F$ when the initial guess is zero (left) and non-zero (right). Notice that in the case when the initial guess is non-zero, the deformation gradient becomes negative.
+ Figure 7. Results showing the deformation gradient profiles $F$ when the initial guess is zero (left) and non-zero (right). Notice that in the case when the initial guess is non-zero, the deformation gradient $F$ becomes negative.
 </div>
 
 <br>
