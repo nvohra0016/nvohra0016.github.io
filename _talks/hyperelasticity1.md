@@ -107,7 +107,7 @@ $$
 
 ## 2.3. Weak Formulation and Existence of Solution
 
-We now present the weak formulation for \eqref{eq:stress_eq}-\eqref{eq:Dirichlet_boundary}. In this post, we consider the problem in 1D, and seek the solution $u \in H_0^1(\Omega)$. The continuous weak formulation is as follows: find $u \in H_0^1(\Omega)$ such that [^1], [Oden' 1979, Eq. 7.1] [^4],
+We now present the weak formulation for \eqref{eq:stress_eq}-\eqref{eq:Dirichlet_boundary}. Here, we seek the solution $u \in H_0^1(\Omega)$. The continuous weak formulation is as follows: find $u \in H_0^1(\Omega)$ such that [^1], [Oden' 1979, Eq. 7.1] [^4],
 
 $$
 \label{eq:continuous_weak_form}
