@@ -22,7 +22,7 @@ where $T$ is the first Piola-Kirchhoff stress tensor for a hyperelastic material
 
 We consider St-Venant Kirchhoff materials and make use of the finite element method by first establishing a weak form for the system \eqref{eq:system}. We make clear the challenges that arise as we progress through solving the equations, mostly related to the physical soundness of the solution. As a reference, we also solve the linear elasticity equations to see how the hyperelastic solution profiles look in comparison. 
 
-We focus on a simple 1D scenario of deformation due to a constant force (dead load) for a clamped object. We are particularly interested to understand how the displacement profiles for such a simple scenario look for a hyperelastic and linear elastic model. Here we do not necessarily pay attention to the regimes in which the St-Venant Kirchhoff model might be valid or not, but are rather just interested to see how to go about solving the system and understand the challenges that arise from a numerical solver point of view.
+We focus on a simple 1D scenario of deformation due to a constant force (dead load) for a clamped object. We are particularly interested to understand how the displacement profiles for such a simple scenario look for a hyperelastic and linear elastic model. Here we do not necessarily pay attention to the regimes in which the St-Venant Kirchhoff model might be valid or not, but are rather just interested to see how to go about solving the system and understand the challenges that arise from the point of view of numerical solvers.
 
 <div align="center">
 <img src='/images/hyperelasticity1/clamped_bar_illustration.png' width='500' height='500'>
