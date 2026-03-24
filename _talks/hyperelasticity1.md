@@ -116,7 +116,7 @@ $$
 
 where $:$ is the contraction operator between two tensors defined as $A : B = \sum_{i, j = 1}^{M} A_{i,j} B_{i, j}$ for any two $A, B \in \mathbb{R}^{M \times M}$. The existence of a solution to \eqref{eq:continuous_weak_form} is established using the implicit function theorem in [Ciarlet' 1988, Theorem 6.4-1] for the St-Venant Kirchhoff material \eqref{eq:st_venant_fpks}, and using Gårding operators in [Oden' 1979, Theorem 7.1] under more regularity assumptions.
 
-We now present the fully discrete formulation. In this post, we focus on 1D, and in $P_1$ elements. Let $\Omega = (0, 1)$, and let $\Omega$ be divided into $M$ cells $(X_{j}, X_{j+1})$, $0 \leq j \leq M-1$, of uniform width denoted by $h = \frac{1}{M}$. Let $V_h$ is the subspace of piecewise-linear functions with basis functions given by
+We now present the fully discrete formulation. In this post, we focus on 1D, and on $P_1$ elements. Let $\Omega = (0, 1)$, and let $\Omega$ be divided into $M$ cells $(X_{j}, X_{j+1})$, $0 \leq j \leq M-1$, of uniform width denoted by $h = \frac{1}{M}$. Let $V_h$ is the subspace of piecewise-linear functions with basis functions given by
 
 $$
 \psi_{j}(X) = \begin{cases}
@@ -133,7 +133,7 @@ $$
   \int_{\Omega} T(u_h)  \frac{d \psi_i}{dX} = \int_{\Omega} f \psi_i, \; \forall 0 \leq i \leq M.
 $$
 
-**Existence of solution.** Before we set up a numerical experiment, we first prove the existence of a solution to \eqref{eq:discrete_weak_form} for appropriate forces $f$. We can rewrite \eqref{eq:discrete_weak_form} as
+**Existence of solution.** Before we set up a numerical experiment, we first prove the existence of a solution to \eqref{eq:discrete_weak_form} for appropriate forces $f$. We rewrite \eqref{eq:discrete_weak_form} as
 
 $$
 \label{eq:nonlinear_map_eq}
@@ -154,7 +154,7 @@ $$
 
 We now present a little existence result.
 
-**Theorem 2.3.1.** Let $f \in L^2(\Omega)$. Then, for $\lVert f \rVert_\infty$ small enough, there exists a solution to \eqref{eq:nonlinear_map_eq}.
+**Theorem 2.3.1.** Let $f \in C^0(\Omega)$. Then, for $\lVert f \rVert_\infty$ small enough, there exists a solution to \eqref{eq:nonlinear_map_eq}.
 
 *Proof.* We make use of the inverse function theorem. First note that, for $U = 0$ (here we mean $0 \in \mathbb{R}^{M-1}$), we have $\mathcal{T}(U) = 0$. Now, consider the Jacobian $\mathcal{J}$ of $\mathcal{T}$ 
 
