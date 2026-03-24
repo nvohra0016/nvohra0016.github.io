@@ -352,7 +352,7 @@ Thus, in the above examples, the deformation map $\phi$ loses its injectivity, w
 
 ## Further Reading and Thoughts
 
-The above exposition provides a brief (very brief!) introduction to hyperelasticity, in particular, to nonlinear mechanics. We considered the simplest form of materials, the St-Venant Kirchhoff material, owing to its simple expression, and demonstrated the challenges of Newton's method insofar as non-uniqueness of the solution is concerned. One need not go as far as considering different intial guesses, as the author of this post has encountered issues and irregular solution profiles for $U^{(0)} = 0$ but for finer grids and for different $f$. Now we also note another issue, namely that the Jacobian may not always be invertible. Indeed, considering
+The above exposition provides a brief (very brief!) introduction to the numerical aspect of solving hyperelasticity equations, in particular, to nonlinear mechanics. We considered the simplest form of materials, the St-Venant Kirchhoff material, owing to its simple expression, and demonstrated the challenges of Newton's method insofar as non-uniqueness of the solution is concerned. One need not go as far as considering different intial guesses, as the author of this post has encountered issues and irregular solution profiles for $U^{(0)} = 0$ but for finer grids and for different $f$. Now we also note another issue, namely that the Jacobian may not always be invertible. Indeed, considering
 
 $$
   {\mathcal{J}(U)}_{i, j} = \frac{\left(\lambda + 2 \mu \right)}{2} \int_\Omega \left(3F(u_h)^2 - 1 \right) \frac{d \psi_i}{dX} \frac{d\psi_j}{dX},
