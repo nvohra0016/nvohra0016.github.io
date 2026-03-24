@@ -252,11 +252,11 @@ On the solver side, Newton's method performs well and converges within $6$ itera
 
 <br>
 
-Things now take an interesting turn. The Newton solver converges, but the displacement profile is very different from what we obtained in Fig. 3. Naturally, the first instinct is to refine the grid and see what happens, but to no avail. Fig. 4 also shows the solution profile for a refined grid, which does not look promising either. Here also we have convergence of the Newton's method, albeit for around $40$ iterations this time. 
+Things now take an interesting turn. The Newton solver converges, but the displacement profile is very different from what we obtained in Fig. 3. Naturally, the first instinct is to refine the grid and see what happens, but to no avail. Fig. 4 also shows the solution profile for a refined grid, which does not look promising either. 
 
 The next step is to make sure that our numerical implementation is correct, and for that reason we also implement the St-Venant Kirchhoff hyperelastic system using FEniCS [^10]. 
 
-**Results verification using FEniCS.** We first verify our solution is using the initial guess $U^{(0)} = 0$, and then using $U^{(0)} = X(1-X)$. The results are shown in Fig. 5.
+**Results verification using FEniCS.** We first verify our solution is using the initial guess $U^{(0)} = 0$, and then using $U^{(0)} = 0.9X(1-X)$. The results are shown in Fig. 5.
 
 <div align="center">
 <img src='/images/hyperelasticity1/f_large_M_20_fenics_comp.png' width='380' height='380'>
@@ -360,7 +360,9 @@ $$
 
 it can be seen when $F_h \approx \sqrt{\frac{1}{3}}$ then $\mathcal{J}$ becomes singular. This highlights the importance of a good initial guess and robustness in general. The author of this post has also investigated fixed point iteration and line search methods, but to no remarkable avail: although the fixed point iteration avoids inverting the Jacobian, it is very slow owing to its linear convergence and may require posing the system as a contraction map. Moreover (now unsurprisingly due to non-uniqueness) with such methods convergence to irregular profiles as above was also observed.
 
-We plan to continue our investigation and consider higher dimensions and different methods and materials, and also look at orientation preservation. That however, is the topic of a future blog post.
+The issue of solution converging to different profiles for different initial guesses can also be reproduced by simply chosing different grid sizes (as shown in Fig. 4). For example, for a zero intial guess, we have also observed different solution profiles for the same values of $f$. The reason for this behaviour is also the same as above, i.e., non-uniqueness of solution. If, however, we already have a physically sound solution on a coarse grid, we may use that as an initial guess for a finer grid, which makes the solution converge to a similar profile as the coarse grid solution.
+
+We plan to continue our investigation and consider higher dimensions and different methods and materials. That however, is the topic of a future blog post.
 
 ## References
 [^1]: Philippe G. Ciarlet, *Mathematical Elasticity: Volume 1: Three-dimensional Elasticity*, 1988, Elsevier Science Publishers.
