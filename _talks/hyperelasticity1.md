@@ -70,7 +70,7 @@ $$
   -\nabla \cdot T(u) = f \text{ in } \Omega,
 $$
 
-where $T : \Omega \rightarrow \mathbb{R}^3$ is the second order symmetric stress tensor, and in particular the first Piola-Kirchhoff stress tensor. We complete the system \ref{eq:stress_eq} with homogeneous Dirichlet boundary conditions
+where $T : \Omega \rightarrow \mathbb{R}^3$ is the second order symmetric stress tensor, and in particular the first Piola-Kirchhoff stress tensor. We complete the system \eqref{eq:stress_eq} with homogeneous Dirichlet boundary conditions
 
 $$
 \label{eq:Dirichlet_boundary}
@@ -95,7 +95,7 @@ $$
   \lambda = \frac{E_Y \nu}{(1 + \nu)(1 - 2\nu)}, \; \mu = \frac{E_Y}{2(1 + \nu)}.
 $$
 
-**Note on the choice of the St-Venant Kirchhoff material.** *It can be shown that the St-Venant Kirchhoff material is not the most sound way of approximating physically observed material behavior. Indeed, it can be shown that such a material, i.e., where the the stress relation is given by \ref{eq:st_venant_fpks}, can undergo extreme deformation to arbitrarily small volumes by expending finite energy. This is physically inconsistent with natural materials, and better choices instead of \eqref{eq:st_venant_fpks} include Neo-Hookean materials, Ogden etc. [^1] [^3] Here we make use of \ref{eq:st_venant_fpks} due to its simple form.*
+**Note on the choice of the St-Venant Kirchhoff material.** *It can be shown that the St-Venant Kirchhoff material is not the most sound way of approximating physically observed material behavior. Indeed, it can be shown that such a material, i.e., where the the stress relation is given by \eqref{eq:st_venant_fpks}, can undergo extreme deformation to arbitrarily small volumes by expending finite energy. This is physically inconsistent with natural materials, and better choices instead of \eqref{eq:st_venant_fpks} include Neo-Hookean materials, Ogden etc. [^1] [^3] Here we make use of \eqref{eq:st_venant_fpks} due to its simple form.*
 
 ### 2.2.2. Linear Elasticity
 
@@ -107,14 +107,14 @@ $$
 
 ## 2.3. Weak Formulation and Existence of Solution
 
-We now present the weak formulation for \ref{eq:stress_eq}-\ref{eq:Dirichlet_boundary}. In this post, we consider the problem in 1D, and seek the solution $u \in H_0^1(\Omega)$. The continuous weak formulation is as follows: find $u \in H_0^1(\Omega)$ such that [^1], [Oden' 1979, Eq. 7.1] [^4],
+We now present the weak formulation for \eqref{eq:stress_eq}-\eqref{eq:Dirichlet_boundary}. In this post, we consider the problem in 1D, and seek the solution $u \in H_0^1(\Omega)$. The continuous weak formulation is as follows: find $u \in H_0^1(\Omega)$ such that [^1], [Oden' 1979, Eq. 7.1] [^4],
 
 $$
 \label{eq:continuous_weak_form}
   \int_{\Omega} T(u) : \nabla \psi = \int_{\Omega} f \psi, \; \forall \psi \in H_0^1(\Omega),
 $$
 
-where $:$ is the contraction operator between two tensors defined as $A : B = \sum_{i, j = 1}^{M} A_{i,j} B_{i, j}$ for any two $A, B \in \mathbb{R}^{M \times M}$. The existence of a solution to \ref{eq:continuous_weak_form} is established using the implicit function theorem in [Ciarlet' 1988, Theorem 6.4-1] for the St-Venant Kirchhoff material \ref{eq:st_venant_fpks}, and using Gårding operators in [Oden' 1979, Theorem 7.1] under more regularity assumptions.
+where $:$ is the contraction operator between two tensors defined as $A : B = \sum_{i, j = 1}^{M} A_{i,j} B_{i, j}$ for any two $A, B \in \mathbb{R}^{M \times M}$. The existence of a solution to \eqref{eq:continuous_weak_form} is established using the implicit function theorem in [Ciarlet' 1988, Theorem 6.4-1] for the St-Venant Kirchhoff material \eqref{eq:st_venant_fpks}, and using Gårding operators in [Oden' 1979, Theorem 7.1] under more regularity assumptions.
 
 We now present the fully discrete formulation. In this post, we focus on 1D, and in $P_1$ elements. Let $\Omega = (0, 1)$, and let $\Omega$ be divided into $M$ cells $(X_{j}, X_{j+1})$, $0 \leq j \leq M-1$, of uniform width denoted by $h = \frac{1}{M}$. Let $V_h$ is the subspace of piecewise-linear functions with basis functions given by
 
@@ -126,14 +126,14 @@ $$
 \end{cases}, 1 \leq j \leq M-1,
 $$
 
-The fully discrete form of \ref{eq:continuous_weak_form} reads as follows: find $u_h \in V_h$ such that
+The fully discrete form of \eqref{eq:continuous_weak_form} reads as follows: find $u_h \in V_h$ such that
 
 $$
 \label{eq:discrete_weak_form}
   \int_{\Omega} T(u_h)  \frac{d \psi_i}{dX} = \int_{\Omega} f \psi_i, \; \forall 0 \leq i \leq M.
 $$
 
-**Existence of solution.** Before we set up a numerical experiment, we first prove the existence of a solution to \ref{eq:discrete_weak_form} for appropriate forces $f$. We can rewrite \ref{eq:discrete_weak_form} as
+**Existence of solution.** Before we set up a numerical experiment, we first prove the existence of a solution to \eqref{eq:discrete_weak_form} for appropriate forces $f$. We can rewrite \eqref{eq:discrete_weak_form} as
 
 $$
 \label{eq:nonlinear_map_eq}
@@ -154,7 +154,7 @@ $$
 
 We now present a little existence result.
 
-**Theorem 2.3.1.** Let $f \in L^2(\Omega)$. Then, for $\lVert f \rVert_\infty$ small enough, there exists a solution to \ref{eq:nonlinear_map_eq}.
+**Theorem 2.3.1.** Let $f \in L^2(\Omega)$. Then, for $\lVert f \rVert_\infty$ small enough, there exists a solution to \eqref{eq:nonlinear_map_eq}.
 
 *Proof.* We make use of the inverse function theorem. First note that, for $U = 0$ (here we mean $0 \in \mathbb{R}^{M-1}$), we have $\mathcal{T}(U) = 0$. Now, consider the Jacobian $\mathcal{J}$ of $\mathcal{T}$ 
 
@@ -175,7 +175,7 @@ $$
   {\mathcal{J}(U)}_{i, j} = \frac{\left(\lambda + 2 \mu \right)}{2} \int_\Omega \left(3F(u_h)^2 - 1 \right) \frac{d \psi_i}{dX} \frac{d\psi_j}{dX}.
 $$
 
-For $U = 0$, we have $F(u_h) = 1$, and thus we have from \ref{eq:proof_jacobian} that $\mathcal{J}(0) = \frac{\left(\lambda + 2\mu \right)}{h}\text{tri}(-1, 2, -1)$ is a tri-diagonal matrix such that $\mathcal{J}_T(0)$ is symmetric positive definite. Hence $\mathcal{J}(0)$ is invertible. Thus, by the inverse function theorem [^6] $\exists$ open neighborhoods $R_1, R_2 \subset \mathbb{R}^{M-1}$ $0 \in R_1$, $0 \in R_2$, $\mathcal{T}$ is one-one on $O_1$, and
+For $U = 0$, we have $F(u_h) = 1$, and thus we have from \eqref{eq:proof_jacobian} that $\mathcal{J}(0) = \frac{\left(\lambda + 2\mu \right)}{h}\text{tri}(-1, 2, -1)$ is a tri-diagonal matrix such that $\mathcal{J}_T(0)$ is symmetric positive definite. Hence $\mathcal{J}(0)$ is invertible. Thus, by the inverse function theorem [^6] $\exists$ open neighborhoods $R_1, R_2 \subset \mathbb{R}^{M-1}$ $0 \in R_1$, $0 \in R_2$, $\mathcal{T}$ is one-one on $O_1$, and
 
 $$
   \mathcal{T}(R_1) = R_2,
@@ -191,7 +191,7 @@ The above result does not prove the non-existence of solutions for any arbitrary
 
 ## 3.1. Nonlinear Solver and Implementation Details
 
-We now describe the details of our numerical implementation. We make use of Newton's method to solve the system \ref{eq:nonlinear_map_eq}. Starting with an initial guess $U^{(0)}$, we iterate as follows [^7]:
+We now describe the details of our numerical implementation. We make use of Newton's method to solve the system \eqref{eq:nonlinear_map_eq}. Starting with an initial guess $U^{(0)}$, we iterate as follows [^7]:
 
 $$
   \mathcal{J}(U^{(m-1)}) \delta U^{(m)} = -\left(\mathcal{T}(U^{(m-1)}) - L_f \right), \nonumber
@@ -201,7 +201,7 @@ $$
 
 We perform the Newton step till we obtain convergence of the residuals $\lVert \mathcal{T}(U^{(m-1)}) - L_f \rVert_\infty < \epsilon_{rel, tol}$ or $\lVert \delta U^{(m)} \rVert_\infty < \epsilon_{tol}$, for some prescribed tolerance $\epsilon_{abs, tol} > 0$. In our simulations, we use $\epsilon_{abs, tol} = 10^{-12}$ and $\epsilon_{rel, tol} = 10^{-14}$.
 
-Since we are using $P_1$ elements for the displacement $u$, this means that $F$ is a piecewise-constant on each grid cell. This makes numerical integration straightforward when computing the Jacobians of $\mathcal{T}$. Indeed, from \ref{eq:proof_jacobian} we have
+Since we are using $P_1$ elements for the displacement $u$, this means that $F$ is a piecewise-constant on each grid cell. This makes numerical integration straightforward when computing the Jacobians of $\mathcal{T}$. Indeed, from \eqref{eq:proof_jacobian} we have
 
 $$
   \mathcal{J}_{i, i} = \frac{\left(\lambda + 2\mu \right)}{2h}\left( 3F_{i}^2 + 3F_{i+1}^2 - 2  \right), \; F_i = \frac{\left(U_{i+1} - U_i \right)}{2}, \; F_{i+1} = \frac{\left(U_{i+2} - U_{i+1} \right)}{2}, \nonumber
@@ -306,7 +306,7 @@ $$
 
 <br>
 
-Clearly $u_1 \in H^1(\Omega)$ and $u_2 \in H^1(\Omega)$. Now by using the definition of $F = 1 + \frac{du}{dX}$ and $E = \frac{1}{2}\left(F^2 - 1 \right)$ and \ref{eq:st_venant_fpks} we have
+Clearly $u_1 \in H^1(\Omega)$ and $u_2 \in H^1(\Omega)$. Now by using the definition of $F = 1 + \frac{du}{dX}$ and $E = \frac{1}{2}\left(F^2 - 1 \right)$ and \eqref{eq:st_venant_fpks} we have
 
 $$
   T(u) = \frac{(\lambda + 2\mu)}{2} \left(\frac{du}{dX}\right) \left(1 + \frac{du}{dX}\right) \left(2 + \frac{du}{dX} \right).
@@ -318,7 +318,7 @@ $$
   \frac{du_1}{dX} = -1 \text{ on } (0, 0.5), \; \frac{du_1}{dX} = -2 \text{ on } (0.5, 1),
 $$
 
-it can be easily verified that $T(u_1) = 0$. Similar case follows for $u_2$ and it holds that $T(u_2) = 0$. Thus the variational form \ref{eq:discrete_weak_form} is satisfied for at least two different solutions, thereby providing non-uniqueness of the system. 
+it can be easily verified that $T(u_1) = 0$. Similar case follows for $u_2$ and it holds that $T(u_2) = 0$. Thus the variational form \eqref{eq:discrete_weak_form} is satisfied for at least two different solutions, thereby providing non-uniqueness of the system. 
 
 **Note.** *The reader may construct more such piecewise-linear displacement profiles by simply finding more roots of the polynomial*
 
@@ -348,7 +348,7 @@ In the above discussion, another key aspect that we have implicitly assumed is t
 
 Thus, in the above examples, the deformation map $\phi$ loses its injectivity, which makes the results physically unsound as well. This is also what happens when $f$ becomes too large. Since orientation preservation is an important assumption and aspect of existence and uniqueness results, we will aim to potentially investigate and implement that in a future blog post.
 
-**Note.** *Whether enforcing $F > 0$ will solve the uniqueness issue, however, is another matter that has to be investigated. Take for example the non-unique solution profiles that were constructed above in Fig. 6. By a similar method, for some $f < 0$, $f$ small, we can find $\alpha_1, \alpha_2$ that solve \ref{eq:polynomial_g} such that $\alpha_1, \alpha_2 \in (-1, 0)$ (since $g < 0$ in $(0, 1)$, and $g(0) = g(1) = 0$). Then, by considering a suitable Dirichlet boundary condition, we can construct similar displacement profiles which satisfy $\frac{du}{dX} \in \\{\alpha_1, \alpha_2 \\}$, but which would also satisfy $F = 1 + \frac{du}{dX} > 0$ since $\alpha_1, \alpha_2 > -1$. Thus, physically sound results might also require enforcing some necessary conditions on the boundary values as well.*
+**Note.** *Whether enforcing $F > 0$ will solve the uniqueness issue, however, is another matter that has to be investigated. Take for example the non-unique solution profiles that were constructed above in Fig. 6. By a similar method, for some $f < 0$, $f$ small, we can find $\alpha_1, \alpha_2$ that solve \eqref{eq:polynomial_g} such that $\alpha_1, \alpha_2 \in (-1, 0)$ (since $g < 0$ in $(0, 1)$, and $g(0) = g(1) = 0$). Then, by considering a suitable Dirichlet boundary condition, we can construct similar displacement profiles which satisfy $\frac{du}{dX} \in \\{\alpha_1, \alpha_2 \\}$, but which would also satisfy $F = 1 + \frac{du}{dX} > 0$ since $\alpha_1, \alpha_2 > -1$. Thus, physically sound results might also require enforcing some necessary conditions on the boundary values as well.*
 
 ## Further Reading and Thoughts
 
