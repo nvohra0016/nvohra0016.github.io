@@ -70,7 +70,7 @@ $$
   -\nabla \cdot T(u) = f \text{ in } \Omega,
 $$
 
-where $T : \Omega \rightarrow \mathbb{R}^3$ is the second order symmetric stress tensor, and in particular the first Piola-Kirchhoff stress tensor. We complete the system \eqref{eq:stress_eq} with homogeneous Dirichlet boundary conditions
+where $T : \Omega \rightarrow \mathbb{R}^3$ is the second order stress tensor, and in particular the first Piola-Kirchhoff stress tensor. We complete the system \eqref{eq:stress_eq} with homogeneous Dirichlet boundary conditions
 
 $$
 \label{eq:Dirichlet_boundary}
