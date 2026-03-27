@@ -156,16 +156,28 @@ We now present a little existence result.
 
 **Theorem 2.3.1.** Let $f \in C^0(\Omega)$. Then, for $\lVert f \rVert_\infty$ small enough, there exists a solution to \eqref{eq:nonlinear_map_eq}.
 
-*Proof.* We make use of the inverse function theorem. First note that, for $U = 0$ (here we mean $0 \in \mathbb{R}^{M-1}$), we have $\mathcal{T}(U) = 0$. Now, consider the Jacobian $\mathcal{J}$ of $\mathcal{T}$ 
+*Proof.* We make use of the inverse function theorem. First note that, since $\mathcal{T}_i$ is a polynomial in $\left(U_1, U_2, \dots, U_{M-1} \right)$ $\forall 1 \leq i \leq M-1$. For example, by definition, since $E(u_h) = \frac{1}{2}(F(u_h)^2 - 1)$, we have for $1 < i < M-1$ we have
+
+$$
+  \mathcal{T}_{i} = \frac{\left(\lambda + 2\mu\right)}{2}\int_\Omega \left(F(u_h)^3 - F(u_h) \right) \frac{d\psi_i}{dX}
+$$
+
+and since
+
+$$
+F(u_h)\frac{d\psi_i}{dX} = \begin{cases}
+\frac{U_{i} - U_{i-1}}{h}; & X \in (X_{j-1}, X_j)
+\\
+\frac{U_{i+1} - U_i}{h}; & X \in (X_j, X_{j+1})
+\end{cases},
+$$
+
+the continuity and smoothness of $\mathcal{T}_i$ follows.
+
+Now, note that, for $U = 0$ (here we mean $0 \in \mathbb{R}^{M-1}$), we have $\mathcal{T}(U) = 0$. Now, consider the Jacobian $\mathcal{J}$ of $\mathcal{T}$ 
 
 $$
   {\mathcal{J}(U)}_{i, j} = \frac{\partial \mathcal{T}_i}{\partial U_j}.
-$$
-
-By definition, since $E(u_h) = \frac{1}{2}(F(u_h)^2 - 1)$, we have
-
-$$
-  \mathcal{T}_{i} = \frac{\left(\lambda + 2\mu\right)}{2}\int_\Omega \left(F(u_h)^3 - 1 \right) \frac{d\psi_i}{dX}
 $$
 
 Since $u_h = \sum_j U_j \psi_j$, by the chain rule, we have
