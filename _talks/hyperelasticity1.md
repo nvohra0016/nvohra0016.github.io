@@ -171,14 +171,19 @@ $$
 and since
 
 $$
-F(u_h)\frac{d\psi_i}{dX} = \begin{cases}
+F(u_h) = \begin{cases}
 \frac{U_{i} - U_{i-1}}{h}; & X \in (X_{j-1}, X_j)
 \\
 \frac{U_{i+1} - U_i}{h}; & X \in (X_j, X_{j+1})
+\end{cases}, 
+\frac{d\psi_i}{dX} = \begin{cases}
+\frac{1}{h}; & X \in (X_{j-1}, X_j)
+\\
+-\frac{1}{h}; & X \in (X_j, X_{j+1})
 \end{cases},
 $$
 
-the continuity and smoothness of $\mathcal{T}_i$ follows.
+it can be easily seen that $\mathcal{T}_i$ is a polynomial and its continuity and smoothness follows.
 
 Now, note that, for $U = 0$ (here we mean $0 \in \mathbb{R}^{M-1}$), we have $\mathcal{T}(U) = 0$. Now, consider the Jacobian $\mathcal{J}$ of $\mathcal{T}$ 
 
