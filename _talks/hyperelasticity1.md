@@ -171,7 +171,7 @@ $$
 and since
 
 $$
-F(u_h) = \begin{cases}
+F(u_h) = 1 + \begin{cases}
 \frac{U_{i} - U_{i-1}}{h}; & X \in (X_{j-1}, X_j)
 \\
 \frac{U_{i+1} - U_i}{h}; & X \in (X_j, X_{j+1})
