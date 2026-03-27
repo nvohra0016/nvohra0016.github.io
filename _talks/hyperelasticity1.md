@@ -159,7 +159,7 @@ We now present a little existence result.
 *Proof.* We make use of the inverse function theorem. First note that 
 
 $$
-\mathcal{T}_i =  \frac{\left(\lambda + 2\mu\right)}{2}\int_\Omega F(u_h) E(u_h) \frac{d\psi_i}{dX}
+\mathcal{T}_i (U) =  \left(\lambda + 2\mu\right)\int_\Omega F(u_h) E(u_h) \frac{d\psi_i}{dX}
 $$
 
 is a polynomial in $\left(U_1, U_2, \dots, U_{M-1} \right)$, $\forall 1 \leq i \leq M-1$. For example, by definition, since $E(u_h) = \frac{1}{2}(F(u_h)^2 - 1)$, we have for $1 < i < M-1$ we have
@@ -416,8 +416,8 @@ def U_init(x):
 
     for j in np.arange(0, M-1, 1):
 
-        #U[j] = x[j] * (1.0 - x[j]) * 0.9
-        U[j] = 0.0
+        U[j] = x[j] * (1.0 - x[j]) * 0.9
+        #U[j] = 0.0
 
     return U
 
@@ -426,7 +426,7 @@ def E(F):
 
     return 0.5 * (F * F  - 1.0)
 
-# Define stress tensor and its gradient
+# Define first Piola-Kirchhoff stress tensor and its gradient
 def P(F, lambda_val, mu_val):
 
     return (lambda_val + 2.0 * mu_val) * F * E(F) 
@@ -519,7 +519,7 @@ mu_val = E_Young / (2 * (1 + nu))
 
 # Number of cells for spatial discretization and grid size
 # Here we have assumed a domain (0, 1)
-M = 20
+M = 50
 h = 1.0/M
 
 # Define cell faces (xf) and cell centers (xc)
