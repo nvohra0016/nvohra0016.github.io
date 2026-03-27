@@ -162,7 +162,7 @@ $$
 \mathcal{T}_i (U) =  \left(\lambda + 2\mu\right)\int_\Omega F(u_h) E(u_h) \frac{d\psi_i}{dX}
 $$
 
-is a polynomial in $\left(U_1, U_2, \dots, U_{M-1} \right)$, $\forall 1 \leq i \leq M-1$. For example, by definition, since $E(u_h) = \frac{1}{2}(F(u_h)^2 - 1)$, we have for $1 < i < M-1$ we have
+is a polynomial in $\left(U_1, U_2, \dots, U_{M-1} \right)$, $\forall 1 \leq i \leq M-1$. For example, by definition, since $E(u_h) = \frac{1}{2}(F(u_h)^2 - 1)$, we have for $1 < i < M-1$
 
 $$
   \mathcal{T}_{i} = \frac{\left(\lambda + 2\mu\right)}{2}\int_\Omega \left(F(u_h)^3 - F(u_h) \right) \frac{d\psi_i}{dX}
@@ -388,7 +388,7 @@ We plan to continue our investigation and consider higher dimensions and differe
 
 ## Code
 
-The Author's Numpy implementation is given below. 
+The Author's Numpy implementation is given below. The particular version of Numpy used is 1.26.4. Note that the code focuses on clarity of numerical implementation and might not be computationally very efficient, especially for finer grids.
 
 ```
 # Script for 1D Hyperelasticity using St-Venant Kirchhoff materials.
@@ -416,8 +416,8 @@ def U_init(x):
 
     for j in np.arange(0, M-1, 1):
 
-        U[j] = x[j] * (1.0 - x[j]) * 0.9
-        #U[j] = 0.0
+        #U[j] = x[j] * (1.0 - x[j]) * 0.9
+        U[j] = 0.0
 
     return U
 
@@ -519,7 +519,7 @@ mu_val = E_Young / (2 * (1 + nu))
 
 # Number of cells for spatial discretization and grid size
 # Here we have assumed a domain (0, 1)
-M = 50
+M = 20
 h = 1.0/M
 
 # Define cell faces (xf) and cell centers (xc)
