@@ -171,7 +171,7 @@ $$
 and since
 
 $$
-F(u_h) = 1 + \begin{cases}
+F(u_h) = 1 + g\begin{cases}
 \frac{U_{i} - U_{i-1}}{h}; & X \in (X_{j-1}, X_j)
 \\
 \frac{U_{i+1} - U_i}{h}; & X \in (X_j, X_{j+1})
@@ -185,7 +185,7 @@ $$
 
 it can be easily seen that $\mathcal{T}_i$ is a polynomial and its continuity and smoothness follows.
 
-Now, note that, for $U = 0$ (here we mean $0 \in \mathbb{R}^{M-1}$), we have $\mathcal{T}(U) = 0$. Now, consider the Jacobian $\mathcal{J}$ of $\mathcal{T}$ 
+Now, note that, for $U = 0$ (here we mean $0 \in \mathbb{R}^{M-1}$), we have $\mathcal{T}(U) = 0$. We now compute the Jacobian $\mathcal{J}$ of $\mathcal{T}$ 
 
 $$
   {\mathcal{J}(U)}_{i, j} = \frac{\partial \mathcal{T}_i}{\partial U_j}.
