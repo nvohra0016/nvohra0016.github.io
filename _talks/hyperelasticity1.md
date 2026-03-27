@@ -156,7 +156,7 @@ We now present a little existence result.
 
 **Theorem 2.3.1.** Let $f \in C^0(\Omega)$. Then, for $\lVert f \rVert_\infty$ small enough, there exists a solution to \eqref{eq:nonlinear_map_eq}.
 
-*Proof.* We make use of the inverse function theorem. First note that, since  is a polynomial in $\left(U_1, U_2, \dots, U_{M-1} \right)$, $\forall 1 \leq i \leq M-1$. For example, by definition, since $E(u_h) = \frac{1}{2}(F(u_h)^2 - 1)$, we have for $1 < i < M-1$ we have
+*Proof.* We make use of the inverse function theorem. First note that, since $\mathcal{T}_i$ is a polynomial in $\left(U_1, U_2, \dots, U_{M-1} \right)$, $\forall 1 \leq i \leq M-1$. For example, by definition, since $E(u_h) = \frac{1}{2}(F(u_h)^2 - 1)$, we have for $1 < i < M-1$ we have
 
 $$
   \mathcal{T}_{i} = \frac{\left(\lambda + 2\mu\right)}{2}\int_\Omega \left(F(u_h)^3 - F(u_h) \right) \frac{d\psi_i}{dX}
@@ -210,7 +210,7 @@ We now discuss the numerical implementation and simulate the physical scenario d
 We now describe the details of our numerical implementation. We make use of Newton's method to solve the system \eqref{eq:nonlinear_map_eq}. Starting with an initial guess $U^{(0)}$, we iterate as follows [^7]:
 
 $$
-  \mathcal{J}(U^{(m-1)}) \delta U^{(m)} = -\left(\mathcal{T}(U^{(m-1)}) - L_f \right), \nonumber
+  \mathcal{J}\left(U^{(m-1)} \right) \delta U^{(m)} = -\left(\mathcal{T}(U^{(m-1)}) - L_f \right), \nonumber
   \\
   U^{(m)} = U^{(m-1)} + \delta U^{(m)}. \nonumber
 $$
