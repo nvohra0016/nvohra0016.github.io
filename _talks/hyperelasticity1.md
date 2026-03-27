@@ -156,7 +156,7 @@ We now present a little existence result.
 
 **Theorem 2.3.1.** Let $f \in C^0(\Omega)$. Then, for $\lVert f \rVert_\infty$ small enough, there exists a solution to \eqref{eq:nonlinear_map_eq}.
 
-*Proof.* We make use of the inverse function theorem. First note that, since $\mathcal{T}_i$ is a polynomial in $\left(U_1, U_2, \dots, U_{M-1} \right)$ $\forall 1 \leq i \leq M-1$. For example, by definition, since $E(u_h) = \frac{1}{2}(F(u_h)^2 - 1)$, we have for $1 < i < M-1$ we have
+*Proof.* We make use of the inverse function theorem. First note that, since $\mathcal{T}_i $ is a polynomial in $\left(U_1, U_2, \dots, U_{M-1} \right)$, $\forall 1 \leq i \leq M-1$. For example, by definition, since $E(u_h) = \frac{1}{2}(F(u_h)^2 - 1)$, we have for $1 < i < M-1$ we have
 
 $$
   \mathcal{T}_{i} = \frac{\left(\lambda + 2\mu\right)}{2}\int_\Omega \left(F(u_h)^3 - F(u_h) \right) \frac{d\psi_i}{dX}
@@ -202,6 +202,8 @@ The above result does not prove the existence of solutions for any arbitrary $f$
 A crucial point to consider now is how we still have not mentioned *uniqueness* for our hyperelastic system. For linear elasticity, both uniqueness and existence is well-established and follows from Korn's inequality [^1] [^5], but for hyperelastic system this is not the case. As we shall explore below, uniqueness for hyperelastic systems indeed isn't guaranteed and leads to non-physical results.
 
 # 3. Numerical Experiments
+
+We now discuss the numerical implementation and simulate the physical scenario described in the Introduction.
 
 ## 3.1. Nonlinear Solver and Implementation Details
 
