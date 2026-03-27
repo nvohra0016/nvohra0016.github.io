@@ -156,7 +156,7 @@ We now present a little existence result.
 
 **Theorem 2.3.1.** Let $f \in C^0(\Omega)$. Then, for $\lVert f \rVert_\infty$ small enough, there exists a solution to \eqref{eq:nonlinear_map_eq}.
 
-*Proof.* We make use of the inverse function theorem. First note that $\mathcal{T}_i$ is a polynomial in $\left(U_1, U_2, \dots, U_{M-1} \right)$, $\forall 1 \leq i \leq M-1$. For example, by definition, since $E(u_h) = \frac{1}{2}(F(u_h)^2 - 1)$, we have for $1 < i < M-1$ we have
+*Proof.* We make use of the inverse function theorem. First note that $\mathcal{T}_i$ gis a polynomial in $\left(U_1, U_2, \dots, U_{M-1} \right)$, $\forall 1 \leq i \leq M-1$. For example, by definition, since $E(u_h) = \frac{1}{2}(F(u_h)^2 - 1)$, we have for $1 < i < M-1$ we have
 
 $$
   \mathcal{T}_{i} = \frac{\left(\lambda + 2\mu\right)}{2}\int_\Omega \left(F(u_h)^3 - F(u_h) \right) \frac{d\psi_i}{dX}
@@ -379,6 +379,275 @@ it can be seen when $F_h \approx \sqrt{\frac{1}{3}}$ then $\mathcal{J}$ becomes 
 The issue of solution converging to different profiles for different initial guesses can also be reproduced by simply chosing different grid sizes (as shown in Fig. 4). For example, for a zero intial guess, we have also observed different solution profiles for the same values of $f$ when varying $h$. The reason for this behaviour is also the same as above, i.e., non-uniqueness of solution. If, however, we already have a physically sound solution on a coarse grid, we may use that as an initial guess for a finer grid, which makes the solution converge to a similar profile as the coarse grid solution.
 
 We plan to continue our investigation and consider higher dimensions and different methods and materials. That however, is the topic of a future blog post.
+
+## Code
+
+The Author's Numpy implementation is given below. 
+
+```
+# Script for 1D Hyperelasticity using St-Venant Kirchhoff materials.
+# Author: Naren Vohra (NarenVohra1994@gmail.com).
+# The script uses homogeneous Dirichlet boundary conditions and plots the displacement
+# and deformation gradient when run.
+
+import numpy as np
+import matplotlib.pyplot as plt
+import copy
+
+################################
+## Function definitions
+################################
+
+# Define dead load value
+def f_fn(x):
+
+    return 4e7
+
+# Define initial guess
+def U_init(x):
+
+    U = np.zeros((M-1, 1))
+
+    for j in np.arange(0, M-1, 1):
+
+        #U[j] = x[j] * (1.0 - x[j]) * 0.9
+        U[j] = 0.0
+
+    return U
+
+# Define Green strain tensor
+def E(F):
+
+    return 0.5 * (F * F  - 1.0)
+
+# Define stress tensor and its gradient
+def P(F, lambda_val, mu_val):
+
+    return (lambda_val + 2.0 * mu_val) * F * E(F) 
+
+def grad_P(F, lambda_val, mu_val):
+
+    return (lambda_val + 2.0 * mu_val) * 0.5 * (3 * F * F  - 1)
+
+# Compute residual using current displacement U
+# Note that here we assume Dirichlet boundary conditions when computing deformation gradient F
+def compute_residual(U, lambda_val, mu_val):
+
+    R = np.zeros((M-1, 1))
+
+    for i in np.arange(0, M-1, 1):
+        if i == 0:
+            F1 = (U[0] - 0.0)/h + 1.0       # Homogeneous Dirichlet boundary value
+            F2 = (U[1] - U[0])/h + 1.0
+
+            R[i] = P(F1, lambda_val, mu_val) * (1.0/h) * h - f_fn(xc[i]) * h * 0.5
+            R[i] += P(F2, lambda_val, mu_val) * (-1.0/h) * h - f_fn(xc[i+1]) * h * 0.5
+
+        elif i == M-2:
+            F1 = (U[M-2] - U[M-3])/h + 1.0
+            F2 = (0.0 - U[M-2])/h + 1.0     # Homogeneous Dirichlet boundary value
+
+            R[i] = P(F1, lambda_val, mu_val) * (1.0/h) * h - f_fn(xc[i]) * h * 0.5
+            R[i] += P(F2, lambda_val, mu_val) * (-1.0/h) * h - f_fn(xc[i+1]) * h * 0.5
+
+        else:
+            F1 = (U[i] - U[i-1])/h + 1.0
+            F2 = (U[i+1] - U[i])/h + 1.0
+
+            R[i] = P(F1, lambda_val, mu_val) * (1.0/h) * h - f_fn(xc[i]) * h * 0.5
+            R[i] += P(F2, lambda_val, mu_val) * (-1.0/h) * h - f_fn(xc[i+1]) * h * 0.5
+
+    return R
+
+# Compute the Jacobian
+def compute_jacobian(U, lambda_val, mu_val):
+
+    J = np.zeros((M-1, M-1))
+
+    for i in np.arange(0, M-1, 1):
+        if i == 0:
+            F1 = (U[0] - 0.0) / h + 1.0     # Homogeneous Dirichlet boundary value
+            F2 = (U[1] - U[0]) / h + 1.0
+
+            dP1 = grad_P(F1, lambda_val, mu_val).item()
+            dP2 = grad_P(F2, lambda_val, mu_val).item()
+
+            J[i][i] = (dP1 + dP2) * (1/(h*h)) * h
+            J[i][i+1] = dP2 * (-1.0/(h*h)) * h
+
+        elif i == M-2:
+            F1 = (U[M-2] - U[M-3]) / h + 1.0 
+            F2 = (0.0 - U[M-2]) / h + 1.0   # Homogeneous Dirichlet boundary value
+
+            dP1 = grad_P(F1, lambda_val, mu_val).item()
+            dP2 = grad_P(F2, lambda_val, mu_val).item()
+
+            J[i][i] = (dP1 + dP2) * (1/(h*h)) * h
+            J[i][i-1] = dP1 * (-1.0/(h*h)) * h
+
+        else:
+            F1 = (U[i] - U[i-1]) / h + 1.0
+            F2 = (U[i+1] - U[i]) / h + 1.0
+
+            dP1 = grad_P(F1, lambda_val, mu_val).item()
+            dP2 = grad_P(F2, lambda_val, mu_val).item()
+
+            J[i][i-1] = dP1 * (-1.0/(h*h)) * h
+            J[i][i+1] = dP2 * (-1.0/(h*h)) * h
+            J[i][i] =  (dP1 + dP2) * (1.0/(h*h)) * h
+
+    return J
+
+################################
+## Main script
+################################
+
+# Elasticity parameters
+# Young's modulus and Poisson's ratio
+E_Young = 1e7
+nu = 0.48
+
+# Calculate Lamé parameters
+lambda_val = E_Young * nu / ((1 + nu) * (1 - 2 * nu))
+mu_val = E_Young / (2 * (1 + nu))
+
+# Number of cells for spatial discretization and grid size
+# Here we have assumed a domain (0, 1)
+M = 20
+h = 1.0/M
+
+# Define cell faces (xf) and cell centers (xc)
+xf = np.linspace(0, 1, M + 1)
+xc = xf[0:-1] + h/2
+
+# Newton's method parameters
+max_it = 100        # Maximum iterations
+tol_abs = 1.e-12    # Absolute tolerance
+tol_rel = 1.e-14    # Relative tolerance
+it = 0              # Current iteration
+
+U = U_init(xf[1:-1])
+
+# Start Newton's loop
+while(it < max_it):
+
+    # Compute residual
+    R = compute_residual(U, lambda_val, mu_val)
+
+    # Compute Jacobian
+    J = compute_jacobian(U, lambda_val, mu_val)
+
+    # Compute update
+    deltaU = np.linalg.solve(J, -R)
+
+    # Update solution after storing current iterate
+    U_prev = copy.deepcopy(U)
+    U += deltaU
+
+    # Compute norms and check for convergence
+    residual_norm = np.linalg.norm(R, ord = np.inf)
+    deltaU_norm = np.linalg.norm(deltaU, ord = np.inf)
+
+    if ((deltaU_norm < tol_rel) or (residual_norm < tol_abs)):
+        print("---- ---- ---- ----")
+        print(f"Converged in {it} iterations!")
+        print(f"Maximum residual achieved {residual_norm}")
+        print(f"Maximum difference of consecutive iterations achieved  {deltaU_norm}")
+        print("---- ---- ---- ----")
+
+        break
+
+    # Update
+    it += 1
+
+    if (it == max_it):
+        print(f"No convergence!")
+        print(f"Maximum residual achieved {residual_norm}")
+
+        break
+
+# Add homogeneous Dirichlet boundary values to displacement vector
+U = np.insert(U, 0, 0)
+U = np.append(U, 0)
+
+# Now solve for linear elasticity
+# Set up linear elasticity stiffness matrix
+Alin = np.zeros((M-1, M-1))
+
+for j in np.arange(0, M-1, 1):
+
+    if j == 0:
+        Alin[j][j] = (lambda_val + 2.0 * mu_val) * 2.0 * (1/h)
+        Alin[j][j+1] = (lambda_val + 2.0 * mu_val) * -1.0 * (1/h)
+    elif j == M-2:
+        Alin[j][j] = (lambda_val + 2.0 * mu_val) * 2.0 * (1/h)
+        Alin[j][j-1] = (lambda_val + 2.0 * mu_val) * -1.0 * (1/h)
+    else:
+        Alin[j][j] = (lambda_val + 2.0 * mu_val) * 2.0 * (1/h)
+        Alin[j][j-1] = (lambda_val + 2.0 * mu_val) * -1.0 * (1/h)
+        Alin[j][j+1] = (lambda_val + 2.0 * mu_val) * -1.0 * (1/h)
+
+# Calculate right hand side dead load vector
+Flin = np.zeros((M-1, 1))
+
+for j in np.arange(0, M-1, 1):
+    Flin[j] = f_fn(xc[j]) * h * 0.5 * 2.0
+
+# Solve system
+Ulin = np.linalg.solve(Alin, Flin)
+
+# Add homogeneous Dirichlet boundary values to displacement vector
+Ulin = np.insert(Ulin, 0, 0)
+Ulin = np.append(Ulin, 0)
+
+# Plot results
+# Plot displacements
+fig = plt.figure()
+
+plt.plot(xf, U, linewidth = 1.5, marker = "o", markersize = 5.0, label = "Hyperelasticity")
+plt.plot(xf, Ulin, linewidth = 1.0, linestyle = "--", marker = "s", markersize = 3.0, label = "Linear elasticity")
+
+plt.xlabel(r"$x$ [m]", fontsize = 16)
+plt.ylabel(r"Displacement $u$ [m]", fontsize = 16)
+
+plt.xticks(fontsize = 14)
+plt.yticks(fontsize = 14)
+
+plt.legend(loc = "best", fontsize = 12)
+
+plt.tight_layout()
+
+
+# Plot deformation gradient
+# Calculate deformation gradient 
+F = np.zeros((len(xc), 1))
+
+for j in np.arange(0, M, 1):
+    F[j] = (U[j+1] - U[j])/h + 1.0
+
+Flin = np.zeros((len(xc), 1))
+
+for j in np.arange(0, M, 1):
+    Flin[j] = (Ulin[j+1] - Ulin[j])/h + 1.0
+
+# Plot
+fig = plt.figure()
+
+plt.plot(xc, F, linewidth = 1.5, marker = "o", linestyle = "--", markersize = 4.0, label = "Hyperelasticity")
+plt.plot(xc, Flin, linewidth = 1.0, linestyle = "--", marker = "s", markersize = 3.0, label = "Linear elasticity")
+
+plt.xlabel(r"$x$ [m]", fontsize = 16)
+plt.ylabel("Deformation gradient $F$", fontsize = 16)
+
+plt.xticks(fontsize = 14)
+plt.yticks(fontsize = 14)
+
+plt.legend(loc = "best", fontsize = 12)
+
+plt.tight_layout()
+plt.show()
+# Script ends
+```
 
 ## References
 [^1]: Philippe G. Ciarlet, *Mathematical Elasticity: Volume 1: Three-dimensional Elasticity*, 1988, Elsevier Science Publishers.
