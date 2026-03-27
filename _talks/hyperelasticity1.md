@@ -247,7 +247,7 @@ The implementation is done using the Python library Numpy [^9].
 
 ## 3.2. Numerical Experiment: Deformation Under Dead Load
 
-We now consider a physical scenario as shown in Fig. 1 with a homogenous material occupying $\Omega = (0, 1)$ [m] with $E_Y = 10^7$ [Pa] and $\nu = 0.48$ [-] to mimic the properties of rubber [^8]. We consider $f \in \\{10^6, \; 4 \times 10^7 \\}$ [N/m$^3$]. We simulate using a grid size of $h = 0.05$ [m]. We use an initial guess $U^{(0)} = 0$. The results are shown in Fig. 3.
+We now consider a physical scenario as shown in Fig. 1 with a homogenous material occupying $\Omega = (0, 1)$ [m] with $E_Y = 10^7$ [Pa] and $\nu = 0.48$ [-] to mimic the properties of rubber [^8]. We consider $f \in \\{10^6, \; 4 \times 10^7 \\}$ [N/m$^3$] to demonstrate the performance of the solver for small and large displacements. We simulate using a grid size of $h = 0.05$ [m]. We use an initial guess $U^{(0)} = 0$. The results are shown in Fig. 3.
 
 <div align="center">
 <img src='/images/hyperelasticity1/f_small_M_25.png' width='380' height='380'>
@@ -358,7 +358,7 @@ $$
 
 This helps explain the issue that we faced above, i.e., the Newton's method has performed well, and it just probably converged to a different solution *that was closer to the initial guess that was chosen*. In fact, if we consider a coarse grid profile of what we have in Fig. 3 as the initial guess, then the solution converges to a similar profile for finer grids as well. 
 
-# 4.1. Lack of Orientation Preservation: $F < 0$
+## 4.1. Lack of Orientation Preservation: $F < 0$
 
 In the above discussion, another key aspect that we have implicitly assumed is that det$\nabla \phi = F > 0$. This means that the map $\phi$ remains injective and invertible (no two points in the reference configuration are mapped to the same point in the current configuration), providing some physical soundness to the solution. This, however, has not been enforced by us in the numerical implementation. Indeed, if we plot the deformation gradient $F$ for the examples above, it is clear that $F > 0$ ceases to hold true. This is shown in Fig. 7. for the case of $h = 0.02$ [m].
 
