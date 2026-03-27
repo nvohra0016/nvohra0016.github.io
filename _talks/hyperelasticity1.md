@@ -253,9 +253,9 @@ It can be observed from Fig. 3. that up to forces of O($10^6$), linear elasticit
 
 Also, the linear elastic solution shows that the displacement profile achieves a maximum at the middle node $X = 0.5$, whereas the hyperelastic profile shows that the maximum displacement is more towards the $X = 0.6$ with higher displacement values as well.
 
-On the solver side, Newton's method performs well and converges within $6$ iterations when $f = 4 \times 10^6$ and within $2$ iterations when $f = 10^6$. 
+On the solver side, Newton's method performs well and converges within $2$ iterations when $f = 10^6$ and within $6$ iterations when $f = 4 \times 10^7$.
 
-**Robustness of Newton's Method.** We now investigate the robustness of Newton's method to a different initial guess, which ensures the accuracy of the solver and also helps us implement a dynamic time dependent problem later on. Since the solution is close to a parabolic profile, we choose a non-zero initial guess $U^{(0)}(X) = 0.9X(1 - X)$ (the $0.9$ factor keeps the condition $F > 0$). The results are plotted in Fig. 4. 
+**Robustness of Newton's Method.** We now investigate the robustness of Newton's method to a different initial guess, which will help gauge the accuracy of our scheme and also help us implement a dynamic time dependent problem later on. Since the solution is close to a parabolic profile, we choose a non-zero initial guess $U^{(0)}(X) = 0.9X(1 - X)$ (the $0.9$ factor keeps the condition $F > 0$). The results are plotted in Fig. 4. 
 
 <div align="center">
 <img src='/images/hyperelasticity1/f_large_M_20_1.png' width='380' height='380'>
