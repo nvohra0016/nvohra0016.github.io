@@ -231,6 +231,7 @@ $$
 \label{eq:fourth_term}
     \text{tr} \left(F^T \nabla \phi_j F^T \nabla \phi_i \right) + \text{tr} \left(\nabla \phi_j^T F F^T \nabla \phi_i \right).
 $$
+
 Using the definition of $:$ we can rewrite \eqref{eq:fourth_term} as 
 
 $$
@@ -263,7 +264,7 @@ $$
 The Young's modulus is $E_Y = 10^7$ [Pa] and the Poisson ratio is $\nu = 0.48$ [-]. The results are shown in Fig. 2 for a uniform grid size of $0.025 \times 0.025$ [m $^2$].
 
 <div align="center">
-<img src='/images/hyperelasticity2/load_solution0_with_colormap.png' width='450' height='450'>
+<img src='/images/hyperelasticity2/load_solution0_with_colormap.png' width='500' height='500'>
 </div>
 
 <div align = "center">
@@ -416,8 +417,8 @@ Now, define
 
 $$
 T_C(u) = \frac{\left(\lambda + 2\mu \right)}{2} F_C \left(E_C^2 - 1 \right),
-
 $$
+
 and consider the following variational formulation: we seek $u_h \in V_h$ such that 
 
 $$
@@ -484,7 +485,7 @@ $$
     a_C(u_h)(u_h - v_h) - a_C(v_h)(u_h - v_h) = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega g_2\left(C\left(\frac{du_h}{dX}\right), C \left(\frac{dv_h}{dX}\right) \right) \left(C\left( \frac{du_h}{dX} \right) - C\left( \frac{dv_h}{dX} \right) \right)  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) + \gamma \int_\Omega  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right)^2
 $$
 
-Now, by using the first inequality in \eqref{eq:C_bounds} and its Lipschitz continuity we can bound the first term in \eqref{eq:step1_proof} by 
+Now, by using the first inequality in \eqref{eq:C_bounds} and its Lipschitz continuity we can bound the first term in \eqref{eq:step1_proof}
 
 $$
 A_1 = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega g_2\left(C\left(\frac{du_h}{dX}\right), C \left(\frac{dv_h}{dX}\right) \right) \left(C\left( \frac{du_h}{dX} \right) - C\left( \frac{dv_h}{dX} \right) \right)  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) 
@@ -544,7 +545,7 @@ The above theorem can be extended to higher dimensional settings as well, and pr
 
 ## 5.1. Robustness Testing: 1D Clamped Bar Revisited
 
-As discussed in our previous post, the 1D clamped bar example was not robust with the choice of a different initial guess $U{(0)}$ or if we refine the grid too much when $f$ is large. We now test these aspects of robustness with our new modified model as in \eqref{eq:modified_law}. We follow the same parameters and tolerances as mentioned in our previous blog post, and test the robustness of the solver with respect to different grid sizes and different initial guesses. The results are shown in Fig. 4 and Fig. 5 below.
+As discussed in our previous post, the 1D clamped bar example was not robust with the choice of a different initial guess $U^{(0)}$ or if we refine the grid too much when $f$ is large. We now test these aspects of robustness with our new modified model as in \eqref{eq:modified_law}. We follow the same parameters and tolerances as mentioned in our previous blog post, and test the robustness of the solver with respect to different grid sizes and different initial guesses. The results are shown in Fig. 4 and Fig. 5 below.
 
 <div align="center">
 <img src='/images/hyperelasticity2/1D_robustness_0.png' width='350' height='350'>
