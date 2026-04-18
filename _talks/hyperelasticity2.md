@@ -348,7 +348,12 @@ $$
     \widetilde{\mathcal{J}} = \mathcal{J} + \gamma \mathcal{A},
 $$
 
-where $\mathcal{A}_{i, j} = \int_\Omega \nabla \phi_i : \nabla \phi_j $ is an SPD matrix. Thus for large $\gamma$, the eigenvalues of $\widetilde{J}$ can be made positive since $\mathcal{A}$ has positive eigenvalues (it is SPD) and $\mathcal{J}$ has real eigenvalues (it is symmetric). This further guarantees existence of a unique update $\delta U$ in each Newton iteration.
+where 
+
+$$\mathcal{A}_{i, j} = \int_\Omega \nabla \phi_i : \nabla \phi_j
+$$
+
+is an SPD matrix. Thus for large $\gamma$, the eigenvalues of $\widetilde{\mathcal{J}}$ can be made positive since $\mathcal{A}$ has positive eigenvalues (it is SPD) and $\mathcal{J}$ has real eigenvalues (it is symmetric). This further guarantees existence of a unique update $\delta U$ in each Newton iteration.
 
 Now let us consider the variational form \eqref{eq:modified_variational_form} with homogeneous Dirichlet boundary conditions for simplicity and clarity of exposition. For the exposition below, we use $V_h \subset H_0^1(\Omega)$ the finite dimensional subspace of piecewise-linear functions which vanish on $\partial \Omega$. We first rewrite \eqref{eq:modified_variational_form} using a nonlinear operator $a : V_h \rightarrow V_h'$, where $V_h'$ is the dual of $V_h$: we seek $u_h \in V_h$ such that
 
