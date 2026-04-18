@@ -274,7 +274,7 @@ The Young's modulus is $E_Y = 10^7$ [Pa] and the Poisson ratio is $\nu = 0.48$ [
 
 The profile shows the bar deformed... We also tabulate the performance of the computational solver in Table 1. It can be observed that the number of nonlinear and linear iterations increase as the mesh is refined, and we quickly reach a stage of no convergence for a small enough grid size $h$.  No locking was observed in this example, which is unsurprising since the material is not highly incompressible (owing to $\nu = 0.48$).
 
-<div align = "center">
+<div align = "center" markdown = "1">
 
 | Grid size | #DoFs (N) | Convergence? | NS iter. | LS iter. |
 |-----------|-----------|--------------|----------|----------|
