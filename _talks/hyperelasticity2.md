@@ -28,12 +28,6 @@ in a 1D setting, and now we investigate the challenges that arise in a 2D settin
 
 As we have already observed in our [previous blog post](https://nvohra0016.github.io/talks/hyperelasticity1/), for large compressive forces the St-Venant Kirchhoff model struggles to converge to a solution, or it may converge to a solution that is orientation preserving, i.e., a non-physical solution, and hence is not the best model to simulate the block compression scenario. However, we are interested to see how far we can push the model, and if there is a way to make a slight modification which can help us better approximate and capture the physical displacement profile.
 
-To this end, we analyze the computational solver and ...
-
-We also work on modifying the St-Venant Kirchhoff model by looking at the problem from a point of view of convergence and well-posedness, and analyze the results for the new model. In other words, we explore how a simple *stabalization* of the model can be achieved, and discuss the improvements...
-
-Mention locking...
-
 # 2. Details of the Computational Solver
 
 Following the notation we set up in our [previous post](https://nvohra0016.github.io/talks/hyperelasticity1/), we recall the St-Venant Kirchhoff model
@@ -136,7 +130,7 @@ $$
 Let us simplify the expression \eqref{eq:jacobian_def}. First, note that by definition we have
 
 $$
-F(u_h) = I + \nabla u_h = I + \sum_{i=1}^{N} U_i \nabla \phi_i$,
+F(u_h) = I + \nabla u_h = I + \sum_{i=1}^{N} U_i \nabla \phi_i,
 $$
 
 and thus 
@@ -607,8 +601,6 @@ We now study the simple 1D clamped bar example to understand the performance of 
 We are now in a position to provide the numerical results for the incompressible block scenario as above. After some trial and error, we choose the value $\gamma = 4 \times 10^8$ [Pa] for $t_N = 4 \times 10^8$. The results are shown in Fig. XXX below.
 
 ## Further Reading and Thoughts
-
-The above exposition demonstrates th...
 
 
 
