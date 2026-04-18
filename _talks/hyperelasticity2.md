@@ -1,7 +1,7 @@
 ---
-title: "Towards a Robust St-Venant Kirchhoff Type Model in Hyperelasticity"
+title: "An Attempt Towards a Robust St-Venant Kirchhoff Type Model in Hyperelasticity"
 collection: talks
-excerpt: "We investigate physical scenarios for St-Venant Kirchhoff materials in 2D and work towards developing a more robust model to capture displacement profiles."
+excerpt: "We investigate physical scenarios for St-Venant Kirchhoff materials in 2D and work towards developing a more robust model to capture displacement profiles under large compressive forces."
 date: 2026-4-11
 ---
 
@@ -153,7 +153,7 @@ $$
     \frac{\partial E}{\partial U_j} = \frac{1}{2} \left(\nabla \phi_j^T F + F^T \nabla \phi_j \right), \; \forall 1 \leq j \leq N.
 $$
 
-Using \eqref{F_gradient} and \eqref{eq:E_gradient} in \eqref{eq:st_venant_kirchhoff_def} we get
+Using \eqref{eq:F_gradient} and \eqref{eq:E_gradient} in \eqref{eq:st_venant_kirchhoff_def} we get
 
 $$
     \frac{\partial T}{\partial U_j} = \lambda \left[ \text{tr}(E) \nabla \phi_j + \frac{1}{2} \text{tr}\left(\nabla \phi_j^T F + F^T \nabla \phi_j \right) \right] + \mu \left[2 \nabla \phi_j E + F \left(\nabla \phi_j^T F + F^T \nabla \phi_j \right) \right].
@@ -543,9 +543,23 @@ The above theorem can be extended to higher dimensional settings as well, and pr
 
 # 5. Testing Our New Model: Numerical Results Revisited
 
-## 5.1. Robustness Testing: 1D Clamped Bar Revisited
+## 5.1. 1D Clamped Bar Revisited
 
-As discussed in our previous post, the 1D clamped bar example was not robust with the choice of a different initial guess $U^{(0)}$ or if we refine the grid too much when $f$ is large. We now test these aspects of robustness with our new modified model as in \eqref{eq:modified_law}. We follow the same parameters and tolerances as mentioned in our previous blog post, and test the robustness of the solver with respect to different grid sizes and different initial guesses. The results are shown in Fig. 4 and Fig. 5 below.
+We now study the simple 1D clamped bar example to understand the performance of our new model compared with the St-Venant Kirchhoff model. We follow the same parameters and tolerances as mentioned in our previous blog post, and test the robustness of the solver with respect to different grid sizes and different initial guesses.
+
+**Scenario results with new model.** We first simulate the scenario using grid size $h = 0.05$ [m]. The results are shown in Fig. 4. 
+
+<div align="center">
+<img src='/images/hyperelasticity2/1D_comp.png' width='350' height='350'>
+</div>
+
+<div align = "center">
+ Figure 4. Displacement profiles for the 1D clamed bar example using the St-Venant Kirchhoff model and our new modifed model.
+</div>
+
+<br>
+
+**Robustness testing.** As discussed in our previous post, the 1D clamped bar example was not robust with the choice of a different initial guess $U^{(0)}$ or if we refine the grid too much when $f$ is large. We now test these aspects of robustness with our new modified model as in \eqref{eq:modified_law}. The results are shown in Fig. 5 and Fig. 6 below.
 
 <div align="center">
 <img src='/images/hyperelasticity2/1D_robustness_0.png' width='350' height='350'>
@@ -553,7 +567,7 @@ As discussed in our previous post, the 1D clamped bar example was not robust wit
 </div>
 
 <div align = "center">
- Figure 4. Results showing the displacement profiles for different grid sizes $h = 0.05$ and $h = 0.005$ when using the St-Venant Kirchhoff model (left) and our new modified model (right). Here we have used $\gamma = 2 \times 10^6$.
+ Figure 5. Results showing the displacement profiles for different grid sizes $h = 0.05$ and $h = 0.005$ when using the St-Venant Kirchhoff model (left) and our new modified model (right). Here we have used $\gamma = 2 \times 10^6$.
 </div>
 
 <br>
@@ -565,16 +579,16 @@ As discussed in our previous post, the 1D clamped bar example was not robust wit
 </div>
 
 <div align = "center">
- Figure 5. Results showing the displacement profiles for zero ($U^{(0)} = 0$) and non-zero ($U^{(0)} \neq 0$) initial guesses for the St-Venant Kirchhoff model (left) and our new modified model (right). Here we have used $\gamma = 1 \times 10^7$.
+ Figure 6. Displacement profiles for zero ($U^{(0)} = 0$) and non-zero ($U^{(0)} \neq 0$) initial guesses for the St-Venant Kirchhoff model (left) and our new modified model (right). Here we have used $\gamma = 1 \times 10^7$.
 </div>
 
 <br>
 
-Let us now discuss the performance of the model. On the physical side, as expected, the material response is much more stiffer, resulting in smaller displacements. On the computational side, there is good improvement: convergence ...
+**Summary of results.** Let us now discuss the performance of the model. On the physical side, as expected, the material response is much more stiffer, resulting in smaller displacements. On the computational side, there is good improvement: convergence ...
 
 ## 5.2. Incompressible Block With New Model
 
-We are now in a state to provide the numerical results for the incompressible block scenario as above. After some trial and error, we choose the value $\gamma = 4 \times 10^8$ [Pa] for $t_N = 4 \times 10^8$. The results are shown in Fig. XXX below.
+We are now in a position to provide the numerical results for the incompressible block scenario as above. After some trial and error, we choose the value $\gamma = 4 \times 10^8$ [Pa] for $t_N = 4 \times 10^8$. The results are shown in Fig. XXX below.
 
 ## Further Reading and Thoughts
 
