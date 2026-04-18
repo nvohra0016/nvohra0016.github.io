@@ -68,7 +68,7 @@ $$
 where 
 
 $$
-    V_h \subset (H^1_D(\Omega))^2 = \\{ \phi_h \in (H^1(\Omega))^2 \; | \; \phi_h = 0 \text{ on } \partial \Omega_D \\}
+    V_h \subset (H^1_D(\Omega))^2 = \{ \phi_h \in (H^1(\Omega))^2 \; | \; \phi_h = 0 \text{ on } \partial \Omega_D \}
 $$ 
 
 is the finite dimensional subspace of Q1 bilinear elements on $\Omega_h$. To avoid ambiguity due to notation, we highlight that in \eqref{eq:variational_form}, the basis elements $\phi_i : \mathbb{\Omega}_h \rightarrow \mathbb{R}^2$ are vector-valued functions, and 
