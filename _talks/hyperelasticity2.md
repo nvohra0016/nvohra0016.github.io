@@ -440,7 +440,7 @@ $$
 
 **Note on the cut-off operator.** *The idea of the cut-off operator is that for a large enough $C_0$, the system \eqref{eq:modified_aC} is close to \eqref{eq:modified_problem}, and hence a numerical implementation of the cut-off operator is unnecessary for large $C_0$. However, we rely on the cut-off operator for formal analysis and an existence result as proved below. For an application of the cut-off operator in thermo-poroelastic setting, see [^10].*
 
-We now state an existence result making use of the concepts of monotonicity, coercivity, and hemicontinuity of operators. For a brief introduction and definitions, see also the monograph [^10]. Note that since $V_h$ is a finite dimensional Hilbert space, it is reflexive and separable. 
+We now state an existence result making use of the concepts of monotonicity, coercivity, and hemicontinuity of operators. For a brief introduction and definitions, see also the monograph [^11]. Note that since $V_h$ is a finite dimensional Hilbert space, it is reflexive and separable. 
 
 **Theorem 4.1.** Fix $h > 0$ and $C_0 > 0$. Then, the operator $a_C : V_h \rightarrow V_h'$ is strictly monotone, hemicontinuous, and coercive for a large enough $\gamma > 0$. Thus $\exists$ a unique solution to \eqref{eq:modified_aC} for a smooth enough $f$.
 
@@ -555,7 +555,7 @@ Since the RHS of \eqref{eq:step5_proof} $\rightarrow \infty$ as $\vert u_h \vert
 
 The above theorem can be extended to higher dimensional settings as well, and provides with with well-posedness of our discretized modified problem. We are now ready to test our new model on the physical scenarios discussed above. First, let us return to the 1D clamped bar scenario as in our previous [blog post](https://nvohra0016.github.io/talks/hyperelasticity1/) to highlight the importance of well-posedness as proved above and see if we indeed have any improvement in the robustness of the computational solver.
 
-**Note.** *Perhaps the biggest (if not one of the biggest) problems with the above approach is that the parameter $\gamma$ depends on the grid size $h$. This means that for a fixed $\gamma$, if we keep refining the mesh, we will eventually land an ill-posed problem, where the computational solver will not converge and we can expect the same challenges as the St-Venant Kirchhoff model. This is duly noted, and is an interesting hard issue to solve, but in our regime of numerical results we don't face much of an issue. We may think of $\gamma$ as a parameter that helps obtain a physically sound displacement profile for large compressive forces.*
+**Note.** *Perhaps the biggest (if not one of the biggest) problems with the above approach is that the parameter $\gamma$ depends on the grid size $h$. This means that for a fixed $\gamma$, if we keep refining the mesh, we will eventually land an ill-posed problem, where the computational solver will not converge and we can expect the same challenges as the St-Venant Kirchhoff model. This is duly noted, and is an interesting hard issue to solve, but in our regime of numerical results we don't face much of an issue. We may think of $\gamma$ as a parameter that helps obtain a physically sound displacement profile for large compressive forces, and a parameter that we may fine tune if we know apriori the grid scales that we are dealing with.*
 
 # 5. Testing Our New Model: Numerical Results Revisited
 
