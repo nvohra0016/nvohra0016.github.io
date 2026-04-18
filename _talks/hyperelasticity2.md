@@ -327,7 +327,7 @@ $$
     \widetilde{T}(u) = T(u) + \gamma \nabla u,
 $$
 
-where we have now introduced an diffusion term with the material (when we take the divergence of \eqref{eq:modified_law}). The reader may link this to the concept of *artifical diffusion* to improve the stability of numerical methods, but physically this terms adds extra stiffness at large displacement values. That is, we now expect a stiffer response from the material, but only enough so that we obtain physically sound solution profiles when external forces are large. In terms of the strain energy function, this is equivalent to
+where we have now introduced an diffusion term with the material (when we take the divergence of \eqref{eq:modified_law}). The reader may link this to the concept of *artificial diffusion* to improve the stability of numerical methods, but physically this terms adds extra stiffness at large displacement values. That is, we now expect a stiffer response from the material, but only enough so that we obtain physically sound solution profiles when external forces are large. In terms of the strain energy function, this is equivalent to
 
 $$
     \widetilde{W}(F) =  \frac{\lambda}{2} \text{tr}(E)^2 + \mu \text{tr}(E^2) + ...
@@ -348,7 +348,7 @@ $$
     \widetilde{\mathcal{J}} = \mathcal{J} + \gamma \mathcal{A},
 $$
 
-where $\mathcal{A}_{i, j} = \int_\Omega \nabla \phi_i : \nabla \phi_j$ is an SPD matrix. Thus for large $\gamma$, the eigenvalues of $\widetilde{J}$ can be made positive since $\mathcal{A}$ has positive eigenvalues (it is SPD) and $\mathcal{J}$ has real eigenvalues (it is symmetric). This further guarantees existence of a unique update $\delta U$ in each Newton iteration.
+where $\mathcal{A}_{i, j} = \int_\Omega \nabla \phi_i : \nabla \phi_j $ is an SPD matrix. Thus for large $\gamma$, the eigenvalues of $\widetilde{J}$ can be made positive since $\mathcal{A}$ has positive eigenvalues (it is SPD) and $\mathcal{J}$ has real eigenvalues (it is symmetric). This further guarantees existence of a unique update $\delta U$ in each Newton iteration.
 
 Now let us consider the variational form \eqref{eq:modified_variational_form} with homogeneous Dirichlet boundary conditions for simplicity and clarity of exposition. For the exposition below, we use $V_h \subset H_0^1(\Omega)$ the finite dimensional subspace of piecewise-linear functions which vanish on $\partial \Omega$. We first rewrite \eqref{eq:modified_variational_form} using a nonlinear operator $a : V_h \rightarrow V_h'$, where $V_h'$ is the dual of $V_h$: we seek $u_h \in V_h$ such that
 
@@ -525,7 +525,7 @@ $$
 \frac{a_C(u_h)(u_h)}{\big| u_h \big|_2} \geq \left[\gamma - \frac{(1 + C_0)(2 + C_0) \left(\lambda + 2\mu \right)}{2} \right] \big| u_h \big|_2.
 $$
 
-Since the RHS of \eqref{eq:step6_proof} $\rightarrow \infty$ as $\big| u_h \big|_2 \rightarrow \infty$ for large enought $\gamma$, the coercivity of $a_C$ is also established. The result follows with the application of the Minty-Browder theorem.
+Since the RHS of \eqref{eq:step6_proof} $\rightarrow \infty$ as $\big| u_h \big|_2 \rightarrow \infty$ for large enough $\gamma$, the coercivity of $a_C$ is also established. The result follows with the application of the Minty-Browder theorem.
 
 <p style="text-align: right;">&#x25A1;</p>
 
