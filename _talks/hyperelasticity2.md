@@ -264,7 +264,7 @@ $$
 The Young's modulus is $E_Y = 10^7$ [Pa] and the Poisson ratio is $\nu = 0.48$ [-]. The results are shown in Fig. 2 for a uniform grid size of $0.025 \times 0.025$ [m $^2$].
 
 <div align="center">
-<img src='/images/hyperelasticity2/load_solution0_with_colormap.png' width='500' height='500'>
+<img src='/images/hyperelasticity2/load_solution0_with_colormap.png' width='550' height='550'>
 </div>
 
 <div align = "center">
@@ -466,7 +466,11 @@ $$
 The second term in \eqref{eq:step-1_proof} can be bounded by Hölder's inquality since $v_h, \phi_h \in H^1_0(\Omega_h)$, and hence $\rightarrow 0$ as $t \rightarrow 0$. For the first term, note that since $g$ is a polynomial, and $(x - y)$ divivides $(x^m - y^m)$ for any $x, y \in \mathbb{R}$ and $m \in \mathbb{Z}$, $m > 0$, we can write $g(x) - g(y) = (x - y) g_2(x, y)$, for some polynomial $g_2 : \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R}$. Thus, we can rewrite the first term in \eqref{eq:step-1_proof} as
 
 $$
-    A_0 = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ g\left( C\left(\frac{du}{dX} + t_n \frac{dv_h}{dX} \right) \right)  - g \left(C \left(\frac{du_h}{dX} \right) \right) \right] \frac{d\phi_h}{dX} = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ C\left(\frac{du}{dX} + t_n \frac{dv_h}{dX} \right)  - (C \left(\frac{du_h}{dX} \right) \right] g_2\left(C\left(\frac{du_h}{dX}\right), C \left(\frac{dv_h}{dX}\right) \right) \frac{d\phi_h}{dX}
+    A_0 = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ g\left( C\left(\frac{du}{dX} + t_n \frac{dv_h}{dX} \right) \right)  - g \left(C \left(\frac{du_h}{dX} \right) \right) \right] \frac{d\phi_h}{dX}
+$$
+
+$$
+    = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ C\left(\frac{du}{dX} + t_n \frac{dv_h}{dX} \right)  - C \left(\frac{du_h}{dX} \right) \right] g_2\left(C\left(\frac{du_h}{dX}\right), C \left(\frac{dv_h}{dX}\right) \right) \frac{d\phi_h}{dX} \nonumber
 $$
 
 By the Lipschitz continuity of $C$, and using the boundedness of $C$, we have that $A_0 \rightarrow 0$ as $t \rightarrow 0$. Thus, $B(t)$ is hemicontinuous at $t = 0$.
@@ -475,14 +479,21 @@ Now we work towards the montononicity of $a_C$. We have
 
 $$
 \label{eq:step0_proof}
-    a_C(u_h)(u_h - v_h) - a_C(v_h)(u_h - v_h) = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ g_1\left(C\left( \frac{du_h}{dX} \right) \right)  -  g_1\left(C\left( \frac{dv_h}{dX} \right) \right) \right] \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) + \gamma \int_\Omega  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right)^2
+    a_C(u_h)(u_h - v_h) - a_C(v_h)(u_h - v_h)
+$$
+$$
+= \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ g_1\left(C\left( \frac{du_h}{dX} \right) \right)  -  g_1\left(C\left( \frac{dv_h}{dX} \right) \right) \right] \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) + \gamma \int_\Omega  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right)^2 \nonumber
 $$
 
 Using the factorization above, we can rewrite \eqref{eq:step0_proof} as
 
 $$
 \label{eq:step1_proof}
-    a_C(u_h)(u_h - v_h) - a_C(v_h)(u_h - v_h) = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega g_2\left(C\left(\frac{du_h}{dX}\right), C \left(\frac{dv_h}{dX}\right) \right) \left(C\left( \frac{du_h}{dX} \right) - C\left( \frac{dv_h}{dX} \right) \right)  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) + \gamma \int_\Omega  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right)^2
+    a_C(u_h)(u_h - v_h) - a_C(v_h)(u_h - v_h) 
+$$
+
+$$
+    = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega g_2\left(C\left(\frac{du_h}{dX}\right), C \left(\frac{dv_h}{dX}\right) \right) \left(C\left( \frac{du_h}{dX} \right) - C\left( \frac{dv_h}{dX} \right) \right)  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) + \gamma \int_\Omega  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right)^2 \nonumber
 $$
 
 Now, by using the first inequality in \eqref{eq:C_bounds} and its Lipschitz continuity we can bound the first term in \eqref{eq:step1_proof}
@@ -495,7 +506,11 @@ by
 
 $$
 \label{eq:step2_proof}
-\big|A_1 \big| \leq \frac{C_1 \left(\lambda + 2\mu \right)}{2} \int_\Omega \Bigg|\left(C\left( \frac{du_h}{dX} \right) - C\left( \frac{dv_h}{dX} \right) \right) \Bigg| \Bigg|\frac{du_h}{dX} - \frac{dv_h}{dX}   \Bigg| \leq \frac{C_1 L_C \left(\lambda + 2\mu \right)}{2} \int_\Omega \Bigg|\frac{du_h}{dX} - \frac{dv_h}{dX} \Bigg|^2,
+\big|A_1 \big| \leq \frac{C_1 \left(\lambda + 2\mu \right)}{2} \int_\Omega \Bigg|\left(C\left( \frac{du_h}{dX} \right) - C\left( \frac{dv_h}{dX} \right) \right) \Bigg| \Bigg|\frac{du_h}{dX} - \frac{dv_h}{dX}   \Bigg|
+$$
+
+$$
+    \leq \frac{C_1 L_C \left(\lambda + 2\mu \right)}{2} \int_\Omega \Bigg|\frac{du_h}{dX} - \frac{dv_h}{dX} \Bigg|^2, \nonumber
 $$
 
 where $C_1 = C_1(C_0) = O(C_0^2)$ is some constant. Thus, we have from \eqref{eq:step2_proof} and using the triangle inequality
