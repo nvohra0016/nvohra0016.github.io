@@ -339,10 +339,12 @@ The variational form now becomes: find $u_h \in V_h$ such that
 
 $$
 \label{eq:modified_variational_form}
-  \int_\Omega T(u): \nabla \phi_h + \gamma \int_\Omega \nabla u_h : \nabla \phi_h = \int_{\partial \Omega_N} t_N \cdot \phi_h + \int_{\partial \Omega_N} \left(\nabla u_h n \right) \cdot \phi_h + \int_\Omega f \cdot \phi_h, \; \forall \phi_h \in V_h.
+  \int_\Omega T(u): \nabla \phi_h + \gamma \int_\Omega \nabla u_h : \nabla \phi_h = \int_{\partial \Omega_N} t_N \cdot \phi_h + \int_\Omega f \cdot \phi_h, \; \forall \phi_h \in V_h,
 $$
 
-Now let us explore the implications of adding this additional term. On the computational side, one thing becomes clear that if $\gamma$ is large enough, then the Jacobian associated with $\widetilde{T}$ becomes symmetric positive definite (SPD) since
+where now it is understood that the traction boundary condition is applied as $\widetilde{T} n = t_N$.
+
+Now we explore the implications of adding this additional term. On the computational side, one thing becomes clear that if $\gamma$ is large enough, then the Jacobian associated with $\widetilde{T}$ becomes symmetric positive definite (SPD) since
 
 $$
     \widetilde{\mathcal{J}} = \mathcal{J} + \gamma \mathcal{A},
@@ -460,7 +462,7 @@ $$
     B(t_n) - B(0) = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ g_1\left( C\left(\frac{du}{dX} + t_n \frac{dv_h}{dX} \right) \right)  - g_1 \left(C \left(\frac{du_h}{dX} \right) \right) \right] \frac{d\phi_h}{dX} + \gamma t \int_\Omega \frac{dv_h}{dX} \frac{d \phi_h}{dX}.
 $$
 
-The second term in \eqref{eq:step-1_proof} can be bounded by Hölder's inquality since $v_h, \phi_h \in H^1_0(\Omega_h)$, and hence $\rightarrow 0$ as $t \rightarrow 0$. For the first term, note that since $g$ is a polynomial, and $(x - y)$ divivides $(x^m - y^m)$ for any $x, y \in \mathbb{R}$ and $m \in \mathbb{Z}$, $m > 0$, we can write $g(x) - g(y) = (x - y) g_2(x, y)$, for some polynomial $g_2 : \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R}$. Thus, we can rewrite the first term in \eqref{eq:step0_proof} as
+The second term in \eqref{eq:step-1_proof} can be bounded by Hölder's inquality since $v_h, \phi_h \in H^1_0(\Omega_h)$, and hence $\rightarrow 0$ as $t \rightarrow 0$. For the first term, note that since $g$ is a polynomial, and $(x - y)$ divivides $(x^m - y^m)$ for any $x, y \in \mathbb{R}$ and $m \in \mathbb{Z}$, $m > 0$, we can write $g(x) - g(y) = (x - y) g_2(x, y)$, for some polynomial $g_2 : \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R}$. Thus, we can rewrite the first term in \eqref{eq:step-1_proof} as
 
 $$
     A_0 = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ g\left( C\left(\frac{du}{dX} + t_n \frac{dv_h}{dX} \right) \right)  - g \left(C \left(\frac{du_h}{dX} \right) \right) \right] \frac{d\phi_h}{dX} = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ C\left(\frac{du}{dX} + t_n \frac{dv_h}{dX} \right)  - (C \left(\frac{du_h}{dX} \right) \right] g_2\left(C\left(\frac{du_h}{dX}\right), C \left(\frac{dv_h}{dX}\right) \right) \frac{d\phi_h}{dX}
@@ -482,7 +484,7 @@ $$
     a_C(u_h)(u_h - v_h) - a_C(v_h)(u_h - v_h) = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega g_2\left(C\left(\frac{du_h}{dX}\right), C \left(\frac{dv_h}{dX}\right) \right) \left(C\left( \frac{du_h}{dX} \right) - C\left( \frac{dv_h}{dX} \right) \right)  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) + \gamma \int_\Omega  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right)^2
 $$
 
-Now, by using the first inequality in \eqref{eq:C_bounds} and its Lipschitz continuity we can bound the first term in \eqref{eq:step2_proof} by 
+Now, by using the first inequality in \eqref{eq:C_bounds} and its Lipschitz continuity we can bound the first term in \eqref{eq:step1_proof} by 
 
 $$
 A_1 = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega g_2\left(C\left(\frac{du_h}{dX}\right), C \left(\frac{dv_h}{dX}\right) \right) \left(C\left( \frac{du_h}{dX} \right) - C\left( \frac{dv_h}{dX} \right) \right)  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) 
@@ -491,14 +493,14 @@ $$
 by 
 
 $$
-\label{eq:step3_proof}
+\label{eq:step2_proof}
 \big|A_1 \big| \leq \frac{C_1 \left(\lambda + 2\mu \right)}{2} \int_\Omega \Bigg|\left(C\left( \frac{du_h}{dX} \right) - C\left( \frac{dv_h}{dX} \right) \right) \Bigg| \Bigg|\frac{du_h}{dX} - \frac{dv_h}{dX}   \Bigg| \leq \frac{C_1 L_C \left(\lambda + 2\mu \right)}{2} \int_\Omega \Bigg|\frac{du_h}{dX} - \frac{dv_h}{dX} \Bigg|^2,
 $$
 
-where $C_1 = C_1(C_0) = O(C_0^2)$ is some constant. Thus, we have from \eqref{eq:step3_proof} and using the triangle inequality
+where $C_1 = C_1(C_0) = O(C_0^2)$ is some constant. Thus, we have from \eqref{eq:step2_proof} and using the triangle inequality
 
 $$
-\label{eq:step4_proof}
+\label{eq:step3_proof}
     a_C(u_h)(u_h - v_h) - a_C(v_h)(u_h - v_h) \geq \left[\gamma - \frac{C_1 L_C \left(\lambda + 2\mu \right)}{2}  \right] \big| u_h - v_h \big|_2^2.
 $$
 
@@ -507,11 +509,11 @@ It can be observed that the RHS of \eqref{eq:step4_proof} is positive for a larg
 Similarly, we can prove the coercivity of $a_C$ by observing that since
 
 $$
-\label{eq:step5_proof}
+\label{eq:step4_proof}
     a_C(u_h)(u_h) = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega g\left( C\left( \frac{du_h}{dX} \right) \right) \frac{du_h}{dX} + \gamma \big| u_h \big|_2^2,
 $$
 
-we can bound the first term in \eqref{eq:step5_proof} 
+we can bound the first term in \eqref{eq:step4_proof} 
 
 $$
 A_2 = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega g\left( C\left( \frac{du_h}{dX} \right) \right) \frac{du_h}{dX}
@@ -526,11 +528,11 @@ $$
 Thus we have
 
 $$
-\label{eq:step6_proof}
+\label{eq:step5_proof}
 \frac{a_C(u_h)(u_h)}{\big| u_h \big|_2} \geq \left[\gamma - \frac{(1 + C_0)(2 + C_0) \left(\lambda + 2\mu \right)}{2} \right] \big| u_h \big|_2.
 $$
 
-Since the RHS of \eqref{eq:step6_proof} $\rightarrow \infty$ as $\vert u_h \vert_2 \rightarrow \infty$ for large enough $\gamma$, the coercivity of $a_C$ is also established. The result follows with the application of the Minty-Browder theorem.
+Since the RHS of \eqref{eq:step5_proof} $\rightarrow \infty$ as $\vert u_h \vert_2 \rightarrow \infty$ for large enough $\gamma$, the coercivity of $a_C$ is also established. The result follows with the application of the Minty-Browder theorem.
 
 <p style="text-align: right;">&#x25A1;</p>
 
