@@ -87,7 +87,7 @@ $$
     \end{bmatrix}.
 $$
 
-For any $\phi_h \in V_h$, the $H^1$ semi-norm $| \cdot |_2$ is defined as
+For any $\phi_h \in V_h$, the $H^1$ semi-norm $\vert \cdot \vert_2$ is defined as
 
 $$
     \big| \phi_h \big|_2^2 = \sum_{i, j=1}^{2} \int_\Omega \Big| \frac{\partial {\phi_h}_i}{\partial X_j} \Big|^2
