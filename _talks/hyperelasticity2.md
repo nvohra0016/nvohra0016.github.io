@@ -93,7 +93,7 @@ $$
     \big| \phi_h \big|_2^2 = \sum_{i, j=1}^{2} \int_\Omega \Big| \frac{\partial {\phi_h}_i}{\partial X_j} \Big|^2
 $$
 
-Using the Poincaré inequality, $| \cdot |_2$ becomes a norm on $(H^1_0(\Omega))^2$.
+Using the Poincaré inequality, $\vert \cdot \vert_2$ becomes a norm on $(H^1_0(\Omega))^2$.
 
 ## 2.2. Nonlinear Solver: Newton's Method
 
@@ -530,7 +530,7 @@ $$
 \frac{a_C(u_h)(u_h)}{\big| u_h \big|_2} \geq \left[\gamma - \frac{(1 + C_0)(2 + C_0) \left(\lambda + 2\mu \right)}{2} \right] \big| u_h \big|_2.
 $$
 
-Since the RHS of \eqref{eq:step6_proof} $\rightarrow \infty$ as $\big| u_h \big|_2 \rightarrow \infty$ for large enough $\gamma$, the coercivity of $a_C$ is also established. The result follows with the application of the Minty-Browder theorem.
+Since the RHS of \eqref{eq:step6_proof} $\rightarrow \infty$ as $\vert u_h \vert_2 \rightarrow \infty$ for large enough $\gamma$, the coercivity of $a_C$ is also established. The result follows with the application of the Minty-Browder theorem.
 
 <p style="text-align: right;">&#x25A1;</p>
 
