@@ -481,8 +481,9 @@ $$
 \label{eq:step0_proof}
     a_C(u_h)(u_h - v_h) - a_C(v_h)(u_h - v_h)
 $$
+
 $$
-= \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ g_1\left(C\left( \frac{du_h}{dX} \right) \right)  -  g_1\left(C\left( \frac{dv_h}{dX} \right) \right) \right] \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) + \gamma \int_\Omega  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right)^2 \nonumber
+= \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ g_1\left(C\left( \frac{du_h}{dX} \right) \right)  -  g_1\left(C\left( \frac{dv_h}{dX} \right) \right) \right] \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) + \gamma \int_\Omega  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right)^2. \nonumber
 $$
 
 Using the factorization above, we can rewrite \eqref{eq:step0_proof} as
@@ -493,7 +494,7 @@ $$
 $$
 
 $$
-    = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega g_2\left(C\left(\frac{du_h}{dX}\right), C \left(\frac{dv_h}{dX}\right) \right) \left(C\left( \frac{du_h}{dX} \right) - C\left( \frac{dv_h}{dX} \right) \right)  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) + \gamma \int_\Omega  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right)^2 \nonumber
+    = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega g_2\left(C\left(\frac{du_h}{dX}\right), C \left(\frac{dv_h}{dX}\right) \right) \left(C\left( \frac{du_h}{dX} \right) - C\left( \frac{dv_h}{dX} \right) \right)  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) + \gamma \int_\Omega  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right)^2. \nonumber
 $$
 
 Now, by using the first inequality in \eqref{eq:C_bounds} and its Lipschitz continuity we can bound the first term in \eqref{eq:step1_proof}
@@ -562,7 +563,7 @@ The above theorem can be extended to higher dimensional settings as well, and pr
 
 We now study the simple 1D clamped bar example to understand the performance of our new model compared with the St-Venant Kirchhoff model. We follow the same parameters and tolerances as mentioned in our previous blog post, and test the robustness of the solver with respect to different grid sizes and different initial guesses.
 
-**Scenario results with new model.** We first simulate the scenario using grid size $h = 0.05$ [m]. The results are shown in Fig. 4. 
+**Scenario results with new model.** We first simulate the scenario using grid size $h = 0.05$ [m] and by choosing $\gamma = 10^7$ [Pa]. The results are shown in Fig. 4. 
 
 <div align="center">
 <img src='/images/hyperelasticity2/1D_comp.png' width='350' height='350'>
@@ -582,7 +583,7 @@ We now study the simple 1D clamped bar example to understand the performance of 
 </div>
 
 <div align = "center">
- Figure 5. Results showing the displacement profiles for different grid sizes $h = 0.05$ and $h = 0.005$ when using the St-Venant Kirchhoff model (left) and our new modified model (right). Here we have used $\gamma = 2 \times 10^6$.
+ Figure 5. Results showing the displacement profiles for different grid sizes $h = 0.05$ and $h = 0.005$ when using the St-Venant Kirchhoff model (left) and our new modified model (right). Here we have used $\gamma = 10^7$.
 </div>
 
 <br>
@@ -594,12 +595,12 @@ We now study the simple 1D clamped bar example to understand the performance of 
 </div>
 
 <div align = "center">
- Figure 6. Displacement profiles for zero ($U^{(0)} = 0$) and non-zero ($U^{(0)} \neq 0$) initial guesses for the St-Venant Kirchhoff model (left) and our new modified model (right). Here we have used $\gamma = 1 \times 10^7$.
+ Figure 6. Displacement profiles for zero ($U^{(0)} = 0$) and non-zero ($U^{(0)} \neq 0$) initial guesses for the St-Venant Kirchhoff model (left) and our new modified model (right). Here we have used $\gamma = 10^7$.
 </div>
 
 <br>
 
-**Summary of results.** Let us now discuss the performance of the model. On the physical side, as expected, the material response is much more stiffer, resulting in smaller displacements. On the computational side, there is good improvement: convergence ...
+**Summary of results.** Let us now discuss the performance of the model. On the physical side, as expected, the material response is much more stiffer, resulting in smaller displacements. On the computational side, there is good improvement: convergence ... We note that for smaller $\gamma$, the difference between the St-Venant Kirchhoff model and our new model is less (as expected), and consequently the convergence issues also arise.
 
 ## 5.2. Incompressible Block With New Model
 
