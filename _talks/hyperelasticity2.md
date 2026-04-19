@@ -253,7 +253,7 @@ We now investigate the performance of our computational solver in physical scena
 
 ## 3.1. Clamped Bar Under Dead Load
 
-We begin with the example visited in our (previous post)[(https://nvohra0016.github.io/talks/hyperelasticity1/)], i.e., of a clamped bar under a constant force. We consider $\Omega = (0, 1) \times (0, 0.4)$ [m $^2$], and the external force $f = 3 \times 10^6$ [N / m $^3$], along with the following boundary conditions
+We begin with the example visited in our (previous post)[(https://nvohra0016.github.io/talks/hyperelasticity1/)], i.e., of a clamped bar under a constant force. We consider $\Omega = (0, 1) \times (0, 0.4)$ [m $^2$], and the external force $f = 3 \times 10^6$ [N / m $^3$] (since our computational solver struggles to converge for $f = 4 \times 10^7$), along with the following boundary conditions
 
 $$
     u = 0 \text { on } x = 0, 1, \; T n = 0 \text{ on } y = 0, 0.4.
@@ -271,7 +271,7 @@ The Young's modulus is $E_Y = 10^7$ [Pa] and the Poisson ratio is $\nu = 0.48$ [
 
 <br>
 
-The profile shows the bar deformed... We also tabulate the performance of the computational solver in Tab. 1. It can be observed that the number of nonlinear and linear iterations increase as the mesh is refined, and we quickly reach a stage of no convergence for a small enough grid size $h$.  No locking was observed in this example, which is unsurprising since the material is not highly incompressible (owing to $\nu = 0.48$).
+The profile shows the bar deformed with more mass accumulating towards the right boundary. We also tabulate the performance of the computational solver in Tab. 1. It can be observed that the number of nonlinear and linear iterations increase as the mesh is refined, and we quickly reach a stage of no convergence for a small enough grid size $h$.  No locking was observed in this example, which is unsurprising since the material is not highly incompressible (owing to $\nu = 0.48$).
 
 <div align = "center" markdown = "1">
 
@@ -329,12 +329,11 @@ $$
 where we have now introduced an diffusion term with the material (when we take the divergence of \eqref{eq:modified_law}). The reader may link this to the concept of *artificial diffusion* to improve the stability of numerical methods, but physically this terms adds extra stiffness at large displacement values. That is, we now expect a stiffer response from the material, but only enough so that we obtain physically sound solution profiles when external forces are large. In terms of the strain energy function, this is equivalent to
 
 $$
-    \widetilde{W}(F) =  \frac{\lambda}{2} \text{tr}(E)^2 + \mu \text{tr}(E^2) + ...
+    \widetilde{W}(F) =  \frac{\lambda}{2} \text{tr}(E)^2 + \mu \text{tr}(E^2) + \frac{1}{2}\left( \text{tr}(F^TF) - \text{tr}(F) \right).
 $$
 
-Let us now work towards finding a solution...
 
-The variational form now becomes: find $u_h \in V_h$ such that  
+We now proceed towards obtaining a numerical solution to the system arising from \eqref{eq:modified_law}. The variational form now becomes: find $u_h \in V_h$ such that  
 
 $$
 \label{eq:modified_variational_form}
@@ -458,7 +457,11 @@ is continuous on an interval $(-t_0, t_0), t_0 > 0$ for any $u_h, v_h, \phi_h \i
 
 $$
 \label{eq:step-1_proof}
-    B(t_n) - B(0) = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ g_1\left( C\left(\frac{du}{dX} + t_n \frac{dv_h}{dX} \right) \right)  - g_1 \left(C \left(\frac{du_h}{dX} \right) \right) \right] \frac{d\phi_h}{dX} + \gamma t \int_\Omega \frac{dv_h}{dX} \frac{d \phi_h}{dX}.
+    B(t_n) - B(0) = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ g_1\left( C\left(\frac{du}{dX} + t_n \frac{dv_h}{dX} \right) \right)  - g_1 \left(C \left(\frac{du_h}{dX} \right) \right) \right] \frac{d\phi_h}{dX} +
+$$
+    
+$$
+    \gamma t \int_\Omega \frac{dv_h}{dX} \frac{d \phi_h}{dX}. \nonumber
 $$
 
 The second term in \eqref{eq:step-1_proof} can be bounded by Hölder's inquality since $v_h, \phi_h \in H^1_0(\Omega_h)$, and hence $\rightarrow 0$ as $t \rightarrow 0$. For the first term, note that since $g$ is a polynomial, and $(x - y)$ divivides $(x^m - y^m)$ for any $x, y \in \mathbb{R}$ and $m \in \mathbb{Z}$, $m > 0$, we can write $g(x) - g(y) = (x - y) g_2(x, y)$, for some polynomial $g_2 : \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R}$. Thus, we can rewrite the first term in \eqref{eq:step-1_proof} as
@@ -481,7 +484,11 @@ $$
 $$
 
 $$
-= \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ g_1\left(C\left( \frac{du_h}{dX} \right) \right)  -  g_1\left(C\left( \frac{dv_h}{dX} \right) \right) \right] \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) + \gamma \int_\Omega  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right)^2. \nonumber
+= \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ g_1\left(C\left( \frac{du_h}{dX} \right) \right)  -  g_1\left(C\left( \frac{dv_h}{dX} \right) \right) \right] \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) + \nonumber
+$$
+
+$$
+    \gamma \int_\Omega  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right)^2. \nonumber
 $$
 
 Using the factorization above, we can rewrite \eqref{eq:step0_proof} as
@@ -537,7 +544,11 @@ $$
 by using the inequalities in \eqref{eq:C_bounds} as
 
 $$
-\big|A_2 \big| \leq \frac{(1 + C_0)(2 + C_0) \left(\lambda + 2\mu \right)}{2} \int_\Omega \Bigg| \frac{du_h}{dX} \Bigg| \Bigg| \frac{du_h}{dX} \Bigg| = \frac{(1 + C_0)(2 + C_0) \left(\lambda + 2\mu \right)}{2} \big| u_h \big|_2^2.
+    \big|A_2 \big| \leq \frac{(1 + C_0)(2 + C_0) \left(\lambda + 2\mu \right)}{2} \int_\Omega \Bigg| \frac{du_h}{dX} \Bigg| \Bigg| \frac{du_h}{dX} \Bigg| =
+$$
+
+$$
+    \frac{(1 + C_0)(2 + C_0) \left(\lambda + 2\mu \right)}{2} \big| u_h \big|_2^2. \nonumber
 $$
 
 Thus we have
