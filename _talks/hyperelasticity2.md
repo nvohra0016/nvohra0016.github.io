@@ -613,7 +613,7 @@ We now study the simple 1D clamped bar example to understand the performance of 
 
 <br>
 
-**Summary of results.** Let us now discuss the performance of the model. On the physical side, as expected, the material response is much more stiffer, resulting in smaller displacements. On the computational side, there is good improvement, and the results are tabulated in Tab. 2. 
+**Performance summary.** Let us now discuss the performance of the model and the computational solver. On the physical side, as expected, the material response is much more stiffer, resulting in smaller displacements. On the computational side, there is good improvement, and the results are tabulated in Tab. 2. 
 
 <div align = "center" markdown = "1">
 
