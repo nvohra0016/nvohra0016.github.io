@@ -157,7 +157,11 @@ Thus, we have the expression
 
 $$
 \label{eq:jacobian_def_2}
-   \mathcal{J}_{i, j} = \int_\Omega \lambda \left[ \text{tr}(E) \nabla \phi_j : \nabla \phi_i + \frac{1}{2} \text{tr}\left(\nabla \phi_j^T F + F^T \nabla \phi_j \right) \left(F : \nabla \phi_i \right) \right] + \mu \left[2 \left(\nabla \phi_j E\right) : \nabla \phi_i + \left(F \left(\nabla \phi_j^T F + F^T \nabla \phi_j \right) \right):\nabla \phi_i \right]. 
+   \mathcal{J}_{i, j} = \int_\Omega \lambda \left[ \text{tr}(E) \nabla \phi_j : \nabla \phi_i + \frac{1}{2} \text{tr}\left(\nabla \phi_j^T F + F^T \nabla \phi_j \right) \left(F : \nabla \phi_i \right) \right] +
+$$
+
+$$
+    \mu \left[2 \left(\nabla \phi_j E\right) : \nabla \phi_i + \left(F \left(\nabla \phi_j^T F + F^T \nabla \phi_j \right) \right):\nabla \phi_i \right].  \nonumber
 $$
 
 We now prove an that the Jacobian is symmetric.
