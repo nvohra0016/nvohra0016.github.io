@@ -28,7 +28,7 @@ in a 1D setting, and now we investigate the challenges that arise in a 2D settin
 
 As we have already observed in our [previous blog post](https://nvohra0016.github.io/talks/hyperelasticity1/), for large compressive forces the St-Venant Kirchhoff model struggles to converge to a solution, or it may converge to a solution that is not orientation preserving, i.e., a non-physical solution, and hence is not the best model to simulate the block compression scenario. Indeed, the St-Venant Kirchhoff model is usually best to simulate scenarios involving small strains [^1]. However, we are interested to see how far we can push the model, and if there is a way to make modifications which can help us better approximate and capture the physical displacement profile.
 
-To this end, we focus on building a new St-Venant Kirchhoff type model by adding a linear term which can help us approximate large displacements for large compressive forces. We are motivated lack of well-posedness of the system and introduce physical "stiffness" which helps us solve this issue and also allows the model to handle large forces.
+To this end, we focus on building a new St-Venant Kirchhoff type model by adding a linear term which can help us approximate large displacements for large compressive forces. We are motivated lack of well-posedness of the system and introduce physical "stiffness" which helps us solve this issue to some extent and also allows the model to capture displacement profiles under large forces.
 
 # 2. Details of the Computational Solver
 
@@ -664,7 +664,7 @@ $$
     \widetilde{W}(F) =  \frac{\lambda}{2} \text{tr}(E)^2 + \mu \text{tr}(E^2) + \frac{1}{2}\left( \text{tr}(F^TF) - \text{tr}(F) \right),
 $$
 
-which, too, does not provide any resistance to det$(F) \righarrow 0$ and will face the same issues as the St-Kirchhoff Venant model for large forces.
+which, too, does not provide any resistance to det$(F) \rightarrow 0$ and will face the same issues as the St-Kirchhoff Venant model for large forces.
 
 Moreover, a major drawback is that the parameter $\gamma$ depends on the grid size for model and performance improvements, and another issue is that for large $\gamma$ and for small forces or traction, the material response is too stiff which would result in very small displacements. A more versatile parameter could be a monotnone $\gamma = \gamma(u)$, which may still be able to provide coercivity and monotonicty of the operator associated with $\widetilde{T}$ (provided we may impose something like $\gamma(0) = 0$ and Lipschitz continuity), and would slowly introduce stiffness as $u$ increases with increasing $f$ or $t_N$. That, however, would be a topic for a future blog post.
 
