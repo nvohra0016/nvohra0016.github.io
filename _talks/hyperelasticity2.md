@@ -262,7 +262,7 @@ The Young's modulus is $E_Y = 10^7$ [Pa] and the Poisson ratio is $\nu = 0.48$ [
 </div>
 
 <div align = "center">
- Figure 2. Displacement magnitude profile for the clamped bar under dead load example. Also shown is the undeformed mesh (in dark lines).
+ Figure 2. Displacement magnitude profile in [m] for the clamped bar under dead load example. Also shown is the undeformed mesh (in dark lines).
 </div>
 
 <br>
@@ -300,7 +300,7 @@ We now proceed with investigating the performance of the computational solver on
 </div>
 
 <div align = "center">
- Figure 3. Displacement magnitude profiles incompressible block benchmark using $h = 1$ [mm] (left) and $h = 0.02$ [mm] (right). Also shown is the undeformed mesh for both the cases.
+ Figure 3. Displacement magnitude profiles in [m] for incompressible block benchmark using $h = 1$ [mm] (left) and $h = 0.02$ [mm] (right). Also shown is the undeformed mesh for both the cases.
 </div>
 
 <br>
@@ -598,7 +598,24 @@ We now study the simple 1D clamped bar example to understand the performance of 
 
 ## 5.2. Incompressible Block With New Model
 
-We are now in a position to provide the numerical results for the incompressible block scenario as above. After some trial and error, we choose the value $\gamma = 4 \times 10^8$ [Pa] for $t_N = 4 \times 10^8$. The results are shown in Fig. XXX below.
+We are now in a position to provide the numerical results for the incompressible block scenario as above. We use $h = 0.05$ [mm] and $\gamma = 4 \times 10^8$ [Pa] (after some trial and error) for $t_N = 4 \times 10^8$. The results are shown in Fig. 7 below.
+
+<div align="center">
+<img src='/images/hyperelasticity2/incompressible_new_rho0.png' width='350' height='350'>
+<img src='/images/hyperelasticity2/incompressible_new_rho1.png' width='350' height='350'>
+</div>
+
+<div align = "center">
+ Figure 7. Displacement magnitude profiles in [m] for incompressible block benchmark using the new model with $\gamma = 4 \times 10^8$ (left) and $\gamma = 3.819 \times 10^8$ (right). 
+</div>
+
+<br>
+
+Fig. 7 (left) shows a much better displacement profile with a maximum value of 4.46 [mm], much better than the values reported previously in Fig. 3, although still short of the benchmark values reported in [^8]. The NS iter. in this case are 13 and the LS iter. are 78411.
+
+**Sensitivity to $\gamma$.** We explore fine tuniong the parameter $\gamma$ further to see if we can get higher displacement values. Indeed, after some more trial and error, it was observeed that when $\gamma = 3.819 \times 10^8$, the maximum displacement improves to 4.89 [mm]; the profile is shown in Fig. 7 (right). In this case, the NS iter. taken are 21 and the LS iter. is 143151.
+
+
 
 ## Further Reading and Thoughts
 
