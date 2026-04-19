@@ -267,7 +267,7 @@ The Young's modulus is $E_Y = 10^7$ [Pa] and the Poisson ratio is $\nu = 0.48$ [
 
 <br>
 
-The profile shows the bar deformed... We also tabulate the performance of the computational solver in Table 1. It can be observed that the number of nonlinear and linear iterations increase as the mesh is refined, and we quickly reach a stage of no convergence for a small enough grid size $h$.  No locking was observed in this example, which is unsurprising since the material is not highly incompressible (owing to $\nu = 0.48$).
+The profile shows the bar deformed... We also tabulate the performance of the computational solver in Tab. 1. It can be observed that the number of nonlinear and linear iterations increase as the mesh is refined, and we quickly reach a stage of no convergence for a small enough grid size $h$.  No locking was observed in this example, which is unsurprising since the material is not highly incompressible (owing to $\nu = 0.48$).
 
 <div align = "center" markdown = "1">
 
@@ -594,15 +594,35 @@ We now study the simple 1D clamped bar example to understand the performance of 
 
 <br>
 
-**Summary of results.** Let us now discuss the performance of the model. On the physical side, as expected, the material response is much more stiffer, resulting in smaller displacements. On the computational side, there is good improvement: convergence, the NS iter. values  We note that for smaller $\gamma$, the difference between the St-Venant Kirchhoff model and our new model is less (as expected), and consequently the convergence issues also arise.
+**Summary of results.** Let us now discuss the performance of the model. On the physical side, as expected, the material response is much more stiffer, resulting in smaller displacements. On the computational side, there is good improvement, and the results are tabulated in Tab. 2. 
+
+<div align = "center" markdown = "1">
+
+| Case                                  | St-Venant Kirchhoff NS iter. | New model NS iter. |
+|--------------------------------------------|------------------------------|--------------------|
+| Grid size h = 0.05 (Initial guess zero)    | 6                            | 5                  |
+| Grid size h = 0.005 (Initial guess zero)   | 123                          | 5                  |
+| Initial guess zero (Grid size h = 0.05)    | 6                            | 5                  |
+| Intial guess non-zero (Grid size h = 0.05) | 10                           | 8                  |
+
+</div>
+
+<div align = "center">
+ Table 2. Performance of the solver for the 1D clamped bar example showing the number of iterations taken by Newton's method (NS iter.) for different cases. Notice that the new model is robust with respect to number of iterations whereas as the St-Venant Kirchhoff model struggles with convergence for finer grid size and non-zero initial guess and shows large discrepancy in solution profiles.
+</div>
+
+<br>
+
+
+We also note that for smaller $\gamma$, the difference between the St-Venant Kirchhoff model and our new model is less (as expected), and consequently the convergence issues also arise.
 
 ## 5.2. Incompressible Block With New Model
 
 We are now in a position to provide the numerical results for the incompressible block scenario as above. We use $h = 0.05$ [mm] and $\gamma = 4 \times 10^8$ [Pa] (after some trial and error) for $t_N = 4 \times 10^8$. The results are shown in Fig. 7 below.
 
 <div align="center">
-<img src='/images/hyperelasticity2/incompressible_new_rho0.png' width='350' height='350'>
-<img src='/images/hyperelasticity2/incompressible_new_rho1.png' width='350' height='350'>
+<img src='/images/hyperelasticity2/incompressible_new_rho0.png' width='370' height='370'>
+<img src='/images/hyperelasticity2/incompressible_new_rho1.png' width='370' height='370'>
 </div>
 
 <div align = "center">
