@@ -28,6 +28,8 @@ I relocated to Gurugram, Haryana in 2024 where I currently stay with my wife. Ou
 
 I also maintain a [blog](https://nvohra0016.github.io/talks/) on my website where I write expository short articles to motivate existing or novel ideas. My fundamental target is always clarity of exosition, reproducibility of results, and bridging theory and application. My recent posts are:
 
+- [An Attempt Towards a Robust St-Venant Kirchhoff Type Model in Hyperelasticity](https://nvohra0016.github.io/talks/hyperelasticity2/)  
+`hyperelasticity` `finite elements` `well-posedness` `incompressibility` `compression` `Minty-Browder` `St-Venant Kirchhoff`
 - [Into Mechanics: Investigating Hyperelasticity](https://nvohra0016.github.io/talks/hyperelasticity1/)  
 `mechanics` `hyperelasticity` `St-Venant Kirchhoff` `existence` `uniqueness` `Newtons method` `finite elements`
 - [Effect of Monotonicity of Numerical Schemes for the Heat Equation on Average Measured Temperature](https://nvohra0016.github.io/talks/monotone_average_temperature/)  
@@ -44,4 +46,4 @@ I also maintain a [blog](https://nvohra0016.github.io/talks/) on my website wher
 - [An Introduction to Kalman Filters Using the Heat Equation](https://nvohra0016.github.io/talks/kalman_filter/)  
 `Kalman filter`, `heat equation`, `Monte Carlo`, `ODE`
 
-###### Last updated: February 2026
+###### Last updated: April 2026

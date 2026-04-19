@@ -647,8 +647,7 @@ We also note that for smaller $\gamma$, the difference between the St-Venant Kir
 
 <br>
 
-Unlike before, the solver now converges in NS iter. 11 and LS iter. 4653.
-
+Unlike before, the solver now converges in NS iter. 11 and LS iter. 4653, and the maximum displacement magnitude is more than twice what it was in Fig. 2. 
 
 ## 5.2. Incompressible Block With New Model
 
