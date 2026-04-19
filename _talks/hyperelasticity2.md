@@ -150,7 +150,11 @@ $$
 Using \eqref{eq:F_gradient} and \eqref{eq:E_gradient} in \eqref{eq:st_venant_kirchhoff_def} we get
 
 $$
-    \frac{\partial T}{\partial U_j} = \lambda \left[ \text{tr}(E) \nabla \phi_j + \frac{1}{2} \text{tr}\left(\nabla \phi_j^T F + F^T \nabla \phi_j \right) \right] + \mu \left[2 \nabla \phi_j E + F \left(\nabla \phi_j^T F + F^T \nabla \phi_j \right) \right].
+    \frac{\partial T}{\partial U_j} = \lambda \left[ \text{tr}(E) \nabla \phi_j + \frac{1}{2} \text{tr}\left(\nabla \phi_j^T F + F^T \nabla \phi_j \right) \right] + \mu \left[2 \nabla \phi_j E +
+$$
+    
+$$
+    F \left(\nabla \phi_j^T F + F^T \nabla \phi_j \right) \right]. \nonumber
 $$
 
 Thus, we have the expression
@@ -453,11 +457,11 @@ is continuous on an interval $(-t_0, t_0), t_0 > 0$ for any $u_h, v_h, \phi_h \i
 
 $$
 \label{eq:step-1_proof}
-    B(t_n) - B(0) = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ g_1\left( C\left(\frac{du}{dX} + t_n \frac{dv_h}{dX} \right) \right)  - g_1 \left(C \left(\frac{du_h}{dX} \right) \right) \right] \frac{d\phi_h}{dX} +
+    B(t_n) - B(0) = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega \left[ g_1\left( C\left(\frac{du}{dX} + t_n \frac{dv_h}{dX} \right) \right)  - g_1 \left(C \left(\frac{du_h}{dX} \right) \right) \right] \frac{d\phi_h}{dX}
 $$
     
 $$
-    \gamma t \int_\Omega \frac{dv_h}{dX} \frac{d \phi_h}{dX}. \nonumber
+    + \gamma t \int_\Omega \frac{dv_h}{dX} \frac{d \phi_h}{dX}. \nonumber
 $$
 
 The second term in \eqref{eq:step-1_proof} can be bounded by Hölder's inquality since $v_h, \phi_h \in H^1_0(\Omega_h)$, and hence $\rightarrow 0$ as $t \rightarrow 0$. For the first term, note that since $g$ is a polynomial, and $(x - y)$ divivides $(x^m - y^m)$ for any $x, y \in \mathbb{R}$ and $m \in \mathbb{Z}$, $m > 0$, we can write $g(x) - g(y) = (x - y) g_2(x, y)$, for some polynomial $g_2 : \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R}$. Thus, we can rewrite the first term in \eqref{eq:step-1_proof} as
@@ -495,7 +499,11 @@ $$
 $$
 
 $$
-    = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega g_2\left(C\left(\frac{du_h}{dX}\right), C \left(\frac{dv_h}{dX}\right) \right) \left(C\left( \frac{du_h}{dX} \right) - C\left( \frac{dv_h}{dX} \right) \right)  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) + \gamma \int_\Omega  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right)^2. \nonumber
+    = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega g_2\left(C\left(\frac{du_h}{dX}\right), C \left(\frac{dv_h}{dX}\right) \right) \left(C\left( \frac{du_h}{dX} \right) - C\left( \frac{dv_h}{dX} \right) \right)  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) + \nonumber
+$$
+    
+$$
+    \gamma \int_\Omega  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right)^2. \nonumber
 $$
 
 Now, by using the first inequality in \eqref{eq:C_bounds} and its Lipschitz continuity we can bound the first term in \eqref{eq:step1_proof}
