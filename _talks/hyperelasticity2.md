@@ -150,11 +150,11 @@ $$
 Using \eqref{eq:F_gradient} and \eqref{eq:E_gradient} in \eqref{eq:st_venant_kirchhoff_def} we get
 
 $$
-    \frac{\partial T}{\partial U_j} = \lambda \left[ \text{tr}(E) \nabla \phi_j + \frac{1}{2} \text{tr}\left(\nabla \phi_j^T F + F^T \nabla \phi_j \right) \right] + \mu \left[2 \nabla \phi_j E +
+    \frac{\partial T}{\partial U_j} = \lambda \left[ \text{tr}(E) \nabla \phi_j + \frac{1}{2} \text{tr}\left(\nabla \phi_j^T F + F^T \nabla \phi_j \right) \right] +
 $$
     
 $$
-    F \left(\nabla \phi_j^T F + F^T \nabla \phi_j \right) \right].
+    \mu \left[2 \nabla \phi_j E + F \left(\nabla \phi_j^T F + F^T \nabla \phi_j \right) \right].
 $$
 
 Thus, we have the expression
