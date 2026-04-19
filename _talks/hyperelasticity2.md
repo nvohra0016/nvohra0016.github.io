@@ -7,7 +7,7 @@ date: 2026-4-11
 
 # 1. Introduction
 
-In this blog, we continue towards building a robust solver for the St-Venant Kirchhoff hyperelastic model. In our previous [blog post](https://nvohra0016.github.io/talks/hyperelasticity1/), we delved into the challenges that arise when solving for 
+In this blog post, we continue towards building a robust solver for the St-Venant Kirchhoff hyperelastic model. In our [previous blog post](https://nvohra0016.github.io/talks/hyperelasticity1/), we delved into the challenges that arise when solving for 
 
 $$
 \label{eq:governing_system}
@@ -30,7 +30,7 @@ As we have already observed in our [previous blog post](https://nvohra0016.githu
 
 # 2. Details of the Computational Solver
 
-Following the notation we set up in our [previous post](https://nvohra0016.github.io/talks/hyperelasticity1/), we recall the St-Venant Kirchhoff model
+Following the notation we set up in our [previous blog post](https://nvohra0016.github.io/talks/hyperelasticity1/), we recall the St-Venant Kirchhoff model
 
 $$
 \label{eq:st_venant_kirchhoff_def}
@@ -253,7 +253,7 @@ We now investigate the performance of our computational solver in physical scena
 
 ## 3.1. Clamped Bar Under Dead Load
 
-We begin with the example visited in our (previous post)[https://nvohra0016.github.io/talks/hyperelasticity1/], i.e., of a clamped bar under a constant force. We consider $\Omega = (0, 1) \times (0, 0.4)$ [m $^2$]. For an external force of $f = 4 \times 10^7$ [N / m $^3$], our computational solver does not converge, and hence we choose a smaller force of $f = 3 \times 10^6$. The boundary conditions are 
+We begin with the example visited in our (previous blog post)[https://nvohra0016.github.io/talks/hyperelasticity1/], i.e., of a clamped bar under a constant force. We consider $\Omega = (0, 1) \times (0, 0.4)$ [m $^2$]. For an external force of $f = 4 \times 10^7$ [N / m $^3$], our computational solver does not converge, and hence we choose a smaller force of $f = 3 \times 10^6$. The boundary conditions are 
 
 $$
     u = 0 \text { on } x = 0, 1, \; T n = 0 \text{ on } y = 0, 0.4.
@@ -326,11 +326,7 @@ $$
     \widetilde{T}(u) = T(u) + \gamma \nabla u,
 $$
 
-where we have now introduced an diffusion term with the material (when we take the divergence of \eqref{eq:modified_law}). The reader may link this to the concept of *artificial diffusion* to improve the stability of numerical methods, but physically this terms adds extra stiffness at large displacement values. That is, we now expect a stiffer response from the material, but only enough so that we obtain physically sound solution profiles when external forces are large. In terms of the strain energy function, this is equivalent to
-
-$$
-    \widetilde{W}(F) =  \frac{\lambda}{2} \text{tr}(E)^2 + \mu \text{tr}(E^2) + \frac{1}{2}\left( \text{tr}(F^TF) - \text{tr}(F) \right).
-$$
+where we have now introduced an diffusion term with the material (when we take the divergence of \eqref{eq:modified_law}). The reader may link this to the concept of *artificial diffusion* to improve the stability of numerical methods, but physically this terms adds extra stiffness at large displacement values. That is, we now expect a stiffer response from the material, but only enough so that we obtain physically sound solution profiles when external forces are large. 
 
 
 We now proceed towards obtaining a numerical solution to the system arising from \eqref{eq:modified_law}. The variational form now becomes: find $u_h \in V_h$ such that  
@@ -562,7 +558,7 @@ Since the RHS of \eqref{eq:step5_proof} $\rightarrow \infty$ as $\vert u_h \vert
 
 <p style="text-align: right;">&#x25A1;</p>
 
-The above theorem can be extended to higher dimensional settings as well, and provides with with well-posedness of our discretized modified problem. We are now ready to test our new model on the physical scenarios discussed above. First, let us return to the 1D clamped bar scenario as in our previous [blog post](https://nvohra0016.github.io/talks/hyperelasticity1/) to highlight the importance of well-posedness as proved above and see if we indeed have any improvement in the robustness of the computational solver.
+The above theorem can be extended to higher dimensional settings as well, and provides with with well-posedness of our discretized modified problem. We are now ready to test our new model on the physical scenarios discussed above. First, let us return to the 1D clamped bar scenario as in our [previous blog post](https://nvohra0016.github.io/talks/hyperelasticity1/) to highlight the importance of well-posedness as proved above and see if we indeed have any improvement in the robustness of the computational solver.
 
 **Note.** *Perhaps the biggest (if not one of the biggest) problems with the above approach is that the parameter $\gamma$ depends on the grid size $h$. This means that for a fixed $\gamma$, if we keep refining the mesh, we will eventually land an ill-posed problem, where the computational solver will not converge and we can expect the same challenges as the St-Venant Kirchhoff model. This is duly noted, and is an interesting hard issue to solve, but in our regime of numerical results we don't face much of an issue. We may think of $\gamma$ as a parameter that helps obtain a physically sound displacement profile for large compressive forces, and a parameter that we may fine tune if we know apriori the grid scales that we are dealing with.*
 
@@ -584,7 +580,7 @@ We now study the simple 1D clamped bar example to understand the performance of 
 
 <br>
 
-**Robustness testing.** As discussed in our previous post, the 1D clamped bar example was not robust with the choice of a different initial guess $U^{(0)}$ or if we refine the grid too much when $f$ is large. We now test these aspects of robustness with our new modified model as in \eqref{eq:modified_law}. The results are shown in Fig. 5 and Fig. 6 below.
+**Robustness testing.** As discussed in our previous blog post, the 1D clamped bar example was not robust with the choice of a different initial guess $U^{(0)}$ or if we refine the grid too much when $f$ is large. We now test these aspects of robustness with our new modified model as in \eqref{eq:modified_law}. The results are shown in Fig. 5 and Fig. 6 below.
 
 <div align="center">
 <img src='/images/hyperelasticity2/1D_robustness_0.png' width='350' height='350'>
@@ -654,6 +650,12 @@ Fig. 7 (left) shows a much better displacement profile with a maximum value of 4
 ## Further Reading and Thoughts
 
 
+
+In terms of the strain energy function, this is equivalent to
+
+$$
+    \widetilde{W}(F) =  \frac{\lambda}{2} \text{tr}(E)^2 + \mu \text{tr}(E^2) + \frac{1}{2}\left( \text{tr}(F^TF) - \text{tr}(F) \right).
+$$
 
 
 
