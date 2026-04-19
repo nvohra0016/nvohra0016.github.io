@@ -154,7 +154,7 @@ $$
 $$
     
 $$
-    F \left(\nabla \phi_j^T F + F^T \nabla \phi_j \right) \right]. \nonumber
+    F \left(\nabla \phi_j^T F + F^T \nabla \phi_j \right) \right].
 $$
 
 Thus, we have the expression
@@ -499,11 +499,11 @@ $$
 $$
 
 $$
-    = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega g_2\left(C\left(\frac{du_h}{dX}\right), C \left(\frac{dv_h}{dX}\right) \right) \left(C\left( \frac{du_h}{dX} \right) - C\left( \frac{dv_h}{dX} \right) \right)  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) + \nonumber
+    = \frac{\left(\lambda + 2\mu \right)}{2} \int_\Omega g_2\left(C\left(\frac{du_h}{dX}\right), C \left(\frac{dv_h}{dX}\right) \right) \left(C\left( \frac{du_h}{dX} \right) - C\left( \frac{dv_h}{dX} \right) \right)  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right) \nonumber
 $$
     
 $$
-    \gamma \int_\Omega  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right)^2. \nonumber
+    + \gamma \int_\Omega  \left(\frac{du_h}{dX} - \frac{dv_h}{dX} \right)^2. \nonumber
 $$
 
 Now, by using the first inequality in \eqref{eq:C_bounds} and its Lipschitz continuity we can bound the first term in \eqref{eq:step1_proof}
