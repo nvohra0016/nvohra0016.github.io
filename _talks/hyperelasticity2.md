@@ -249,13 +249,13 @@ The above lemma guides us in choosing a linear solver to compute the inverse $\m
 
 ## 2.2. Anticipated Challenges
 
-In our previous post, we exemplified the issues of existence and uniqueness for simple scenarios. This led to, for example, (i) lack of convergence of computational solver for refined grids, or (ii) convergence to different solution profiles for different initial guesses in the Newton's method. Indeed, there is no reason for us to not expect such challenges in 2D (or 3D). Moreover, a very well known challenge in mechanics is expected to arise given our choice of Q1 finite elements: locking [^4]. Locking occurs for incompressible materials, and is defined as the inability of the computational solver to provide an accurate solution profile (displacements) for coarse meshes. For linear elasticity, locking can be explained by loss of coercivity of the associated bilinear form when $\frac{\lambda}{\mu} \rightarrow \infty$, which leads to large error for a given grid size $h$ [^5].
+In our previous post, we exemplified the issues of existence and uniqueness for simple scenarios. This led to, for example, (i) lack of convergence of computational solver for refined grids, or (ii) convergence to different solution profiles for different initial guesses in the Newton's method. Indeed, there is no reason for us to not expect such challenges in 2D (or 3D). Moreover, a very well known challenge in mechanics is expected to arise given our choice of Q1 finite elements: locking [^3]. Locking occurs for incompressible materials, and is defined as the inability of the computational solver to provide an accurate solution profile (displacements) for coarse meshes. For linear elasticity, locking can be explained by loss of coercivity of the associated bilinear form when $\frac{\lambda}{\mu} \rightarrow \infty$, which leads to large error for a given grid size $h$ [^4].
 
-Locking is well-studied in literature, and there exists multiple formulations (eg. mixed, weak Galerkin etc.) that are known to reduce the effect of locking. In our experiments, we do not encounter locking to a high degree, since we are also motivated by ensuring the robustness of the computational solver on finer grid sizes.
+Locking is well-studied in literature, and there exists multiple formulations (eg. mixed, weak Galerkin etc.) that are known to reduce the effect of locking. In our experiments, we do not encounter locking to a high degree, since we are also motivated to finer grids to consider the robustness of the computational solver.
 
 # 3. Numerical Results
 
-We now investigate the performance of our computational solver in physical scenarios. We implement the computational solver using the finite element library deal.II [^6]. We consider the MINRES solver as the linear solver when computing the solution $\delta U = \mathcal{J}^{-1} \mathcal{T}$. The absolute and relative tolerances to which we solve the system are $\epsilon_{ns, abs} = 10^{-8}$ and $\epsilon_{ns, rel} = 10^{-10}$. The MINRES algorithm stops when a tolerance of $\epsilon_{ls} = 10^{-8} \times \lVert \mathcal{T} \rVert_2$ is achieved.
+We now investigate the performance of our computational solver in physical scenarios. We implement the computational solver using the finite element library deal.II [^5]. We consider the MINRES solver as the linear solver when computing the solution $\delta U = \mathcal{J}^{-1} \mathcal{T}$. The absolute and relative tolerances to which we solve the system are $\epsilon_{ns, abs} = 10^{-8}$ and $\epsilon_{ns, rel} = 10^{-10}$. The MINRES algorithm stops when a tolerance of $\epsilon_{ls} = 10^{-8} \times \lVert \mathcal{T} \rVert_2$ is achieved.
 
 ## 3.1. Clamped Bar Under Dead Load
 
@@ -300,9 +300,9 @@ It is also noted that when the force $f$ is increased further, the computational
 
 ## 3.2. Incompressible Block Compression
 
-We now proceed with investigating the performance of the computational solver on an incompressible block compression scenario as depicted in Fig. 1. The benchmark is well-known and is taken from [^7] among other references, and is usually simulated using a Neo-Hookean model. The material parameters are chosen from [^8]. In particular, the Young's modulus is taken to be $E_Y = 240.565 \times 10^6$ [Pa] and the Poisson ratio is taken to be $\nu = 0.4999$ [-]. 
+We now proceed with investigating the performance of the computational solver on an incompressible block compression scenario as depicted in Fig. 1. The benchmark is well-known and is taken from [^6] among other references, and is usually simulated using a Neo-Hookean model. The material parameters are chosen from [^7]. In particular, the Young's modulus is taken to be $E_Y = 240.565 \times 10^6$ [Pa] and the Poisson ratio is taken to be $\nu = 0.4999$ [-]. 
 
-**Re-selecting $t_N$ to obtain convergence.** We consider traction vector as $t_N = (-4 \times 10^8, 0)$ [Pa] as in [^8], however, our computational solver does not converge. To obtain convergence, we reduce the traction magnitude to $t_N = -7 \times 10^7$ (after trial and error with different grid sizes). The results are shown in Fig. 3 for different grid sizes.
+**Re-selecting $t_N$ to obtain convergence.** We consider traction vector as $t_N = (-4 \times 10^8, 0)$ [Pa] as in [^7], however, our computational solver does not converge. To obtain convergence, we reduce the traction magnitude to $t_N = -7 \times 10^7$ (after trial and error with different grid sizes). The results are shown in Fig. 3 for different grid sizes.
 
 <div align="center">
 <img src='/images/hyperelasticity2/incompressible_grid_size0.png' width='350' height='350'>
@@ -315,13 +315,13 @@ We now proceed with investigating the performance of the computational solver on
 
 <br>
 
-We can now observe some severe locking taking place in the solution. Indeed, the deformed configurations look very different and the maximum displacement magnitude of the two profiles differs by a factor of ~$1.7$. Moreover, the maximum vertical displacement we are able to achieve is $2.95$ [mm] at point $(10, 10)$, whereas the results reported in [^8] are close to $6$ [mm], a big difference.
+We can now observe some severe locking taking place in the solution. Indeed, the deformed configurations look very different and the maximum displacement magnitude of the two profiles differs by a factor of ~$1.7$. Moreover, the maximum vertical displacement we are able to achieve is $2.95$ [mm] at point $(10, 10)$, whereas the results reported in [^7] are close to $6$ [mm], a big difference.
 
 On the solver side, for grid size $h = 1$ and $h = 0.02$ convergence is achieved in NS iter. 6 and LS iter. 3922, and NS iter. 14 and LS iter. 138170, numbers which can definitely take major improvements.
 
 # 4. Improving the Performance of the Solver: Adding Stabilization
 
-The above examples show how poorly the St-Venant Kirchhoff model performs for typical physical scenarios, on the physical and computational side. In particular, for large forces or traction, the solver does not converge, or the solution converges to an un-physical profile (such as where det$(F) < 0$), all of which is exacerbated by the issue of existence and uniqueness. Let us now now work towards improving the model through a stabilizing term. 
+The above examples (and the discussion in our previous blog post) show how poorly the St-Venant Kirchhoff model performs for typical physical scenarios, on the physical and computational side. In particular, for large forces or traction, the solver does not converge, or the solution converges to an un-physical profile (such as where det$(F) < 0$), all of which is exacerbated by the issue of existence and uniqueness. Let us now now work towards improving the model through a stabilizing term. 
 
 **Note.** *The discussion below is not found on any experimental data, and is just to explore how a material responds to a "modified" St-Venant Kirchhoff type model. We try to provide mathematical rigour on some clear assumptions, which, however, are not guaranteed to hold true for all physical scenarios, although we have seen agreeable improvement in some examples.*
 
@@ -377,7 +377,7 @@ $$
     S(\phi_h) = \int_\Omega f \cdot \phi_h.
 $$
 
-We now investigate the properties of the operator $a$. In particular, we are interested in establishing some form of coercivity and monotonicity which will guarantee the existence of a unique solution using Minty-Browder's theorem (Ciarlet [^9], Theorem 9.14-1). That, however, is not a trivial task, and instead we will prove the properties in 1D. We also make use of a *cut-off* operator to compute the tensors $F$ and $E$ as
+We now investigate the properties of the operator $a$. In particular, we are interested in establishing some form of coercivity and monotonicity which will guarantee the existence of a unique solution using Minty-Browder's theorem (Ciarlet [^8], Theorem 9.14-1). That, however, is not a trivial task, and instead we will prove the properties in 1D. We also make use of a *cut-off* operator to compute the tensors $F$ and $E$ as
 
 $$
     F_{C} = 1 + C\left(\frac{d u}{dX} \right), E_C = \frac{1}{2} \left(F_C^2 - 1 \right),
@@ -437,9 +437,9 @@ $$
     S(\phi_h) = \int_\Omega f \phi_h.
 $$
 
-**Note on the cut-off operator.** *The idea of the cut-off operator is that for a large enough $C_0$, the system \eqref{eq:modified_aC} is close to \eqref{eq:modified_problem}, and hence a numerical implementation of the cut-off operator is unnecessary for large $C_0$. However, we rely on the cut-off operator for formal analysis and an existence result as proved below. For an application of the cut-off operator in thermo-poroelastic setting, see [^10].*
+**Note on the cut-off operator.** *The idea of the cut-off operator is that for a large enough $C_0$, the system \eqref{eq:modified_aC} is close to \eqref{eq:modified_problem}, and hence a numerical implementation of the cut-off operator is unnecessary for large $C_0$. However, we rely on the cut-off operator for formal analysis and an existence result as proved below. For an application of the cut-off operator in thermo-poroelastic setting, see [^9].*
 
-We now state an existence result making use of the concepts of monotonicity, coercivity, and hemicontinuity of operators. For a brief introduction and definitions, see also the monograph [^11]. Note that since $V_h$ is a finite dimensional Hilbert space, it is reflexive and separable. 
+We now state an existence result making use of the concepts of monotonicity, coercivity, and hemicontinuity of operators. For a brief introduction and definitions, see also the monograph [^10]. Note that since $V_h$ is a finite dimensional Hilbert space, it is reflexive and separable. 
 
 **Theorem 4.1.** Fix $h > 0$ and $C_0 > 0$. Then, the operator $a_C : V_h \rightarrow V_h'$ is strictly monotone, hemicontinuous, and coercive for a large enough $\gamma > 0$. Thus $\exists$ a unique solution to \eqref{eq:modified_aC} for a smooth enough $f$.
 
@@ -652,7 +652,7 @@ We are now in a position to provide the numerical results for the incompressible
 
 <br>
 
-Fig. 7 (left) shows a *much better displacement profile* with a maximum value of 4.46 [mm], better than the values reported previously in Fig. 3, although still short of the benchmark values reported in [^8]. The NS iter. in this case are 13 and the LS iter. are 78411.
+Fig. 7 (left) shows a *much better displacement profile* with a maximum value of 4.46 [mm], better than the values reported previously in Fig. 3, although still short of the benchmark values reported in [^7]. The NS iter. in this case are 13 and the LS iter. are 78411.
 
 **Sensitivity to $\gamma$.** The model is expectedly sensitive to $\gamma$. A small $\gamma$ means we tend towards the St-Venant Kirchhoff model, and a large $\gamma$ means the material responds very stiffly. We attempt to increase the maximum displacement in the incompressible block scenario by varying $\gamma$. Indeed, after some more trial and error, it was observeed that when $\gamma = 3.819 \times 10^8$, the maximum displacement improves to 4.89 [mm]; the profile is shown in Fig. 7 (right). In this case, the NS iter. taken are 21 and the LS iter. is 143151.
 
@@ -671,12 +671,11 @@ Moreover, a major drawback is that the parameter $\gamma$ depends on the grid si
 ## References
 [^1]: Philippe G. Ciarlet, *Mathematical Elasticity: Volume 1: Three-dimensional Elasticity*, 1988, Elsevier Science Publishers.
 [^2]: Michael Ulbrich, *Semismooth Newton Methods for Variational Inequalities and Constrained Optimization Problems in Function Spaces*, 2011, Mathematical Optimization Society and the Society for Industrial and Applied Mathematics.
-[^3]: On MINRES
-[^4]: On locking for Q1 elements
-[^5]: Alexandre Ern, Jean-Luc Guermond, *Theory and Practice of Finite Elements*, 2004, Springer.
-[^6]: Daniel Arndt et al., *The deal.II library, Version 9.7*, Journal of Numerical Mathematics, 2025.
-[^7]: Reese et al.', *A New Stabilization Technique For Finite Elements in Non-linear Elasticity*, 1999, International Journal for Numerical Methods in Engineering, 44.
-[^8]: Bayat et al.', *Numerical evaluation of discontinuous and nonconforming finite element methods in nonlinear solid mechanics*, 2018, Computational Mechanics.
-[^9]: Philippe G. Ciarlet, *Linear and Nonlinear Functional Analysis with Applications*, 2013, SIAM.
-[^10]: Brun et al.', *Monolithic and splitting solution schemes for fully coupled quasi-static thermo-poroelasticity with nonlinear convective transport*, 2020, Computers and Mathematics with Applications.
-[^11]: Ralph Showalter, *Monotone Operators in Banach Space and Nonlinear Partial Differential Equations*, 1997, American Mathematical Society.
+[^3]: D. Braess, *Finite Elements: Theory, Fast Solvers, and Applications in Elasticity Theory*, 2007, Cambridge University Press.
+[^4]: Alexandre Ern, Jean-Luc Guermond, *Theory and Practice of Finite Elements*, 2004, Springer.
+[^5]: Daniel Arndt et al., *The deal.II library, Version 9.7*, Journal of Numerical Mathematics, 2025.
+[^6]: Reese et al.', *A New Stabilization Technique For Finite Elements in Non-linear Elasticity*, 1999, International Journal for Numerical Methods in Engineering, 44.
+[^7]: Bayat et al.', *Numerical evaluation of discontinuous and nonconforming finite element methods in nonlinear solid mechanics*, 2018, Computational Mechanics.
+[^8]: Philippe G. Ciarlet, *Linear and Nonlinear Functional Analysis with Applications*, 2013, SIAM.
+[^9]: Brun et al.', *Monolithic and splitting solution schemes for fully coupled quasi-static thermo-poroelasticity with nonlinear convective transport*, 2020, Computers and Mathematics with Applications.
+[^10]: Ralph Showalter, *Monotone Operators in Banach Space and Nonlinear Partial Differential Equations*, 1997, American Mathematical Society.
