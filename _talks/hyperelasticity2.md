@@ -253,13 +253,13 @@ We now investigate the performance of our computational solver in physical scena
 
 ## 3.1. Clamped Bar Under Dead Load
 
-We begin with the example visited in our (previous post)[(https://nvohra0016.github.io/talks/hyperelasticity1/)], i.e., of a clamped bar under a constant force. We consider $\Omega = (0, 1) \times (0, 0.4)$ [m $^2$], and the external force $f = 3 \times 10^6$ [N / m $^3$] (since our computational solver struggles to converge for $f = 4 \times 10^7$), along with the following boundary conditions
+We begin with the example visited in our (previous post)[https://nvohra0016.github.io/talks/hyperelasticity1/], i.e., of a clamped bar under a constant force. We consider $\Omega = (0, 1) \times (0, 0.4)$ [m $^2$]. For an external force of $f = 4 \times 10^7$ [N / m $^3$], our computational solver does not converge, and hence we choose a smaller force of $f = 3 \times 10^6$. The boundary conditions are 
 
 $$
     u = 0 \text { on } x = 0, 1, \; T n = 0 \text{ on } y = 0, 0.4.
 $$
 
-The Young's modulus is $E_Y = 10^7$ [Pa] and the Poisson ratio is $\nu = 0.48$ [-]. The results are shown in Fig. 2 for a uniform grid size of $0.025 \times 0.025$ [m $^2$].
+The Young's modulus is $E_Y = 10^7$ [Pa] and the Poisson ratio is $\nu = 0.48$ [-]. The results are shown in Fig. 2 for a uniform grid size of $0.025 \times 0.025$ [m $^2$] (i.e. $h = 0.025$).
 
 <div align="center">
 <img src='/images/hyperelasticity2/load_solution0_with_colormap.png' width='550' height='550'>
