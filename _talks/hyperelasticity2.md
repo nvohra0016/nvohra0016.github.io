@@ -603,7 +603,6 @@ We now study the simple 1D clamped bar example to understand the performance of 
 
 <br>
 
-
 <div align="center">
 <img src='/images/hyperelasticity2/1D_robustness_guess_0.png' width='350' height='350'>
 <img src='/images/hyperelasticity2/1D_robustness_guess_1.png' width='350' height='350'>
@@ -634,12 +633,26 @@ We now study the simple 1D clamped bar example to understand the performance of 
 
 <br>
 
-
 We also note that for smaller $\gamma$, the difference between the St-Venant Kirchhoff model and our new model is less (as expected), and consequently the convergence issues also arise.
+
+**2D results.** We revisit the example above in 2D with $f = 4 \times 10^7$ and $\gamma = 1.55 \times 10^7$. The displacment profile is shown in Fig. 7 for a grid size of $0.0125 \times 0.0125$ [m $^2$] (which led to no-convergence for the St-Venant Kirchhoff model earlier).
+
+<div align="center">
+<img src='/images/hyperelasticity2/load_solution1_with_colormap.png' width='550' height='550'>
+</div>
+
+<div align = "center">
+ Figure 7. Displacement magnitude profile in [m] for the clamped bar under dead load using the new model. Here we use $\gamma = 1.55 \times 10^7$.
+</div>
+
+<br>
+
+Unlike before, the solver now converges in NS iter. 11 and LS iter. 4653.
+
 
 ## 5.2. Incompressible Block With New Model
 
-We are now in a position to provide the numerical results for the incompressible block scenario as above. We use $h = 0.05$ [mm] and $\gamma = 4 \times 10^8$ [Pa] (after some trial and error) for $t_N = 4 \times 10^8$. The results are shown in Fig. 7 below.
+We are now in a position to provide the numerical results for the incompressible block scenario as above. We use $h = 0.05$ [mm] and $\gamma = 4 \times 10^8$ [Pa] (after some trial and error) for $t_N = 4 \times 10^8$. The results are shown in Fig. 8 below.
 
 <div align="center">
 <img src='/images/hyperelasticity2/incompressible_new_rho0.png' width='370' height='370'>
@@ -647,14 +660,14 @@ We are now in a position to provide the numerical results for the incompressible
 </div>
 
 <div align = "center">
- Figure 7. Displacement magnitude profiles in [m] for incompressible block benchmark using the new model with $\gamma = 4 \times 10^8$ (left) and $\gamma = 3.819 \times 10^8$ (right). 
+ Figure 8. Displacement magnitude profiles in [m] for incompressible block benchmark using the new model with $\gamma = 4 \times 10^8$ (left) and $\gamma = 3.819 \times 10^8$ (right). 
 </div>
 
 <br>
 
-Fig. 7 (left) shows a *much better displacement profile* with a maximum value of 4.46 [mm], better than the values reported previously in Fig. 3, although still short of the benchmark values reported in [^7]. The NS iter. in this case are 13 and the LS iter. are 78411.
+Fig. 8 (left) shows a *much better displacement profile* with a maximum value of 4.46 [mm], better than the values reported previously in Fig. 3, although still short of the benchmark values reported in [^7]. The NS iter. in this case are 13 and the LS iter. are 78411.
 
-**Sensitivity to $\gamma$.** The model is expectedly sensitive to $\gamma$. A small $\gamma$ means we tend towards the St-Venant Kirchhoff model, and a large $\gamma$ means the material responds very stiffly. We attempt to increase the maximum displacement in the incompressible block scenario by varying $\gamma$. Indeed, after some more trial and error, it was observeed that when $\gamma = 3.819 \times 10^8$, the maximum displacement improves to 4.89 [mm]; the profile is shown in Fig. 7 (right). In this case, the NS iter. taken are 21 and the LS iter. is 143151.
+**Sensitivity to $\gamma$.** The model is expectedly sensitive to $\gamma$. A small $\gamma$ means we tend towards the St-Venant Kirchhoff model, and a large $\gamma$ means the material responds very stiffly. We attempt to increase the maximum displacement in the incompressible block scenario by varying $\gamma$. Indeed, after some more trial and error, it was observed that when $\gamma = 3.819 \times 10^8$, the maximum displacement improves to 4.89 [mm]; the profile is shown in Fig. 7 (right). In this case, the NS iter. taken are 21 and the LS iter. is 143151.
 
 ## Further Reading and Thoughts
 
@@ -666,7 +679,8 @@ $$
 
 which, too, does not provide any resistance to det$(F) \rightarrow 0$ and will face the same issues as the St-Kirchhoff Venant model for large forces.
 
-Moreover, a major drawback is that the parameter $\gamma$ depends on the grid size for model and performance improvements, and another issue is that for large $\gamma$ and for small forces or traction, the material response is too stiff which would result in very small displacements. A more versatile parameter could be a monotnone $\gamma = \gamma(u)$, which may still be able to provide coercivity and monotonicty of the operator associated with $\widetilde{T}$ (provided we may impose something like $\gamma(0) = 0$ and Lipschitz continuity), and would slowly introduce stiffness as $u$ increases with increasing $f$ or $t_N$. That, however, would be a topic for a future blog post.
+Moreover, a major drawback is that the parameter $\gamma$ depends on the grid size for model and performance improvements, and we also cannot hope that $\gamma$ is dimension invariant: for example, if a particular $\gamma$ value gives good results in 2D, it may still require fine-tuning in 3D. Another issue is that for large $\gamma$ and for small forces or traction, the material response is too stiff which would result in very small displacements. A more versatile parameter could be a monotnone $\gamma = \gamma(u)$, which may still be able to provide coercivity and monotonicty of the operator associated with $\widetilde{T}$ (provided we may impose something like $\gamma(0) = 0$ and Lipschitz continuity), and would slowly introduce stiffness as $u$ increases with increasing $f$ or $t_N$. That, however, would be a topic for a future blog post.
+
 
 ## References
 [^1]: Philippe G. Ciarlet, *Mathematical Elasticity: Volume 1: Three-dimensional Elasticity*, 1988, Elsevier Science Publishers.
