@@ -594,7 +594,7 @@ We now study the simple 1D clamped bar example to understand the performance of 
 
 <br>
 
-**Summary of results.** Let us now discuss the performance of the model. On the physical side, as expected, the material response is much more stiffer, resulting in smaller displacements. On the computational side, there is good improvement: convergence ... We note that for smaller $\gamma$, the difference between the St-Venant Kirchhoff model and our new model is less (as expected), and consequently the convergence issues also arise.
+**Summary of results.** Let us now discuss the performance of the model. On the physical side, as expected, the material response is much more stiffer, resulting in smaller displacements. On the computational side, there is good improvement: convergence, the NS iter. values  We note that for smaller $\gamma$, the difference between the St-Venant Kirchhoff model and our new model is less (as expected), and consequently the convergence issues also arise.
 
 ## 5.2. Incompressible Block With New Model
 
@@ -613,8 +613,7 @@ We are now in a position to provide the numerical results for the incompressible
 
 Fig. 7 (left) shows a much better displacement profile with a maximum value of 4.46 [mm], much better than the values reported previously in Fig. 3, although still short of the benchmark values reported in [^8]. The NS iter. in this case are 13 and the LS iter. are 78411.
 
-**Sensitivity to $\gamma$.** We explore fine tuniong the parameter $\gamma$ further to see if we can get higher displacement values. Indeed, after some more trial and error, it was observeed that when $\gamma = 3.819 \times 10^8$, the maximum displacement improves to 4.89 [mm]; the profile is shown in Fig. 7 (right). In this case, the NS iter. taken are 21 and the LS iter. is 143151.
-
+**Sensitivity to $\gamma$.** The model is expectedly sensitive to $\gamma$. A small $\gamma$ means we tend towards the St-Venant Kirchhoff model, and a large $\gamma$ means the material responds very stiffly. We attempt to increase the maximum displacement in the incompressible block scenario by varying $\gamma$. Indeed, after some more trial and error, it was observeed that when $\gamma = 3.819 \times 10^8$, the maximum displacement improves to 4.89 [mm]; the profile is shown in Fig. 7 (right). In this case, the NS iter. taken are 21 and the LS iter. is 143151.
 
 
 ## Further Reading and Thoughts
