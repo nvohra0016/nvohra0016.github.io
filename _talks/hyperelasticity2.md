@@ -14,7 +14,7 @@ $$
     -\nabla \cdot T(u) = f \text{ in } \Omega,
 $$
 
-in a 1D setting, and now we investigate the challenges that arise in a 2D setting. In particular, we are interested in investigating how the St-Venant Kirchhoff model behaves in a well-known benchmark case: the incompressible block compression benchmark; see Fig. 1 for an illustration of the domain and problem.
+in a 1D setting, and now we investigate the challenges that arise in a 2D setting. In particular, we are interested in investigating how the St-Venant Kirchhoff model behaves in a well-known benchmark case: the incompressible block compression scenario; see Fig. 1 for an illustration of the domain and problem.
 
 <div align="center">
 <img src='/images/hyperelasticity2/incompressible_domain.png' width='450' height='450'>
@@ -26,9 +26,9 @@ in a 1D setting, and now we investigate the challenges that arise in a 2D settin
 
 <br>
 
-As we have already observed in our [previous blog post](https://nvohra0016.github.io/talks/hyperelasticity1/), for large compressive forces the St-Venant Kirchhoff model struggles to converge to a solution, or it may converge to a solution that is not orientation preserving, i.e., a non-physical solution, and hence is not the best model to simulate the block compression scenario. Indeed, the St-Venant Kirchhoff model is usually best to simulate scenarios involving small strains [^1]. However, we are interested to see how far we can push the model, and if there is a way to make modifications which can help us better approximate and capture the physical displacement profile.
+As we have already observed in our [previous blog post](https://nvohra0016.github.io/talks/hyperelasticity1/), for large compressive forces the St-Venant Kirchhoff model struggles to converge to a solution, or it may converge to a solution that is not orientation preserving, i.e., a non-physical solution, and hence is not the best model to simulate the block compression scenario. Indeed, the St-Venant Kirchhoff model is usually best to simulate scenarios involving small strains [^1]. The convergence issue is further aggravated as the model for finer grid sizes, which are needed to avoid the effect of locking when using low order finite elements. 
 
-To this end, we focus on building a new St-Venant Kirchhoff type model by adding a linear term which can help us approximate large displacements for large compressive forces. We are motivated lack of well-posedness of the system and introduce physical "stiffness" which helps us solve this issue to some extent and also allows the model to capture displacement profiles under large forces.
+In this post, we are interested to see how far we can push the St-Venant Kirchhoff model, and if there is a way to make modifications which can help us better approximate and capture displacement profiles under large forces and for fine grids. To this end, we focus on building a new St-Venant Kirchhoff type model by adding a linear term which can help us approximate large displacements while avoiding the above challenges. Our motivation comes from an apriori knowledge of the lack of well-posedness of the system and we introduce physical "stiffness" which helps us solve this issue to some extent and also allows the new model to capture displacement profiles under large forces and on finer grids.
 
 # 2. Details of the Computational Solver
 
@@ -249,9 +249,9 @@ The above lemma guides us in choosing a linear solver to compute the inverse $\m
 
 ## 2.2. Anticipated Challenges
 
-In our previous post, we exemplified the issues of existence and uniqueness for simple scenarios. This led to, for example, (i) lack of convergence of computational solver for refined grids, or (ii) convergence to different solution profiles for different initial guesses in the Newton's method. Indeed, there is no reason for us to not expect such challenges in 2D (or 3D). Moreover, a very well known challenge in mechanics is expected to arise given our choice of Q1 finite elements: locking [^3]. Locking occurs for incompressible materials, and is defined as the inability of the computational solver to provide an accurate solution profile (displacements) for coarse meshes. For linear elasticity, locking can be explained by loss of coercivity of the associated bilinear form when $\frac{\lambda}{\mu} \rightarrow \infty$, which leads to large error for a given grid size $h$ [^4].
+In our previous post, we exemplified the issues of existence and uniqueness for simple scenarios. This led to, for example, (i) lack of convergence of computational solver for finer grid sizes, or (ii) convergence to different solution profiles for different initial guesses in the nonlinear solver (Newton's method). Indeed, there is no reason for us to not expect such challenges in 2D (or 3D). Moreover, a very well known challenge in mechanics is expected to arise given our choice of the low order Q1 finite elements: locking [^3]. Locking occurs for incompressible materials, and is defined as the inability of the computational solver to provide an accurate solution profile (displacements) for coarse meshes. For linear elasticity, locking can be explained by loss of coercivity of the associated bilinear form when $\frac{\lambda}{\mu} \rightarrow \infty$, which leads to large error for a given grid size $h$ [^4].
 
-Locking is well-studied in literature, and there exists multiple formulations (eg. mixed, weak Galerkin etc.) that are known to reduce the effect of locking. In our experiments, we do not encounter locking to a high degree, since we are also motivated to finer grids to consider the robustness of the computational solver.
+Locking is well-studied in literature, and there exists multiple formulations (eg. mixed, weak Galerkin etc.) that are known to reduce the effect of locking. Or simply, one may use Q2 elements which, in our experience as well, reduces locking. In our experiments, however, since we work with finer grids to test the robustness of our model, we do not encounter locking to a high degree when using Q1 elements.
 
 # 3. Numerical Results
 
@@ -277,7 +277,7 @@ The Young's modulus is $E_Y = 10^7$ [Pa] and the Poisson ratio is $\nu = 0.48$ [
 
 <br>
 
-The profile shows the bar deformed with more mass accumulating towards the right boundary. We also tabulate the performance of the computational solver in Tab. 1. It can be observed that the number of nonlinear and linear iterations increase as the mesh is refined, and we quickly reach a stage of no convergence for a small enough grid size $h$.  No locking was observed in this example, which is unsurprising since the material is not highly incompressible (owing to $\nu = 0.48$).
+The profile shows the bar deformed with more mass accumulating towards the right boundary. We also tabulate the performance of the computational solver in Tab. 1. It can be observed that the number of nonlinear and linear iterations increase as the mesh is refined, and we quickly reach a stage of no convergence for a small enough grid size $h$, i.e., for a fine grid. No locking was observed in this example, which is unsurprising since the material is not highly incompressible (owing to $\nu = 0.48$).
 
 <div align = "center" markdown = "1">
 
@@ -315,25 +315,25 @@ We now proceed with investigating the performance of the computational solver on
 
 <br>
 
-We can now observe some severe locking taking place in the solution. Indeed, the deformed configurations look very different and the maximum displacement magnitude of the two profiles differs by a factor of ~$1.7$. Moreover, the maximum vertical displacement we are able to achieve is $2.95$ [mm] at point $(10, 10)$, whereas the results reported in [^7] are close to $6$ [mm], a big difference.
+We can now observe some severe locking taking place in the solution. Indeed, the deformed configurations look very different and the maximum displacement magnitude of the two profiles differs by a factor of ~$1.7$. Moreover, the maximum vertical displacement we are able to achieve is $2.95$ [mm] at point $(10, 10)$, whereas the results reported in [^7] are close to $6$ [mm], a big difference. On the solver side, for grid size $h = 1$ and $h = 0.02$ convergence is achieved in NS iter. 6 and LS iter. 3922, and NS iter. 14 and LS iter. 138170, numbers which can definitely take major improvements.
 
-On the solver side, for grid size $h = 1$ and $h = 0.02$ convergence is achieved in NS iter. 6 and LS iter. 3922, and NS iter. 14 and LS iter. 138170, numbers which can definitely take major improvements.
 
-# 4. Improving the Performance of the Solver: Adding Stabilization
+We note that in both the examples above our model and solver struggles to converge for large $f$ or $t_N$, values which may have led to convergence in 1D. Moreover, even for small $f$ or $t_N$, if we refine the grid sufficiently we reach a stage where we either get a non-physical solution, or our solver does not converge, behaviour that was also observed in 1D in our previous blog post discussion. We now work on addressing this issue by introducing a new parameter in the St-Venant Kirchhoff model. 
 
-The above examples (and the discussion in our previous blog post) show how poorly the St-Venant Kirchhoff model performs for typical physical scenarios, on the physical and computational side. In particular, for large forces or traction, the solver does not converge, or the solution converges to an un-physical profile (such as where det$(F) < 0$), all of which is exacerbated by the issue of existence and uniqueness. Let us now now work towards improving the model through a stabilizing term. 
+# 4. Introducing a New Model
+
+The above examples (and the discussion in our previous blog post) show how poorly the St-Venant Kirchhoff model performs for typical physical scenarios, on the physical and computational side. In particular, for large forces or traction, the solver does not converge, or the solution converges to an non-physical profile (such as where det$(F) < 0$), issues which we now try to address through the lack of well-posedness of the St-Venant Kirchhoff model. We now work towards improving the model through a stabilizing term to see if we can attempt to have well-posedness in some form.
 
 **Note.** *The discussion below is not found on any experimental data, and is just to explore how a material responds to a "modified" St-Venant Kirchhoff type model. We try to provide mathematical rigour on some clear assumptions, which, however, are not guaranteed to hold true for all physical scenarios, although we have seen agreeable improvement in some examples.*
 
-Let $\gamma > 0$ be a parameter (we list the exact dependence of $\gamma$ later, and here we note that the units of $\gamma$ are [Pa]). Consider now the modified constitutive law
+Let $\gamma > 0$ be a parameter. We list the exact dependence of $\gamma$ later, and here we note that the units of $\gamma$ are [Pa]. Consider now the modified constitutive law
 
 $$
 \label{eq:modified_law}
     \widetilde{T}(u) = T(u) + \gamma \nabla u,
 $$
 
-where we have now introduced an diffusion term with the material (when we take the divergence of \eqref{eq:modified_law}). The reader may link this to the concept of *artificial diffusion* to improve the stability of numerical methods, but physically this terms adds extra stiffness at large displacement values. That is, we now expect a stiffer response from the material, but only enough so that we obtain physically sound solution profiles when external forces are large. 
-
+where we have now introduced an diffusion term with the material (when we take the divergence of \eqref{eq:modified_law}). The reader may link this to the concept of *artificial diffusion* to improve the stability of numerical methods, but physically this terms adds extra stiffness for large displacement valuesr That is, we now expect a stiffer response from the material, but only enough so that we obtain physically sound solution profiles when external forces are large. 
 
 We now proceed towards obtaining a numerical solution to the system arising from \eqref{eq:modified_law}. The variational form now becomes: find $u_h \in V_h$ such that  
 
@@ -344,7 +344,7 @@ $$
 
 where now it is understood that the traction boundary condition is applied as $\widetilde{T} n = t_N$.
 
-Now we explore the implications of adding this additional term. On the computational side, one thing becomes clear that if $\gamma$ is large enough, then the Jacobian associated with $\widetilde{T}$ becomes symmetric positive definite (SPD) since
+**Existence of solution to Newton's update.** We note that if $\gamma$ is large enough then the Jacobian associated with $\widetilde{T}$ becomes symmetric positive definite (SPD) since
 
 $$
     \widetilde{\mathcal{J}} = \mathcal{J} + \gamma \mathcal{A},
@@ -357,7 +357,7 @@ $$
 
 is an SPD matrix. Thus for large $\gamma$, the eigenvalues of $\widetilde{\mathcal{J}}$ can be made positive since $\mathcal{A}$ has positive eigenvalues (it is SPD) and $\mathcal{J}$ has real eigenvalues (it is symmetric). This further guarantees existence of a unique update $\delta U$ in each Newton iteration.
 
-Now let us consider the variational form \eqref{eq:modified_variational_form} with homogeneous Dirichlet boundary conditions for simplicity and clarity of exposition. For the exposition below, we use $V_h \subset H_0^1(\Omega)$ the finite dimensional subspace of piecewise-linear functions which vanish on $\partial \Omega$. We first rewrite \eqref{eq:modified_variational_form} using a nonlinear operator $a : V_h \rightarrow V_h'$, where $V_h'$ is the dual of $V_h$: we seek $u_h \in V_h$ such that
+**Well-posedness in 1D.** We now provide an outline of a proof of well-posedness for the new model. Let us consider the variational form \eqref{eq:modified_variational_form} with homogeneous Dirichlet boundary conditions for simplicity and clarity of exposition. We also now denote by $V_h \subset H_0^1(\Omega)$ the finite dimensional subspace of piecewise-linear functions which vanish on $\partial \Omega$. Rewriting \eqref{eq:modified_variational_form} using a nonlinear operator $a : V_h \rightarrow V_h'$, where $V_h'$ is the dual of $V_h$, the variational form becomes: we seek $u_h \in V_h$ such that
 
 $$
     a(u_h)(\phi_h) = S(\phi_h),
@@ -377,7 +377,7 @@ $$
     S(\phi_h) = \int_\Omega f \cdot \phi_h.
 $$
 
-We now investigate the properties of the operator $a$. In particular, we are interested in establishing some form of coercivity and monotonicity which will guarantee the existence of a unique solution using Minty-Browder's theorem (Ciarlet [^8], Theorem 9.14-1). That, however, is not a trivial task, and instead we will prove the properties in 1D. We also make use of a *cut-off* operator to compute the tensors $F$ and $E$ as
+We now investigate properties of the operator $a$. In particular, we are interested in establishing some form of coercivity and monotonicity which will guarantee the existence of a unique solution using the Minty-Browder's theorem [Ciarlet' 2013, Theorem 9.14-1] [^8]. That, however, is not a trivial task, and instead we will prove the properties in 1D while also making use of a *cut-off* operator to compute the tensors $F$ and $E$ as
 
 $$
     F_{C} = 1 + C\left(\frac{d u}{dX} \right), E_C = \frac{1}{2} \left(F_C^2 - 1 \right),
@@ -438,7 +438,7 @@ $$
     S(\phi_h) = \int_\Omega f \phi_h.
 $$
 
-**Note on the cut-off operator.** *The idea of the cut-off operator is that for a large enough $C_0$, the system \eqref{eq:modified_aC} is close to \eqref{eq:modified_problem}, and hence a numerical implementation of the cut-off operator is unnecessary for large $C_0$. However, we rely on the cut-off operator for formal analysis and an existence result as proved below. For an application of the cut-off operator in thermo-poroelastic setting, see [^9].*
+**Note on the cut-off operator.** *The idea of the cut-off operator is that for a large enough $C_0$, the system \eqref{eq:modified_aC} is close to \eqref{eq:modified_problem}, and hence a numerical implementation of the cut-off operator is unnecessary for large $C_0$. However, we rely on the cut-off operator for formal analysis and an existence result as proved below. The cut-off operator is used in literature in other problems as well: see for example [^9] for an application in thermo-poroelastic settings.*
 
 We now state an existence result making use of the concepts of monotonicity, coercivity, and hemicontinuity of operators. For a brief introduction and definitions, see also the monograph [^10]. Note that since $V_h$ is a finite dimensional Hilbert space, it is reflexive and separable. 
 
@@ -569,15 +569,17 @@ Since the RHS of \eqref{eq:step5_proof} $\rightarrow \infty$ as $\vert u_h \vert
 
 <p style="text-align: right;">&#x25A1;</p>
 
-The above theorem can be extended to higher dimensional settings as well, and provides with with well-posedness of our discretized modified problem. We are now ready to test our new model on the physical scenarios discussed above. First, let us return to the 1D clamped bar scenario as in our [previous blog post](https://nvohra0016.github.io/talks/hyperelasticity1/) to highlight the importance of well-posedness as proved above and see if we indeed have any improvement in the robustness of the computational solver.
+The above theorem can be extended to higher dimensional settings as well, and provides us with well-posedness of our discretized modified problem. 
 
 **Note.** *Perhaps the biggest (if not one of the biggest) problems with the above approach is that the parameter $\gamma$ depends on the grid size $h$. This means that for a fixed $\gamma$, if we keep refining the mesh, we will eventually land an ill-posed problem, where the computational solver will not converge and we can expect the same challenges as the St-Venant Kirchhoff model. This is duly noted, and is an interesting hard issue to solve, but in our regime of numerical results we don't face much of an issue. We may think of $\gamma$ as a parameter that helps obtain a physically sound displacement profile for large compressive forces, and a parameter that we may fine tune if we know apriori the grid scales that we are dealing with.*
 
 # 5. Testing Our New Model: Numerical Results Revisited
 
+We are now ready to test our new model on the physical scenarios discussed above. We begin by returning to the 1D clamped bar scenario as in our [previous blog post](https://nvohra0016.github.io/talks/hyperelasticity1/) to highlight the importance of well-posedness as proved above and see if we indeed have any improvement in the robustness of the solver.
+
 ## 5.1. 1D Clamped Bar Revisited
 
-We now study the simple 1D clamped bar example to understand the performance of our new model compared with the St-Venant Kirchhoff model. We follow the same parameters and tolerances as mentioned in our previous blog post, and test the robustness of the solver with respect to different grid sizes and different initial guesses.
+We now study the simple 1D clamped bar example to understand the performance of our new model compared with the St-Venant Kirchhoff model. We follow the same parameters and tolerances as mentioned in our previous blog post, and consider different grid sizes and initial guesses.
 
 **Scenario results with new model.** We first simulate the scenario using grid size $h = 0.05$ [m] and by choosing $\gamma = 10^7$ [Pa]. The results are shown in Fig. 4. 
 
@@ -610,12 +612,12 @@ We now study the simple 1D clamped bar example to understand the performance of 
 </div>
 
 <div align = "center">
- Figure 6. Displacement profiles for zero ($U^{(0)} = 0$) and non-zero ($U^{(0)} \neq 0$) initial guesses for the St-Venant Kirchhoff model (left) and our new modified model (right). Here we have used $\gamma = 10^7$.
+ Figure 6. Displacement profiles for zero ($U^{(0)} = 0$) and non-zero ($U^{(0)} = 0.9 X(1 - X) \neq 0$) initial guesses for the St-Venant Kirchhoff model (left) and our new modified model (right). Here we have used $\gamma = 10^7$.
 </div>
 
 <br>
 
-**Performance summary.** Let us now discuss the performance of the model and the computational solver. On the physical side, as expected, the material response is much more stiffer, resulting in smaller displacements. On the computational side, there is good improvement, and the results are tabulated in Tab. 2. In particular, we observe convergence of the solver for finer grids and different initial guesses, a property that is missing from the St-Venant Kirchhoff model.
+**Performance summary.** Let us now discuss the performance of the model and the computational solver. On the physical side, as expected, the material response is much more stiffer, resulting in smaller displacements for the new model. On the computational side, there is good improvement, and the results are tabulated in Tab. 2. In particular, we observe convergence of the solver for finer grids and different initial guesses, behaviour that was not observed when using the St-Venant Kirchhoff model.
 
 <div align = "center" markdown = "1">
 
@@ -634,9 +636,9 @@ We now study the simple 1D clamped bar example to understand the performance of 
 
 <br>
 
-We also note that for smaller $\gamma$, the difference between the St-Venant Kirchhoff model and our new model is less (as expected), and consequently the convergence issues also arise.
+We also note that for smaller $\gamma$, the difference between the St-Venant Kirchhoff model and our new model is less (as expected), and consequently convergence issues also arise.
 
-**2D results.** We revisit the example above in 2D with $f = 4 \times 10^7$ and $\gamma = 1.55 \times 10^7$. The displacment profile is shown in Fig. 7 for a grid size of $0.0125 \times 0.0125$ [m $^2$] (which led to no-convergence for the St-Venant Kirchhoff model earlier).
+**2D results.** We now revisit the example above in 2D with $f = 4 \times 10^7$ and $\gamma = 1.55 \times 10^7$. The displacment profile is shown in Fig. 7 for a grid size of $0.0125 \times 0.0125$ [m $^2$] (which led to no-convergence for the St-Venant Kirchhoff model in our discussion above).
 
 <div align="center">
 <img src='/images/hyperelasticity2/load_solution1_with_colormap.png' width='550' height='550'>
@@ -648,7 +650,7 @@ We also note that for smaller $\gamma$, the difference between the St-Venant Kir
 
 <br>
 
-Unlike before, the solver now converges in NS iter. 11 and LS iter. 4653, and the maximum displacement magnitude is more than twice what it was in Fig. 2. 
+Unlike before, the solver now converges in NS iter. 11 and LS iter. 4653, and the maximum displacement magnitude is more than twice what it was in Fig. 2.
 
 ## 5.2. Incompressible Block With New Model
 
@@ -669,9 +671,13 @@ Fig. 8 (left) shows a *much better displacement profile* with a maximum value of
 
 **Sensitivity to $\gamma$.** The model is expectedly sensitive to $\gamma$. A small $\gamma$ means we tend towards the St-Venant Kirchhoff model, and a large $\gamma$ means the material responds very stiffly. We attempt to increase the maximum displacement in the incompressible block scenario by varying $\gamma$. Indeed, after some more trial and error, it was observed that when $\gamma = 3.819 \times 10^8$, the maximum displacement improves to 4.89 [mm]; the profile is shown in Fig. 7 (right). In this case, the NS iter. taken are 21 and the LS iter. is 143151.
 
+<br>
+
+To conclude the above numerical results, we note that we are able to obtain physical displacement profiles for grid sizes and forces that the St-Venant Kirchhoff model could provide for. This is consistent with the well-posedness that we can hope to achieve with our new model for a large enough $\gamma$.
+
 ## Further Reading and Thoughts
 
-The above discussion provides an attempt at improving the physical and computational aspect of the St-Venant Kirchhoff model under large compressive forces. Although the new model introduced above is not found on any experimental data, we successfully demonstrate how the modification can help us achieve better results with improved performance, particularly by obtaining agreeable physical solution profiles under large forces as opposed to the St-Venant Kirchhoff model which does not converge under the same forces. As highlighted, however, it should be noted that the new model does not inherently address the fundamental issue of the St-Venant Kirchhoff model which is that the stored energy function $W(F) \rightarrow 0$ as det$(F) \rightarrow 0$. Indeed, the stored energy of the new model is
+The above discussion provides an attempt at improving the physical and computational aspect of the St-Venant Kirchhoff model under large compressive forces. Although the new model introduced above is not found on any experimental data, we successfully demonstrate how the modification can help us achieve better results with improved performance, particularly by obtaining agreeable physical displacement profiles under large forces as opposed to the St-Venant Kirchhoff model which does not converge under the same forces. As highlighted, however, it should be noted that the new model does not inherently address the fundamental issue of the St-Venant Kirchhoff model which is that the stored energy function $W(F) \rightarrow 0$ as det$(F) \rightarrow 0$. Indeed, the stored energy of the new model is
 
 $$
     \widetilde{W}(F) =  \frac{\lambda}{2} \text{tr}(E)^2 + \mu \text{tr}(E^2) + \frac{1}{2}\left( \text{tr}(F^TF) - \text{tr}(F) \right),
@@ -679,7 +685,7 @@ $$
 
 which, too, does not provide any resistance to det$(F) \rightarrow 0$ and will face the same issues as the St-Kirchhoff Venant model for large forces.
 
-Moreover, a major drawback is that the parameter $\gamma$ depends on the grid size for model and performance improvements, and we also cannot hope that $\gamma$ is dimension invariant: for example, if a particular $\gamma$ value gives good results in 2D, it may still require fine-tuning in 3D. Another issue is that for large $\gamma$ and for small forces or traction, the material response is too stiff which would result in very small displacements. A more versatile parameter could be a monotnone $\gamma = \gamma(u)$, which may still be able to provide coercivity and monotonicty of the operator associated with $\widetilde{T}$ (provided we may impose something like $\gamma(0) = 0$ and Lipschitz continuity), and would slowly introduce stiffness as $u$ increases with increasing $f$ or $t_N$. That, however, would be a topic for a future blog post.
+Moreover, a major drawback is that the parameter $\gamma$ depends on the space $V_h$, i.e., on the grid size $h$ for model and performance improvements, and we also cannot hope that $\gamma$ is dimension invariant: for example, if a particular $\gamma$ value gives good results in 2D, it may still require fine-tuning in 3D. Another issue is that for large $\gamma$ and for small forces or traction, the material response is too stiff which would result in very small and inaccurate displacements. To address this, a more versatile parameter could be a monotnone $\gamma = \gamma(u)$ which may still be able to provide coercivity and monotonicty of the operator associated with $\widetilde{T}$ (provided we may impose something like $\gamma(0) = 0$ and Lipschitz continuity), and would slowly introduce stiffness as $u$ increases with increasing $f$ or $t_N$. That, however, would be a topic for a future blog post.
 
 
 ## References
