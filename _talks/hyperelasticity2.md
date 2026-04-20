@@ -172,7 +172,7 @@ $$
 
 We now prove an that the Jacobian is symmetric.
 
-**Lemma 2.2.1.1.** The Jacobian $\mathcal{J}$ defined by \eqref{eq:jacobian_def} is symmetric.
+**Lemma 2.2.1.1.** The Jacobian $\mathcal{J}$ defined by \eqref{eq:jacobian_def_2} is symmetric.
 
 *Proof.* We consider individual terms in the integrand of \eqref{eq:jacobian_def_2}. Note that the term
 
@@ -259,13 +259,13 @@ We now investigate the performance of our computational solver in physical scena
 
 ## 3.1. Clamped Bar Under Dead Load
 
-We begin with the example visited in our (previous blog post)[https://nvohra0016.github.io/talks/hyperelasticity1/], i.e., of a clamped bar under a constant force. We consider $\Omega = (0, 1) \times (0, 0.4)$ [m $^2$]. For an external force of $f = 4 \times 10^7$ [N / m $^3$], our computational solver does not converge, and hence we choose a smaller force of $f = 3 \times 10^6$. The boundary conditions are 
+We begin with the clamped bar under a constant force scenario from our [previous blog post](https://nvohra0016.github.io/talks/hyperelasticity1/). Extending into 2D, we now consider $\Omega = (0, 1) \times (0, 0.4)$ [m $^2$]. The boundary conditions are 
 
 $$
     u = 0 \text { on } x = 0, 1, \; T n = 0 \text{ on } y = 0, 0.4.
 $$
 
-The Young's modulus is $E_Y = 10^7$ [Pa] and the Poisson ratio is $\nu = 0.48$ [-]. The results are shown in Fig. 2 for a uniform grid size of $0.025 \times 0.025$ [m $^2$] (i.e. $h = 0.025$).
+The Young's modulus is $E_Y = 10^7$ [Pa] and the Poisson ratio is $\nu = 0.48$ [-]. For an external force of $f = 4 \times 10^7$ [N / m $^3$], our computational solver does not converge, and hence we choose a smaller force of $f = 3 \times 10^6$. The results are shown in Fig. 2 for a uniform grid size of $0.025 \times 0.025$ [m $^2$] (i.e. $h = 0.025$).
 
 <div align="center">
 <img src='/images/hyperelasticity2/load_solution0_with_colormap.png' width='550' height='550'>
@@ -421,6 +421,7 @@ $$
 and consider the following variational formulation: we seek $u_h \in V_h$ such that 
 
 $$
+\label{eq:modified_var_form}
     a_C(u_h)(\phi_h) = S(\phi_h), \forall \phi_h \in V_h,
 $$
 
@@ -441,7 +442,7 @@ $$
 
 We now state an existence result making use of the concepts of monotonicity, coercivity, and hemicontinuity of operators. For a brief introduction and definitions, see also the monograph [^10]. Note that since $V_h$ is a finite dimensional Hilbert space, it is reflexive and separable. 
 
-**Theorem 4.1.** Fix $h > 0$ and $C_0 > 0$. Then, the operator $a_C : V_h \rightarrow V_h'$ is strictly monotone, hemicontinuous, and coercive for a large enough $\gamma > 0$. Thus $\exists$ a unique solution to \eqref{eq:modified_aC} for a smooth enough $f$.
+**Theorem 4.1.** Fix $h > 0$ and $C_0 > 0$. Then, the operator $a_C : V_h \rightarrow V_h'$ is strictly monotone, hemicontinuous, and coercive for a large enough $\gamma > 0$. Thus $\exists$ a unique solution to \eqref{eq:modified_var_form} for a smooth enough $f$.
 
 *Proof.* First note that since $\frac{du_h}{dX}$ is a piece-wise constant function, we can rewrite
 
